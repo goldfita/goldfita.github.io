@@ -1,0 +1,73 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+<head>
+<title>Formant Tracking</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<link rel="stylesheet" type="text/css" href="../../index.css" />
+<meta name="description" content=
+"This is some information on a little formant tracking project I did.  There is
+also some information on how to read real-time data into matlab from a DSP." />
+<!-- ....10........20........30........40........50........60........70........80 -->
+</head>
+
+<body>
+<table>
+<tr><td class="article">
+<h1 class="topofpage">Real-Time Formant Tracking</h1>
+
+<p>One method of speech recognition is to estimate the resonant
+frequencies of a speech signal.  These frequencies, known as formants,
+tell us the vowel being spoken.  There are a number of ways to do
+this.  In my first attempt, I tried using the Levinson-Durbin
+algorithm to find the LPC coefficients over short intervals of speech.
+From there it is just a matter of finding the poles.  The root finding
+code turned out to be much to slow for real time.  However, now that I
+understand how to write optimized code on the C671x, I believe it may
+still be possible to do it this way.  Next, I tried estimating the LPC
+coefficients using LMS*.  By using LMS, the coefficients are known at
+every sample (instead of at the end of each window).  This allows for
+tracking the roots.  I did this by randomly seeding Newton&#39;s
+method for each root and running one iteration after each LMS update+.
+The biggest problem with this method is that the algorithm may lose
+track of roots.  Then the algorithm has to be re-seeded repeatedly
+until the correct root is found again.  In addition, LMS is not very
+good at estimating formants.  After running a number of simulations, I
+decided to use a 25<sup>th</sup> order filter even though I only need
+to find the first few formants.  I don&#39;t have an explanation, but
+it seems to work better this way.  Unfortunately, most of the work is
+used to find formants that are thrown away.  As an improvement, I
+would recommend using a lower order RLS.  It should be possible to run
+a low order RLS in real time, and I would expect the results to be
+more accurate.</p>
+
+<p>I tested the real time implementation with four different vowels.
+Only one <a href="eh.wav">vowel</a> worked well (it managed to find
+the most important formants at least part of the time).  For two of
+the vowels, the tracker appeared to find at least one of the formants.
+For one vowel, it didn&#39;t seem to work at all.  This is the <a
+href="eh_formants.avi">video</a> (which runs very quickly) of the
+tracker.  The x-axis plots the smaller frequency; the y-axis plots the
+larger frequency (Hz).  The spot where the markers tend to cluster is
+the correct location according to F. R. Moore's &quot;Elements of
+Computer Music&quot;.</p>
+
+
+<p>You may find the visualization <a href="showFormant.m">code</a>
+useful.  Also available is a description of <a
+href="How%20to%20get%20real%20time%20data%20into%20Matlab.pdf">how to
+get real time data into matlab</a>.  You will need <a
+href="test.cpp">test.cpp</a> and <a href="test.def">test.def</a> as
+well.</p>
+
+<p>*<a href="http://citeseer.ist.psu.edu/cache/papers/cs/25646/http:zSzzSzspeech.ucsd.eduzSzaldebarozSzpaperszSzFormantEstimation.pdf/klautau00frequency.pdf">http://citeseer.ist.psu.edu/cache/papers/cs/25646/<br />http:zSzzSzspeech.ucsd.eduzSzaldebarozSzpaperszSz<br />FormantEstimation.pdf/klautau00frequency.pdf</a>
+<br />
++I was only able to do one iteration
+for every two LMS updates on a C6713.  The sample rate was 12khz.</p>
+</td></tr>
+</table>
+
+<p><a href="../../index.html">home</a></p>
+
+</body>
+</html>

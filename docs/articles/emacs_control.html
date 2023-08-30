@@ -1,0 +1,95 @@
+ <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+<head>
+<title>Emacs Control Characters</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<link rel="stylesheet" type="text/css" href="../index.css" />
+<meta name="description" content="
+How I tried to reverse map Emacs control characters from Dvorak to Qwerty.  You'll
+learn what you can do with Emacs control characters.                        " />
+<!-- ....10........20........30........40........50........60........70........80 -->
+</head>
+
+<body>
+<table>
+<tr><td class="article">
+<h1 class="topofpage">Emacs Control Characters</h1>
+<p>
+I prefer to use the Dvorak keyboard layout.  Unfortunately, Emacs control keys were designed for a 
+Qwerty layout.  This is a frustrating problem.  Try typing C-x b (switch  buffers) or C-x C-f (open file) 
+in Dvorak.  Your fingers will be all over the keyboard.  And the physical layout of my board is also 
+Qwerty; so, when I look, I get really confused.  I tried to solve the problem by reverse mapping the control 
+keys back to Qwerty.  Thus, normal typing would happen in Dvorak, but C-x b would become C-q x.  And 
+C-x C-f would be C-q C-u.  Sounds good, right?
+</p>
+
+<p>
+Not quite.  At first it seemed there was no way to <a href=
+"http://groups.google.com/group/comp.emacs/browse_frm/thread/dc5361274e705316/852e4c8ec9cabbaf">
+remap just the control characters</a>.  Someone suggested using psetf with global-key-binding.  I tried 
+this and it seemed to work with some control sequences but not others.  I'll explain why later.  It 
+also only worked with a single control character.  That is, C-t would work, but C-x b and C-x C-f would not.
+</p>
+
+<p>
+The next suggestion was to try messing with key-translation-map.  It works like this
+</p>
+
+<pre class="code">
+(define-key key-translation-map "\C-t" "\C-s")
+</pre>
+
+<p>
+That will take C-t and turn it into C-s.  This obviously won't work if you type two control keys or a 
+control key followed by a letter.  (I'm going to ignore more keys than that since I almost never use 
+more than two.)  But luckily that last parameter can be a procedure.  It must have one argument (which 
+always seems to be nil) and must return a string with the new control sequence.  So once again it's 
+looking like this is possible.  I'll just use read-char-exclusive to read in the next character and construct
+the new control sequence.  And this almost worked, but there's a gotcha.
+</p>
+
+<p>
+The first thing I needed to do was create a hash table to map keys back to Qwerty.  An example of how to 
+do this is shown below.  I thought I could use the same hash table to remap the control keys as well.  But 
+it turns out you can't break apart "\C-t".  Emacs considers that a single character string.  So trying to concat 
+"\C-" to "t" doesn't work.  I had to make another hash for control characters.  It wasn't until later I learned
+you can use an alternative form like (kbd "C-t").  And this will let you concat "C-" to "t".
+</p>
+
+<pre class="code">
+(setq dvorak->qwerty (make-hash-table :test 'equal))
+(puthash "t" "y" dvorak->qwerty)
+</pre>
+
+<p>
+Here's the trouble.  I mentioned before that certain control characters didn't seem to work.  It turns out, 
+if you're not in Xwindows (console Emacs only), it's not possible to get certain control sequences.  Check 
+<a href="http://www.lib.uchicago.edu/keith/tcl-course/emacs-ascii.html">here</a>.  There are 32 control characters
+in ASCII.  That's how many control characters are available to Emacs.  But there are more than 32 characters on 
+the keyboard.  Go ahead.  Count.  It's OK.  Notice that C-. is not in there.  In order to map C-. back to 
+its Qwerty equivalent, C-e, you would have to know when it was pressed.  Try the following code snippet
+Type C-x C-e after the right parenthesis of each to execute.</p>
+
+<pre class="code">
+(equal ?\^. ?\^n)
+(+ 0 ?\^.)
+</pre>
+
+<p>
+The ?\^x syntax is for characters.  Do you see how they both map to 14?  So "\C-." was being seen by emacs 
+as "\C-n" which explains why it wasn't working.  In addition, some other keys, like tab and backspace, were mapping 
+to other control characters I needed which really goofed things up.  At this point I've somewhat gotten used to
+the control keys in Dvorak; although, it is an ugly dance my fingers have to do on the keyboard to get there.  My options
+at this point are to stick with Dvorak or to try and figure out how to capture all the control keys in Xwindows and 
+use Dvorak in Xwindows and Qwerty in a console.  When my Xwindows is running and stable, this is normally what I would use.  For 
+now I'm going to leave it as is.  You can find the code in mapback.el.txt on <a href="../freesoft/opensource.html">my free software
+page</a> in my backup files.  It's named with .txt so emacs doesn't try and load it.  If you learn more please contact me.
+</p> 
+</td></tr>
+
+</table>
+<p><br /><a href="../index.html">home</a></p>
+
+</body>
+</html>

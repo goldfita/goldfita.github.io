@@ -1,0 +1,107 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+<head>
+<title>Setting Up Ocaml</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<link rel="stylesheet" type="text/css" href="../index.css" />
+<meta name="description" content=
+"An introduction to setting up and using Ocaml.
+                                                             " />
+<!-- ....10........20........30........40........50........60........70........80 -->
+</head>
+
+<body>
+<table>
+<tr><td class="article">
+<h1 class="topofpage">Ocaml and You</h1>
+
+<p>
+Start out with <span class="bold">emerge ocaml</span>.  This will get
+you the language fully installed and the xemacs packages.  You will
+want to install ocamlfind, which is also known as findlib.  Install
+with <span class="bold">emerge findlib</span>.  This is needed to
+install and use extension packages, such as Getopt.
+</p>
+
+<p>
+To compile your program into a bytecode executable, run <span
+class="bold">ocamlc myprog.ml</span>.  This makes an executable file
+that invokes the interpreter, ocamlrun, to execute the bytecodes.  If
+you want a native version (doesn't require ocamlrun), use <span
+class="bold">ocamlopt myprog.ml</span>.
+</p>
+
+<p>
+If you need thread support*, you need to use <span class="bold">open
+Thread</span> in your code and give the -thread option to the compiler.
+This will ensure that the compiler links in the thread safe version of
+the libraries.  You will also need to add -custom threads.cma.  But
+threads depends on the unix module; so, add unix before threads.  Now
+you have <span class="bold">ocamlc -thread -custom unix.cma
+threads.cma myprog.ml</span>.
+</p>
+
+<p>
+To get any real work done, you'll probably need to use the
+lexer/parser.  Include <span class="bold">open Genlex</span> in your
+code.  Add <span class="bold">-pp camlp4o -I +camlp4</span> to the
+compile options.  This tells the compiler to preparse the file with
+camlp4o.  The -I tells it to include the camlp4 directory when
+searching for cma and cmo files.
+</p>
+
+<p>
+If you're going to be writing any decently large sized program, you'll
+also want to use <a
+href="http://www.eleves.ens.fr/home/frisch/soft.html">getopts</a>.
+Getopts is a standard C library for parsing the input parameters sent to an
+executable.  Run the following.  Then take a look at sample.ml and the
+docs in docs/index.html.
+</p>
+
+<pre>
+make 
+make allopt
+make install
+
+(* Verify Getopt is installed by running ocaml. *)
+#use "topfind";;
+#list;; (* should show getopt *)
+#require "Getopt";;
+</pre>
+
+<p>
+The final compile command looks like <span class="bold">ocamlc -thread
+-custom unix.cma threads.cma getopt.cma -pp camlp4o -I +camlp4 -I
+getopt myprog.ml</span>.  If you want to compile to native code, use
+<span class="bold">ocamlopt -thread  -pp camlp4o -I +camlp4 -I getopt
+unix.cmxa threads.cmxa getopt.cmxa myprog.ml</span>.  According to the
+documentation you also need to add <span class="bold">-cclib -lunix
+-cclib -lthreads</span> to the ocamlc command line and <span
+class="bold">-cclib -lunix  -cclib -lthreadsnat  -cclib
+-lpthread</span> to the ocamlopt command line.  However, I didn't find
+this to be necessary.
+</p>
+
+<p>
+<span class="bold">*Threads</span><br />
+Threads in Ocaml cannot run on more than one processor.  So you
+probably won't get much of a speed increase by using them.  Also, for
+some reason, I found that if you print from within a thread, the
+output does not show up on the console if the main thread quits.  I
+assume this means all threads are immediately terminated (at least by
+default) when the main program ends.  If you put a delay in the main
+program, the output will appear on the console <span
+class="italics">after</span> the delay.  However, you can make the
+output appear immediately by putting <span class="bold">%!</span> in
+your formatted string.  This tells printf to flush immediately.
+</p>
+
+</td></tr>
+</table>
+<p><br /><a href="../index.html">home</a></p>
+
+</body>
+
+</html>

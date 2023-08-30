@@ -1,0 +1,219 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!--Converted with LaTeX2HTML 2K.1beta (1.61)
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta name="generator" content=
+"HTML Tidy for Windows (vers 12 April 2005), see www.w3.org" />
+<title>Performance</title>
+<meta name="description" content="Performance" />
+<meta name="keywords" content="research" />
+<meta name="resource-type" content="document" />
+<meta name="distribution" content="global" />
+<meta http-equiv="Content-Type" content=
+"text/html; charset=us-ascii" />
+<meta name="Generator" content="LaTeX2HTML v2K.1beta" />
+<meta http-equiv="Content-Style-Type" content="text/css" />
+<link rel="STYLESHEET" href="research.css" type="text/css" />
+<link rel="next" href="node9.html" />
+<link rel="previous" href="node7.html" />
+<link rel="up" href="node6.html" />
+<link rel="next" href="node9.html" />
+<style type="text/css">
+/*<![CDATA[*/
+ div.c2 {text-align: right}
+ div.c1 {text-align: center}
+/*]]>*/
+</style>
+</head>
+<body>
+<!--Navigation Panel-->
+<a name="tex2html137" href="node9.html" id=
+"tex2html137"><img width="37" height="24" align="bottom" border="0"
+alt="next" src="next.gif" /></a> <a name="tex2html133" href=
+"node6.html" id="tex2html133"><img width="26" height="24" align=
+"bottom" border="0" alt="up" src="up.gif" /></a> <a name=
+"tex2html127" href="node7.html" id="tex2html127"><img width="63"
+height="24" align="bottom" border="0" alt="previous" src=
+"prev.gif" /></a> <a name="tex2html135" href="node1.html" id=
+"tex2html135"><img width="65" height="24" align="bottom" border="0"
+alt="contents" src="contents.gif" /></a><br />
+<b>Next:</b> <a name="tex2html138" href="node9.html" id=
+"tex2html138">Finding the Delay</a> <b>Up:</b> <a name=
+"tex2html134" href="node6.html" id="tex2html134">Delay-and-Sum
+Beamforming</a> <b>Previous:</b> <a name="tex2html128" href=
+"node7.html" id="tex2html128">Basic Idea</a> &nbsp; <b><a name=
+"tex2html136" href="node1.html" id=
+"tex2html136">Contents</a></b><br />
+<br />
+<!--End of Navigation Panel-->
+<h2><a name="SECTION00042000000000000000" id=
+"SECTION00042000000000000000">Performance</a></h2>
+What kind of results can we expect from a delay-and-sum beamformer?
+For now we'll assume that the source angle is known and we can
+delay the signals without any error. First some definitions:<br />
+<div class="c1"><!-- MATH
+ \begin{eqnarray}
+s_i(t) & \doteq & \mbox{real valued signal}\nonumber\\
+n_i(t) & \doteq & \mbox{white gaussian noise}\nonumber\\
+\sigma_x^2 \mbox{(average power)} & \doteq &
+\frac{1}{N}\sum_{k=0}^{N-1}{x(t)^2} \nonumber\\
+SNR_{s+n} & \doteq &\frac{\sigma_s^2}{\sigma_n^2}\nonumber\\
+\end{eqnarray}
+ -->
+<table align="center" cellpadding="0" width="100%">
+<tr valign="middle">
+<td nowrap="nowrap" align="right"><img width="35" height="31"
+align="middle" border="0" src="img18.gif" alt=
+"$\displaystyle s_i(t)$" /></td>
+<td align="center" nowrap="nowrap"><img width="16" height="32"
+align="middle" border="0" src="img19.gif" alt=
+"$\textstyle \doteq$" /></td>
+<td align="left" nowrap="nowrap"><img width="125" height="29"
+align="middle" border="0" src="img20.gif" alt=
+"$\displaystyle \mbox{real valued signal}$" /></td>
+<td width="10" align="right">&nbsp;</td>
+</tr>
+<tr valign="middle">
+<td nowrap="nowrap" align="right"><img width="37" height="31"
+align="middle" border="0" src="img21.gif" alt=
+"$\displaystyle n_i(t)$" /></td>
+<td align="center" nowrap="nowrap"><img width="16" height="32"
+align="middle" border="0" src="img19.gif" alt=
+"$\textstyle \doteq$" /></td>
+<td align="left" nowrap="nowrap"><img width="146" height="29"
+align="middle" border="0" src="img22.gif" alt=
+"$\displaystyle \mbox{white gaussian noise}$" /></td>
+<td width="10" align="right">&nbsp;</td>
+</tr>
+<tr valign="middle">
+<td nowrap="nowrap" align="right"><img width="132" height="35"
+align="middle" border="0" src="img23.gif" alt=
+"$\displaystyle \sigma_x^2 \mbox{(average power)}$" /></td>
+<td align="center" nowrap="nowrap"><img width="16" height="32"
+align="middle" border="0" src="img19.gif" alt=
+"$\textstyle \doteq$" /></td>
+<td align="left" nowrap="nowrap"><img width="90" height="65" align=
+"middle" border="0" src="img24.gif" alt=
+"$\displaystyle \frac{1}{N}\sum_{k=0}^{N-1}{x(t)^2}$" /></td>
+<td width="10" align="right">&nbsp;</td>
+</tr>
+<tr valign="middle">
+<td nowrap="nowrap" align="right"><img width="66" height="29"
+align="middle" border="0" src="img25.gif" alt=
+"$\displaystyle SNR_{s+n}$" /></td>
+<td align="center" nowrap="nowrap"><img width="16" height="32"
+align="middle" border="0" src="img19.gif" alt=
+"$\textstyle \doteq$" /></td>
+<td align="left" nowrap="nowrap"><img width="26" height="55" align=
+"middle" border="0" src="img26.gif" alt=
+"$\displaystyle \frac{\sigma_s^2}{\sigma_n^2}$" /></td>
+<td width="10" align="right">&nbsp;</td>
+</tr>
+</table>
+</div>
+<br clear="all" />
+Now put <img width="89" height="31" align="middle" border="0" src=
+"img27.gif" alt="$s_1(t)+s_2(t)$" /> into the average power
+definition. Then,<br />
+<div class="c2"><!-- MATH
+ \begin{equation}
+\sigma_{s_1+s_2}^2 & = & \frac{1}{N}\sum_{k=0}^{N-1}{(s_1(t)+s_2(t))^2}
+\end{equation}
+ -->
+<table width="100%" align="center">
+<tr valign="middle">
+<td align="center" nowrap="nowrap"><img width="219" height="56"
+border="0" src="img28.gif" alt=
+"\begin{displaymath} \sigma_{s_1+s_2}^2 &amp; = &amp; \frac{1}{N}\sum_{k=0}^{N-1}{(s_1(t)+s_2(t))^2}\nonumber \end{displaymath}" /></td>
+<td width="10" align="right">&nbsp;</td>
+</tr>
+</table>
+<br clear="all" /></div>
+If we delay <img width="41" height="31" align="middle" border="0"
+src="img29.gif" alt="$s_1(n)$" /> so that <!-- MATH
+ $s_1(n) & = & s_2(n)$
+ -->
+<img width="98" height="31" align="middle" border="0" src=
+"img30.gif" alt="$s_1(n) &amp; = &amp; s_2(n)$" />, then we get 
+<!-- MATH
+ $\sigma_{s_1+s_1}^2 & = & 4\sigma_{s_1}^2\nonumber$
+ -->
+<img width="99" height="33" align="middle" border="0" src=
+"img31.gif" alt=
+"$\sigma_{s_1+s_1}^2 &amp; = &amp; 4\sigma_{s_1}^2\nonumber$" />.
+<p>Repeat the above procedure with the noise and expand.<br /></p>
+<div class="c2"><!-- MATH
+ \begin{equation}
+\sigma_{n_1+n_2}^2 & = &
+\frac{1}{N}\sum_{k=0}^{N-1}{(n_1^2(t)+2n_1(t)n_2(t)+n_2^2(t))} & = & 
+\frac{1}{N}\sum_{k=0}^{N-1}{(n_1^2(t)+n_2^2(t))}+2<n_1(t),n_2(t)>
+\end{equation}
+ -->
+<table width="100%" align="center">
+<tr valign="middle">
+<td align="center" nowrap="nowrap"><img width="625" height="56"
+border="0" src="img32.gif" alt=
+"\begin{displaymath} \sigma_{n_1+n_2}^2 &amp; = &amp; \frac{1}{N}\sum_{k=0}^{N-1}{(n_1^2(... ...sum_{k=0}^{N-1}{(n_1^2(t)+n_2^2(t))}+2&lt;n_1(t),n_2(t)&gt;\nonumber \end{displaymath}" /></td>
+<td width="10" align="right">&nbsp;</td>
+</tr>
+</table>
+<br clear="all" /></div>
+The time-averaged cross-correlation, <!-- MATH
+ $<n_1(t),n_2(t)>$
+ -->
+<img width="114" height="31" align="middle" border="0" src=
+"img33.gif" alt="$&lt;n_1(t),n_2(t)&gt;$" />, is zero for noise.
+Then, <!-- MATH
+ $\sigma_{n_1+n_2}^2 & = & \sigma_{n_1}+\sigma_{n_2} & = & 2\sigma_{n_1}^2\nonumber$
+ -->
+<img width="194" height="33" align="middle" border="0" src=
+"img34.gif" alt=
+"$\sigma_{n_1+n_2}^2 &amp; = &amp; \sigma_{n_1}+\sigma_{n_2} &amp; = &amp; 2\sigma_{n_1}^2\nonumber$" />.
+And<br />
+<div class="c2"><!-- MATH
+ \begin{equation}
+SNR_{s_1+n_1+s_1+n_2} & = & 2SNR_{s_1+n_1}
+\end{equation}
+ -->
+<table width="100%" align="center">
+<tr valign="middle">
+<td align="center" nowrap="nowrap"><img width="222" height="28"
+border="0" src="img35.gif" alt=
+"\begin{displaymath} SNR_{s_1+n_1+s_1+n_2} &amp; = &amp; 2SNR_{s_1+n_1}\nonumber \end{displaymath}" /></td>
+<td width="10" align="right">&nbsp;</td>
+</tr>
+</table>
+<br clear="all" /></div>
+And in general, for M microphones, we get M times the SNR [<a href=
+"node14.html#MIK">MIK</a>]. For the Signal to Interference Ratio
+(SIR), the cross-correlation term will take a value between zero
+and the interference power. So the array SIR will be better than
+the one element microphone SIR and worse than M times the SIR for
+one microphone.
+<hr />
+<!--Navigation Panel-->
+<a name="tex2html137" href="node9.html" id=
+"tex2html137"><img width="37" height="24" align="bottom" border="0"
+alt="next" src="next.gif" /></a> <a name="tex2html133" href=
+"node6.html" id="tex2html133"><img width="26" height="24" align=
+"bottom" border="0" alt="up" src="up.gif" /></a> <a name=
+"tex2html127" href="node7.html" id="tex2html127"><img width="63"
+height="24" align="bottom" border="0" alt="previous" src=
+"prev.gif" /></a> <a name="tex2html135" href="node1.html" id=
+"tex2html135"><img width="65" height="24" align="bottom" border="0"
+alt="contents" src="contents.gif" /></a><br />
+<b>Next:</b> <a name="tex2html138" href="node9.html" id=
+"tex2html138">Finding the Delay</a> <b>Up:</b> <a name=
+"tex2html134" href="node6.html" id="tex2html134">Delay-and-Sum
+Beamforming</a> <b>Previous:</b> <a name="tex2html128" href=
+"node7.html" id="tex2html128">Basic Idea</a> &nbsp; <b><a name=
+"tex2html136" href="node1.html" id="tex2html136">Contents</a></b> 
+<!--End of Navigation Panel-->
+<address>Todd A Goldfinger 2004-11-22</address>
+</body>
+</html>

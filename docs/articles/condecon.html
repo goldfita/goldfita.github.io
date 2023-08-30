@@ -1,0 +1,91 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+<head>
+<title>Matlab Convolution</title>
+<link rel="stylesheet" type="text/css" href="../index.css" />
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+
+<meta name="description" content=
+"Some of my thoughts related to software, including design decisions, explanations 
+and examples of how software works, signal processing demos, etc." />
+<!-- ....10........20........30........40........50........60........70........80 -->
+</head>
+
+<body>
+<table>
+<tr><td class="article">
+
+<h1 class="topofpage">Matlab Convolution</h1>
+<p>
+This is a quick look at convolution and deconvolution in matlab.
+First you might have wondered, as I have, what's the deal with
+flipping the filter?  It's really simple if you just think about the
+physical phenomenon.  Suppose you have a filter modeling what a
+circuit or room does to an electric or acoustic signal.  Picture the
+wave hitting the filter.  Does the back of one hit the front of the
+other first?  No!  They first touch head-to-head (first sample to
+first sample).  The only way to get that behaviour is by either
+flipping the filter or the signal.</p>
+
+<p> I'm not going to write the
+definition of convolution.  I'm sure you've seen it.  I'll just put
+the discrete example here.
+</p>
+<pre class="code">
+h = [1 2 3]
+x = [4 5 6]
+
+    4 5 6 
+   -------
+3 2|1    |4  <- first output
+  3|2 1  |13
+   |3 2 1|28 <- last output for filter
+   |  3 2|27
+   |    3|18 <- last output for conv
+
+c = conv(h,x) -> [4 13 28 27 18]
+filter(h,1,x) -> [4 13 28]
+</pre>
+<p>
+And the last two values, [27 18], are in the filter delay line.<br /><br />
+
+<p>
+You're probably also familiar with the polynomial multiplication trick.  This procedure turns out to be the same way you multiply polynomials.
+</p>
+<pre class="code">
+(1x^2+2x^1+3x^0)*(4x^2+5x^1+6x^0) ->
+
+(1*4)x^4+(1*5+2*4)x^3+(1*6+2*5+3*4)x^2+(2*6+3*5)x^1+(3*6)x^0 ->
+
+4x^4+13x^3+28x^2+27x^1+18*x^0
+</pre>
+<p>
+Similarly, you can do polynomial division using deconv.  If you take a
+look at the matlab deconv function (type deconv), it implements deconv
+using filter.<br /><br />
+
+filter(c, h, [1 zeros(1,lenc-lenh)]) -> [4 5 6]<br /><br />
+
+In the z domain, this is equivalent to C(z)/H(z)*1.  The 1 comes from
+the transform of the kronecker delta.  The degree of the output
+polynomial is the degree of the numerator polynomial minus the degree
+of the denominator polynomial plus one.  Since the output of filter is
+the same length as the signal, the correct output is gotten using
+zeros(1,lenc-lenh) (plus the starting one).  Notice that I can rewrite
+the polynomial as 1/H(z)*C(z).  This would be<br /><br />
+
+filter(1, h, c(1:length(x))) -> [4 5 6]<br /><br />
+
+You have to be careful about stability however.  Whenever I tried
+divide by the larger sequence (in this case they are both length 3) I
+ran in to stability problems using both forms.
+</p>
+
+</td></tr>
+</table>
+
+<p><a href="../index.html">home</a></p>
+
+</body>
+</html>

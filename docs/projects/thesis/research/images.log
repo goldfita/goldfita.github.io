@@ -1,0 +1,652 @@
+This is TeX, Version 3.14159 (Web2C 7.4.5) (format=latex 2004.4.12)  22 NOV 2004 19:26
+**./images.tex
+(./images.tex
+LaTeX2e <2001/06/01>
+Babel <v3.7h> and hyphenation patterns for american, french, german, ngerman, n
+ohyphenation, loaded.
+
+
+(/afs/cs.rose-hulman.edu/sun4x_58/usr/local/teTeX-2.0/share/texmf/tex/latex/bas
+e/article.cls
+Document Class: article 2001/04/21 v1.4e Standard LaTeX document class
+
+(/afs/cs.rose-hulman.edu/sun4x_58/usr/local/teTeX-2.0/share/texmf/tex/latex/bas
+e/size10.clo
+File: size10.clo 2001/04/21 v1.4e Standard LaTeX file (size option)
+)
+\c@part=\count79
+\c@section=\count80
+\c@subsection=\count81
+\c@subsubsection=\count82
+\c@paragraph=\count83
+\c@subparagraph=\count84
+\c@figure=\count85
+\c@table=\count86
+\abovecaptionskip=\skip41
+\belowcaptionskip=\skip42
+\bibindent=\dimen102
+)
+(/afs/cs.rose-hulman.edu/sun4x_58/usr/local/teTeX-2.0/share/texmf/tex/latex/bas
+e/ifthen.sty
+Package: ifthen 2001/05/26 v1.1c Standard LaTeX ifthen package (DPC)
+) (/afs/cs.rose-hulman.edu/users/class02/goldfita/html.sty
+Package: html 1999/07/19 v1.38 hypertext commands for latex2html (nd, hws, rrm)
+
+\c@lpart=\count87
+\c@lchapter=\count88
+\c@chapter=\count89
+\c@lsection=\count90
+\c@lsubsection=\count91
+\c@lsubsubsection=\count92
+\c@lparagraph=\count93
+\c@lsubparagraph=\count94
+\c@lsubsubparagraph=\count95
+\ptrfile=\write3
+)
+(/afs/cs.rose-hulman.edu/sun4x_58/usr/local/teTeX-2.0/share/texmf/tex/latex/bas
+e/makeidx.sty
+Package: makeidx 2000/03/29 v1.0m Standard LaTeX package
+)
+(/afs/cs.rose-hulman.edu/sun4x_58/usr/local/teTeX-2.0/share/texmf/tex/latex/gra
+phics/color.sty
+Package: color 1999/02/16 v1.0i Standard LaTeX Color (DPC)
+
+(/afs/cs.rose-hulman.edu/sun4x_58/usr/local/teTeX-2.0/share/texmf/tex/latex/con
+fig/color.cfg
+File: color.cfg 2001/08/31 v1.1 color configuration of teTeX/TeXLive
+)
+Package color Info: Driver file: dvips.def on input line 125.
+
+(/afs/cs.rose-hulman.edu/sun4x_58/usr/local/teTeX-2.0/share/texmf/tex/latex/gra
+phics/dvips.def
+File: dvips.def 1999/02/16 v3.0i Driver-dependant file (DPC,SPQR)
+)
+(/afs/cs.rose-hulman.edu/sun4x_58/usr/local/teTeX-2.0/share/texmf/tex/latex/gra
+phics/dvipsnam.def
+File: dvipsnam.def 1999/02/16 v3.0i Driver-dependant file (DPC,SPQR)
+))
+(/afs/cs.rose-hulman.edu/sun4x_58/usr/local/teTeX-2.0/share/texmf/tex/latex/gra
+phics/graphicx.sty
+Package: graphicx 1999/02/16 v1.0f Enhanced LaTeX Graphics (DPC,SPQR)
+
+(/afs/cs.rose-hulman.edu/sun4x_58/usr/local/teTeX-2.0/share/texmf/tex/latex/gra
+phics/keyval.sty
+Package: keyval 1999/03/16 v1.13 key=value parser (DPC)
+\KV@toks@=\toks14
+)
+(/afs/cs.rose-hulman.edu/sun4x_58/usr/local/teTeX-2.0/share/texmf/tex/latex/gra
+phics/graphics.sty
+Package: graphics 2001/07/07 v1.0n Standard LaTeX Graphics (DPC,SPQR)
+
+(/afs/cs.rose-hulman.edu/sun4x_58/usr/local/teTeX-2.0/share/texmf/tex/latex/gra
+phics/trig.sty
+Package: trig 1999/03/16 v1.09 sin cos tan (DPC)
+)
+(/afs/cs.rose-hulman.edu/sun4x_58/usr/local/teTeX-2.0/share/texmf/tex/latex/con
+fig/graphics.cfg
+File: graphics.cfg 2001/08/31 v1.1 graphics configuration of teTeX/TeXLive
+)
+Package graphics Info: Driver file: dvips.def on input line 80.
+)
+\Gin@req@height=\dimen103
+\Gin@req@width=\dimen104
+)
+(/afs/cs.rose-hulman.edu/sun4x_58/usr/local/teTeX-2.0/share/texmf/tex/latex/bas
+e/inputenc.sty
+Package: inputenc 2001/07/10 v0.99a Input encoding file 
+
+(/afs/cs.rose-hulman.edu/sun4x_58/usr/local/teTeX-2.0/share/texmf/tex/latex/bas
+e/latin1.def
+File: latin1.def 2001/07/10 v0.99a Input encoding file 
+))
+\sizebox=\box26
+\lthtmlwrite=\write4
+No file images.aux.
+\openout1 = `images.aux'.
+
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 109.
+LaTeX Font Info:    ... okay on input line 109.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 109.
+LaTeX Font Info:    ... okay on input line 109.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 109.
+LaTeX Font Info:    ... okay on input line 109.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 109.
+LaTeX Font Info:    ... okay on input line 109.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 109.
+LaTeX Font Info:    ... okay on input line 109.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 109.
+LaTeX Font Info:    ... okay on input line 109.
+
+latex2htmlLength hsize=349.0pt
+
+latex2htmlLength vsize=633.0pt
+
+latex2htmlLength hoffset=0.0pt
+
+latex2htmlLength voffset=0.0pt
+
+latex2htmlLength topmargin=0.0pt
+
+latex2htmlLength topskip=0.00003pt
+
+latex2htmlLength headheight=0.0pt
+
+latex2htmlLength headsep=0.0pt
+
+latex2htmlLength parskip=0.0pt plus 1.0pt
+
+latex2htmlLength oddsidemargin=62.0pt
+
+latex2htmlLength evensidemargin=62.0pt
+
+
+! Package keyval Error: totalwidth undefined.
+
+See the keyval package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.135 ...,totalwidth=.4\textwidth]{texfigs/aec.ps}
+                                                  %
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+File: texfigs/aec.ps Graphic file (type eps)
+<texfigs/aec.ps>
+Overfull \hbox (43.4235pt too wide) detected at line 137
+ [] 
+ []
+
+l2hSize :tex2html_wrap272:253.19614pt::0.0pt::349.0pt.
+[1
+
+
+
+]
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <7> on input line 142.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <5> on input line 142.
+l2hSize :tex2html_wrap_indisplay275:7.44444pt::7.44444pt::5.76163pt.
+[2
+
+
+]
+l2hSize :tex2html_wrap_indisplay276:6.95831pt::6.95831pt::8.27783pt.
+[3
+
+
+]
+l2hSize :tex2html_wrap_indisplay277:9.41226pt::9.41226pt::23.79959pt.
+[4
+
+
+]
+l2hSize :tex2html_wrap_indisplay278:6.95831pt::6.95831pt::5.1563pt.
+[5
+
+
+]
+l2hSize :tex2html_wrap_indisplay280:7.44444pt::7.44444pt::23.24536pt.
+[6
+
+
+]
+l2hSize :tex2html_wrap_indisplay281:7.36111pt::7.36111pt::24.37392pt.
+[7
+
+
+]
+l2hSize :tex2html_wrap_indisplay283:7.36111pt::7.36111pt::51.29048pt.
+[8
+
+
+]
+l2hSize :tex2html_wrap_inline43:7.36111pt::7.36111pt::14.24887pt.
+[9
+
+
+]
+l2hSize :tex2html_wrap_inline45:6.95831pt::6.95831pt::5.76163pt.
+[10
+
+
+]
+l2hSize :tex2html_wrap_inline47:7.44444pt::7.44444pt::5.76163pt.
+[11
+
+
+]
+l2hSize :tex2html_wrap_inline49:6.86111pt::0.0pt::9.19443pt.
+[12
+
+
+]
+l2hSize :tex2html_wrap_inline51:6.95831pt::6.95831pt::6.52551pt.
+[13
+
+
+]
+
+! Package keyval Error: totalwidth undefined.
+
+See the keyval package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.215 ...,totalwidth=.4\textwidth]{texfigs/ROC.ps}
+                                                  %
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+File: texfigs/ROC.ps Graphic file (type eps)
+<texfigs/ROC.ps>
+l2hSize :tex2html_wrap290:253.19614pt::0.0pt::349.0pt.
+[14
+
+
+]
+
+! Package keyval Error: totalwidth undefined.
+
+See the keyval package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.221 ...talwidth=.4\textwidth]{texfigs/adapt.eps}
+                                                  %
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+File: texfigs/adapt.eps Graphic file (type eps)
+<texfigs/adapt.eps>
+l2hSize :tex2html_wrap291:253.19614pt::0.0pt::349.0pt.
+[15
+
+
+]
+
+! Package keyval Error: totalwidth undefined.
+
+See the keyval package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.229 ...,totalwidth=.4\textwidth]{texfigs/ula.ps}
+                                                  %
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+File: texfigs/ula.ps Graphic file (type eps)
+<texfigs/ula.ps>
+l2hSize :tex2html_wrap294:253.19614pt::0.0pt::349.0pt.
+[16
+
+
+]
+
+! Package keyval Error: totalwidth undefined.
+
+See the keyval package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.235 ...totalwidth=.4\textwidth]{texfigs/das.eps}
+                                                  %
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+File: texfigs/das.eps Graphic file (type eps)
+<texfigs/das.eps>
+l2hSize :tex2html_wrap295:253.19614pt::0.0pt::349.0pt.
+[17
+
+
+]
+l2hSize :tex2html_wrap_indisplay298:8.0pt::8.0pt::19.90573pt.
+[18
+
+
+]
+l2hSize :tex2html_wrap_indisplay299:8.22427pt::8.22427pt::8.27783pt.
+[19
+
+
+]
+l2hSize :tex2html_wrap_indisplay300:7.44444pt::7.44444pt::76.41685pt.
+[20
+
+
+]
+l2hSize :tex2html_wrap_indisplay301:8.0pt::8.0pt::21.22058pt.
+[21
+
+
+]
+l2hSize :tex2html_wrap_indisplay303:7.44444pt::7.44444pt::89.55574pt.
+[22
+
+
+]
+l2hSize :tex2html_wrap_indisplay304:9.14003pt::9.14003pt::80.749pt.
+[23
+
+
+]
+l2hSize :tex2html_wrap_indisplay306:18.78339pt::18.78339pt::54.26944pt.
+[24
+
+
+]
+l2hSize :tex2html_wrap_indisplay307:7.33331pt::7.33331pt::39.28278pt.
+[25
+
+
+]
+l2hSize :tex2html_wrap_indisplay309:15.4051pt::15.4051pt::14.05748pt.
+[26
+
+
+]
+l2hSize :tex2html_wrap_inline149:8.0pt::8.0pt::53.84726pt.
+[27
+
+
+]
+! Misplaced alignment tab character &.
+l.303 \sigma_{s_1+s_2}^2 &
+                           = & \frac{1}{N}\sum_{k=0}^{N-1}{(s_1(t)+s_2(t))^2...
+I can't figure out why you would want to use a tab mark
+here. If you just want an ampersand, the remedy is
+simple: Just type `I\&' now. But if some right brace
+up above has ended a previous alignment prematurely,
+you're probably due for more error messages, and you
+might try typing `S' now just to see what is salvageable.
+
+! Misplaced alignment tab character &.
+l.303 \sigma_{s_1+s_2}^2 & = &
+                               \frac{1}{N}\sum_{k=0}^{N-1}{(s_1(t)+s_2(t))^2...
+I can't figure out why you would want to use a tab mark
+here. If you just want an ampersand, the remedy is
+simple: Just type `I\&' now. But if some right brace
+up above has ended a previous alignment prematurely,
+you're probably due for more error messages, and you
+might try typing `S' now just to see what is salvageable.
+
+l2hSize :displaymath105:32.3112pt::0.0pt::349.0pt.
+[28
+
+
+]
+l2hSize :tex2html_wrap_inline151:8.0pt::8.0pt::23.45381pt.
+[29
+
+
+]
+! Misplaced alignment tab character &.
+l.316 $s_1(n) &
+                = & s_2(n)$%
+I can't figure out why you would want to use a tab mark
+here. If you just want an ampersand, the remedy is
+simple: Just type `I\&' now. But if some right brace
+up above has ended a previous alignment prematurely,
+you're probably due for more error messages, and you
+might try typing `S' now just to see what is salvageable.
+
+! Misplaced alignment tab character &.
+l.316 $s_1(n) & = &
+                    s_2(n)$%
+I can't figure out why you would want to use a tab mark
+here. If you just want an ampersand, the remedy is
+simple: Just type `I\&' now. But if some right brace
+up above has ended a previous alignment prematurely,
+you're probably due for more error messages, and you
+might try typing `S' now just to see what is salvageable.
+
+l2hSize :tex2html_wrap_inline153:8.0pt::8.0pt::59.74081pt.
+[30
+
+
+]
+! Misplaced alignment tab character &.
+l.322 $\sigma_{s_1+s_1}^2 &
+                            = & 4\sigma_{s_1}^2\nonumber$%
+I can't figure out why you would want to use a tab mark
+here. If you just want an ampersand, the remedy is
+simple: Just type `I\&' now. But if some right brace
+up above has ended a previous alignment prematurely,
+you're probably due for more error messages, and you
+might try typing `S' now just to see what is salvageable.
+
+! Misplaced alignment tab character &.
+l.322 $\sigma_{s_1+s_1}^2 & = &
+                                4\sigma_{s_1}^2\nonumber$%
+I can't figure out why you would want to use a tab mark
+here. If you just want an ampersand, the remedy is
+simple: Just type `I\&' now. But if some right brace
+up above has ended a previous alignment prematurely,
+you're probably due for more error messages, and you
+might try typing `S' now just to see what is salvageable.
+
+l2hSize :tex2html_wrap_inline155:8.64003pt::8.64003pt::60.4319pt.
+[31
+
+
+]
+! Misplaced alignment tab character &.
+l.329 \sigma_{n_1+n_2}^2 &
+                           = &
+I can't figure out why you would want to use a tab mark
+here. If you just want an ampersand, the remedy is
+simple: Just type `I\&' now. But if some right brace
+up above has ended a previous alignment prematurely,
+you're probably due for more error messages, and you
+might try typing `S' now just to see what is salvageable.
+
+! Misplaced alignment tab character &.
+l.329 \sigma_{n_1+n_2}^2 & = &
+                              
+I can't figure out why you would want to use a tab mark
+here. If you just want an ampersand, the remedy is
+simple: Just type `I\&' now. But if some right brace
+up above has ended a previous alignment prematurely,
+you're probably due for more error messages, and you
+might try typing `S' now just to see what is salvageable.
+
+! Misplaced alignment tab character &.
+l.330 ...N-1}{(n_1^2(t)+2n_1(t)n_2(t)+n_2^2(t))} &
+                                                   = &
+I can't figure out why you would want to use a tab mark
+here. If you just want an ampersand, the remedy is
+simple: Just type `I\&' now. But if some right brace
+up above has ended a previous alignment prematurely,
+you're probably due for more error messages, and you
+might try typing `S' now just to see what is salvageable.
+
+! Misplaced alignment tab character &.
+l.330 ...{(n_1^2(t)+2n_1(t)n_2(t)+n_2^2(t))} & = &
+                                                  
+I can't figure out why you would want to use a tab mark
+here. If you just want an ampersand, the remedy is
+simple: Just type `I\&' now. But if some right brace
+up above has ended a previous alignment prematurely,
+you're probably due for more error messages, and you
+might try typing `S' now just to see what is salvageable.
+
+
+Overfull \hbox (45.42215pt too wide) detected at line 332
+\OML/cmm/m/it/10 ^^[[] \OT1/cmr/m/n/10 = [] [] [] = [] [] [] + 2 \OML/cmm/m/it/
+10 < n[]\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 t\OT1/cmr/m/n/10 )\OML/cmm/m/it/10 ; 
+n[]\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 t\OT1/cmr/m/n/10 ) \OML/cmm/m/it/10 >
+ []
+
+l2hSize :displaymath115:32.3112pt::0.0pt::349.0pt.
+[32
+
+
+]
+l2hSize :tex2html_wrap_inline157:8.0pt::8.0pt::69.81026pt.
+[33
+
+
+]
+! Misplaced alignment tab character &.
+l.344 $\sigma_{n_1+n_2}^2 &
+                            = & \sigma_{n_1}+\sigma_{n_2} & = & 2\sigma_{n_1...
+I can't figure out why you would want to use a tab mark
+here. If you just want an ampersand, the remedy is
+simple: Just type `I\&' now. But if some right brace
+up above has ended a previous alignment prematurely,
+you're probably due for more error messages, and you
+might try typing `S' now just to see what is salvageable.
+
+! Misplaced alignment tab character &.
+l.344 $\sigma_{n_1+n_2}^2 & = &
+                                \sigma_{n_1}+\sigma_{n_2} & = & 2\sigma_{n_1...
+I can't figure out why you would want to use a tab mark
+here. If you just want an ampersand, the remedy is
+simple: Just type `I\&' now. But if some right brace
+up above has ended a previous alignment prematurely,
+you're probably due for more error messages, and you
+might try typing `S' now just to see what is salvageable.
+
+! Misplaced alignment tab character &.
+l.344 ...+n_2}^2 & = & \sigma_{n_1}+\sigma_{n_2} &
+                                                   = & 2\sigma_{n_1}^2\nonum...
+I can't figure out why you would want to use a tab mark
+here. If you just want an ampersand, the remedy is
+simple: Just type `I\&' now. But if some right brace
+up above has ended a previous alignment prematurely,
+you're probably due for more error messages, and you
+might try typing `S' now just to see what is salvageable.
+
+! Misplaced alignment tab character &.
+l.344 ...}^2 & = & \sigma_{n_1}+\sigma_{n_2} & = &
+                                                   2\sigma_{n_1}^2\nonumber$%
+I can't figure out why you would want to use a tab mark
+here. If you just want an ampersand, the remedy is
+simple: Just type `I\&' now. But if some right brace
+up above has ended a previous alignment prematurely,
+you're probably due for more error messages, and you
+might try typing `S' now just to see what is salvageable.
+
+l2hSize :tex2html_wrap_inline159:8.64003pt::8.64003pt::119.61485pt.
+[34
+
+
+]
+! Misplaced alignment tab character &.
+l.351 SNR_{s_1+n_1+s_1+n_2} &
+                              = & 2SNR_{s_1+n_1}\nonumber
+I can't figure out why you would want to use a tab mark
+here. If you just want an ampersand, the remedy is
+simple: Just type `I\&' now. But if some right brace
+up above has ended a previous alignment prematurely,
+you're probably due for more error messages, and you
+might try typing `S' now just to see what is salvageable.
+
+! Misplaced alignment tab character &.
+l.351 SNR_{s_1+n_1+s_1+n_2} & = &
+                                  2SNR_{s_1+n_1}\nonumber
+I can't figure out why you would want to use a tab mark
+here. If you just want an ampersand, the remedy is
+simple: Just type `I\&' now. But if some right brace
+up above has ended a previous alignment prematurely,
+you're probably due for more error messages, and you
+might try typing `S' now just to see what is salvageable.
+
+l2hSize :displaymath132:14.49998pt::0.0pt::349.0pt.
+[35
+
+
+]
+l2hSize :tex2html_wrap_inline161:6.83331pt::0.0pt::8.83339pt.
+[36
+
+
+]
+l2hSize :tex2html_wrap_indisplay322:8.0pt::8.0pt::25.47922pt.
+[37
+
+
+]
+l2hSize :tex2html_wrap_indisplay324:8.0pt::8.0pt::41.65408pt.
+[38
+
+
+]
+l2hSize :tex2html_wrap_indisplay325:8.0pt::8.0pt::25.47922pt.
+[39
+
+
+]
+l2hSize :tex2html_wrap_indisplay327:9.41226pt::9.41226pt::80.85446pt.
+[40
+
+
+]
+! Misplaced alignment tab character &.
+l.390 X_{S_1,S_2} &
+                    = & S_1(\omega){\cdot}S_2^*(\omega) & = &
+I can't figure out why you would want to use a tab mark
+here. If you just want an ampersand, the remedy is
+simple: Just type `I\&' now. But if some right brace
+up above has ended a previous alignment prematurely,
+you're probably due for more error messages, and you
+might try typing `S' now just to see what is salvageable.
+
+! Misplaced alignment tab character &.
+l.390 X_{S_1,S_2} & = &
+                        S_1(\omega){\cdot}S_2^*(\omega) & = &
+I can't figure out why you would want to use a tab mark
+here. If you just want an ampersand, the remedy is
+simple: Just type `I\&' now. But if some right brace
+up above has ended a previous alignment prematurely,
+you're probably due for more error messages, and you
+might try typing `S' now just to see what is salvageable.
+
+! Misplaced alignment tab character &.
+l.390 ...} & = & S_1(\omega){\cdot}S_2^*(\omega) &
+                                                   = &
+I can't figure out why you would want to use a tab mark
+here. If you just want an ampersand, the remedy is
+simple: Just type `I\&' now. But if some right brace
+up above has ended a previous alignment prematurely,
+you're probably due for more error messages, and you
+might try typing `S' now just to see what is salvageable.
+
+! Misplaced alignment tab character &.
+l.390 ...= & S_1(\omega){\cdot}S_2^*(\omega) & = &
+                                                  
+I can't figure out why you would want to use a tab mark
+here. If you just want an ampersand, the remedy is
+simple: Just type `I\&' now. But if some right brace
+up above has ended a previous alignment prematurely,
+you're probably due for more error messages, and you
+might try typing `S' now just to see what is salvageable.
+
+l2hSize :displaymath142:14.86108pt::0.0pt::349.0pt.
+[41
+
+
+]
+l2hSize :tex2html_wrap_inline226:7.33331pt::7.33331pt::41.29166pt.
+[42
+
+
+]
+l2hSize :tex2html_wrap_inline228:8.0pt::8.0pt::127.95834pt.
+[43
+
+
+] (./images.aux) ) 
+Here is how much of TeX's memory you used:
+ 1118 strings out of 95847
+ 15717 string characters out of 1194972
+ 57439 words of memory out of 1000001
+ 4081 multiletter control sequences out of 10000+50000
+ 4567 words of font info for 17 fonts, out of 500000 for 1000
+ 14 hyphenation exceptions out of 1000
+ 25i,5n,19p,185b,218s stack positions out of 1500i,500n,5000p,200000b,5000s
+
+Output written on images.dvi (43 pages, 11356 bytes).

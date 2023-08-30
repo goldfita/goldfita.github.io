@@ -1,0 +1,365 @@
+<html xmlns:v="urn:schemas-microsoft-com:vml"
+xmlns:o="urn:schemas-microsoft-com:office:office"
+xmlns:w="urn:schemas-microsoft-com:office:word"
+xmlns:x="urn:schemas-microsoft-com:office:excel"
+xmlns="http://www.w3.org/TR/REC-html40">
+
+<head>
+<meta http-equiv=Content-Type content="text/html; charset=windows-1252">
+<meta name=ProgId content=Word.Document>
+<meta name=Generator content="Microsoft Word 9">
+<meta name=Originator content="Microsoft Word 9">
+<link rel=File-List href="./implemntation_files/filelist.xml">
+<link rel=Edit-Time-Data href="./implemntation_files/editdata.mso">
+<!--[if !mso]>
+<style>
+v\:* {behavior:url(#default#VML);}
+o\:* {behavior:url(#default#VML);}
+w\:* {behavior:url(#default#VML);}
+.shape {behavior:url(#default#VML);}
+</style>
+<![endif]-->
+<title>Todd Goldfinger</title>
+<!--[if gte mso 9]><xml>
+ <o:DocumentProperties>
+  <o:Author>Todd Goldfinger</o:Author>
+  <o:LastAuthor>Todd Goldfinger</o:LastAuthor>
+  <o:Revision>2</o:Revision>
+  <o:TotalTime>75</o:TotalTime>
+  <o:Created>2003-05-19T23:42:00Z</o:Created>
+  <o:LastSaved>2003-05-20T01:35:00Z</o:LastSaved>
+  <o:Pages>2</o:Pages>
+  <o:Words>187</o:Words>
+  <o:Characters>1068</o:Characters>
+  <o:Company>Rose-Hulman Inst of Tech</o:Company>
+  <o:Lines>8</o:Lines>
+  <o:Paragraphs>2</o:Paragraphs>
+  <o:CharactersWithSpaces>1311</o:CharactersWithSpaces>
+  <o:Version>9.4119</o:Version>
+ </o:DocumentProperties>
+</xml><![endif]--><!--[if gte mso 9]><xml>
+ <w:WordDocument>
+  <w:DisplayHorizontalDrawingGridEvery>0</w:DisplayHorizontalDrawingGridEvery>
+  <w:DisplayVerticalDrawingGridEvery>0</w:DisplayVerticalDrawingGridEvery>
+  <w:UseMarginsForDrawingGridOrigin/>
+  <w:Compatibility>
+   <w:FootnoteLayoutLikeWW8/>
+   <w:ShapeLayoutLikeWW8/>
+   <w:AlignTablesRowByRow/>
+   <w:ForgetLastTabAlignment/>
+   <w:LayoutRawTableWidth/>
+   <w:LayoutTableRowsApart/>
+  </w:Compatibility>
+ </w:WordDocument>
+</xml><![endif]-->
+<style>
+<!--
+ /* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{mso-style-parent:"";
+	margin:0in;
+	margin-bottom:.0001pt;
+	mso-pagination:widow-orphan;
+	font-size:10.0pt;
+	font-family:"Times New Roman";
+	mso-fareast-font-family:"Times New Roman";}
+h1
+	{mso-style-next:Normal;
+	margin:0in;
+	margin-bottom:.0001pt;
+	mso-pagination:widow-orphan;
+	page-break-after:avoid;
+	mso-outline-level:1;
+	font-size:11.0pt;
+	mso-bidi-font-size:10.0pt;
+	font-family:"Times New Roman";
+	mso-font-kerning:0pt;}
+a:link, span.MsoHyperlink
+	{color:blue;
+	text-decoration:underline;
+	text-underline:single;}
+a:visited, span.MsoHyperlinkFollowed
+	{color:purple;
+	text-decoration:underline;
+	text-underline:single;}
+@page Section1
+	{size:8.5in 11.0in;
+	margin:1.0in 1.25in 1.0in 1.25in;
+	mso-header-margin:.5in;
+	mso-footer-margin:.5in;
+	mso-paper-source:0;}
+div.Section1
+	{page:Section1;}
+-->
+</style>
+<!--[if gte mso 9]><xml>
+ <o:shapedefaults v:ext="edit" spidmax="1034"/>
+</xml><![endif]--><!--[if gte mso 9]><xml>
+ <o:shapelayout v:ext="edit">
+  <o:idmap v:ext="edit" data="1"/>
+ </o:shapelayout></xml><![endif]-->
+</head>
+
+<body lang=EN-US link=blue vlink=purple style='tab-interval:.5in'>
+
+<div class=Section1>
+
+<p class=MsoNormal align=right style='text-align:right'>Todd Goldfinger</p>
+
+<p class=MsoNormal align=right style='text-align:right'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></p>
+
+<h1>Implementation</h1>
+
+<p class=MsoNormal><b><span style='font-size:11.0pt;mso-bidi-font-size:10.0pt'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></b></p>
+
+<p class=MsoNormal><span style='font-size:11.0pt;mso-bidi-font-size:10.0pt'><span
+style='mso-tab-count:1'>            </span>I chose an outer room of 22 meters
+square.<span style="mso-spacerun: yes">  </span>The inner room is just two
+speakers, 2 meters apart (width wise).<span style="mso-spacerun: yes"> 
+</span>I only use first order reflections; so, there are five delays.<span
+style="mso-spacerun: yes">  </span>One is for the direct source, and four are echoes
+off each wall.<span style="mso-spacerun: yes">  </span>The intensity decreases
+in proportion to the inverse square of the distance from the source (or
+reflection).<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:11.0pt;mso-bidi-font-size:10.0pt'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></p>
+
+<p class=MsoNormal>Figure 1 – Early Echo Response</p>
+
+<p class=MsoNormal><span style='font-size:11.0pt;mso-bidi-font-size:10.0pt'><!--[if gte vml 1]><v:shapetype
+ id="_x0000_t75" coordsize="21600,21600" o:spt="75" o:preferrelative="t"
+ path="m@4@5l@4@11@9@11@9@5xe" filled="f" stroked="f">
+ <v:stroke joinstyle="miter"/>
+ <v:formulas>
+  <v:f eqn="if lineDrawn pixelLineWidth 0"/>
+  <v:f eqn="sum @0 1 0"/>
+  <v:f eqn="sum 0 0 @1"/>
+  <v:f eqn="prod @2 1 2"/>
+  <v:f eqn="prod @3 21600 pixelWidth"/>
+  <v:f eqn="prod @3 21600 pixelHeight"/>
+  <v:f eqn="sum @0 0 1"/>
+  <v:f eqn="prod @6 1 2"/>
+  <v:f eqn="prod @7 21600 pixelWidth"/>
+  <v:f eqn="sum @8 21600 0"/>
+  <v:f eqn="prod @7 21600 pixelHeight"/>
+  <v:f eqn="sum @10 21600 0"/>
+ </v:formulas>
+ <v:path o:extrusionok="f" gradientshapeok="t" o:connecttype="rect"/>
+ <o:lock v:ext="edit" aspectratio="t"/>
+</v:shapetype><v:shape id="_x0000_i1025" type="#_x0000_t75" style='width:228.75pt;
+ height:122.25pt'>
+ <v:imagedata src="./implemntation_files/image001.png" o:title="earlyecho"/>
+</v:shape><![endif]--><![if !vml]><img width=305 height=163
+src="./implemntation_files/image002.jpg" v:shapes="_x0000_i1025"><![endif]><o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:11.0pt;mso-bidi-font-size:10.0pt'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:11.0pt;mso-bidi-font-size:10.0pt'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:11.0pt;mso-bidi-font-size:10.0pt'><span
+style='mso-tab-count:1'>            </span>The next stage is the comb filter
+bank.<span style="mso-spacerun: yes">  </span>There are six of them in
+parallel.<span style="mso-spacerun: yes">  </span>The overall gain is
+g=g2/(1-g1).<span style="mso-spacerun: yes">  </span>For this implementation
+g=.83 and g2 is determined from g and figure 3.<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:11.0pt;mso-bidi-font-size:10.0pt'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></p>
+
+<p class=MsoNormal>Figure 2 – Comb Filter</p>
+
+<p class=MsoNormal>Difference Equation: Y(n) – g1*Y(n-1) –g2*Y(n-(D+1) =
+X(n-D)<span style="mso-spacerun: yes">  </span>- g1*X(n-(D+1))</p>
+
+<p class=MsoNormal><!--[if gte vml 1]><v:shape id="_x0000_i1026" type="#_x0000_t75"
+ style='width:184.5pt;height:122.25pt'>
+ <v:imagedata src="./implemntation_files/image003.gif" o:title="combfilt"/>
+</v:shape><![endif]--><![if !vml]><img width=246 height=163
+src="./implemntation_files/image003.gif" v:shapes="_x0000_i1026"><![endif]></p>
+
+<p class=MsoNormal><span style='font-size:11.0pt;mso-bidi-font-size:10.0pt'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></p>
+
+<p class=MsoNormal>Figure 3 – Comb Filter values (page 388)</p>
+
+<table border=1 cellspacing=0 cellpadding=0 width=204 style='width:153.0pt;
+ border-collapse:collapse;border:none;mso-border-alt:solid windowtext .5pt;
+ mso-padding-alt:0in 0in 0in 0in'>
+ <tr style='height:12.75pt'>
+  <td width=64 nowrap valign=bottom style='width:48.0pt;border:solid windowtext .5pt;
+  padding:.75pt .75pt 0in .75pt;height:12.75pt'>
+  <p class=MsoNormal><span style='font-family:Arial'>Filter<o:p></o:p></span></p>
+  </td>
+  <td width=69 nowrap valign=bottom style='width:52.0pt;border:solid windowtext .5pt;
+  border-left:none;mso-border-left-alt:solid windowtext .5pt;padding:.75pt .75pt 0in .75pt;
+  height:12.75pt'>
+  <p class=MsoNormal><span style='font-family:Arial'>Delay (ms)<o:p></o:p></span></p>
+  </td>
+  <td width=71 nowrap valign=bottom style='width:53.0pt;border:solid windowtext .5pt;
+  border-left:none;mso-border-left-alt:solid windowtext .5pt;padding:.75pt .75pt 0in .75pt;
+  height:12.75pt'>
+  <p class=MsoNormal><span style='font-family:Arial'>25kHz (g1)<o:p></o:p></span></p>
+  </td>
+ </tr>
+ <tr style='height:12.75pt'>
+  <td nowrap valign=bottom style='border:solid windowtext .5pt;border-top:none;
+  mso-border-top-alt:solid windowtext .5pt;padding:.75pt .75pt 0in .75pt;
+  height:12.75pt'>
+  <p class=MsoNormal><span style='font-family:Arial'>1<o:p></o:p></span></p>
+  </td>
+  <td nowrap valign=bottom style='border-top:none;border-left:none;border-bottom:
+  solid windowtext .5pt;border-right:solid windowtext .5pt;mso-border-top-alt:
+  solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;padding:.75pt .75pt 0in .75pt;
+  height:12.75pt'>
+  <p class=MsoNormal><span style='font-family:Arial'>50<o:p></o:p></span></p>
+  </td>
+  <td nowrap valign=bottom style='border-top:none;border-left:none;border-bottom:
+  solid windowtext .5pt;border-right:solid windowtext .5pt;mso-border-top-alt:
+  solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;padding:.75pt .75pt 0in .75pt;
+  height:12.75pt'>
+  <p class=MsoNormal><span style='font-family:Arial'>0.46<o:p></o:p></span></p>
+  </td>
+ </tr>
+ <tr style='height:12.75pt'>
+  <td nowrap valign=bottom style='border:solid windowtext .5pt;border-top:none;
+  mso-border-top-alt:solid windowtext .5pt;padding:.75pt .75pt 0in .75pt;
+  height:12.75pt'>
+  <p class=MsoNormal><span style='font-family:Arial'>2<o:p></o:p></span></p>
+  </td>
+  <td nowrap valign=bottom style='border-top:none;border-left:none;border-bottom:
+  solid windowtext .5pt;border-right:solid windowtext .5pt;mso-border-top-alt:
+  solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;padding:.75pt .75pt 0in .75pt;
+  height:12.75pt'>
+  <p class=MsoNormal><span style='font-family:Arial'>56<o:p></o:p></span></p>
+  </td>
+  <td nowrap valign=bottom style='border-top:none;border-left:none;border-bottom:
+  solid windowtext .5pt;border-right:solid windowtext .5pt;mso-border-top-alt:
+  solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;padding:.75pt .75pt 0in .75pt;
+  height:12.75pt'>
+  <p class=MsoNormal><span style='font-family:Arial'>0.48<o:p></o:p></span></p>
+  </td>
+ </tr>
+ <tr style='height:12.75pt'>
+  <td nowrap valign=bottom style='border:solid windowtext .5pt;border-top:none;
+  mso-border-top-alt:solid windowtext .5pt;padding:.75pt .75pt 0in .75pt;
+  height:12.75pt'>
+  <p class=MsoNormal><span style='font-family:Arial'>3<o:p></o:p></span></p>
+  </td>
+  <td nowrap valign=bottom style='border-top:none;border-left:none;border-bottom:
+  solid windowtext .5pt;border-right:solid windowtext .5pt;mso-border-top-alt:
+  solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;padding:.75pt .75pt 0in .75pt;
+  height:12.75pt'>
+  <p class=MsoNormal><span style='font-family:Arial'>61<o:p></o:p></span></p>
+  </td>
+  <td nowrap valign=bottom style='border-top:none;border-left:none;border-bottom:
+  solid windowtext .5pt;border-right:solid windowtext .5pt;mso-border-top-alt:
+  solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;padding:.75pt .75pt 0in .75pt;
+  height:12.75pt'>
+  <p class=MsoNormal><span style='font-family:Arial'>0.5<o:p></o:p></span></p>
+  </td>
+ </tr>
+ <tr style='height:12.75pt'>
+  <td nowrap valign=bottom style='border:solid windowtext .5pt;border-top:none;
+  mso-border-top-alt:solid windowtext .5pt;padding:.75pt .75pt 0in .75pt;
+  height:12.75pt'>
+  <p class=MsoNormal><span style='font-family:Arial'>4<o:p></o:p></span></p>
+  </td>
+  <td nowrap valign=bottom style='border-top:none;border-left:none;border-bottom:
+  solid windowtext .5pt;border-right:solid windowtext .5pt;mso-border-top-alt:
+  solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;padding:.75pt .75pt 0in .75pt;
+  height:12.75pt'>
+  <p class=MsoNormal><span style='font-family:Arial'>68<o:p></o:p></span></p>
+  </td>
+  <td nowrap valign=bottom style='border-top:none;border-left:none;border-bottom:
+  solid windowtext .5pt;border-right:solid windowtext .5pt;mso-border-top-alt:
+  solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;padding:.75pt .75pt 0in .75pt;
+  height:12.75pt'>
+  <p class=MsoNormal><span style='font-family:Arial'>0.52<o:p></o:p></span></p>
+  </td>
+ </tr>
+ <tr style='height:12.75pt'>
+  <td nowrap valign=bottom style='border:solid windowtext .5pt;border-top:none;
+  mso-border-top-alt:solid windowtext .5pt;padding:.75pt .75pt 0in .75pt;
+  height:12.75pt'>
+  <p class=MsoNormal><span style='font-family:Arial'>5<o:p></o:p></span></p>
+  </td>
+  <td nowrap valign=bottom style='border-top:none;border-left:none;border-bottom:
+  solid windowtext .5pt;border-right:solid windowtext .5pt;mso-border-top-alt:
+  solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;padding:.75pt .75pt 0in .75pt;
+  height:12.75pt'>
+  <p class=MsoNormal><span style='font-family:Arial'>72<o:p></o:p></span></p>
+  </td>
+  <td nowrap valign=bottom style='border-top:none;border-left:none;border-bottom:
+  solid windowtext .5pt;border-right:solid windowtext .5pt;mso-border-top-alt:
+  solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;padding:.75pt .75pt 0in .75pt;
+  height:12.75pt'>
+  <p class=MsoNormal><span style='font-family:Arial'>0.53<o:p></o:p></span></p>
+  </td>
+ </tr>
+ <tr style='height:12.75pt'>
+  <td nowrap valign=bottom style='border:solid windowtext .5pt;border-top:none;
+  mso-border-top-alt:solid windowtext .5pt;padding:.75pt .75pt 0in .75pt;
+  height:12.75pt'>
+  <p class=MsoNormal><span style='font-family:Arial'>6<o:p></o:p></span></p>
+  </td>
+  <td nowrap valign=bottom style='border-top:none;border-left:none;border-bottom:
+  solid windowtext .5pt;border-right:solid windowtext .5pt;mso-border-top-alt:
+  solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;padding:.75pt .75pt 0in .75pt;
+  height:12.75pt'>
+  <p class=MsoNormal><span style='font-family:Arial'>78<o:p></o:p></span></p>
+  </td>
+  <td nowrap valign=bottom style='border-top:none;border-left:none;border-bottom:
+  solid windowtext .5pt;border-right:solid windowtext .5pt;mso-border-top-alt:
+  solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;padding:.75pt .75pt 0in .75pt;
+  height:12.75pt'>
+  <p class=MsoNormal><span style='font-family:Arial'>0.55<o:p></o:p></span></p>
+  </td>
+ </tr>
+</table>
+
+<p class=MsoNormal><span style='font-size:11.0pt;mso-bidi-font-size:10.0pt'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:11.0pt;mso-bidi-font-size:10.0pt'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:11.0pt;mso-bidi-font-size:10.0pt'><span
+style='mso-tab-count:1'>            </span>Finally, the allpass filter is used
+to smear the echoes.<span style="mso-spacerun: yes">  </span>I used a 6 ms
+delay and a .7 loop gain for both allpass filters.<span style="mso-spacerun:
+yes">  </span>Afterwards, the early echo response and allpass output are scaled
+and summed to produce the final results.<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:11.0pt;mso-bidi-font-size:10.0pt'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></p>
+
+<p class=MsoNormal>Figure 4 – Allpass filter</p>
+
+<p class=MsoNormal>Difference Equation: Y(n)-g*Y(n-D) = -g*X(n) +X(n-D)</p>
+
+<p class=MsoNormal><span style='font-size:11.0pt;mso-bidi-font-size:10.0pt'><!--[if gte vml 1]><v:shape
+ id="_x0000_i1027" type="#_x0000_t75" style='width:184.5pt;height:122.25pt'>
+ <v:imagedata src="./implemntation_files/image004.gif" o:title="allpass"/>
+</v:shape><![endif]--><![if !vml]><img width=246 height=163
+src="./implemntation_files/image004.gif" v:shapes="_x0000_i1027"><![endif]><o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:11.0pt;mso-bidi-font-size:10.0pt'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:11.0pt;mso-bidi-font-size:10.0pt'><span
+style='mso-tab-count:1'>            </span>The whole block diagram is shown
+below (page 389 of the text).<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:11.0pt;mso-bidi-font-size:10.0pt'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></p>
+
+<p class=MsoNormal>Figure 5 – Sound Spatialization</p>
+
+<p class=MsoNormal><!--[if gte vml 1]><v:shape id="_x0000_i1028" type="#_x0000_t75"
+ style='width:209.25pt;height:297pt'>
+ <v:imagedata src="./implemntation_files/image005.gif" o:title="soundSpatial"/>
+</v:shape><![endif]--><![if !vml]><img width=279 height=396
+src="./implemntation_files/image005.gif" v:shapes="_x0000_i1028"><![endif]></p>
+
+<p class=MsoNormal><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></p>
+
+<p class=MsoNormal><a href="results.html">next</a></p>
+
+</div>
+
+</body>
+
+</html>

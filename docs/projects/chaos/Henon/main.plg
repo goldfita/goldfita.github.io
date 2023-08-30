@@ -1,0 +1,29 @@
+<html>
+<body>
+<pre>
+<h1>Build Log</h1>
+<h3>
+--------------------Configuration: main - Win32 Debug--------------------
+</h3>
+<h3>Command Lines</h3>
+Creating temporary file "C:\WINDOWS\TEMP\RSP1241.TMP" with contents
+[
+/nologo /MDd /W3 /Gm /GX /ZI /Od /D "WIN32" /D "_DEBUG" /D "_CONSOLE" /D "_MBCS" /D "_AFXDLL" /Fo"Debug/" /Fd"Debug/" /FD /c 
+"C:\Personal\Class3\chaos\Henon\main.cpp"
+]
+Creating command line "cl.exe @C:\WINDOWS\TEMP\RSP1241.TMP" 
+Creating command line "link.exe winmm.lib /nologo /subsystem:console /incremental:yes /pdb:"Debug/main.pdb" /debug /machine:I386 /out:"Debug/main.exe" /pdbtype:sept  .\Debug\main.obj .\Debug\sga.obj .\Debug\main.res "
+<h3>Output Window</h3>
+Compiling...
+main.cpp
+c:\personal\class3\chaos\henon\main.cpp(17) : warning C4305: 'initializing' : truncation from 'const double' to 'float'
+c:\personal\class3\chaos\henon\main.cpp(17) : warning C4305: 'initializing' : truncation from 'const double' to 'float'
+Linking...
+
+
+
+<h3>Results</h3>
+main.exe - 0 error(s), 2 warning(s)
+</pre>
+</body>
+</html>

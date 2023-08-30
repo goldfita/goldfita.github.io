@@ -1,0 +1,10 @@
+================================================================
+STACK TRACE FOR TASK: 0xc18ca5a0(ndis_wq)
+
+Sl      SP      Function [IP]
+ 0 [0xf689bf20] schedule+1411 [0xc0399107]
+ 1 [0xf689bf44] run_workqueue+131 [0xc0125f68]
+ 2 [0xf689bf64] worker_thread+247 [0xc012609d]
+ 3 [0xf689bfc4] kthread+124 [0xc0128c13]
+ 4 [0xf689bfe8] kernel_thread_helper+5 [0xc0100ec1]
+================================================================

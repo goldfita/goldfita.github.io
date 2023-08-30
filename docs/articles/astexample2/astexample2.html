@@ -1,0 +1,148 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+<head>
+<title>Asterisk Applications</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<link rel="stylesheet" type="text/css" href="../../index.css" />
+<meta name="description" content=
+"A more advanced introduction to developing extension applications for the 
+Asterisk PBX.                                                                "></meta>
+<!-- ....10........20........30........40........50........60........70........80 -->
+</head>
+
+<body>
+<table>
+<tr><td class="article">
+<h1 class="topofpage">Asterisk Applications</h1>
+
+<p>
+In order to build an Asterisk Application, you'll need to create a new
+c source file and build a shared object file from it.  The easiest way to do this is
+to simply add your application to the makefile in the apps directory.
+Asterisk loads each application at runtime and executes it in a
+separate thread for each incoming call.
+</p>
+<p>
+For this example, I've modified the echo application.  Echo just takes
+the incoming signal and immediately sends it back to the phone
+speaker.  This lets you hear the delay.  My modification will dial
+another phone on extension 1002 and echo the input from the first
+phone, merged with a speech file on disk, to the second phone.  My
+intention was to include Automatic Gain Control, but due to lack of
+resources, I wasn't able to include this.  So, I'll leave this as an
+exercise for you.*
+</p>
+<p>
+I'll go over the <a href="test_echo.c">code</a> from the top.  The
+static variables at the top are used by Asterisk help to explain the
+function of the application.  The app variable is the name of the
+application that will go in the extensions.conf file.  The following two
+macros are needed for usecount management in dynamically loaded
+modules.
+<br /><br />
+STANDARD_LOCAL_USER;<br />
+LOCAL_USER_DECL;
+<br /><br />
+You will need to place LOCAL_USER_ADD(u) and LOCAL_USER_REMOVE(u)
+at the beginning and end of your main routine respectively.  This
+will prevent Asterisk from trying to do anything funny, like unload a
+module while someone is in a call.
+</p>
+<p>
+Our main function is named echo_exec.  The first parameter is always a
+channel structure (which holds information about our call).  The next
+parameter is a void pointer.  This will be filled with data from the
+extensions.conf file.  This application doesn't use it (so I override
+data in a local variable for my own use).  
+</p>
+
+<table>
+<tr><td>Now take a look at the following variable declarations:</td></tr>
+<tr><td><pre class="code">
+struct localuser *u;
+struct ast_frame *f=NULL,*pframe,*trframe=NULL;
+struct ast_filestream *play;
+struct ast_trans_pvt *trans;
+struct ast_channel *chan2;
+static struct ast_frame null_frame = 
+{
+   AST_FRAME_NULL,
+};
+</pre></td></tr></table>
+
+<p>
+The first structure, localuser, is needed by the macros just
+mentioned.  Next I create three frames.  A frame holds a small chunk
+of signal data and information about that chunk.  f is the frame
+read from the original caller.  The file is read into pframe.  trframe is a translation of pframe into raw
+PCM format.  Next, play, is a pointer to the file to be played from disk.  trans
+is a codec translator.  chan2 is the channel of the phone that will be
+dialed.  The null_frame is used to assign a "zero" frame to trframe
+when ast_translate returns a null pointer.
+</p>
+
+<p>
+Next, add a user, and open the file "yourprompt", which you need to
+replace with a valid file name.  Request a new channel in PCM for extension
+1002.  If this is successful, force it to read and write in PCM.  This
+means any data read from chan2 will appear as PCM to the test_echo
+application regardless of the actual codec used by the phone.  Any
+data that is written should be in PCM.  Asterisk will make sure it is
+delivered in the appropriate format.
+</p>
+<p>
+This is where things get a bit tricky.  The commands
+ast_openstream and ast_readframe will try to read in the file and
+convert straight to the outgoing codec.  But the data needs to be in
+PCM.  So a translator must be allocated to convert from the outgoing
+codec into PCM.  This is a bit inefficient because now the file read
+from disk is being converted from the codec on disk to the outgoing
+codec and then into PCM (and then back to the outgoing codec when we
+finish with it).  Unfortunately I couldn't find a better way to do
+this, but it works.  Next the original channel is set to read and
+write in PCM.  There's no funny business here - ast_read will convert
+the data into PCM as requested.
+</p>
+<p>
+Next, go into a loop that quits on hang-up or some error.  Read a frame
+of input from the caller at the beginning of the loop.  Then read a
+frame from a file on disk.  Quit when the entire file has been
+played.  Now, take the translated frame from the last iteration and
+combine it with the incoming call stream.  Set the delivery seconds and
+microseconds to zero, so the frame will be delivered immediately.
+Write the combined frame to both channels.  Translate the frame from
+disk so that it can be used on the next iteration.  Remember to free
+frames and translators and call LOCAL_USER_REMOVE before quitting.
+</p>
+<p>
+The remaining functions are for loading/unloading modules, returning a
+description of the application, returning the usecount, and returning
+the a key which Asterisk needs to run the application.  The key
+basically states the application has a GNU General Public License.
+</p>
+
+<p>
+<span class="bold">Exercises (warning - I haven't tried these)</span><br />
+1) Allow the caller to enter the number to which he wants to connect.<br />
+2) Change the loop so it doesn't end when the file on disk has been
+played.<br />
+3) Take the <a href="agc.c">AGC</a> code and make it work on the
+output.<br />
+</p>
+
+<p>*I really wanted to try the PSOLA Algorithm, which is used for pitch
+shifting of human speech.  But I believe there is a patent on it, and I
+couldn't find a good description of the algorithm.  If you would like
+to try it yourself, go right ahead.  I suggest using DTMF 1 to lower
+the pitch, DTMF 2 to return to normal, and DTMF 3 to raise the pitch.
+If you have matlab (or octave) I suggest trying the same technique I used
+for AGC.</p>
+</td></tr>
+</table>
+
+<p><a href="../../index.html">home</a></p>
+</body>
+</html>
+
+

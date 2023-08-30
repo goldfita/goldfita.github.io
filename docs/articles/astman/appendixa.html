@@ -1,0 +1,68 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+<head>
+<title>A Web Interface to the AMI</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<link rel="stylesheet" type="text/css" href="../../index.css" />
+<meta name="description" content=
+"This is a guide to building a web site from scratch that monitors a
+server.  It's full of my opinions on design.                    " />
+<!-- ....10........20........30........40........50........60........70........80 -->
+</head>
+
+<body>
+<table>
+<tr><td class="article">
+
+<h4 class="nounderline">Appendix A</h4>
+
+<p>
+Implementing the circular buffer turned out to be very difficult.  It
+was also very difficult to test; there were many boundary cases.  A
+resizeable, doubly-linked, circular list was an alternative I
+considered.  Here is a side by side comparison.
+</p>
+
+<table>
+<tr>
+<td><span class="bold">Circular Buffer</span></td>
+<td><span class="bold">Circular List</span></td>
+</tr>
+<tr><td><ul><li>Almost never need to allocate memory</li>
+<li>Difficult to overflow buffer</li>
+<li>No extra processing</li>
+<li>Expected to be efficient*</li>
+<li>Hard to implement</li>
+<li>May need to search through messages unnessecarily</li></ul>
+</td>
+<td><ul><li>Messages never have to be processed more than once</li>
+<li>Probably easier to implement</li>
+<li>Easy to remove a message from anywhere</li>
+<li>Need to allocate memory frequently and copy messages around</li>
+</ul></td></tr>
+</table>
+
+<p>
+The major advantages of the buffer are that it requires no memory
+allocations, and for a buffer with only one to three messages, it
+should be very fast because there's no unnecessary processing of the
+data.  The major advantages of the list are that it should be easier
+to implement (and hence less buggy) and, unlike the buffer, it's easy
+to remove a message from anywhere.  The list method will also perform
+well when messages are repeatedly revisited.  This is because
+messages can be processed and read into a structure the first time.
+Then it is easy to read without further work on subsequent accesses.
+However, it's unlikely a message would be read more than once or
+twice; so, this may just be extra work.
+</p>
+
+<p><span class="bold">*</span>There's no way to compare without implementing both methods.</p>
+
+</td></tr>
+</table>
+<p><br /><a href="../../index.html">home</a></p>
+
+</body>
+</html>
+

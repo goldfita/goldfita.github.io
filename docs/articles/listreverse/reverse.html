@@ -1,0 +1,225 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+<head>
+<title>List Reversal</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<link rel="stylesheet" type="text/css" href="../../index.css" />
+<meta name="description" content=
+"This all you ever wanted to know about reversing lists.
+                                                       " />
+<!-- ....10........20........30........40........50........60........70........80 -->
+</head>
+
+<body>
+<table>
+<tr><td class="article">
+<h1 class="topofpage">List Reversal</h1>
+
+
+<p>
+As part of my interview, I was asked to reverse a list.  Fortunately or
+unfortunately, I had just read the JoelOnSoftware blog not to long ago,
+and he discussed asking candidates to reverse a list.  So, I already
+had an idea in my mind of how to do it.  It took me a while to get it,
+and my implementation was very awkward, but at least I finished.  (In
+fact, I was told by the interviewer that he had never seen it
+implemented that way before.)
+</p>
+
+<p>
+My implementation was recursive.  That gets you the stack implicitly.
+I thought the point of the exercise was to see if you would recognize
+that you need a stack.  But I later found out you can actually do it
+without one.  This is the most efficient way to do it, but it's not
+the easiest to understand.  The easiest to understand method is by using an
+explicit stack on the data.  Of course, it's also the most
+inefficient.
+</p>
+
+<p>
+Once I cleaned up my solution, the code was actually very small and
+somewhat elegant.  But the interface was awkward.  You have to run the
+following to complete the reversal.
+<br /><br />
+*reverse(list,&amp;list) = NULL;<br/><br />
+
+That's not pretty.  You might clean it up by wrapping it in another
+function, but there are other ways to implement this.  I actually came
+up with <a href="reverse.c">five
+solutions to reverse a list</a>.  But I had to stop; I just kept
+coming up with more.  The first method (reverse1) is a simplification
+of my solution at the interview.  I believe it's only possible in a
+low level language like C or assembly.
+</p>
+
+<p>
+The second method is similar, but the code is longer, and the
+interface is nicer.  The third method doesn't need a stack.  It's not
+pretty, but it works.  The fourth method uses an explicit stack to
+reverse all the pointers.  The fifth method does the same but reverses
+the data instead of the pointers.  Of course, you could also implement
+an O(n^2) algorithm by traversing the list and reversing only the last
+non-reversed pointer each time.  That would be about the worst way you
+could do it.
+</p>
+
+<p>
+I also timed the reversals.  The first reason I did this is because you really
+can't know performance without testing.  The second reason is because
+my first interviewer wanted me to implement a tree traversal
+iteratively.  This would be a lot easier for me to do recursively, but he
+cited stack overflow as being a problem.  Again, I thought the point
+was to see if you could recognize that you need a stack.
+</p>
+
+<p>
+Unfortunately, using an explicit stack that allocates memory from the
+heap is much slower than using the stack frame.  It requires several
+extra function invocations (push, pop, malloc, free).  And memory
+allocation and deallocation can be very slow.  When you use the stack
+frame, there is hardly any work to "allocate" memory.  And if you have
+a smart compiler and you get into a tail recursion situation,
+there's virtually no work to be done at all.  Perhaps we should all just
+disabuse ourselves of this mutation fixation, and drop the heap
+altogether.
+</p>
+
+<p>
+In any case, the results of the timing were exactly as expected.<br />
+Reverse1: 13 seconds<br />
+Reverse2: 17 seconds<br />
+Reverse3: 4 seconds<br />
+Reverse4: 22 seconds<br />
+Reverse5: 27 seconds<br />
+</p>
+
+<p>
+I ran this serveral times.  Reverse1 varied from 11 to 13 seconds.
+Reverse2 once came in at 16 seconds.  The fastest method was
+stackless.  The second fastest method used the stack frame.  The
+slowest used a stack data structure.
+</p>
+
+<hr />
+
+<p>
+I want to cover the stackless version of reverse (reverse3) since it's
+a bit tricky.  You have to keep three temporary variables around so
+you don't lose your next pointers.  I called them next, nextnext, and
+tmp, which is really nextnextnext.  I trace through the iteration one
+time including the initial steps.
+</p>
+
+<pre>
+//setup
+head -&gt; item1 -&gt; item2 -&gt; item3 -&gt; NULL
+             next^  nextnext^
+
+//head-&gt;next = NULL;
+head -&gt; item1  item2 -&gt; item3 -&gt; NULL
+ NULL &lt;--|  next^  nextnext^
+
+//tmp = nextnext-&gt;next;
+head -&gt; item1  item2 -&gt; item3 -&gt; NULL
+ NULL &lt;--|  next^  nextnext^    tmp^
+
+//next-&gt;next = head;
+head -&gt; item1 &lt;- item2  item3 -&gt; NULL
+ NULL &lt;--|   next^  nextnext^   tmp^
+
+//head = next;
+NULL &lt;- item1 &lt;- item2  item3 -&gt; NULL
+        head,next^  nextnext^   tmp^
+
+//next = nextnext;
+NULL &lt;- item1 &lt;- item2      item3 -&gt; NULL
+             head^ next,nextnext^   tmp^
+
+//nextnext = tmp;
+NULL &lt;- item1 &lt;- item2    item3    -&gt;    NULL
+             head^     next^   nextnext,tmp^
+</pre>
+
+<p>
+In this example, the loop would only exectue one time.  So the next
+step would point item3 back to item2 and return a pointer to item3.
+</p>
+
+<hr />
+
+<p>
+And here it is in elisp.
+</p>
+
+<pre class="code">
+(defun reverse (l)
+  (if (eq l nil)
+      ()
+    (append (reverse (cdr l)) (list (car l)))))
+
+(reverse '(1 2 3 4 5 6 7 8))
+</pre>
+
+<p>
+And in Python.  This is why I love Python!  I don't recommend you try
+this during an interview.  Note that this is in place.
+</p>
+
+<pre class="code">
+l = [1,2,3,4,5,6,7,8]
+l.reverse()
+</pre>
+
+<p>
+If you're going to be doing any technical interviews, you may want to
+study reversing a list since it seems to be a popular question.  You
+will need to be very comfortable with pointers to understand my code.
+Also notice my list structure is very general.  I initially had it
+store an integer.  But reverse4 needed to be able to push pointers
+onto the stack; so, I modified the list to point to generic data.
+</p>
+
+<p>
+Finally, I just want to mention one thing about data structures.  I
+used the list as both a list and a stack.  In reality they're the same
+thing.  I like to think of the data representation as separate from
+the abstract data type.  The interface to the data representation is the
+abstract data type.
+</p>
+
+<p>
+For example, you have a list with insert.  I could implement push and
+pop of the stack as insert(list,0) and remove(list,0) respectively.
+If you add an end pointer to the list, you can also implement a
+queue.  Enqueue would be append(list) (which is really just
+insert(list,END)), and dequeue would be remove(list,0).  You see the
+data representation underneath is the same.  It's just that the
+interface is a little different in each case.  But it's easier to think about push
+and pop than insert if what you wanted was a stack.
+</p>
+
+<p>
+You can also change the underlying data representation while keeping
+the interface the same.  You see, the two are independent.  Lists,
+stacks, and queues can all be implemented using an array, but there
+are some consequences to doing so.
+</p>
+
+<p>
+Also, notice how I passed the stack to the functions that operate on
+it.  You should get into the habit of coding in this object-oriented
+manner.  If I had used global variables instead, I couldn't easily
+extend this code to work with threads.  And that's something that's
+becoming very important as we move into the multicore world.
+</p>
+
+<p><a href="trees.html">next</a></p>
+
+</td></tr>
+</table>
+<p><br /><a href="../../index.html">home</a></p>
+
+</body>
+
+</html>

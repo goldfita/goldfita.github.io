@@ -1,0 +1,43 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+<head>
+<title>Results</title>
+ <link rel="stylesheet" type="text/css" href="../../../index.css" />
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+
+<meta name="description" content=
+"Some real-time results from my research.                                       
+                                                                                  " />
+<!-- ....10........20........30........40........50........60........70........80 -->
+</head>
+
+<body>
+<table>
+<tr><td class="article">
+<h1 class="topofpage">Results</h1>
+<p>
+The first image below was captured in a real-time environment.  The
+speaker was placed in front of the array of seven microphones.  The
+time delays were sent to matlab from the signal processor, and the
+bearing lines were then plotted.  I also performed some echo
+cancellation experiments.  The <a href="withecho.wav">first</a> is the
+president in the near room and background noise coming from the far
+room.  The <a href="withoutecho.wav">second</a> is the same setup but
+with echo cancellation turned on.  The number of taps was 1024 with a
+projection order of 16.  The <a href="withbeamforming.wav">last</a>
+experiment is with beamforming turned on.  You should listen to all
+three at the same volume.  The second image is a plot of Echo Return
+Loss Enhancement (ERLE) for the speech segment "ah".  ERLE is a
+measure of echo cancellation.  </p></td><td></td></tr>
+
+<tr><td colspan="2">
+<img src="realtimefrontbearing.bmp" alt="realtimefrontbearing.bmp" />
+<img src="erle_ah.bmp" alt="erle_ah.bmp" />
+</td><td></td></tr>
+</table>
+
+<p><a href="../../../index.html">home</a></p>
+
+</body>
+</html>

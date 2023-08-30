@@ -1,0 +1,156 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+<head>
+<title>Regression Testing</title>
+<style type="text/css">
+div {font-weight: bold; text-align: center}
+</style> 
+<link rel="stylesheet" type="text/css" href="../index.css" />
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+
+<meta name="description" content=
+"Some ideas about using regression testing to reduce development time of real-time 
+embedded signal processing projects.                                      "></meta>
+<!-- ....10........20........30........40........50........60........70........80 -->
+</head>
+
+<body>
+
+<table>
+<tr><td class="article">
+<h1 class="topofpage">The Case for Regression Tests</h1>
+<p>
+Well, it's finally done.  They've handed me my degree.  So now that
+it's over, what is it I regret not doing?  Regression (or
+verification) tests.  This small amount of additional work might
+possibly have saved me a few months as well as hundreds of hours spent
+in lab beating my head against the wall trying to solve the wrong
+problem.</p>
+
+<p>
+What is <a
+href="http://www.webopedia.com/TERM/R/regression_testing.html">regression
+testing</a>?  Regression tests are a suite of tests that allow a
+programmer to verify that the code is working.  The tests may have
+been written by someone else.  Or they may have been written by the
+same person at an earlier date.  In either case, the tests reassure
+you that the code is doing the same thing today as it was three weeks
+ago.  This is useful because anyone can modify the code and be
+reasonably confident the changes didn't break anything.  This is very
+important once a project grows to be thousands, tens of thousands, or
+hundreds of thousands of lines of code.  Think about it.  No one remembers what
+</p><div>int foo_246(float *)</div><p> does.  It's buried so deep in
+the code, even after it was found, there was a failed witch hunt to
+find the responsible party.  But it's OK!  As long as there is an
+extensive set of tests, you can muck around with the code all you
+like.  Just make sure all the tests pass when you're done.  You can
+optimize it, simplify it, prettify it, complexify it, or obscurify it
+- whatever you like.  But make sure the tests pass.</p>
+
+<p>
+Why is this important for embedded signal processing?  After all, I
+wrote less than a thousand lines of code that just process a signal.
+First let's think about what I did right.  Writing working numerical
+algorithms is very difficult, even in a high level language.  It gets
+harder (or at least more work) when you have to do it closer to
+assembly language.  Getting those algorithms to work in a real time
+environment on an external embedded device just makes the task ten
+times more challenging.  The really frustrating part is that you may
+not be able to analyze your code in any way once it's on the embedded
+chip.  This makes debugging already extremely complicated code near
+impossible.  Now factor in memory constraints, optimization, noisy
+equipment, faulty equipment, and complicated algorithms which aren't
+well understood.  Knowing all this, wouldn't you like to have some
+assurance that your code is working before it ever ends up on the DSP?
+I certainly would.  And that's why I very carefully made sure my code
+was working at every stage up until the point it had to be loaded onto
+the signal processor.  I made sure the code worked in a mex file
+driven by matlab.  Then I made sure it worked in the emulator.  Only
+once I was completely convinced that it worked would I even attempt to
+make it work on the DSP.</p>
+
+<p>
+Great you say.  So what's the problem?  The trouble is I only used
+some temporary, not very well designed, tests to make sure my code was
+working at that point in time.  It wasn't particularly easy to use
+these tests to verify that the code works.  The tests weren't designed
+for and didn't encourage using them again at a later date.  They also
+mostly only tested the complete algorithm instead of introspecting
+each of the individual pieces.</p>
+
+<p>
+Ultimately what happened to me was this.  My code would break and it
+would be extremely difficult to find the bug because I had to do it
+mostly by guess work or by stopping/recompiling/reloading/restarting
+the DSP repeatedly, each time looking at the tiny little bit of
+information that I'm able get onto the host computer.  Usually this
+would take anywhere from a few hours to a few days.  Well ok, that
+doesn't sound so bad.  If the code breaks three of four, or even
+twenty times, it's not going to cost you so much time that it's worth
+spending several weeks writing a careful set of tests.</p>
+
+<p>
+Here's the rub.  While the time spent fixing the code was only ten or
+twenty times longer than fixing the usual bugs, the time wasted not
+even realizing I had a problem was at least an order of magnitude
+greater than that.  At one point I spent several weeks trying to
+reduce electrical noise from the electronics and acoustic noise from
+the environment in order to get my project working.  While those were
+serious problems that made testing my project a real pain, it turned
+out the real problem (as usually happens) was in software.  Some of my
+code was mysteriously corrupted (don't ask me how these things
+happen).  A variable in a mathematical expression disappeared.  One
+variable!  It cost me weeks (although I did learn a bit about noise).
+On another occasion, I had a memory allocation error due to a constant
+that was set incorrectly.  This, at least in part, cost me months of
+delay.  Later on I made the same mistake and it again cost me several
+hours.  I can think of at least two more instances of corrupted code
+and incorrect constants costing me a significant amount of time.
+There was also the instance of my stack apparently running into the
+heap.</p>
+
+<p>
+It's hard to believe something so trivial can cause so many problems.
+But when you have to worry about extra harmonics from low quality
+speakers, wide-band noise from your power supply and other interfering
+sources, a faulty hardware kit, a microphone array with bad and
+sometimes broken connections, and a quirky software development
+environment that often crashes, the last thing you need is for the
+code to break.  Broken code can cause almost any imaginable behaviour.
+I was absolutely sure that something was wrong with the electronics
+when gain was consistently too low.  But it was a memory allocation
+error.  My guess is that the exponent was getting squashed.</p>
+
+<p>
+So, here's what you do.  As soon as something goes wrong, run all your
+tests.  Ideally, it will take little or no effort on your part.  You
+just run them and look at the results.  Run them often.  If you have
+even the slightest suspicion that something is wrong, run the tests.
+Remove the possibility that there is something wrong with your code.
+I implore you -- if you're going to do something that's even remotely
+complicated, build yourself some tests.  You won't want to do it when
+you think the project's nearly done.  Do it at the start.  It could
+save you months.</p>
+
+<p>
+Think back to the days before compilers.  I know you weren't around
+then; I wasn't either.  Imagine you're programming in assembly or (ug)
+machine code.  Someone suggests something about writing code to help
+you write code?  You think - What?  It might eventually help, but for
+now it would just take up too much time.  It's not worth it.  But who
+doesn't use a compiler or interpreter of some type these days?  You'd
+have to be a fool not to use one.  It's a necessity.  But there was a
+time when we didn't use them.  I think of tests in the same way.  It's
+a tool that will just make everything easier.  One day we'll all be
+wondering what it was like to debug in the days before regression
+testing.  That must have been painful.  Oh, it was...</p>
+
+<p>Testing <a href="http://www.aptest.com/resources.html#app-embed">tools</a> might be useful.</a>
+</td></tr>
+</table>
+
+<p><a href="../index.html">home</a></p>
+
+</body>
+</html>

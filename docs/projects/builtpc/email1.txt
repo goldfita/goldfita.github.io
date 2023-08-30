@@ -1,0 +1,54 @@
+Hello Todd,
+
+Thank you for contacting Intel(R) Technical Support.
+
+Unfortunately Intel is no longer manufacturing these products. Additionally, Intel no longer provides interactive support for these products via telephone or e-mail, nor will Intel provide any future software updates to support new operating systems or improve compatibility with third party devices and software products
+
+You can find more information on this product at the following link:
+
+  http://support.intel.com/support/motherboards/server/chassis/cabrillo-c/
+
+Please do not hesitate to contact us again if you need further assistance.
+
+Regards,
+
+Luis Pablo S.
+Intel(R) Technical Support
+
+Intel is a registered trademark of Intel Corporation or its subsidiaries in the United States and other countries.
+
+*Other names and brands may be claimed as the property of others.
+
+A representative of Intel may subsequently contact you (via email) in order to obtain your feedback on the quality of the support you received. If you do not wish to participate, simply delete the survey email.
+
+<===== Received from goldfita@rose-hulman.edu on 2005-09-29-19.01.34.000000 ======>
+
+                                Hi, there is no way to ask a question about documentation on your site, so I've chosen the closest option.  I need document order # 681374-002.  (I'm looking for a pin-out diagram of J1 on the cabrillo backplane.)  I can't find it on the web site.  Can you please email it to me.  If intel helps me solve my problem, I'll be sure to include a link and put in a nice word when I write my article on this project.  Thank you.
+##ERIGNORE##
+First_name: Todd
+Last_name: Goldfinger
+Email: goldfita@rose-hulman.edu
+Customer_type: End User
+Product: Intel(R) Server Control
+Product_id: 114
+OS: Don't Know
+Survey_opt_in: Yes
+Bios_version:
+BMC:
+HSC:
+FRUSDR:
+board_selection: None
+chassis_selection: Intel® Cabrillo-C Chassis
+raid_selection: None
+Processor_speed:
+Processor_type:
+sSpec:
+Issue: Hi, there is no way to ask a question about documentation on your site, so I've chosen the closest option.  I need document order # 681374-002.  (I'm looking for a pin-out diagram of J1 on the cabrillo backplane.)  I can't find it on the web site.  Can you please email it to me.  If intel helps me solve my problem, I'll be sure to include a link and put in a nice word when I write my article on this project.  Thank you.
+Form_id: 48
+
+
+               
+{ See Attached File: Attachment }{ See Attached File: history.html }
+
+
+IMPORTANT NOTE IF YOU REPLY TO THIS EMAIL: Please perform a reply with history so that the following identifier "[THREAD_ID:6266740]" is seen in your response email. This will insure that your reply is delivered to the proper support team at Intel and will reduce the time it takes to receive a response. Thank you.

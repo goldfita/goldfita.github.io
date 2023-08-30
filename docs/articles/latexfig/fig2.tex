@@ -1,0 +1,61 @@
+\documentclass[a4paper,12pt]{report}
+\usepackage{graphicx}
+\usepackage{subfig}
+\begin{document}
+%latex fig2.tex; dvips -Ppdf fig2.dvi; ps2pdf fig2.ps; kpdf fig2.pdf &
+
+%Change the figure text.
+\makeatletter \renewcommand{\fnum@figure}{New caption for figure \thefigure} \makeatother
+\begin{figure}[htb]
+\begin{center}
+\includegraphics[totalheight=.3\textheight,width=.7\textwidth,viewport=0 0 580 480]{flower}
+\end{center}
+\end{figure}
+
+\begin{figure}[htb]
+\begin{center}
+\includegraphics[totalheight=.3\textheight,width=.7\textwidth,viewport=0 0 580 480]{flower}
+\end{center}
+\caption{(inside caption)}
+\end{figure}
+\clearpage
+
+
+\begin{figure}[htb]
+\begin{center}
+\includegraphics[totalheight=.3\textheight,width=.7\textwidth,viewport=0 0 580 480]{flower}
+\includegraphics[totalheight=.3\textheight,width=.7\textwidth,viewport=0 0 580 480]{flower}
+\end{center}
+\caption{(inside caption)}
+\end{figure}
+%Change the figure text back.
+\makeatletter \renewcommand{\fnum@figure}{Figure \thefigure} \makeatother
+\clearpage
+
+
+\begin{figure}[htb]
+\begin{center}
+\includegraphics[totalheight=.9\textheight,width=.7\textwidth,viewport=0 0 580 480]{flower}
+\includegraphics[totalheight=.9\textheight,width=.7\textwidth,viewport=0 0 580 480]{flower}
+\end{center}
+\end{figure}
+\clearpage
+
+
+\begin{figure}[htb]
+\begin{center}
+\includegraphics[totalheight=.7\textheight,width=.7\textwidth,viewport=0 0 580 480]{flower}
+\caption[]{}
+\end{center}
+\end{figure}
+
+\begin{figure}[htb]
+\ContinuedFloat
+\begin{center}
+\includegraphics[totalheight=.7\textheight,width=.7\textwidth,viewport=0 0 580 480]{flower}
+\end{center}
+\caption[]{}
+\end{figure}
+\clearpage
+
+\end{document}

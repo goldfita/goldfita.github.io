@@ -1,0 +1,48 @@
+/****************************************************************************
+
+
+bases.rh
+
+produced by Borland Resource Workshop
+
+
+*****************************************************************************/
+
+#define ID_ALARM_ON   101
+#define ID_ALARM_OFF  102
+#define ID_Base2	1002
+#define ID_Base19	1019
+#define ID_Base20	1020
+#define ID_Base21	1021
+#define ID_Base22	1022
+#define ID_Base32	1032
+#define ID_Base31	1031
+#define ID_Base30	1030
+#define ID_Base29	1029
+#define ID_Base28	1028
+#define ID_Base27	1027
+#define ID_Base26	1026
+#define ID_Base25	1025
+#define ID_Base24	1024
+#define ID_Base33	1033
+#define ID_Base34	1034
+#define ID_Base35	1035
+#define ID_Base36	1036
+#define ID_RESET	1037
+#define ID_Base23	1023
+#define ID_Base15	1015
+#define ID_Base14	1014
+#define ID_Base13	1013
+#define ID_Base12	1012
+#define ID_Base11	1011
+#define ID_Base10	1010
+#define ID_Base9	1009
+#define ID_Base8	1008
+#define ID_Base7	1007
+#define ID_Base6	1006
+#define ID_Base5	1005
+#define ID_Base4	1004
+#define ID_Base3	1003
+#define ID_Base18	1018
+#define ID_Base17	1017
+#define ID_Base16	1016

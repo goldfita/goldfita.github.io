@@ -1,0 +1,66 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+<head>
+<title>Further Research</title>
+<link rel="stylesheet" type="text/css" href="../../index.css" />
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+
+<meta name="description" content=
+"Ideas on further research for a real-time beamformer/echo canceller." />
+<!-- ....10........20........30........40........50........60........70........80 -->
+</head>
+
+<body>
+<table>
+<tr><td class="article">
+<h1 class="topofpage">Some Ideas for Further Research</h1>
+
+<ul style="list-style-type: disc">
+ <li>Use an optimum beamformer to steer a null over the loud speaker.</li>
+ <li>Use plain old GSFAP instead
+     of the block exact version. Although this is slower, it is far easier to
+     code and work with. Also, it has lower memory requirements which caused me
+     many problems.</li>
+ <li>Implement a fixed point
+     version (maybe on a c64x or a c55x if it has enough cycles).</li>
+ <li>Try to understand how filter
+     adaptation effects the CNCC DTD (both my version
+     and the original).</li>
+ <li>Try to understand how
+     regularization effects the convergence of the
+     adaptive filter. Too large a value will prevent it from converging far
+     enough (this is like adding noise). Too small a value will cause the
+     filter to blow up.</li>
+ <li>Find a more effective method
+     for moving data off the DSP in real-time. This will make it easier to
+     study what is going on in a real environment.</li>
+ <li>Find a way to add more microphones.</li>
+ <li>Figure out how to reduce
+     acoustic and electrical noise. This is a major headache...</li>
+ <li>Look into the multiple loud speaker problem.</li>
+ <li>Look into the multiple source (human speaker) problem.</li>
+ <li>Look into placing the beamformer before the AEC.</li>
+ <li>Look into state space
+     algorithms for dealing with source location in a room. (I've seen a few.)</li>
+ <li>Use an IIR non-adaptive
+     filter to enhance AEC performance or reduce the number of adaptive filter
+     taps.  (See thesis for reference.)</li>
+ <li>Use the calculated bearing
+     lines, sent as time delays over RTDX, to control a video camera mounted on
+     a stepper motor.  Take a look at Dr.
+     Hoover&#39;s advanced microcomputers lab for controlling a stepper motor
+     from a PC.</li>
+ <li>Use the DAA chip to accept
+     input from a phone call instead of speaker in from the computer. </li>
+ <li>Add poles after the beamformer to reduce the number of coefficients on the
+     adaptive FIR filters.</li>
+ <li>Figure out how to correct the
+     wide beam response (so it doesn&#39;t low pass filter the signal).</li>
+</ul>
+</td></tr>
+</table>
+<p><a href="index.html">home</a></p>
+
+</body>
+</html>

@@ -1,0 +1,221 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+<head>
+<title>Extension Modules</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<link rel="stylesheet" type="text/css" href="../index.css" />
+<meta name="description" content="
+A brief comparison of Python and Ruby extension modules.
+                                                               " />
+<!-- ....10........20........30........40........50........60........70........80 -->
+</head>
+
+<body>
+<table>
+<tr><td class="article">
+<h1 class="topofpage">Extension Modules</h1>
+
+<p>
+Have you ever needed a part of your very high level code to run
+faster?  What some developers don't realize is that you don't need to
+write entire applications in a single language.  The overall framework
+of large applications tends to be a considerable amount of work and
+requires the least amount of CPU time.  It's often all those nasty
+little features that require a lot of processing power.  The good news
+is that you can write program in a scripting language and implement
+some of the heavier features in a more efficient language.
+</p>
+
+<p>
+There are a few advantages of this.  Development time is much much
+shorter.  There will be far fewer bugs.  You can get a prototype
+working quickly, and it will be easy to change.  You only have to work
+in a lower level language for critical functions.  It's usually not
+too difficult to write a single function in say, C.  Some other
+advantages of wrapping low level modules in a high level language are:
+</p>
+
+<ul>
+<li>low level machine access in a high level language</li>
+<li>code reuse of the low level module</li>
+<li>difficult code can be made easily accessible to others</li>
+<li>access to features and libraries not supported by the scripting
+language</li>
+<li>learning the scripting language in depth</li>
+</ul>
+
+<p>
+I want to cover a quick comparison of Ruby and Python extension
+modules.  This isn't a tutorial; I'm only going over a few basic
+points.  There are <a
+href="http://drydock.python.net/crew/arcege/extwriting/pyext.html">Python</a>
+and <a href="http://www.rubycentral.com/book/ext_ruby.html">Ruby</a>
+tutorials out there.
+</p>
+
+<p>
+In Python, you start by including Python.h and writing an
+initialization module <span class="bold">PyMODINIT_FUNC
+initastman(void)</span>.  The name must start with 'init', and the
+rest of the name is the name of the module.  In Ruby, you include
+ruby.h and write a similar initialization function, <span
+class="bold">void Init_rb_astman()</span>.  In this case, the function
+starts with 'Init_' and the remaining text is the module name.  Be
+careful; case matters in Ruby.  The first letter of the module is capitalized.
+</p><p>
+It gets more interesting after that.  Ruby extension modules tend to
+look just like Ruby code, whereas Python extension modules have a bit
+of overhead.  For example, you have to tell Python about your module
+and class functions.
+</p>
+</td><td></td></tr>
+
+<tr><td colspan="2">
+<pre class="code"><span class="flkf">static</span> <span class="fltf">PyMethodDef</span> <span class="flvnf">astman_mod_methods</span>[] = {
+    {"<span class="flsf">astman</span>",astman_new,METH_VARARGS,"<span class="flsf">New astman.</span>"},
+    {<span class="flconstf">NULL</span>,<span class="flconstf">NULL</span>,0,<span class="flconstf">NULL</span>}
+};
+<span class="flkf">static</span> <span class="fltf">PyMethodDef</span> <span class="flvnf">astman_methods</span>[] = {
+    {"<span class="flsf">connect</span>",connect,METH_VARARGS,"<span class="flsf">Connect to Asterisk Manager.</span>"},
+    {"<span class="flsf">login</span>",login,METH_VARARGS,"<span class="flsf">Login to Asterisk Manager.</span>"},
+    {"<span class="flsf">logoff</span>",logoff,METH_VARARGS,"<span class="flsf">Logoff of Asterisk Manager.</span>"},
+    {"<span class="flsf">close</span>",_close,METH_VARARGS,"<span class="flsf">Close the connection.</span>"},
+    {"<span class="flsf">list</span>",list,METH_VARARGS,"<span class="flsf">List Manager commands.</span>"},
+    {"<span class="flsf">command</span>",command,METH_VARARGS,"<span class="flsf">Execute Asterisk command.</span>"},
+    {<span class="flconstf">NULL</span>,<span class="flconstf">NULL</span>,0,<span class="flconstf">NULL</span>}
+};
+</pre>
+</td><td></td></tr>
+
+<tr><td class="article">
+<p>
+You also need some special structures.  Often when wrapping some
+code or API, there is data that needs to persist between function
+calls.  The first structure below is a wrapper for your variables.
+Notice there is nothing in it except for the required PyObject_HEAD
+and the struct from my code.  I could have put anything I wanted in
+there, but I didn't need to because I already organized my data neatly
+into conn.
+</p>
+
+<p>
+The next structure tells Python about all the special functions
+classes can implement such as __str__, __call__, a destructor, etc.
+You'll have to implement __getattr__, which should at a minimum lookup
+the function in the astman_methods array above.  Fortunately, I
+only had to implement a few of functions; so, it's not too much work
+if you're just doing something simple.
+</p>
+</td><td></td></tr>
+
+<tr><td colspan="2">
+<pre class="code"><span class="flkf">typedef</span> <span class="flkf">struct</span> {
+    PyObject_HEAD
+    <span class="flkf">struct</span> <span class="fltf">ast_connection</span> *<span class="flvnf">conn</span>;
+} <span class="flvnf">astman</span>;
+
+<span class="fltf">PyTypeObject</span> <span class="flvnf">astman_Type</span> = {
+  PyObject_HEAD_INIT(&amp;PyType_Type)
+  0,
+  "<span class="flsf">astman</span>",                 <span class="flcf">/* char *tp_name; */</span>
+  <span class="flkf">sizeof</span>(astman),           <span class="flcf">/* int tp_basicsize; */</span>
+  0,                        <span class="flcf">/* int tp_itemsize;        not used much */</span>
+  astman_dealloc,           <span class="flcf">/* destructor tp_dealloc; */</span>
+  0,                        <span class="flcf">/* printfunc  tp_print;   */</span>
+  astman_getattr,           <span class="flcf">/* getattrfunc  tp_getattr;  __getattr__ */</span>
+  0,                        <span class="flcf">/* setattrfunc  tp_setattr;   __setattr__ */</span>
+  0,                        <span class="flcf">/* cmpfunc  tp_compare;   __cmp__ */</span>
+  0,                        <span class="flcf">/* reprfunc  tp_repr;     __repr__ */</span>
+  <span class="flconstf">NULL</span>,                     <span class="flcf">/* PyNumberMethods *tp_as_number; */</span>
+  <span class="flconstf">NULL</span>,                     <span class="flcf">/* PySequenceMethods *tp_as_sequence; */</span>
+  <span class="flconstf">NULL</span>,                     <span class="flcf">/* PyMappingMethods *tp_as_mapping; */</span>
+  <span class="flconstf">NULL</span>,                     <span class="flcf">/* hashfunc tp_hash;      __hash__ */</span>
+  <span class="flconstf">NULL</span>,                     <span class="flcf">/* ternaryfunc tp_call;   __call__ */</span>
+  <span class="flconstf">NULL</span>,                     <span class="flcf">/* reprfunc tp_str;       __str__ */</span>
+};
+</pre></td><td></td></tr>
+
+<tr><td class="article">
+<p>
+Python also requires you to call Py_INCREF whenever you create or
+reference an object (even if you're just returning None).  Ruby takes
+a different approach to garbage collection; so, you don't need to
+worry about incrementing or decrementing references.  In Python, if
+an exception is raised, the extension function is responsible for
+returning NULL.  In Ruby, exceptions longjmp out of the code.  This
+means all the work is handled for you.  It makes the C extension code look more
+like Ruby code itself, and there's less room for mistakes.
+</p>
+
+<p>
+Arguments are handled a little differently in each language.  Both
+have self as the first parameter to the extension function.  Python
+only has one addition parameter, args.  The function is responsible
+for parsing the args tuple and checking for the correct number of
+parameters.  You must tell Ruby how many parameters each function has
+before the function is called.  Then you declare the function with
+that number of parameters (plus one for self).
+</p>
+
+<p>
+And last there is the issue of building the modules.  Both languages
+have a special module for building modules.  The only issue I had
+was the way you have tell Ruby about library functions.  You need to
+specify each function individually.  This is irritating because if
+you're building the library and the wrapper simultaneously, you have to
+add a new line to the extensions file for each new library function.
+Then you have to rebuild the make file before you can run make.
+</p>
+
+<p>
+The following two snippets are the extension build files for Ruby and
+Python respectively.  The comments specify how to execute the code.
+In this case, the library is a static archive (.a).
+</p></td><td></td></tr>
+
+
+<tr><td colspan="2">
+<pre class="code">require '<span class="flsf">mkmf</span>'
+dir_config("<span class="flsf">ast_man</span>")
+have_library("<span class="flsf">ast_man</span>","<span class="flsf">ast_connect</span>")
+have_library("<span class="flsf">ast_man</span>","<span class="flsf">ast_login</span>")
+have_library("<span class="flsf">ast_man</span>","<span class="flsf">ast_list_commands</span>")
+have_library("<span class="flsf">ast_man</span>","<span class="flsf">ast_absolute_timeout</span>")
+have_library("<span class="flsf">ast_man</span>","<span class="flsf">ast_ping</span>")
+have_library("<span class="flsf">ast_man</span>","<span class="flsf">ast_logoff</span>")
+create_makefile("<span class="flsf">rb_astman</span>")
+<span class="flcf">#ruby extconf.rb --with-ast_man-lib=/home/goldfita/pyastman
+#do not use ~/pyastman
+</span>
+</pre>
+
+<pre class="code"><span class="flcf">#python setup.py build_ext --inplace
+</span>
+<span class="flkf">from</span> distutils.core <span class="flkf">import</span> setup, Extension
+setup(name='<span class="flsf">astman</span>',
+      version='<span class="flsf">0.0.1</span>',
+      ext_modules=[Extension('<span class="flsf">astman</span>', ['<span class="flsf">astman.c</span>'],library_dirs=['<span class="flsf">..</span>'],libraries=['<span class="flsf">ast_man</span>'])],
+      )
+</pre>
+</td><td></td></tr>
+
+<tr><td class="article">
+<p>
+These are the only two languages for which I have built extension
+modules.  I know Java has native functions.  And Perl I would assume
+lets you build extensions.  Matlab has <a href="codesim.html">mex functions</a>, which are
+written in C.  If you ever feel you need to optimize a scripting
+language, consider writing an extension module.  Or, on the other hand, if you
+feel development will take too long in a language like C, try building
+the frame of the application in a scripting language.  Combining
+languages is a powerful way of dealing with tradeoffs like time vs efficiency.
+</p>
+
+</td><td></td></tr>
+
+</table>
+<p><br /><a href="../index.html">home</a></p>
+
+</body>
+</html>

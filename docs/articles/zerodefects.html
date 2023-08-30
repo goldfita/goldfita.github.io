@@ -1,0 +1,192 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+<head>
+<title>On Zero-Defect Software</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<link rel="stylesheet" type="text/css" href="../index.css" />
+<meta name="description" content=
+"There's no such thing as zero-defect software!
+                                                                 " />
+<!-- ....10........20........30........40........50........60........70........80 -->
+</head>
+
+<body>
+<table>
+<tr><td class="article">
+<h1 class="topofpage">On Zero-Defect Software</h1>
+
+<p>
+I have recently heard companies marketing their software as having
+zero defects.  I find this very hard to believe.  Even <a
+href="http://developers.slashdot.org/developers/06/01/06/006225.shtml?tid=156&amp;tid=128">Praxis</a>
+doesn't claim no bugs.  First I want to talk about why I don't buy
+this.  Then I'll talk about what it really means.  Last I'll discuss
+ways to cope with bugs.
+</p>
+
+<p>
+Unless you are making use of both extensive unit and functional tests
+AND formal methods, this claim is little more than arrogance.  And I
+quote from the <a href="http://www.jpbowen.com/pub/10cs.pdf">Ten Commandments of Formal Methods</a>.
+</p>
+
+<p>
+<span class="bold">One can never have absolute correctness, and to suggest that one can is
+ludicrous.</span>
+</p>
+
+<p>
+Everyone likes to believe they've written flawless software.  But even
+if it works for you, your manager, and the client, that doesn't mean
+it's free of defects.  It could still fail tomorrow.  Many bugs will
+never show up unless the code is ported to another machine or the
+environment changes significantly.
+</p>
+
+<p>
+The number of possible states any program can take on becomes
+astronomically large very quickly.  Think thousands of if statements,
+variables, loops, threads, sockets, files, and user input.  And it's
+very easy to make a mistake, even if you are carefully every step of the
+way, which most people are not.
+</p>
+
+<p>
+Large, complex systems are written by many people.  There are always
+assumptions that are undocumented or misunderstood by the next
+person.  Assumptions may be made by the original implementor without
+him even having realized it.
+</p>
+
+<p>
+Software runs on software which runs on hardware.  Even if your code
+really is perfect, your software is not.  The compiler you used will
+have <a href="http://cm.bell-labs.com/who/ken/trust.html">bugs</a>.
+The OS your software runs on will have bugs.  The libraries your
+code calls will have bugs, which means your software will have bugs.
+And then, of course, there's hardware which can also have bugs.  Maybe
+a slightly more appropriate name would be zero-defect source code.
+</p>
+
+<p>
+Suppose you have done very careful design, peer review, and testing at
+every level from the smallest functions to the highest level
+functional tests.  You will have LESS bugs.  A lot less.  But if you
+really want to get rid of defects, you'll want to use formal methods.
+This is a process whereby you try to prove the correctness of your
+code.  But I don't buy that it will reduce defects to zero for two
+reasons.
+</p>
+
+<p>
+1) I got a brief introduction to formal methods in one of my software
+engineering classes.  The idea is you try to prove things like the
+value of a variable is always valid within a for loop.  You careful
+document pre and post conditions, etc.  But techniques of this sort
+will only work on a small unit of code.  You can verify individual
+functions this way.  But try proving the correctness of a
+multi-threaded server with IO coming from the hard disks and over various
+ports.  There are an enormous number of simultaneously interacting
+parts.  At the very least, you're going to need some very powerful
+math such as <a
+href="http://www.joelonsoftware.com/articles/CollegeAdvice.html">dynamic
+logic</a>.  Good luck!
+</p>
+
+<p>
+A simple for loop in C is one thing.  But most modern languages are
+far more complicated and farther from the machine level.  For example,
+if you're using C++, destructor code executes without you explicitly
+telling it to do so.  The operator overloading rules and inheritance
+rules can be quite complex.  There is a lot of room to make a proof
+mistake simply due to lack of visibility of what the code is doing or
+lack of understanding of the compiler.  Do you have the language
+designer or the compiler writer working on your formal tests?
+</p>
+
+<p>
+2) Most important math proofs are relatively short, say between a few
+lines and 100 pages in the more extreme cases.  These proofs are peer
+reviewed by many very smart people over a long period of time.  And in
+some sense, math proofs are simpler than code proofs because they're like one long
+sequential function broken into many very simple steps.  And still,
+mistakes are made.  Is there any reason why if I make a silly mistake
+in a for loop, I'm not just as likely to make a silly mistake proving
+the correctness of that loop?
+</p>
+
+<hr />
+
+<p>
+Now, having said that, I did some googling for <a href="http://www.google.com/search?hl=en&amp;lr=&amp;q=zero-defect+software&amp;btnG=Search">zero-defect software</a>,
+and it seems that zero-defect does not actually mean zero-defect.
+Huh?  This
+<a href="http://www.sitoni.com/zero-defect/introduction.html">article</a> and
+<a
+href="http://www.dexterity.com/articles/zero-defect-software-development.htm">this
+one</a> explain.  I was not able to find much more information or even
+a little about the origins of the phrase.
+</p>
+
+<p>
+But one must wonder about the very poorly chosen words.  It seems too
+intentional to be a mistake.  It sounds like a marketing gimmick, that
+is, a lie.  I'm sure you're familiar with the fact that the size of a
+CRT isn't actually its true size.  The marketing term for megabyte
+and gigabyte are different from the precise mathematical definition.
+(This has caused me confusion and headaches.)  Just about any
+technology you buy will be sold to you in some form of a lie if
+marketing has done their job well.  I've even heard of negative design
+aspects being sold as features.  How would you know any better?  You're just the
+ignorant consumer.  Even the clock speed hype of previous generations
+of computer chips was an implicit lie.  Notice that aspect isn't hyped
+up anymore.
+</p>
+
+<p>
+I don't know about you.  But I would not be very happy if I was told
+my software had zero defects and then something went wrong.  Even if I
+only heard stories about problems, I would be upset.
+</p>
+<hr />
+
+<p>
+Most software is not mission-critical.  Defects are acceptable.  If
+you are part of a team responsible for the design and implementation of
+code used in a nuclear power plant or a control system where lives are
+at stake, I hope everyone on that team has been trained to use formal
+methods, testing methodologies, testing tools, and whatever else is
+available.  I hope the code also goes through a long peer review
+process.
+</p>
+
+<p>
+In most other cases, the problem with buggy code is that it effects
+millions, and the model of development is faulty.  Open source solves
+many of the issues.  If the code is used by many people, it will
+receive a very thorough review process.  So, the more users, the less
+bugs.  It's possible for users to fix the bugs themselves.  You don't
+have to wait three years for a new release to correct a bug.  Releases are immediate
+(to some degree).  Please read <a
+href="http://www.amazon.com/exec/obidos/redirect?link_code=ur2&amp;tag=signalsguru-20&amp;camp=1789&amp;creative=9325&amp;path=http%3A%2F%2Fwww.amazon.com%2Fgp%2Fproduct%2F0596001088">The
+Cathedral &amp; the Bazaar</a><img
+src="http://www.assoc-amazon.com/e/ir?t=signalsguru-20&amp;l=ur2&amp;o=1"
+width="1" height="1" alt="" />.
+</p>
+
+<p>
+Another kind of software I consider distinct from the previous two
+kinds are custom, in-house software and web services.  Open sourcing
+the code probably won't do much good since the software is only of
+interest to you.  In this case, some level of QA would be necessary,
+but not as much as in the mission-critical case.
+</p>
+
+</td></tr>
+</table>
+<p><br /><a href="../index.html">home</a></p>
+
+</body>
+
+</html>

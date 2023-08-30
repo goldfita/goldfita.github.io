@@ -1,0 +1,105 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+<head>
+<title>Layers of Development</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<link rel="stylesheet" type="text/css" href="../index.css" />
+<meta name="description" content="
+My opinions on engineering at various levels of abstraction.
+                                                            " />
+<!-- ....10........20........30........40........50........60........70........80 -->
+</head>
+
+<body>
+<table>
+<tr><td class="article">
+<h1 class="topofpage">Layers of Development</h1>
+
+<p>
+We all work at different levels of abstraction.  Some of us work down
+around the machine level.  Others work in a purely virtual environment
+with no visible connection at all to the machine.  Maybe you've been
+lucky enough to work at multiple levels simultaneously.  I personally
+have seen at least a little of everything from the physical theories
+of electronic components to high level frameworks in high level
+languages.  I have some experience with embedded assembly and
+reprogrammable hardware.  But I've also done server and client side scripting.
+</p>
+
+<p>
+The more you're exposed to the easier it is to know on what level a given
+problem needs to be solved.  Let's say you're writing a complex system
+that has a web interface and some really nasty back end algorithms.
+Once upon a time, you might have tried to do everything in a C-type
+algorithm.  It wouldn't be much fun building a large  server side
+script in C.  And you might not even be able to solve your algorithms
+issues in C.  What if it's too slow?  What if even assembly is too
+slow?
+</p>
+
+<p>
+These days, you would start by downloading a framework and stubbing
+out the web service.  Then you might do some of the business logic in
+Java or C, depending on how much processing power it needs.  If you
+have some really heavy algorithms, you might even do a special
+hardware implementation.  Each part of the problem is solved at a
+different level.  Knowing which tool to use is one the most important
+decisions you'll make.  And this depends on processing requirements,
+number of acceptable mistakes, development time, number and skill
+level of developers, and so on.
+</p>
+
+<p>
+Each level requires a different mode of thinking.  You wouldn't worry
+about abstraction and code elegance on an FPGA.  But you might spend a
+lot of time looking for an easy to implement algorithm that's still
+efficient.  In Ruby, you shouldn't be worrying too much about
+efficiency.  If you are, perhaps you're in the wrong language.  You
+should be worried about removing duplicate code (DRY - Don't Repeat
+Yourself), elegance, and expressiveness.
+</p>
+
+<p>
+I wrote before on the <a href
+="progeffim/softdevmodel.html">efficiency/productivity</a> issue.
+It's really an issue of context.  The closer you are to bits and bytes
+or electronics, the more efficiency probably matters.  On the other
+end it shouldn't matter, or you've done something wrong.  Usually,
+you will want to choose the tool that will allow you to complete the
+project the quickest possible but still be usable.  And usable depends
+on the situation.  In some situations, usable might mean it runs OK on
+a grid of a thousand computers.  In other situations, usable might
+mean it runs in real time on a two dollar DSP.
+</p>
+
+<hr />
+
+<p>
+We now have multicores, grid computing, and all these other wonderful technologies
+on the horizon such as quantum computers, optical, chemical,
+biological, etc.  Each computer and architecture has specific
+strengths.  Languages that bridge the gap between the high level and
+the low level will become very important.  Thus you can program at a
+very high level and allow the language to determine or at least help
+to execute the code in the most efficient way on the best hardware.
+</p>
+
+<p>
+Take multicores and grid computing.  A language which makes concurrent
+programming easy will be of more use than a lower level, faster
+language.  If you can program at a very high level without having to
+worry too much about what's executing where and when, you have a lot
+of power.  The program might run on a single chip, or maybe two, or
+maybe it's running on a thousand quad-core computers.
+</p>
+
+
+</td></tr>
+</table>
+<p><br /><a href="../index.html">home</a></p>
+
+</body>
+
+</html>

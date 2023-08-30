@@ -1,0 +1,58 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+<head>
+<title>Python Loops</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<link rel="stylesheet" type="text/css" href="../../index.css" />
+<meta name="description" content="
+A brief examination of loops in Python.                                         
+                                                                                "></meta>
+<!-- ....10........20........30........40........50........60........70........80 -->
+</head>
+
+<body>
+
+<table>
+<tr><td class="article">
+
+<h1 class="topofpage">Python Loops</h1>
+
+<p>
+Here are three ways to build a for loop in Python.
+</p>
+<pre class="code">
+#!/usr/bin/env python
+
+def counter(_from,to,by):
+    while _from<=to:
+        yield _from
+        _from += by
+
+def loop1(_from,to,by=1):
+    for c in range(_from,to+1,by):
+        pass
+
+def loop2(_from,to,by=1):
+    while _from<=to:
+        _from += by
+        
+def loop3(_from,to,by=1):
+    for c in counter(_from,to,by):
+        pass
+</pre>
+<p>
+Using the timer module, it is easy to compare the different versions.
+Although I would expect that the tests which complete in just a few
+seconds or less are somewhat meaningless, the longer tests should hold
+some weight.  I must say the results were quite a shock to me.</p>
+</td><td></td></tr>
+<tr><td colspan="2">
+<img src="pyloops.jpg" alt="pyloops.jpg" />
+</td><td></td></tr>
+</table>
+
+<p><a href="../../index.html">home</a></p>
+
+</body>
+</html>

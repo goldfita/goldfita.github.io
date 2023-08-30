@@ -1,0 +1,459 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+<head>
+<title>On Languages</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<link rel="stylesheet" type="text/css" href="../../index.css" />
+<meta name="description" content=
+"A hodgepodge of programming language related ideas.
+                                                                      " />
+<!-- ....10........20........30........40........50........60........70........80 -->
+</head>
+
+<body>
+<table>
+<tr><td class="article">
+<h1 class="topofpage">On Languages</h1>
+
+<p>
+It's finally happened.  I've found myself muttering under my breath:
+darn, this would be easy in Lisp.  But C isn't Lisp.  And neither are
+most other languages.  However, that doesn't mean Lisp is the only
+right way to program.  It also doesn't mean features not implemented
+in your language can't be approximated.  But as we all know:
+</p>
+
+<p>
+"<span class="italics">Any sufficiently complicated C or Fortran program contains an ad hoc
+informally-specified bug-ridden slow implementation of half of Common
+Lisp.</span>"<br />
+ --Greenspun's Tenth Rule of Programming
+</p>
+
+<p>
+The other day I started reading up on Objective Caml.  OCaml allows
+you to switch between an imperative and functional style of
+programming.  This is nice because, as the OCaml advocates will tell
+you, strong support for recursion and complex abstract data types
+makes it great for writing compilers, and, indeed, functional
+programming is good for many other things too.  But the functional
+style is not good for everything.  It depends on what you're doing.
+In many cases, recursion doesn't make sense.  The straight forward
+imperative style is better and easier to understand.
+</p>
+
+<p>
+The OCaml guys will give you a long list of benefits over other
+languages, just as with all language supporters.  There are a few
+things in particular that I like.  It compiles to native code, yet it
+still has an interpreter.  And they claim the OCaml compiler generates
+some of the fastest code around, falling somewhere between a C and C++
+compiler.  OCaml has garbage collection and exceptions.  It is a
+fairly high level language and it can't crash, even as compiled code.
+It's just amazing that it can be such a high level language, yet still
+run faster than C++.  I haven't written any programs (beyond a few
+lines) yet, but I will definitely have to try it out in the future.
+</p>
+
+<p>
+My article on <a href="../cexample/callocmem.html">C memory
+management</a> discussed the limits of how far you can push C to be
+object oriented.  My point was not that you can turn C into C++
+without the C++ compiler.  In fact, I highly recommend you don't do
+what I did in that article.  I was trying to demonstrate that proper memory
+management and data handling techniques naturally lead to an object
+oriented type design.  The other point was that frequently you don't
+need all the power of advanced OO languages.  Some very basic data
+structures and function pointers are often enough.
+</p>
+
+<p>
+I've read that Linux kernel developers messed around with C++ for
+kernel programming, and it just didn't work out.  I don't know much
+about OSes, but I couldn't imagine using C++ for something like that.
+I believe I mentioned before that I don't feel C++ is a very good
+language, period.  Perhaps it was a good experiment, but it's served
+its purpose.  For the little bit of extra benefit you get over C,
+it adds far too much complexity.  It's just too heavy a language for
+OS stuff in my mind.  Maybe in some rare circumstances the power of
+objects in combination with having low level machine access makes C++
+a good choice.  But you have to remember that most high level languages let
+you write modules in C.  And if OCaml really is so wonderful and fast,
+why not just choose it over C++?
+</p>
+
+<hr />
+
+<p>
+So first I want to show you how low level constructs give you power.
+When I first started programming in Qbasic, I used a lot of gotos.  In
+fact, I doubt I knew what a subroutine was.  Until recently I can't
+remember ever using a goto in C, and I've been using it for ten plus
+years (on and off).  And the reason is precisely because someone said
+if I use gotos, my code will look like spaghetti.  But just as
+imperative programming is not inherently bad, neither are gotos.  It's
+all in how you use them.  You've probably seen code similar to the
+following pseudo-code many times.
+</p>
+
+<pre>
+void ugly_mess()
+{
+    //allocate resources
+    while() {
+        for() {
+            for() {
+                //disgustingly ugly code
+            }
+        }
+    }
+    //deallocate resources
+    return SUCCESS;
+}
+</pre>
+
+<p>
+Often in these situations, there is a need to exit from inside one of
+the inner loops.  You might have multiple exit points in several
+different levels of nested loops.  And you can't just return because
+you have to free the resources.  One option you have is to free the
+resource in the loop and return from there.  But this is just ugly and
+asking for trouble.  And it gets really bad if you have to do it in
+multiple places.  For example:
+</p>
+
+<pre>
+void ugly_mess()
+{
+    //allocate resources
+    while() {
+        for() {
+            for() {
+                //disgustingly ugly code
+                if(cond1) {
+                    //deallocate resources
+                    return FAIL;
+                }
+            }
+            if(cond2) {
+                //deallocate resources
+                return FAIL;
+            }
+        }
+        if(cond3) {
+            //deallocate resources
+            return FAIL;
+        }
+    }
+    //deallocate resources
+    return SUCCESS;
+}
+</pre>
+
+<p>
+Now it's even more impossible to read, and you're just asking for a
+memory leak or to forget to close a file or release a mutex.  Another
+option is to mess with break and continue.  And still another is to
+set flags and possibly restructure the loops.  I've probably done all
+three, and even worse, combinations of these techniques, leading to an
+incomprehensible, difficult-to-test mess.
+</p>
+
+<p>
+But now consider what you can accomplish with a goto.  Place a cleanup
+label at the end of the function and direct all exit points there.  A
+few different possible idioms are:
+</p>
+
+<pre>
+void ugly_mess1()
+{
+    //allocate resources
+    //code
+
+ugly_mess1_cleanup:
+    //free resources
+    return SUCCESS;
+}
+
+
+void ugly_mess2()
+{
+    //allocate resources
+    //code
+    //free resources
+
+    return SUCCESS;
+ugly_mess2_cleanup:
+    //free resources
+    return FAIL;
+}
+
+void ugly_mess3()
+{
+    //allocate resources
+    //code
+    //free resources
+
+    return SUCCESS;
+ugly_mess3_cleanup1:
+    //free resources
+    return FAIL1;
+ugly_mess3_cleanup2:
+    //free resources
+    return FAIL2;
+ugly_mess3_cleanup3:
+    //free resources
+    return FAIL3;
+}
+</pre>
+
+<p>
+Now in the loop, you would only need a test condition and a goto.  The
+goto acts similar to a return, but it cleans up the resources before
+quitting.  It's just that it's done outside the loop.  In the third
+case, I've created something like a jump table for failures.  It would
+be nice if you could do the cleanup work after the return, but I don't
+see any way that C is going to let you get away with this.  Also,
+notice the way I named my labels so that there can't be any conflicts.  I
+also layed out what I believe would be common idioms for solutions to
+this type of problem.  So you should be able to immediately see what
+the code is doing if it is implemented in this way.  No spaghetti
+here!
+</p>
+
+<hr />
+
+<p>
+Finally I've gotten to the best part -- the reason that initially
+prompted me to write this.  There is this problem that frequently
+plagues my C code.  I, at last, reached the point where I decided to
+really try and come up with a solution.  If you are familiar with the
+DRY (Don't Repeat Yourself) school of thought, you might have some
+distaste for duplicate code.  The Ruby/Rails followers really like to
+keep their code DRY.
+</p>
+
+<p>
+Suppose that you have some code (or maybe lots) in several nearly
+identical functions.  But each function has some subtly different
+code.  It might be that each function calls a different function, and
+that's the only difference.  Or it might be that there is just some
+small region of code that is different.  I'll only consider the first
+case since you can always transform the second case into the first.
+What you want to do is factor out all the duplicate code into a
+generalized function.  The trouble is this isn't easy in C.  Take a
+look.  (You might want to download the full three examples - <a
+href="cnormal.c">1</a> <a href="cmacros.c">2</a> <a
+href="cclosures.c">3</a>).
+</p>
+
+<pre class="code">
+<span class="fltf">void</span> <span class="flfnf">foo0</span>()
+{
+    codeA();
+    puts("<span class="flsf">no parameters in foo0</span>");
+    codeB();
+}
+
+<span class="fltf">void</span> <span class="flfnf">foo1</span>(<span class="fltf">int</span> <span class="flvnf">f1</span>)
+{
+    codeA();
+    printf("<span class="flsf">f1==%d in foo1\n</span>",f1);
+    codeB();
+}
+
+<span class="fltf">void</span> <span class="flfnf">foo2</span>(<span class="fltf">int</span> <span class="flvnf">f1</span>, <span class="fltf">char</span> *<span class="flvnf">f2</span>)
+{
+    codeA();
+    printf("<span class="flsf">f1==%d f2==%s in foo2\n</span>",f1,f2);
+    codeB();
+}
+
+<span class="fltf">int</span> <span class="flfnf">main</span>(<span class="fltf">void</span>)
+{
+    foo0();
+    foo1(5);
+    foo2(10,"<span class="flsf">a string</span>");
+    <span class="flkf">return</span> 0;
+}
+</pre>
+
+<p>
+The functions codeA() and codeB() could be anything.  They don't need
+to be functions.  The goal is to factor all the identical code out of
+foo0, foo1, and foo2 and into a single function.  One way I have done
+this is to use macros.  (And keep in mind every example is a little
+different.)  The C preprocessor lets you get away with some wickedly
+evil stuff.
+</p>
+
+<pre class="code">
+<span class="flpf">#define</span> <span class="flfnf">general_foo</span>(<span class="flvnf">foo</span>) \
+    codeA();             \
+    foo;                 \
+    codeB();
+
+<span class="fltf">void</span> <span class="flfnf">foo0</span>()
+{
+    puts("<span class="flsf">no parameters in foo0</span>");
+}
+
+<span class="fltf">void</span> <span class="flfnf">foo1</span>(<span class="fltf">int</span> <span class="flvnf">f1</span>)
+{
+    printf("<span class="flsf">f1==%d in foo1\n</span>",f1);
+}
+
+<span class="fltf">void</span> <span class="flfnf">foo2</span>(<span class="fltf">int</span> <span class="flvnf">f1</span>, <span class="fltf">char</span> *<span class="flvnf">f2</span>)
+{
+    printf("<span class="flsf">f1==%d f2==%s in foo2\n</span>",f1,f2);
+}
+
+<span class="fltf">int</span> <span class="flfnf">main</span>(<span class="fltf">void</span>)
+{
+    general_foo(foo0());
+    general_foo(foo1(5));
+    general_foo(foo2(10,"<span class="flsf">a string</span>"));
+    <span class="flkf">return</span> 0;
+}
+</pre>
+
+<p>
+Although this is ugly, I have, in some sense, succeeded.  I now only need
+to change the code in one place.  But the code duplication still
+exists in the compiled code, never mind the fact that it's now a little
+harder to follow and debug.  The extra code problem is more an issue
+of speed than space; big programs generally run slower.  There is a
+very limited amount of cache near the processor.  This is the cache
+that runs at the processor's clock.  The rest of it is far slower.  If
+your program has to cycle through a lot of code, it's going to slow
+things down.
+</p>
+
+<p>
+OK, what next?  Closures!  The idea is this.  I want to create a
+general foo function that calls the fooX functions.  This is simple
+enough with a function pointer.  But my functions take different
+parameters and a variable number of them.  Imagine if I could pack up
+the parameters with the function and send both wherever I wanted.
+That's a closure.  You can't do this in C; you can only send a pointer
+to the function.  But to give you a better idea, let's say I modified
+the compiler so that it let me place the variables (the environment)
+right before the function in memory and then get a pointer to the
+function.  That environment would then become parameters to the
+function instead of passing them in the normal way.  They're, in some
+sense, a part of the function.  Unfortunately, you can't do this and it
+wouldn't work with threads.  Perhaps another attempt would be to
+somehow pass the parameters around with the pointer and then pass the
+address of the pointer to the function.  Obviously, you wouldn't
+actually try to implement any of this.  I'm just trying to give you
+the idea.
+</p>
+
+<p>
+Although I can't actually create a closure, I can get close enough to
+come up with a semi-solution to this problem.  One thing you can do
+(without changing the compiler) is rewrite the fooX functions so that
+they take only a single void pointer as a parameter.  Then pass a
+pointer to a struct containing all the parameters to fooX to the
+general foo function.  The general foo function will pass it to fooX,
+which will know exactly what to do with it.
+</p>
+
+<p>
+There are two problems with this.  The first is that you have to pack
+the data into a struct and pass it to general_foo.  There is no way
+around this.  It's the closest you can get to a closure.  You have to
+pass both the function pointer and the data separately.  The next problem is that
+you'll have to create a special, one-use struct for every different
+list of parameters.  And, really, these parameters don't belong
+in a struct together.  They probably have nothing in common.
+</p>
+
+<p>
+So, I'm going to make one more modification and then show the code.
+Instead of packing parameters into structs, I'm going to let
+general_foo take a variable number of parameters.  One of those
+parameters will be an option parameter that allows you to select the
+function you want.  Unfortunately this requires you to alter
+general_foo every time you add a fooX.  But it's the best I've come up
+with so far.  The code duplication is removed at the cost of a little
+bit of an ugly conditional.
+</p>
+
+
+<pre class="code">
+<span class="fltf">void</span> <span class="flfnf">general_foo</span>(<span class="fltf">void</span> (*<span class="flfnf">foo</span>)(), <span class="fltf">int</span> <span class="flvnf">opt</span>, ...)
+{
+    <span class="fltf">va_list</span> <span class="flvnf">argp</span>;
+
+    codeA();
+    va_start(argp,opt);
+    <span class="flkf">if</span>(opt == 0)
+        foo();
+    <span class="flkf">else</span> <span class="flkf">if</span>(opt == 1)
+        foo(va_arg(argp,<span class="fltf">int</span>));
+    <span class="flkf">else</span> <span class="flkf">if</span>(opt == 2) {
+        <span class="fltf">int</span> <span class="flvnf">arg1</span> = va_arg(argp,<span class="fltf">int</span>);
+        <span class="fltf">char</span> *<span class="flvnf">arg2</span> = va_arg(argp,<span class="fltf">char</span> *);
+        foo(arg1,arg2);
+    }
+    va_end(argp);
+    codeB();
+}
+
+<span class="fltf">int</span> <span class="flfnf">main</span>(<span class="fltf">void</span>)
+{
+    general_foo(foo0,0);
+    general_foo(foo1,1,5);
+    general_foo(foo2,2,10,"<span class="flsf">a string</span>");
+    <span class="flkf">return</span> 0;
+</pre>
+
+<p>
+The nasty chunk of code between code blocks A and B is where the
+closure would have been executed.  In C, you have to make up for it
+with some special support logic, unless you use the void pointer to a
+struct (which requires defining new structs).
+</p>
+
+<p>
+I have only a few more comments.  There are a few things I hate
+dealing with in C.  One of those is memory management.  It would be
+nice if there was a slightly higher level C.  I'm not talking about
+C++.  I'm thinking optional garbage collection, strings, array bounds checking,
+and possibly exceptions and closures.  So I could optionally
+enable/disable garbage collection and array bounds checking.  In most
+cases you would probably want to use automatic memory management.
+Maybe there are a few places where you want to do it manually for some
+reason.  Perhaps you could have that option of using either or both.
+</p>
+
+<p>
+It seems to me that if you have the option of using these advanced features, then
+it's harmless in adding them to the language (or creating a slightly
+different language).  Certain language features will inevitably effect
+the entire language.  For example, a garbage collector that runs
+asynchronously will have a performance effect on every other
+construct.  But features that don't impact one another can't hurt.  If
+you don't find them useful, don't use them.
+</p>
+
+<p>
+In the past I thought that many language features were probably
+unnecessary.  I now feel this is almost never true, except maybe in
+some cases with very poorly chosen features.  When you've been working
+in a language for a long time, you find good reasons to use those
+features.  Eventually, you become good at knowing exactly when to use
+them.  And as I alluded to in the first paragraph, you also get good at
+knowing when to use those features in languages that don't even support them.
+</p>
+
+</td></tr>
+</table>
+<p><br /><a href="../../index.html">home</a></p>
+
+</body>
+
+</html>

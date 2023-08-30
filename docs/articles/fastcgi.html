@@ -1,0 +1,99 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+<head>
+<title>Quick Intro to FastCGI Setup</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<link rel="stylesheet" type="text/css" href="../index.css" />
+<meta name="description" content="
+How to setup fastcgi for Apache in Gentoo.                                                               " />
+<!-- ....10........20........30........40........50........60........70........80 -->
+</head>
+
+<body>
+<table>
+<tr><td class="article">
+<h1 class="topofpage">Quick Intro to FastCGI Setup</h1>
+
+<p>
+<a href="http://www.fastcgi.com">FastCGI</a> is an extension to the
+well known Common Gateway Interface (CGI).  CGI can be very slow
+because it starts a new process for every incoming request.  FastCGI
+keeps the process in memory and uses it to handle many requests.
+</p>
+<p>
+I needed to write a simple Python FastCGI script which would be hosted
+on Apache2.  The module for Apache is mod_fastcgi.  There are a few
+dependencies for the fastcgi module, but I'm using gentoo; so, I just
+needed to <span class="bold">emerge mod_fastcgi</span>.  The mistake I
+made the first time was not including apache2 in my use variable.  If
+you don't do that, you'll end up getting apache1.3 installed.
+</p>
+<p>
+And that's it.  All you have to do now is make a few configuration
+changes.  Take a look /etc/apache2/httpd.conf.  You need to add the
+module.  I also commented out both cgi modules to be sure I'm not using them.
+</p>
+
+<pre class="code"><span class="flcf">#</span>
+<span class="flcf"># CGI Modules</span>
+<span class="flcf">#</span>
+<span class="flcf"># These modules provide the ability to execute CGI Scripts.</span>
+<span class="flcf">#</span>
+<span class="flcf">#LoadModule cgi_module                    modules/mod_cgi.so</span>
+<span class="flcf">#LoadModule cgid_module                   modules/mod_cgid.so</span>
+<span class="flcf">########################### mine #######################</span>
+<span class="flkf">LoadModule</span> fastcgi_module                modules/mod_fastcgi.so
+<span class="flcf">########################################################</span>
+</pre>
+
+<p>
+The first line tells Apache to check the time on the script and reload
+it if it has changed.  You should only use this in development mode
+because it will slow things down.  I'm not going to discuss everything
+under directory because I'm not an Apache expert.  The * in the path
+tells it to look at all directories under home.  The full directory of my
+scripts would be /home/goldfita/www/fcgi-bin.  And the script name itself
+should end in .fcgi.  The url to access the script is http://127.0.0.1/~goldfita/fcgi-bin/script.fcgi.
+</p>
+
+<pre class="code"><span class="flcf">######################## mine #############</span>
+FastCgiConfig -autoUpdate
+&lt;<span class="flfnf">IfModule</span> mod_fastcgi.c&gt;
+  &lt;<span class="flfnf">Directory</span> "<span class="flsf">/home/*/www/fcgi-bin/</span>"&gt;
+    <span class="flkf">AllowOverride</span> <span class="fltf">None</span>
+    <span class="flkf">Options</span> <span class="fltf">ExecCGI</span>
+    <span class="flkf">SetHandler</span> fastcgi-script
+    <span class="flkf">AddHandler</span> fastcgi-script .fcgi
+    <span class="flkf">Order</span> <span class="fltf">allow</span>,<span class="fltf">deny</span>
+    <span class="flkf">Allow</span> <span class="fltf">from</span> <span class="fltf">all</span>
+  &lt;/<span class="flfnf">Directory</span>&gt;
+&lt;/<span class="flfnf">IfModule</span>&gt;
+<span class="flcf">######################## mine #############</span>
+</pre>
+
+<p>
+You might have noticed the www.  By default this is public_html, but
+that's too long for me to type.  If you want to change it too, you'll also
+have to modify it in UserDir and under directory in mod_userdir.c.
+</p>
+
+<p>
+Add <span class="bold">-D USERDIR</span> to <span
+class="bold">APACHE2_OPTS</span> in /etc/conf.d/apache2.  Download <a
+href="http://alldunn.com/python/fcgi.py">fcgi.py</a> and put it in
+your Python lib directory.  Note that there is an error in the
+source.  The function request.out.write takes one argument, not
+two.  There is a <a
+href="http://mythic-beasts.com/support/topic_fastcgi.html">example</a>
+as well to get you started.  You should be done.  Restart Apache.
+</p>
+
+</td></tr>
+</table>
+<p><br /><a href="../index.html">home</a></p>
+
+</body>
+
+</html>

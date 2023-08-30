@@ -1,0 +1,4 @@
+User-agent: *
+Disallow:
+
+sitemap: http://cdn.attracta.com/sitemap/1007300.xml.gz

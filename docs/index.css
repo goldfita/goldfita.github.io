@@ -1,0 +1,66 @@
+body {
+    background-color: #fdfaef;
+    margin: 18px;
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+}
+
+table {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+h1.topofpage {text-align: center}
+
+h3.underline {text-decoration: underline; margin-bottom: 0px; padding-bottom: 0px}
+
+h4.nounderline {text-align: center; margin-bottom: 0px; padding-bottom: 0px}
+h4.nounderline_nocenter {margin-bottom: 0px; padding-bottom: 0px}
+
+pre.code {
+    background: #CCCCFF;
+    font-size: larger;
+    white-space: pre-wrap;
+}
+
+
+td.article {width: 50em}
+
+span.bold {font-weight: bold; margin-bottom: 0px; padding-bottom: 0px}
+span.underline {text-decoration: underline}
+span.bold_underline {text-decoration: underline; font-weight: bold; margin-bottom: 0px; padding-bottom: 0px}
+span.italics { font-style: italic; }
+
+span.py-builtins-face {color:#0000ff}
+span.py-pseudo-keyword-face {color:#0000ff}
+span.flcf {color:#ff0000}
+span.flconstf {color:#a9a9a9}
+span.flpf {color:#0000cd}
+span.flsf {color:#6495ed}
+span.fldsf {color:#008b00}
+span.flfnf {color:#0000ff}
+span.flvnf {color:#8b008b}
+span.flrf {color:#a9a9a9}
+span.flkf {color:#0000ff}
+span.fltf {color:#006400}
+
+div.large-image {width: 50em}
+
+img {
+    margin-left: 50%;
+    transform: translateX(-50%);
+}
+
+img.shrunk {
+    width: 50em;
+    height: 50em;
+    border: 0;
+}
+
+hr {
+    color: #007700;
+    background-color: #007700;
+    height: 3px;
+}
+
+
+.nobr {white-space: nowrap}

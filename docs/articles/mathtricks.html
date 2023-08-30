@@ -1,0 +1,320 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+<head>
+<title>Math Tricks</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<link rel="stylesheet" type="text/css" href="../index.css" />
+<meta name="description" content=
+"How to discover your own little math tricks for every day computing.
+                                                   " />
+<!-- ....10........20........30........40........50........60........70........80 -->
+</head>
+
+<body>
+<table>
+<tr><td class="article">
+<h1 class="topofpage">Math Tricks</h1>
+
+<p>
+Back sometime around freshman or sophomore year of high school I was
+having some troubles.  I would occasionally see some hexadecimal,
+octal, or binary and not really understand it at all.  I mean I'm sure
+I understood bit operations and using logical operators to set bit
+flags and the like.  But I didn't understand the binary numbering
+system or how to convert between bases.
+</p>
+
+<p>
+Then one day I saw a program on the discovery channel about
+computers.  In it they discussed binary and powers of two.  My little
+world suddenly got bigger.  Just the right neurons went off in my
+head.  The next thing I know, I'm calculating the number of nodes in a
+full tree and the number of nodes at the base.  Then I wrote a
+program to convert between bases (from 2 to 36).  You can find it on
+my projects page.  Unfortunately, it was built using an old Borland
+compiler for windows 3.1.  Borland is now Inprise.  And windows 3.1 is
+extinct as far as I'm concerned.
+</p>
+
+<p>
+Anyway, it was great because I now understood all this stuff.  And
+this along with my curiosity about register variables, incidentally, is
+what led me to learn about x86 assembly, logic design, boolean
+algebra, and different numbering systems.  It's too bad I didn't have an assembler.
+</p>
+
+<p>
+It also allowed me to start thinking about powers of two and the neat
+math tricks you can do with it.  One day I came up with this.  (I'm
+sure there's a name for it, but I don't know what it is.)  If you take
+a binary number that's all ones and add one more, all the ones become
+zero and you get a single one at a higher decimal place.  So,
+</p>
+
+<pre>
+ 01111
++00001
+------
+ 10000
+</pre>
+
+<p>
+What this says in powers of two is that 2^0+2^1+2^2+2^3+2^4 + 1 ==
+2^5.  In other words, 2^N - 1 == sum(2^n,n=0..N-1), where N is the
+number of decimals.  Hm, well that's kind of neat.  Then I pushed a
+little further.  Let's say I try this in base 4.  I want to do basically
+the same thing, but I'll have to multiply by 3 before I add one.
+</p>
+
+<pre>
+ 03333
++00001
+------
+ 10000
+</pre>
+
+<p>
+What this says in powers of four is that 3*(4^0+4^1+4^2+4^3+4^4) + 1
+== 4^5.  In other words,
+</p>
+
+<pre>
+m^N - 1
+------- == sum(m^n,n=0..N-1)
+ m - 1
+</pre>
+
+<p>
+Here m is the base.  Is this useful?  I have no idea.  But it's
+certainly not obvious.  If someone had put that right under your nose,
+you probably would have no idea where it came from.  But I didn't just
+whip it up out of nowhere.  I started with a simple, concrete binary
+example.  Then I generalized to an arbitrary number of bits.  Then I
+generalized to an arbitrary base.  With each generalization, I've got
+a more powerful little formula.
+</p>
+
+<p>
+What's really cool is this works with real numbers too (m doesn't have
+to be an integer, but N does).  In fact, it also works with complex
+numbers.  If you're wondering why, just multiply both sides by (m-1),
+and the answer will be obvious.
+</p>
+
+<p>
+OK, let's try another.  This one actually is useful.  When I was a
+freshman in high school, I was writing a basic program to solve some
+optimization problems.  At some point I needed a way to sum integers
+from 1 to N.  Now this seems really easy, but I didn't like the idea
+that it was going to be O(n).  It seemed there must be a way to do it
+closed form in O(1).
+</p>
+
+<p>
+There is actually an interesting story I was told about this.  There's
+this guy named Gauss.  Perhaps you've heard of him?  Maybe you've
+heard of Gaussian elimination?  He's responsible for a lot of other
+math too.  Smart guy.  In fact, he had such a reputation that Napoleon
+supposedly spared his little town as he took over Europe.
+</p>
+
+<p>
+When Gauss was six, he was getting in his teacher's hair; so, she told
+him to go sum the integers from one to one-hundred.  He came back only
+a few minutes later with the answer.  Now Gauss was a little smarter
+than me.  I think it took me a few hours to figure out how to do this.
+But it's pretty simple.  If you want to find a formula to do it, just
+count the number of 100s.  That is, you've got one to start, but you
+can make another by adding 1 and 99 and another by adding 2 and 98 and
+so on.  After you've counted them, multiply the number you counted by
+100 to get the total sum.  Now generalize.  I'll just give it to you.
+If n is the number you want to sum to, then
+</p>
+
+<pre>
+n*(n+1)
+------- == sum(k,k=1..n)
+   2
+</pre>
+
+<p>
+As I said, this actually does come in handy.  A few years later, I
+noticed my calculus book also had formulas for the summation of i^2
+and i^3.  That is, sum(i^3,i=1..n).  You can't just sit down and think
+of a quick way to come up with a closed form solution for anything
+greater than i^1, or at least I couldn't.  But it is relatively easy
+to find these formulas.  I realized all you have to do is apply some
+simple algebra techniques and solve a matrix equation.  Basically, for
+i^2, you have to evaluate the summation for several points.  You can
+then get a system of equations and solve using standard matrix
+techniques (like Gaussian elimination).  For i^3, it's basically the
+same thing, but you need one more equation, and so on.  So I wrote a
+little Java program to do this.  After I solved for several of them, I
+realized you can find these formulas recursively.  I don't know why it
+works, but it's very easy to find a closed form solution for
+sum(i^m,i=0..N) for any positive integer, m, extremely quickly.  There
+is a program for it on my projects page.
+</p>
+
+<p>
+OK, just one more.  This is a little trick I discovered while working
+on my master's degree.  The DSP I was using has a circular addressing
+mode.  You can set properties of special registers so that they use
+modular arithmetic; they wrap around to the beginning or end (of a
+buffer) when you reach the modulus or before zero.  Let's say your
+modulus is 5.  Then the following are true.  Say the == as congruent.
+</p>
+
+<pre>
+1 + 1 == 2
+2 + 2 == 4
+4 + 4 == 3
+0 + 5 == 0 (i.e., 5 == 0)
+1 + 4 == 0
+
+-1 == 4 == 9
+</pre>
+
+<p>
+Under modulus 5, the last three integers, -1, 4, and 9 are congruent.
+They're equivalent under modular arithmetic.  Let's say you have an
+array or buffer of length 5, elements 0 to 4.  When you do processing
+in real-time, it's too expensive to be moving memory around.  When you
+fill the buffer, you want to leave what's already there and start
+overwriting data at the front (or back depending on what you're
+doing).  Suppose you're averaging three elements at a time.  Then,
+you'll want to do the following.
+</p>
+
+<pre>
+(buf[0] + buf[1] + buf[2]) / 3
+(buf[1] + buf[2] + buf[3]) / 3
+(buf[2] + buf[3] + buf[4]) / 3
+(buf[3] + buf[4] + buf[0]) / 3
+(buf[4] + buf[0] + buf[1]) / 3
+(buf[0] + buf[1] + buf[2]) / 3
+(buf[1] + buf[2] + buf[3]) / 3
+</pre>
+
+<p>
+Notice how I wrapped right around back to the start?  I'm skipping
+over a lot of details.  You aren't averaging the same numbers every
+cycle of 5.  By the time you wrap back around, there is new data
+placed in the start of the buffer.  For example, DMA (Direct Memory
+Access) might be employed to keep the buffer fresh with new data.  In
+this way you can process a stream of never ending input.  And it's
+incredibly fast.  There are no conditional branches, just a jump to the
+beginning of a never ending loop.
+</p>
+
+<p>
+Now the problem.  You need to calculate those indices.  Many
+languages have a modulus operator.  But it's not just some simple
+arithmetic to find the index.  Underneath, there's some pretty heavy
+stuff going on.  You could use an if statement to detect the
+boundaries.
+</p>
+
+<pre>
+if(ind &gt; (5-1))
+    ind = ind - 5;
+if(ind &lt; 0)
+    ind = ind + 5;
+</pre>
+
+<p>
+This is bad for several reasons.  (1) With conditional branches, you
+can turn a nice tight loop running at 2 instructions per
+cycle (.5 CPI) into something more like .2 instructions per cycle (20
+CPI) in a highly pipelined architecture.  (2) When you're writing lots
+of numerical code, constantly checking the index after every calculation
+is going to make the code hard to read.  (3) The code above assumes
+the index never exceeds 9 or -5.  (4) Doing comparisons is ugly and
+requires temporary variables.  For example, which is greater, 3 or -1?
+</p>
+
+<p>
+The trick I discovered, and I suspect this is how it's implemented in
+hardware, is to use a bitwise AND.  First, restrict your modulus to a
+power of 2 -- let's say 8.  By ANDing the index with the modulus less
+one, the wrapping will be done correctly with a single instruction.
+</p>
+
+<pre>
+(3 + 3) &amp; (8 - 1) == 6
+(4 + 4) &amp; (8 - 1) == 0
+(7 + 2) &amp; (8 - 1) == 1
+(0 + 8) &amp; (8 - 1) == 0 (i.e., 8 == 0)
+(1 + 8) &amp; (8 - 1) == 1
+
+ 0111
++0010
+-----
+ 1001
+
+ 1001
+&amp;0111
+-----
+ 0001
+</pre>
+
+<p>
+The binary arithmetic is the third equality done as an example.  This
+also works with negative numbers in the twos complement system.  Try
+it!  And it doesn't matter how large the index gets, it will always
+work.  In a highly pipelined, superscalar architecture, that AND may
+come completely free.  The only down side is you need the array to be
+of length, power of 2, but this is a fairly common theme in DSP.
+Don't let that stop you from using circular buffers in non-DSP code.
+</p>
+
+<p>
+If I have intrigued you at all with this math, you might also want to
+study up on twos complement.  There's probably more involved than you
+understand.  For example, you might have known that you can negate a
+number with a bitwise NOT (flip the bits) and then adding one. But did you
+know you can find the base ten number in almost the same way as you do
+with a positive number?
+</p>
+
+<pre>
+0101 == 0*2^3 + 1*2^2 + 0*2^1 + 1*2^0 == 5
+1011 == -1*2^3 + 0*2^2 + 1*2^1 + 1*2^0 == -5
+</pre>
+
+<p>
+You might want to study why that works.  Read up on 10s, 9s, 2s, and
+1s complement.
+</p>
+
+
+<p>
+I hope you have gotten out of this the process of coming up with these
+little tricks.  Start with something concrete and easy to understand.
+Try a few examples.  Once you get it, generalize just a little.  Then
+you have a little formula you can play with.  Think about what it
+means, and see if you can generalize a little more.  This is one of the
+traits that made Newton so brilliant.  From a few very simple examples
+he could generalize to amazingly complicated math.
+</p>
+
+<p>
+Now you try.  See if you can mathematically describe the number of
+powers of ten in a power of two from just the exponent.  So 2^0, 2^1,
+2^2, 2^3 would all be zero tens.  And 2^4, 2^5, 2^6 would be one ten.
+So f(0) == 0, f(1) == 0, f(2) == 0, f(3) == 0, f(4) == 1, f(5) == 1,
+f(6) == 1.  Make sure you see a pattern before you try to come up with
+any mathematical description.  And by the way, don't ask me for the
+answer.  I don't know it.  I just remember coming up with something
+once a long time ago.
+</p>
+
+
+</td></tr>
+</table>
+<p><br /><a href="../index.html">home</a></p>
+
+</body>
+
+</html>

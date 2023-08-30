@@ -1,0 +1,316 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+<head>
+<title>*NIX Shared Libraries</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<link rel="stylesheet" type="text/css" href="../index.css" />
+<meta name="description" content="
+An explanation of shared libraries on Unix/Linux machines with some
+examples.
+     " />
+<!-- ....10........20........30........40........50........60........70........80 -->
+</head>
+
+<body>
+<table>
+<tr><td class="article">
+<h1 class="topofpage">*NIX Shared Libraries</h1>
+
+<p>
+Over the last few years, shared object files have given me a number of
+headaches.  This last project gave me good reason to at least learn
+the basics.  It's not at all obvious how these things work, but there
+is a good reason it's done this way.  Check out the links at the
+bottom for more information.  The only problem with the other
+descriptions is they're seriously lacking some pictures.  And no one
+bothered to explain the different methods of using .so files.
+</p><p>
+So what are those .so files?  They're shared libraries.  Usually when
+you compile c programs, the compiler generates an object file (foo.o).
+It then passes all the object files onto the linker (ld) to build an
+executable. Shared objects allow multiple executables to use the same
+object code.  A lot of code (like your standard c libraries) is used
+by almost every (or many) applications.  There is no need to link a
+different copy of the code into every executable.  There are also
+static libraries, which are just archives of .o files.  I'm going to
+go over that briefly first.
+</p>
+
+<hr />
+
+<p>
+Assuming your file is named foo and is stored in the foo variable, a
+dependency line in a Makefile might look like this.  This says
+libfoo.a depends on foo.o.  Assuming foo.o was just compiled somewhere
+else, the line below will execute.  The 'ar' tool is an archive utility.
+The rcs option stands for r - insert into archive, c - create archive,
+s - create archive index.  Thus make executes 'ar rcs libfoo.a foo.o'
+which builds the archive libfoo.a from the single object file foo.o.
+(Normally you would put more than one file into the archive.)
+</p>
+<pre class="code">
+lib$(foo).a: $(foo).o
+	ar rcs $@ $&lt;
+</pre>
+
+<p>
+The next line says the executable, dofoo, depends on libfoo.a and
+dofoo.c.  We are going to build the object file for our program,
+dofoo.c, and link it in with the library, libfoo.a  Afterwords, all
+the code will be merged into the executable.  The line beneath expands
+to 'gcc -Wall dofoo.c -o dofoo -L. -lfoo  -lsocket -lnsl
+'.  The options from left to right are:<br /><br />
+(1) compile using gcc with all warnings messages,<br />
+(2) output to dofoo (-o $@)<br />
+(3) tell the linker to look for libraries in the current directory
+(-L.)<br />
+(4) link libfoo.a (-l$(foo))<br />
+(5) also use libsocket and libnsl<br />
+</p><p>
+
+Now we see why I called the library libfoo.a instead of foo.a.  The
+linker assumes the 'lib' part.  You don't use 'lib' with the -l
+option*.  The linker puts it on there for you.  You can, of course,
+also link libfoo.a in with other programs, but you'll have many copies
+of the same code all over the place.  Think of it as having a few
+copies of Moby Dick in every room in your house.
+</p>
+<pre class="code">
+dofoo: lib$(foo).a dofoo.c
+	$(CC) $(flags) $@.c -o $@ -L. -l$(foo)  -lsocket -lnsl
+</pre>
+
+
+<hr />
+
+<p>
+So you've decided you never really liked whales anyway.  You'll want
+to make a shared object.  This is where the fun starts.  If you've
+ever taken a peak at /usr/lib or /usr/local/lib, you probably saw lots
+of funny looking file links like libfoo.so.1 and libfoo.so.1.3.0.
+It's done this way for compatibility.  Those numbers on the end are
+version numbers+.  In the most general form when a library, say
+libfoo.so, is released there will be four files involved -- libfoo.so,
+libfoo.so.#, libfoo.so.#.#, and libfoo.so.#.#.# (apparently there can
+be even more).  The first number is the major version, followed by the
+minor version, and then a very minor version.  I'll ignore the last
+file.  The file with the most numbers at the end is a real file.  The
+others are just links.
+</p>
+<pre>
+libfoo.so     --> libfoo.so.2.4
+libfoo.so.2   --> libfoo.so.2.4
+libfoo.so.2.4
+</pre>
+<p>
+Now why in the heck would you want to do that?  You need to understand
+what the linker does first.  When you run an executable, a loader has
+to figure out what shared object files your executable needs and where
+they're located.  It works out that some or all of that information is
+in the executable itself.  But how did it get in there?  (I'll give
+you a clue -- Herman Melville didn't put it there.)  Your linker did
+all the magic stuff.  Of course you told it what to do.  When you
+create the shared object file, the name of the file ends up IN the
+file, if you did things right.
+</p>
+<pre class="code">
+$(foo).o: $(foo).c
+	$(CC) $(FLAGS) -fPIC -c $&lt;
+</pre>
+<p>
+This time I made the object file using -fPIC, meaning Position
+Independent Code.  And the -c means just make an object file.  You can
+then make an so out it.  I had a problem doing this with gcc on
+Solaris.  But apparently it's ok to use just the linker, ld, on
+Solaris.  Usually you want to let gcc handle the linker for you.
+</p>
+<pre class="code">
+MAJOR=1
+MINOR=0
+FULLVER=$(MAJOR).$(MINOR)
+VER=$(MAJOR)
+lib$(foo).so: $(foo).o
+	ld -G -soname=$@.1  -o $@.$(FULLVER) $(foo).o 
+	ln $@.$(FULLVER) $@.$(VER)
+	ln $@.$(FULLVER) $@
+</pre>
+<p>
+This creates the .so file from the .o file.  The -soname tells ld the
+name you want to put inside the .so file.  If you leave it out, it
+won't end up in there.  The next two commands link the files in the
+way I mentioned above.  Now is a good time to verify what I'm
+saying. Open the so up in emacs.  Type 'M-x hexl-mode' and then 'C-s
+foolib.so'.  You may need to hit 'C-s' a few times.  You should see
+what you specified in the soname linker option.  Take it out and try
+that again.
+</p><p>
+Now you have a shared object file that can be used by executables, but
+you still have to link the shared object file against the executable.
+Usually this step would combine all the object files together to build
+the executable.  But since you aren't putting any code from the so
+into the executable, the linker is just going to check and make sure
+everything is ok and copy the the so name from the so into the
+executable.    In an elf executable, it will be stored in the DT_SONAME
+field.
+</p>
+<pre class="code">
+$(foo): lib$(foo).so $(foo).c
+	$(CC) $(FLAGS) $@.c \
+        -Wl,-R/Users/class02/goldfita/content -L. -o $@  -l$(foo)
+</pre>
+<p>
+This says the executable, foo, depends on libfoo.so and foo.c.  It
+runs the command 'gcc -Wall foo.c
+-Wl,-R/Users/class02/goldfita/content -L. -o foo -lfoo'.  This says
+compile foo.c, link the libfoo library (-lfoo) by searching for it in
+the current directory (-L.), and link using the options in -Wl.  GCC
+invokes the linker for you, and the -Wl command passes options to the
+linker (that's an 'ell').  The linker sees
+-R/Users/class02/goldfita/content.  That path ends up in the
+executable after the so name and it tells the loader where to look for
+the so (make sure the path is touching -R).  You can specify more than
+one path.  The loader will also look in /usr/lib and check the
+LD_LIBRARY_PATH environment variable.  Open up the executable and
+search for the path and the soname.  The linker should have copied the soname
+from the so to the executable.  If there wasn't an soname in the so,
+the linker will probably just use the name of the file (try it).
+</p><p>
+Now the OS has everything it needs.  When you go to run the file, the
+loader knows exactly what to do.  Try 'ldd foo'.  It should show you
+the library name and where it's located.  Try it again, but don't
+specify the -Wl option this time.  Now do you see the issue?
+</p><p>
+If you remember, once upon a time several paragraphs ago, I was
+talking about file links and version numbers.  It's time to clarify.
+Usually you put the major version of the shared object file name in
+the executable (as I did) -- that's libfoo.so.1 in my example
+above.  This points to the real file, libfoo.so.1.0.  That's because
+at some time in the future there might be a major version release and
+we DON'T want the executable to point to the new shared object.
+Usually a new major version indicates a significant change, like a new
+interface.  This would break the executable.  So we now have
+</p>
+<pre>
+libfoo.so     --> libfoo.so.3.1
+libfoo.so.2   --> libfoo.so.2.4
+libfoo.so.3   --> libfoo.so.3.1
+libfoo.so.2.4
+libfoo.so.3.1
+</pre>
+<p>
+If DT_SONAME in the executable is libfoo.so.2, the loader looks for
+libfoo.so.2, which points to libfoo.so.2.4.  So even with the upgrade
+to libfoo.so.3.1, everything is ok.  But a new file that needs version
+3 will tell the loader to look for libfoo.so.3 which points to
+libfoo.so.3.1.  Everyone is happy, but what about libfoo.so and
+libfoo.so.2.4?  The reason for libfoo.so is so you can link against it
+and never need to change a Makefile, even if you change the code
+to use a new version of the library.  Look at the example above.  Try
+removing <span class="nobr">'ln $@.$(FULLVER) $@'</span>.  The linker needs that link to link
+against the real file.  The reason you put the major version in
+DT_SONAME and not the real file with the minor version is because you
+want the executable to use new minor versions.  Suppose there was a
+minor version release with just some bug fixes in the implementation
+(but the interface remains the same).
+</p>
+<pre>
+libfoo.so     --> libfoo.so.3.1
+libfoo.so.2   --> libfoo.so.2.6
+libfoo.so.3   --> libfoo.so.3.1
+libfoo.so.2.4
+libfoo.so.2.6
+libfoo.so.3.1
+</pre>
+<p>
+So, with the addition of version 2.6, no code had to change.  You just
+update the links so that libfoo.so.2 now points to libfoo.so.2.6.  You
+can deal with updating library links using ldconfig.  And everyone is
+still happy!  (Incidentally, I hope you can see why it's so important
+to get the interface for a library -- or indeed any code -- right the
+first time through.  Little bugs in the implementation can usually be
+fixed later.)</p>
+
+<hr />
+<p>
+Well, call me Ishmael, but this little story still isn't finished.  There
+is another way you can "link" to libraries.  Instead of having the
+linker and loader doing things for you, you can do it all yourself
+from within the code.  You use the dlfcn.h header with the libdl
+library.  All you have to do is call dlopen with the name and path of
+the library you want to use.  Then pass dlsym the symbol name of the
+symbol you wish to use.  It will look for the symbol in the library
+and return you a reference to it.  Then you can use it just as you
+would with normal code.
+</p><p>
+You just have to keep in mind that you no longer want to link against
+the library.  You don't care what's in DT_SONAME anymore.  You are
+taking over the loader's job.
+</p>
+<pre class="code">
+$(foo).so: $(foo).c
+	$(CC) $&lt; $(FLAGS) -fPIC -shared -o $@
+
+$(foo): $(foo).so $(foo).c
+	$(CC) $(FLAGS) -DFOO_SO=\"$(PWD)/$&lt;\" $@.c -o $@ -ldl
+</pre>
+<p>
+The first dependency says foo.so will depend on foo.c.  Last time, I
+built the object file separately and then made an so out of it.  This
+time, I did it all in one go since there's only one object file to put
+into the so anyway.  When you do it this way, you also need to give
+gcc the -shared option.  Next build foo just like before but this time
+link in libdl (-ldl) which is a shared object for the dl code.  (Note
+this has nothing to do with our shared library.  We just need that
+code.)  There is no need to specify a library search path to the
+linker, or the library name, or an soname.  The only other parameter
+of interest is -DFOO_SO=.  The -D option lets you predefine macros.
+What I've done here is create a macro, FOO_SO, that's a string with
+the name of the current directory followed by the file, foo.so.  The
+$&lt; variable is the first dependency on the line above ($(foo).so ==>
+foo.so).
+</p><p>
+This is great.  You now have the ability to load arbitrary shared
+objects (code or data) at runtime.  That's really cool (and probably a
+bit dangerous -- be careful).  Take a minute or two to think what you
+can do with this type of flexible design.  So, that's about it.  The
+links below have additional information.</p>
+
+<hr />
+
+<p>
+<span class="bold">*</span> You may find it useful to know that you can search through a man
+page by typing a slash, then the search term, then return.  Press 'n'
+to search again.  When looking for a specific flag, say -l,  in a long man file,
+try searching for '-l ' first.  That way you won't get -length or -line or -label.
+</p><p>
+<span class="bold">+</span> Usually version numbers come in the form Major.Minor.Release.  Take
+3.2.22 as an example.  The 3 says it's the third major version.  The 2
+was a relatively small change.  The last number is just for very minor
+modifications, like a bug fix.  Usually the minor number will be even
+for public releases.  The odd versions are used for development and
+testing.  
+</p>
+
+
+<span class="bold">Resources</span><br />
+<a href="http://netbsd.org/Documentation/elf.html">Netbsd ELF FAQ</a><br />
+<a
+href="http://www.tldp.org/HOWTO/Program-Library-HOWTO/shared-libraries.html">TLDP
+SO Howto</a><br />
+<a
+href="http://www-128.ibm.com/developerworks/linux/library/l-shobj/">IBM
+Shared Objects</a><br />
+<a
+href="http://users.actcom.co.il/~choo/lupg/tutorials/libraries/unix-c-libraries.html">Unix
+C Libraries</a><br />
+<a
+href="http://groups.google.com/group/gnu.gcc.help/browse_thread/thread/2f0e62c010282025/bcc60d6ca90a8671?lnk=st&amp;q=ld+ln+solaris+shared+object&amp;rnum=3&amp;hl=en#bcc60d6ca90a8671">Google
+Groups Post</a><br />
+
+</td></tr>
+
+</table>
+<p><br /><a href="../index.html">home</a></p>
+</body>
+</html>

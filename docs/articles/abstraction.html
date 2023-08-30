@@ -1,0 +1,183 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+<head>
+<title>Abstraction</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<link rel="stylesheet" type="text/css" href="../index.css" />
+<meta name="description" content="
+Thinking about abstraction.
+                                                                           " />
+<!-- ....10........20........30........40........50........60........70........80 -->
+</head>
+
+<body>
+<table>
+<tr><td class="article">
+<h1 class="topofpage">Abstraction</h1>
+
+<p>
+Yay, abstraction!  If you develop software for a living, abstraction
+is one of your best friends.  You probably use it routinely without
+even thinking about it.  The compiled or interpreted languages you
+work in cover up all the nasty assembly underneath.  And assembly
+hides the nasty machine language below.  You don't deal with memory
+addresses, sectors, and cylinders.  Instead, you work with data
+structures, files, and directories.
+</p>
+
+<p>
+One of the nifty things about abstraction is that you can keep piling
+it on.  Start with the electronics and begin building logic gates and
+registers.  From there you can make an ALU, a controller, a datapath,
+etc.  Next you'll need an assembler.  But structured programming is
+easier; so, let's get some higher level languages in there.  Oh and we
+should probably throw in an operating system so there's no need to
+worry about low level I/O, process scheduling, and things like that.
+Can you remember how many levels back we left the electronics?  And I
+didn't even include many of the lighter layers -- things like
+protocol stacks, APIs, function calls, and so on.
+</p>
+
+<p>
+Abstraction is wonderful.  Without all these high level tools that
+cover over the ugliness beneath, we could never get any real work done
+with computers.  It make technology manageable.  It increases
+productivity by orders of magnitude.  It allows less capable people to do
+productive work.
+</p>
+
+<p>
+With abstraction, less is more.  A simple, compact interface is ideal.
+You want to know as little as possible about the details.  You want
+all that stuff packaged up into one neat, simple function call.  That
+function is your atom.  It's your new lowest level.
+</p>
+
+<p>
+Unfortunately, sometimes it's really hard to know when to use
+abstraction.  Successful abstractions make it seem obvious when you
+should abstract.  But it's really not.  Every program you write, even
+a small one, will use abstraction.  At all times when you're
+programming, you need to be thinking about whether you want a new
+class, a new function, a data structure, or a module.  Of course you
+could just throw everything into one module, one class, and one
+function, but that would just be awful.  That's not why they're there.
+</p>
+
+<p>
+I want to discuss the way sockets work with TCP.  Typically ASCII
+messages are framed using two pairs of carriage returns and line feeds
+as a terminator.  It doesn't have to be this way, but the application
+protocol has to have some way of separating messages since TCP does
+not respect message boundaries.  It sees everything you read and write
+in the buffer as one long stream of characters.  It's your job to
+parse messages.
+</p>
+
+<p>
+The problem with this is that you have no way of knowing how much data
+to read.  The sockets interface doesn't allow you to unget characters
+or to peek at the underlying buffer (as far as I know).  You could, of
+course, go into a loop and just read one character at a time, and
+parse the message as you go along.  This would have a lot of overhead
+and be messy.
+</p>
+
+<p>
+Another option is to add a thin layer of abstraction.  You could write
+a function that handles all the ickiness.  It doesn't necessarily have
+to read one character at a time.  Instead, it might just keep track of
+complete and partial messages using indicies or special data structures.
+How it's implemented isn't too important.  But you do have to realize
+that it's going to require another buffer.  At the higher level, all
+you need to do is call this function (say get_msg).  All of the
+ugliness is pushed beneath.  You could even completely rewrite the
+underlying implementation so it's not even using sockets if you want
+without needing to change the rest of your code.  It could even change
+to UDP or files or standard input.  By working at the higher level,
+you can completely forget about TCP, sockets, framing, the
+application protocol, state machines, and so on.
+</p>
+
+<p>
+Or can you?  First there is the extra overhead of the additional
+buffer and function calls.  You are now copying data from one buffer
+into another and then probably again for the higher level application.
+In reality there may be even more copies at both the higher and lower
+levels.  For a little extra power, you have possibly accepted a
+reasonable amount of additional overhead.  There is also the failure
+issue.  There may be quite a number of things that can go wrong with
+the code in get_msg.  It may have a memory allocation error.  The
+socket might disconnect unexpectedly.  You have to handle those
+errors.  Often this can't be done at that level; so you have to pass
+them up to the higher level.  This usually involves lots of ugly if
+statements to handle all possible errors.  So, you haven't left behind
+as much of the ugliness as you thought you did.  It's creeping
+upwards.
+</p>
+
+<p>
+So when is it worth it to add the additional abstraction?  You have to
+make that decision based off of how much work you want to do, how much
+overhead is acceptable, how simple and readable you want your high
+level code to be, how difficult it is to write the low level code, and other
+factors.  If you're writing very simple socket code for a simple
+application protocol, it probably isn't worth it.  For code much more
+complicated, it is probably worth it to insert the extra layer.
+Sometimes you'll realize the code has become more complicated.  That's
+when it's time to go back and clean things up.  I.e., insert new
+layers.  A good indication that you need more abstraction is when code
+becomes very difficult to understand and think about because of too
+many variables and complex logic.  Usually separating the code into
+two or more conceptual levels fixes the problem.
+</p>
+
+<hr />
+
+<p>
+In certain situations you want to take the opposite approach.
+Inserting layers makes the code simpler and easier to grasp, but it
+makes your code less efficient.  In the extreme, imagine throwing away
+all the abstraction and implementing your program on the bare
+hardware.  It would take forever (if even possible), but I guarantee it
+will put any modern application running on a modern OS to shame.
+</p>
+
+<p>
+The other side of the coin is de-abstraction.  Sometimes, you might
+want to make a program faster by throwing away layers.  Usually, this
+is a bad idea, but there are times when you'll find it might make
+sense.  If you have a carefully tested system that's known to be very
+stable and bug free AND you have written a comprehensive set of unit
+tests, this is a case where de-abstraction could be useful IF it's
+necessary.  I remember being told many years ago that the latest
+version of IE was much faster because some of the modules were
+re-implemented in assembly.  This is de-abstraction.
+</p>
+
+<p>
+Each level of abstraction adds overhead.  Your particular use may not
+even exercise most of the code in the APIs you use.  But it will still
+have to do all the setup work and allocate data structures.  It will
+still have to run the generalized code, even though you only wanted a
+very specific case.  By de-abstracting, you can save an enormous
+amount of cpu cycles and space in some cases.
+</p>
+
+<p>
+Before you move in the reverse direction, be sure it makes sense to
+do so.  And you need to be prepared for changes and have tests set up
+so you can verify the new system is functionally equivalent to the old
+one.
+</p>
+
+</td></tr>
+</table>
+<p><br /><a href="../index.html">home</a></p>
+
+</body>
+
+</html>
+

@@ -1,0 +1,109 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!--Converted with LaTeX2HTML 2K.1beta (1.61)
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta name="generator" content=
+"HTML Tidy for Windows (vers 12 April 2005), see www.w3.org" />
+<title>The Problem and Standard Solution</title>
+<meta name="description" content=
+"The Problem and Standard Solution" />
+<meta name="keywords" content="research" />
+<meta name="resource-type" content="document" />
+<meta name="distribution" content="global" />
+<meta http-equiv="Content-Type" content=
+"text/html; charset=us-ascii" />
+<meta name="Generator" content="LaTeX2HTML v2K.1beta" />
+<meta http-equiv="Content-Style-Type" content="text/css" />
+<link rel="STYLESHEET" href="research.css" type="text/css" />
+<link rel="next" href="node4.html" />
+<link rel="previous" href="node2.html" />
+<link rel="up" href="node2.html" />
+<link rel="next" href="node4.html" />
+<style type="text/css">
+/*<![CDATA[*/
+ div.c1 {text-align: center}
+/*]]>*/
+</style>
+</head>
+<body>
+<!--Navigation Panel-->
+<a name="tex2html75" href="node4.html" id="tex2html75"><img width=
+"37" height="24" align="bottom" border="0" alt="next" src=
+"next.gif" /></a> <a name="tex2html71" href="node2.html" id=
+"tex2html71"><img width="26" height="24" align="bottom" border="0"
+alt="up" src="up.gif" /></a> <a name="tex2html65" href="node2.html"
+id="tex2html65"><img width="63" height="24" align="bottom" border=
+"0" alt="previous" src="prev.gif" /></a> <a name="tex2html73" href=
+"node1.html" id="tex2html73"><img width="65" height="24" align=
+"bottom" border="0" alt="contents" src="contents.gif" /></a><br />
+<b>Next:</b> <a name="tex2html76" href="node4.html" id=
+"tex2html76">Types of Adaptive Algorithms</a> <b>Up:</b> <a name=
+"tex2html72" href="node2.html" id="tex2html72">Acoustic Echo
+Cancellation</a> <b>Previous:</b> <a name="tex2html66" href=
+"node2.html" id="tex2html66">Acoustic Echo Cancellation</a> &nbsp;
+<b><a name="tex2html74" href="node1.html" id=
+"tex2html74">Contents</a></b><br />
+<br />
+<!--End of Navigation Panel-->
+<h2><a name="SECTION00021000000000000000" id=
+"SECTION00021000000000000000">The Problem and Standard
+Solution</a></h2>
+In the situation below, the microphone detects a signal from the
+talker and the loudspeaker (plus noise). As a result, the talker in
+the far room will hear himself speaking with a slight delay. One
+simple solution to the problem is to suppress the signal received
+at the microphone in the near room when there is speech coming from
+the near loud speaker. But this clearly will not work when both
+rooms have an active talker.
+<div class="c1"><img width="623" height="402" align="bottom"
+border="0" src="img1.gif" alt=
+"\includegraphics[totalheight=0.4\textheight,totalwidth=.4\textwidth]{texfigs/aec.ps}" /></div>
+<p>Another solution is to model the acoustic echo path of the near
+room. Since we know the reference signal, the input to the
+microphone can be corrected by processing the reference signal with
+our model of the room echo response and subtracting it from the
+received signal. Unfortunately there is no way to know the room
+echo response ahead of time, and worse yet, the room response can
+change at any time.</p>
+<p>The typical solution is to use an adaptive filter. An adaptive
+filter uses the statistics of the reference signal and the error in
+the filter output to estimate a new filter. The new filter is
+recomputed after every new sample of data (that's about 8000 times
+a second for telephone quality speech). Because the filter is
+updated many times a second, we always have an estimate of the room
+response, even when it's changing.</p>
+<p>Here is a simulation of what echo sounds like.<br />
+Far room <a name="tex2html1" href="sounds/far.wav" id=
+"tex2html1">talkers</a>.<br />
+Near room <a name="tex2html2" href="sounds/near.wav" id=
+"tex2html2">talker</a>.<br />
+Signal received at the <a name="tex2html3" href="sounds/echo.wav"
+id="tex2html3">microphone</a>.<br />
+Corrected <a name="tex2html4" href="sounds/aecout.wav" id=
+"tex2html4">signal</a> using an adaptive filter.</p>
+<hr />
+<!--Navigation Panel-->
+<a name="tex2html75" href="node4.html" id="tex2html75"><img width=
+"37" height="24" align="bottom" border="0" alt="next" src=
+"next.gif" /></a> <a name="tex2html71" href="node2.html" id=
+"tex2html71"><img width="26" height="24" align="bottom" border="0"
+alt="up" src="up.gif" /></a> <a name="tex2html65" href="node2.html"
+id="tex2html65"><img width="63" height="24" align="bottom" border=
+"0" alt="previous" src="prev.gif" /></a> <a name="tex2html73" href=
+"node1.html" id="tex2html73"><img width="65" height="24" align=
+"bottom" border="0" alt="contents" src="contents.gif" /></a><br />
+<b>Next:</b> <a name="tex2html76" href="node4.html" id=
+"tex2html76">Types of Adaptive Algorithms</a> <b>Up:</b> <a name=
+"tex2html72" href="node2.html" id="tex2html72">Acoustic Echo
+Cancellation</a> <b>Previous:</b> <a name="tex2html66" href=
+"node2.html" id="tex2html66">Acoustic Echo Cancellation</a> &nbsp;
+<b><a name="tex2html74" href="node1.html" id=
+"tex2html74">Contents</a></b> <!--End of Navigation Panel-->
+<address>Todd A Goldfinger 2004-11-22</address>
+</body>
+</html>

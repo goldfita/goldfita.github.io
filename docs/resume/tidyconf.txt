@@ -1,0 +1,5 @@
+output-xhtml: yes
+doctype: transitional //strict
+drop-proprietary-attributes: yes
+clean: yes
+//tidy foo.html  -config tidyconf.txt > foo2.html

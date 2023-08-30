@@ -1,0 +1,74 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<link rel="stylesheet" type="text/css" href="../index.css" />
+<meta name="description" content="Real Time">
+<title>Wish List</title>
+</head>
+
+<body>
+<table>
+<tr><td class="article">
+<h1 class="topofpage">Wish List</h1>
+
+<p>
+Maybe you can help me out here.  I'm looking for a unix/linux tool
+that logs everything I do.  I often install software and make system
+changes only to forget what I did a few months later.  What I want is
+a tool that would create a new file everday.  The contents of the file
+will contain separate entries for each file I view, each file I
+change, each file I execute, any directories I visit, etc.  Of course
+it can't just work throught the shell prompt.  If I visit a file in
+EMACS, I want that to get recorded as well.  But I only want files to
+get recorded if there is user interaction.  For example, if I type
+make foo, and foo needs 600 source files to be built, I only want foo
+recorded.</p>
+
+<p>
+Another useful tool would be a way to highlight text from
+anywhere, right click, select google, and have the text sent to a google search box in an
+open browser.  Finally, I'd like to be able to send a file to an EMACS
+buffer right from the shell prompt.  Something like - /home/todd> toemacs myfile.</p>
+
+<p>
+These tools would be useful to me.  If you know of such a tool, or
+want to make one, or even have an idea of how it could be done, send
+me an email.  I will post a link.</p>
+
+<p>
+Now here is what I really want.  Have you ever tried to install a new
+package only to have an incredibly useful error message such as "can't
+find resource foo" ruin your state of new software euphoria?  This is
+generally the cause of most of my installation troubles (after that
+comes configuration issues).  After spending 12 hours searching the
+internet, and experimentally placing foo in various directories and
+trying to reinstall (if necessary), I might get it working, only to
+learn that it now can't find resource boo.  Wonderful.  It would be
+great if the error message said something like: "can't find resource
+foo - check /var/log/foo/res_err" Then I could check res_err and it
+would have some useful information in it like: "Looked for foo in
+/usr/lib,/usr/local/lib,... according to configuration file /etc/foo/conf"</p>
+
+<p>
+What I'm proposing is some kind of standard way of looking up
+resources (files,libraries).  The important part is that the
+executable always tells you exactly what it's looking for, where it
+has looked for it, and where it got the rules for its search.  Once
+you know these three things, it should be easy to fix the problem
+yourself (so long as you can find the resource).  In order to make
+sure what the executable is telling you is never out of sync with what
+it's actually doing, the lookup path should be generated (or returned)
+by the exact same code for both reporting and searching.  There could
+even be a tool (similar to ldd), call it query, that could be used to ask an executable
+where it's look for foo.  Like, /home/todd> query foofinder foo.  And
+it would tell you: "Looked for foo in
+/usr/lib,/usr/local/lib,... according to configuration file
+/etc/foo/conf"</p>
+
+</td></tr>
+</table>
+
+<p><a href="../index.html">home</a></p>
+</body>
+</html>

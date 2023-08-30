@@ -1,0 +1,104 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+<head>
+<title>A Web Interface to the AMI</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<link rel="stylesheet" type="text/css" href="../../index.css" />
+<meta name="description" content=
+"This is a guide to building a web site from scratch that monitors a
+server.  It's full of my opinions on design.                    " />
+<!-- ....10........20........30........40........50........60........70........80 -->
+</head>
+
+<body>
+<table>
+<tr><td class="article">
+
+<h4 class="nounderline">Buffering</h4>
+
+<p>
+The next task was to decide how to store the incoming responses.  I
+decided to store them in a circular buffer with no additional levels
+of abstraction.  This turned out to be extremely difficult to
+implement.  I later considered a resizeable, circular list.  See
+<a href="appendixa.html">Appendix A</a> for a comparison.
+</p>
+
+<pre>
+A)
+message 1\r\nmessage 2\r\nmessa^^^^^^^^^^^^^^^^^^^^^^
+^                         ^    ^
+|end            start,pend|    |pstart
+
+B)
+message 1\r\n^^^^^^^^^^^^^messa^^^^^^^^^^^^^^^^^^^^^^
+^            ^            ^    ^
+|end         |start       |pend|pstart
+
+C)
+message 1\r\nmessa^^^^^^^^^^^^^^^^^^^^^^
+^            ^    ^-------pstart
+|end         |start,pend
+
+D)
+^^^^^^^^^^^^^messa^^^^^^^^^^^^^^^^^^^^^^
+             ^    ^-------pstart
+             |end,start,pend
+
+E)
+essage5\r\n^^message 3\r\nmessage 4\r\nm
+           ^ ^------------end
+           |start,pstart,pend
+</pre>
+
+<p>
+There are four pointers into the buffer: end, start, pend, and
+pstart.  End points to the oldest character in the buffer, which is the
+start of the oldest message.  Start points to the character just after
+the last completed message in the buffer.  The 'p' in pend refers to
+the partial, as in partial message.  It points to the oldest character
+of the partial message (if there is one).  Pstart points to the
+character just after the start of the partial message.  Normally, this
+character is garbage (represented by ^) except in the case where the
+buffer is full.
+</p>
+
+<p>
+Case A shows the buffer when two full messages and a partial message
+have been read.  In case B, the newest message has been read (removed)
+from the buffer by the other thread.  The interface will allow you to
+peek at any message but only remove the oldest message or the newest
+completed message.  At this point, start and pend no longer point to
+the same character.  This tells the reader thread that it has to copy
+the partial message back to start and correct pend and pstart.  This
+is shown in case C.  Case D demonstrates the first message being
+read.  This case is very simple; end is moved up to the next message.
+Case E demonstrates the completion of message 3 being read, followed
+by two more messages.  Notice that since this is a circular buffer,
+message 5 wraps around.  If another message were read (or even a
+partial one) before message 3 or message 5 were remove, end would have
+to be moved up, meaning at least message 3 would be lost (if not more
+messages).  However, we will hope that the buffer is large enough and
+that it's rare for more than two or three messages to be buffered.
+</p>
+
+<p>
+One limitation of this design is that it requires the buffer size to
+be a power of two.  Although it is possible to implement it with an
+arbitrary buffer size, this would require many, many conditional
+statements, making the code just about impossible to understand (or
+just inefficient).  There is one nice advantage to this method though.
+It's almost impossible to have buffer overflow because the indices
+wrap around.
+</p>
+
+<p><a href="astman2.html">prev</a> <a href="astman4.html">next</a></p>
+
+</td></tr>
+</table>
+<p><br /><a href="../../index.html">home</a></p>
+
+</body>
+</html>
+

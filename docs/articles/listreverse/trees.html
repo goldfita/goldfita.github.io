@@ -1,0 +1,111 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+<head>
+<title>Trees</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<link rel="stylesheet" type="text/css" href="../../index.css" />
+<meta name="description" content=
+"And now a little about tree traversal and stacks.
+                                                      " />
+<!-- ....10........20........30........40........50........60........70........80 -->
+</head>
+
+<body>
+<table>
+<tr><td class="article">
+<h1 class="topofpage">Trees</h1>
+
+<p>
+I was also asked to traverse a tree in-order without using recursion.
+A few days after the interview, I spent a long time trying to figure
+out how to do this.  Once you see it, it's easy.
+</p>
+
+<p>
+First I implemented the recursive version which took about 10 seconds.
+The non-recursive version requires you to handle the stack yourself.
+The trick is that you can't just back up one node and iterate again.
+This will get you stuck in an infinite loop.  You have to repeatedly
+pop off the stack until you can go right.  So, the steps are.  (1) Go
+left as far as you can (pushing all the way).  (2) Go into a loop, popping
+and printing until you can go right.  (3) Go right.  Notice at this
+point, the next time you pop, it will be from the node just above the
+node where you went right.  (4) Repeat.
+</p>
+
+<p>
+The reason you don't need to do this with the recursive version is
+because you don't always return back to the top of the function as
+with the iterative version.  With the recursive version, when you
+can't go right anymore, the functions will return until you end up back
+where you can go right.  But this will be after the left in-order
+call, not the top of the function.
+</p>
+
+<p>
+I also made a brief attempt to use gotos to model how the recursive
+version works.  I didn't get very far; I think it might require a
+second stack to store each right and left call.  Then you know whether
+to jump back to the top (before the left call) or after the left call.
+</p>
+
+<p>
+The other day I had an insight.  Go back and think about how the stack
+version of the list reversal works.  Picture the list next to the
+stack.  They go in opposite directions.  If you combine the two, what
+you have is a doubly linked list.  In fact, list reversal of a doubly
+linked list is trivial.  It's already reversed!  But it gets better.
+If you think about moving back and forth along a list, the only
+place you need the two way links is at three pointers: current,
+previous, and next.  In fact, you can move back and forth along a
+singly linked list by just reversing pointers as you go.  All that
+matters is that you keep a window of three pointers, and you can move
+in either direction you want.
+</p>
+
+<pre>
+NULL&lt;--| |&lt;---| |&lt;---| |---&gt;| |---&gt;| |&lt;--head
+          next^  curr^  prev^
+</pre>
+
+<p>
+Now think about a tree.  Any path you take through the tree is really
+a list (in some sense).  A list is a degenerate tree.  It should be
+possible to use the same idea above to traverse a tree (in-order)
+without a stack.  And in fact, you can do it.  The one minor problem
+is that it destroys the tree.  (There are also memory leaks, but
+that's easy to fix.)  So the only way it would be useful is if you no
+longer needed the tree.
+</p>
+
+<p>
+The reason you can't repair the tree is tricky.  (And it took me
+forever to understand this.)  For the same reason you need to pop back
+out to the next available right node in the iterative traversal, you cannot back up
+the tree in the same order you came down.  You can still back up, but
+it requires you to go back out a different way than you came down.
+Basically, in the iterative version, you pop your way back out to the
+earliest node that allows you to go right.  In this version, you point
+the current node to that node, effectively creating a stack as you
+move down the tree.  The trouble is, without another stack, there is
+no way (as far as I can see) to correct some of the nodes that were
+reversed as you initially came down the tree.
+</p>
+
+<p>
+Get the <a href="trees.c">source.</a>  If you want another challenge, try
+doing an O(n) <a href="http://www.codecomments.com/archive263-2004-4-177179.html">level order traversal</a>.
+</p>
+
+<p><a href="reverse.html">prev</a></p>
+
+
+</td></tr>
+</table>
+<p><br /><a href="../../index.html">home</a></p>
+
+</body>
+
+</html>
+

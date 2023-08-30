@@ -1,0 +1,85 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+<head>
+<title>Statistical and Adaptive Signal Processing</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<link rel="stylesheet" type="text/css" href="../index.css" />
+<meta name="description" content=
+"How I got Kphone to register and make calls to Asterisk.
+                                                                 " />
+<!-- ....10........20........30........40........50........60........70........80 -->
+</head>
+
+<body>
+<table>
+<tr><td class="article">
+<h1 class="topofpage">Asterisk Phone Registration</h1>
+
+<p>
+I had tried a number of times to get a softphone working in <a
+href="http://www.asterisk.org">Asterisk</a>.  Softphones are just
+software versions of VoIP phones.  I was finally able to get <a
+href="http://sourceforge.net/projects/kphone">kphone</a> registered
+and working.  <a
+href="http://www.twinklephone.com/">Twinkle</a> still isn't working
+for me.
+</p>
+<p>
+The first problem I had was getting the phones to talk to Asterisk at
+all.  I just wasn't seeing any output on the Asterisk console.  If I
+set qualify=yes or to some positive number, I got the errors below.
+If this occurred, I had to stop Asterisk to start Twinkle.  It was
+complaining about the port already being in use.
+</p>
+
+<p>
+*CLI> Apr 11 14:10:50 WARNING[32444]: chan_sip.c:1066 __sip_xmit:
+sip_xmit of 0x81ba740 (len 473) to 192.168.2.102:5060 returned -1: Bad
+file descriptor<br />
+Apr 11 14:10:51 WARNING[32444]: chan_sip.c:1066 __sip_xmit: sip_xmit of 0x81ba740 (len 473) to 192.168.2.102:5060 returned -1: Bad file descriptor<br />
+Apr 11 14:10:52 WARNING[32444]: chan_sip.c:1066 __sip_xmit: sip_xmit of 0x81ba740 (len 473) to 192.168.2.102:5060 returned -1: Bad file descriptor<br />
+Apr 11 14:10:53 WARNING[32444]: chan_sip.c:1066 __sip_xmit: sip_xmit of 0x81ba740 (len 473) to 192.168.2.102:5060 returned -1: Bad file descriptor<br />
+Apr 11 14:10:53 NOTICE[32444]: chan_sip.c:11364 sip_poke_noanswer:
+Peer '555' is now UNREACHABLE!  Last qualify: 0
+</p>
+
+<p>
+It turned out that either the softphones or Asterisk didn't like the
+fact that my machine didn't have a fully qualified domain name.
+Either it was that or it was because I was using an IP.  The next
+problem I had was that the phone still refused to register.  A little
+more research and I found out you have to set host=dynamic.  I had it
+set to the IP or domain name.  I'm still not sure what the problem is.
+ Perhaps it was somehow trying to find an external IP.
+</p>
+
+<p>
+My sip.conf that finally worked with kphone is  below.  You can also
+uncomment username and secret.  Kphone will ask you for this information.
+</p>
+
+<pre class="code">
+[555]
+;username=555
+;authname=555
+;secret=pass
+type=friend
+nat=no
+host=dynamic
+;reinvite=no
+;canreinvite=no
+qualify=yes
+callerid="Todd" <555>
+;disallow=all
+allow=gsm
+context=TAG
+</pre>
+
+</td></tr>
+</table>
+<p><br /><a href="../index.html">home</a></p>
+
+</body>
+
+</html>

@@ -1,0 +1,102 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+<head>
+<title>Debugging</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<link rel="stylesheet" type="text/css" href="../index.css" />
+<meta name="description" content=
+"A few of my ideas about debugging.
+                                                                           " />
+<!-- ....10........20........30........40........50........60........70........80 -->
+</head>
+
+<body>
+<table>
+<tr><td class="article">
+<h1 class="topofpage">Debugging</h1>
+<p>
+If you're at all like me, your debugging process is completely
+undisciplined.  You throw in a few print statements when you need to
+figure out what's wrong.  Then you delete them, only to add
+them again later.  There are accepted methods of handling debugging.  If
+you've ever peaked inside an open source project, you've probably seen
+a bit of debug code.  Perhaps you're familiar with loggers and you've
+seen console debug output.
+</p>
+
+<p>
+Asterisk uses multiple levels of debugger output.  The more 'v's you
+add to the start options, the more debug output you get.  The log
+statements usually look something like this.
+</p>
+
+<pre class="code">
+ast_log(LOG_NOTICE, "debug argument - %s\n",arg);
+ast_log(LOG_WARNING, "debug statement\n");
+</pre>
+
+<p>
+These statements are scattered throughout the code base.  They will
+execute depending on the debug level.  Although there will be some
+performance penalty for having them in the production code, it won't
+be significant as long as they aren't placed deep in a loop.  An
+advantage of this is that your end users can use debug output to
+troubleshoot.  And even if a technical person needs to do the
+debugging, a carefully formatted string is often going to be more helpful
+than a core dump.
+</p>
+
+<p>
+If you don't want to keep debug statements in code, you have a few
+options. You could just leave the print statements in and comment them
+out.  Another trick I have seen is this.
+</p>
+
+<pre class="code">
+#if 0
+    foo();
+    printf("%d\n",total);
+#endif
+</pre>
+
+<p>
+Then you just change one character when you want this code compiled
+in.  You could also use an #ifdef and define the symbol only when
+debugging.  This can be done from a makefile.
+</p>
+
+<p>
+One trick that I have used is to conditionally compile a single line.
+</p>
+
+<pre class="code">
+#if 0
+#  define DEBUG(statement) statement
+#else
+#  define DEBUG(statement) 
+#endif
+
+DEBUG(log("log output %s\n", str));
+</pre>
+
+<p>
+Again, 0 could be replaced with a symbol defined in a makefile.  And
+the code will only be compiled in if the program is built in debug mode.
+</p>
+
+<p>
+However you decide to handle debugging is fine.  But you should make a
+conscious decision as to how it will be done, and try to stick with
+it and be consistent.  It's a lot easier to change one symbol and
+recompile than to re-type the same print statements every time a
+problem comes up.
+</p>
+
+</td></tr>
+</table>
+<p><br /><a href="../index.html">home</a></p>
+
+</body>
+
+</html>

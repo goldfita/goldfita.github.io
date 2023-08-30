@@ -1,0 +1,2 @@
+LIBRARY readRTDX.dll
+EXPORTS mexFunction

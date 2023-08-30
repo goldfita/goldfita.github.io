@@ -1,0 +1,73 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+<head>
+<title>A Web Interface to the AMI</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<link rel="stylesheet" type="text/css" href="../../index.css" />
+<meta name="description" content=
+"This is a guide to building a web site from scratch that monitors a
+server.  It's full of my opinions on design.                    " />
+<!-- ....10........20........30........40........50........60........70........80 -->
+</head>
+
+<body>
+<table>
+<tr><td class="article">
+
+<h4 class="nounderline">Implementation Details</h4>
+
+<p>
+I'm not going to cover every line of code.  But I want to point out a
+few things.  First notice that I often prefix private functions,
+functions that are not accessible as part of the library, with two
+underscores.  To be consistent, I should have done this with every
+private function (but this was a learning project for me too).
+</p>
+
+<p>
+If you look real hard, you'll probably see some gotos.  I'm not
+writing spaghetti code.  I always use them in the same way to escape
+from the function when something goes wrong.
+</p>
+
+<p>
+Take a look at ast_strip_response2.  First notice that it's invoked as
+a one liner from ast_strip_response.  You should see a lot of these
+short front-end functions, and I'll explain them in a moment.  Next
+notice how the code chooses between stripping __headers and your custom
+headers.  Originally I wrote this so you had to specify an array of
+pointers and an array length.  But using the NULL terminator simplifies the
+interface and makes changes easier.  It also allowed me to simplify
+the implementation and add in additional functionality all at once.
+</p>
+
+<p>
+The reason for all those front-end functions is to reduce duplicate
+code.  Frequently, two or more functions, like those ending in _r and
+_f, will do nearly the same thing.  Instead of writing two versions of
+the same function, I create a back-end function that has most of the
+logic and then invoke that function in a different way from the
+front-end function.  The cost of this is an extra function call (which
+hopefully isn't much).  Another reason for those functions is
+threading.  Sometimes I need to lock a mutex inside a function.  But
+then I need to call that function from another function, and I need to
+lock a mutex there also.  You can't do this (think about why).  One
+solution is to remove the mutex from the inner function.  But this
+would require whoever is using the API to lock a mutex around the
+function.  This is just asking for trouble.  Instead, create another
+back-end function.  Then the inner function now locks a mutex, calls
+the new function, and unlocks the mutex.  Structuring your source
+so that you can reduce duplicate code while keeping the interface
+simple requires you to be thinking at multiple levels of abstraction
+simultaneously.
+</p>
+
+<p><a href="astman5.html">prev</a> <a href="astman6.html">next</a></p>
+
+</table>
+<p><br /><a href="../../index.html">home</a></p>
+
+</body>
+</html>
+

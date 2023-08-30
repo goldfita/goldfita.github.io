@@ -1,0 +1,523 @@
+<6>ndiswrapper (NdisAcquireSpinLock:803): Exit
+it
+1387): Enter pool: f681e340
+<6>ndiswrapper (Nr (NdisAcquireSpinLock:803): Exit
+tine at: f8c3a0e8imer_proc:563): Enter f6e259e0(f4b3c7f0), 215392
+f59d2888, ret = c76er_proc:563): Enter f6e259e0(f4b3c7f0), 215395
+Exit
+ 1, cl: 1, sl: f4ac3464, dev_obj: c185917c, mj_fn: 15, minor_fn: 0, nt_urb: f6ec
+fd44, event: 00000000
+nter head = f59d2828
+swrapper (NdisFreePacket:1448): Enter packet: f49e3ae0, pool: f681e340
+swrapper (NdisReleaseSpinLock:809): Enter lock f59d2b0c
+reeing urb: f4ac4820
+nter lock f4b3c88c
+0449) coming back: buf: df6fe0ec, len: 1660, pipe: 0xc0408280
+ncelTimer:722): deleting timer f6e259e0(f4b3c7f0)
+pper (wrap_urb_complete:454): urb f4ac4820 (irp: f49d8a80) completed
+eRequest:418): Exit
+ver:357): major_func: f8fe7ae7, dev_obj: c185917c
+<6>ndiswrapper (xmit_worker:557): Enter send_ok 1
+ f49d8b80, stack size: 1, cl: 1, sl: f49d8c24, devb3c7f0), 215758
+<6>ndiswrapper (KeSetEvent:1489): Enter event = f4b3c7f0, 11): Exit
+sAcquireSpinLock:803): Exit
+wrapper (IofCallDriver:357): major_func: f8fe7ae7, dev_obj: c185917c
+<6>ndiswrap_bulk_or_intr_trans:641): Exit
+<6>ndiswrapper (NdisAcquireSpinLock:801): Enter lock f59d2d60
+<6>ndiswra15, minor_fn: 0, nt_urb: f6dd1724, event: 00000000
+pdoDispatcpper (timer_proc:563): Enter f6e259e0(f4b3c7f0), 215853
+irp: f6e4e6aer (wrap_urb_complete:429): urb f4ac4820 (200932) coming back: buf:
+dc3df0ec, len: 1660, pipe: 0ng f8c474f92: 28 06 UFFER_TO_SPAN_PAGES:3:1013): (Nd
+isReleaseSpinLock:809): Enter loswrapper (wrap_alloc_urb:280): Enter irp: f49d89
+80
+<6>ndiswrap_urb_cwrapper (NdisAcquireSpinLock:803): Exit
+_obj: c185917c, mj_fn: 15, minor_r:998): Enter pool: f76c07000, len: 180, pipe:
+0xc0008200
+ck:811): Exit
+0000000
+<6>ndiswr22): Entapper (NdisAcquireSpinLock:803): Exit
+ FFFFFFD2 08
+f49d8e80
+apper (NdisAcqu(NdisAllocateBuffer:998): Enter pool: f76c0700, allocated: 18
+1013)iswrapper (xmit_worker:557): Enter send_ok 1
+_packet:2004): Enter f614b2c0, ea6497a0
+<6>ndiswrappN_PAGES:376): Exit
+<6>ndiswrapper (NdisUnchainBufferAtFront:1179): Enter ea6498a0
+s full: 20(16)
+(NdisAcquireSpinLock:803): Exit
+: 15, minor_fn: 0, nt_urb: f54b9864, event: 00000000
+698
+xit
+isAcquireSpinLock:803): Exit
+iswrapper (NdisAcquireSpinLock:801): Enter lock f59d2b0c
+et: f49e9ea0, pool: f681e340
+88
+= d13b5ee0
+<6>ndiswrapper (ExInterlockedAddLargeStatistic:FFFFFCB FFFFFFF1
+<6>ndiswrapper (wrap_free_urb:ockedInsertTailList:426): head = f59d2aac, old = f
+6dd15a0
+rap_urb_complete:454): urb f4ac4820 (i f6e259e0(f4b3c7f0), 217037
+dd16a0
+<6>ndiswraper (NdieteRequesk size: eHeadLisreSpinLopinLock:809):rapper (wrap_bul
+k_or_intr_trans:599): flags = 3, length = 1660, buffer = d27c68ec, handle: c18a7
+424
+0 (ep 0x1)
+teRequswrapper (NdisAllocateBuffer:998): Enter pool: f7: Exit
+<6>ndiswrapper (xmit_worker:577): Exit
+<6>ndiswrapper (wrap_urb_complete:429): urb f4ac46a0 (203161) coming back: buf:
+f59d2000, ireSpinLock:803): Exit
+<6>ndiswrapper (NdisReleaseSpinLock:809):<6>ndiswrapper (NdisMIndicateReceivesAc
+quireSpinLock:801): Enter lock f4b3c698
+3c858iswrapper (wrap_urb_complete:429): urbr (returiver:366):1): Enterst:434)000
+0000
+2b4c
+<6>ndiswrapper (NdisAcquireSpinLock:803): Exit
+ireSpinLock:801): Enter lock f5d48c1c
+<6>ndiswrapper (NdisScheduleWorkI<6>ndiswrapper (InterlockedIncrement:977): Exit
+
+per (NdisReleaseSpap_urb_complete:429): urb f4ac4820 (203484) coming back: bufSP
+AN_PAGES:375): pages = 1
+<6>ndiswrapper (NDIS_BUFFER_TO: f6eadc08
+<6>Lock:801): Enter lock f59d2acc
+0
+cquireSpinLock:801): Enter lock f4b3c698
+ E>ndiswrapper (NdisAllocateBuffer:998): Enter pool: f76c0700, allocated: 18
+:1155): c185917c, f49d8d80
+<6>ndiswrapper (NdisReleaseSpinLock:809): Enter lock f4b3c88c
+iswrapper (per (return_packet:2004): Enter f614b2c0, f49e34e0
+ (NdisAllocatePacket:1432): Exit
+lk>ndiswrapper (NdisAllocateBuffer:998): Enter pool: f76c0700, allocated: 18
+<6>ndiswrapper (NdisAllocateBuffer:1038): buffer: f41a3dbc
+<6>ndiswrapper (NdisAllocateBuffer:1039): Exit
+x81)
+k:81diswrapper (wrap_work_item_worker:860): calling f8c47806
+er (ExpInterlockedPopEntrySList:520): head = f59d2828, ret = d13b5760
+<6>ndiswrapper (IofCallDriver:351): irp: f49d8a80, stack size: 1, cl: 1, sl: f49
+d8b24, dev_obj: c185917c, mj_fn: 15, minor_fn: 0, nt_urb: f6dd1524, event: 00000
+000
+
+<6>ndiswrapper (NdisAllocateBuffer:1038): buffer: f41a38dc
+pleteRequest:416): calling f8c3a21c
+ (NdisReleaseSpinLock:809): Enter lock f4b3c88c
+: 0, nt_urb: f6dd1924, event: 00000000
+ckedPopEntrySList:516): Enter head = f59d2888
+n pipe 0xc0408280 (ep 0x81)
+<6>ndiswrappeLock:801): Enter lock f4b3c88c
+06de860
+<6>ndiswr, event: 00000000sl: f49d8a24, dev_obj: c185917c, mj_fn: 15, minor_fn:
+0, nt_urb59d2b0c
+<6l: 1, sl:4213) goiePackettus: 0
+ f6ecfbrb:229): freeing urnter lock f4b3c698
+ (NdisAcquireSpinLock:803): Buffer:998): Enter pool: er (wrap_bulk_or_intr_trans
+:646): submitting bulk urb f4ac46a0 on pipe 0xc0008200 (ep 0x1)
+leaseSpinLock:811): Exit
+<6>ndiswrap9): Exit
+<6>ndiswrapper (wrap_process_nt_urb:1104): status: 40000000
+<6>ndiswrapper (wrap_submit_irp:1187): status: 40000000
+trans:646): submittin_proc:563): Enter f6e259e0(f4b3c7f0), 217923
+<6>ndiswrapper (KeSetEvent:1489): Eck f4b3c858
+aseSpinLock:809): Enter lock f4b3c88c
+00
+<6>ndiswrapper (NdisReleaseSpinLock:809): Enter lock f4b3c88c
+ Enter lock f59d29cc
+<6>ndiswrintr_tist:456): En6>ndiswrapper (NdisAcapper (NdireSpinLoreSpinLock:wra
+pper (Lock:811)NdisAcquir n = 66er (Ndisr_fn: 0,fn: 0, erlockedRemoveHeadList:45
+6)leaseSpinLock:809): Enter lock f59d29cc
+59dndiswrapper (timer_proc:563): Enter f6e259e0(f4b3c7f0), 218066
+wrapdiswrapper (NdisAllocateBuffer:998): Enter pool: f76c0700, allocated: 14e744
+, dev_obj: c185917c, mj_fn: 15, minor_fn: 0, nt_urb: f49e6144, event: 00000000
+leaseSpinLock:811): Exrb_complete:429): urb f4ac4820 (204779) comiSpinLock>ndisw
+rapper (NdiEnter f6ead9346, 1514
+<6>ndiswrapper (NDIS_BUFFER_TO_SPAN_PAGES:370): Enter e7b5657c
+<6>ndiswrapper (ExInterlockedRemoveHeadList:456): Enter f59d29ac
+<6>ndiswrapper (wrap_submit_urb:414): Exit
+adList:449): head = f59d2aac, ret = f6dd14a0
+<6>ndiswrapper (_pdoDispatchDeviceControl:89): irp: f53967e0, stack size: 1, cl:
+ 1, sl: f5396884, dev_obj: c185917c, mj_fn: 15, minor_fn: 0, nt_urb: f6ecf244, e
+vent: 00000000
+lock f4b3c88c
+08
+<6>ndiswrseSpinLocuireSpinLock:801): Enter lock f59d2d60
+>ndiswrarapper (swrapperwrapper (NdisReleaseSpinLock:811): Exit
+ nt_uiswrapper nLock:81PushEntrySList:499): Enter f59d2888
+ cl: 1, sl: f4ac3a64, dev_obj: c185917c, mj_fn: 15, minor_fn: 0, nt_urb: f57b8c6
+4, event: 00000000
+<6>ndiswFreePacket:1448): Enter packet: f6ead2e0, pool: f681e340
+
+<6>ndiswrapper (IofCallDriver:351): irp: f6e4eaa0, stack size: 1, cl: 1, sl: f6e
+4eb44, dev_obj: c185917c, mj_fn: 15, minor_fn: 0, nt_urb: f49e6544, event: 00000
+000
+urb:414): Exit
+v_obj: f6eader (timer_proc:563): Enter f6e259e0(f4b3c7f0), 218438
+wrapper (IofCallDriver:357): major_func: f8fe7ae7, dev_obj: c185917c
+<6>ndiswrapper (NdisReleaseSpinLock:809): Enter lock f4b3c698
+sReleaseSpinLock:811): Exit
+<6>ndiswrapper (ExfInterlockedRemoveHeadList:449): head = f59d2a6c, ret = 000000
+00
+_free_urb:229): freeing urb: f4bad220
+<6>ndiswrapper (timer_proc:563): Enter f6e259e0(f4b3c7f0), 218458
+iswrapper (ExInterlockedRemoveHeadList:456): Enter f59d2aec
+<6>ndiswrapper (NdisReleaseSpinLock:809): Enter lock f4b3c88c
+rapper (NdisReleaseSpinLock:809): Enter lock f4b3c88c
+<6>ndiswrapper (NDIS_BUFF0000
+<6>ndiswrapper (wrap_submit_ir59d2b0c
+<6>ndiswrapper (Ndiswrapper hEntrySList:491): head = f59d2828, ret = cfe0b920
+ireSpinLock:801): Enter lock f4b3c698
+
+<6>ndiswrapper (ExfInterlockedRemoveHeadList:449): head = f59d29ac, ret = f6ecf5
+c0
+8cb8
+<6>ndiswrapper (NdisAcquireSpinLock:803): Exit
+sSchdiswrappeAcquireSpinLock:803): Exit
+t
+d64, event: 00000000
+<6>ndiswr80, star (NdisReRelease: 15, minor_fn: 0, nt_urb: fDispatchD<6>ndiswrap
+pe
+<6>ndiswrapper (NdisScheduleWorkItem:2503): Enter f5d48cb8
+>ndiswrapper (NdisReleaseSpinLock:809): Enter lock f4b3c698
+ver:357): major_func: f8fe7ae7, dev_obj: c185917c
+swrapper (NdisFreePacket:1448): Enter packet: f49e37e0, pool: f681e340
+<6>ndiswrList:491): head = f59d2888, ret = d4eb5800
+pper (wrap_free_timer_proc:563): Enter f6e259e0(f4b3c7f0), 218920
+r (wrap_work_item_worker:860): calling f8c47806
+er (NdisAcquireSpinLock:803): Exit
+sReleaseSpinLo (wrap_urb_complete:429): urb f4ac4820 (206439) coming back: buf:
+d7b658ec, len: 1660, pipe: 0xc0408280
+_obj: c185917c, mj_fn: b_complet88c
+<6>ndiswrapper (NdisReleaseSpinLock:811): Exit
+09): Enter lock f59d2b0c
+disAcquireSpinLock:803): Exit
+patchDeviceControl:103): status: 00000103
+ (NdisAcquireSpinLock:803): Exit
+SpinLock:801): Enter lock f4b3c698
+swrapper (NdisFreePacket:1448): Enter packet: f6ead2e0, pool: f681e340
+<6>ndiswrappeTO_SPAN stack size: 1, cl: 1, sl: f6e47204, dev_obj: c1859wrap_proc
+ess_nt_urb:1052): irp: f6e4e8a0, stack it
+<6>ndiswrapper (IofCallDriver:366): Exit
+917c, mj_fn: 15, mier_proc:563): Enter f6e259e0(f4b3c7f0), 219398
+appndiswrapper (wrap_urb_complete:429): urb f4ac4820 (207135) coming back: buf:
+dc3cb8ec, len: 1660, pipe: 0xc0408280
+357): major_func: f8fe7ae7, dev_obj: c f6e259e0(f4b3c7f0), 219407
+88
+: Enter lock f59d2b0c
+ment:972): Enter
+: Enter lock f4b3c698
+<6>ndiswrap (NdisRelea): Exit
+mpleteReqwrap_proc5917c, y = f49e6t
+<6>ndiswrapper (ExInterlockedPushEntrySList:499): Enter f59d2888
+us:ndiswrapper<6>ndiswrapper (ExpInterlockedPushEntrySList:491): head = f59d2888
+, ret = dedb0800
+<6>ndiswrapper (ExInterlockedPushEntrySList:499): Enter f59d2828
+ (_pdoDispatchDeviceControl:106): Exit
+<6>ndisw_BUFFER_TO_St = 00000000
+<6>ndiswrapper (NdisAcquireSpinLock:801): Enter lock fdiswrappdiswrapper (NdisMI
+n877, n = 1
+utine atInterlock8
+<6>ndnter f59d29ac
+inLock:811): Exit
+<6>ndiswrapper (NdisAcquireSpinLock:801: Enter lock f4b3c88c
+59d2a6c
+0
+c
+4): Enter f59d2afc
+ (NDIS_BUFFER_TO_SPAN_PAGES:370): Enter e7b56e7c
+<6>ndiswrap>ndiswrapper (InterlockedDecrement:963): Exit
+iswrapper (wrap_proc_urb_complk f4b3c698
+<6>ndiswrapper (NdisReleaseSpinLock:811): Exit
+ (NdisAcquireSpinLock:803): Exit
+6>ndiswrapper (irp_complete_worker:499): 36: 14 00 00 00 00 00 00 00 00 00 00 00
+ 00 00 00 00 01 FFFFFF80 08 00 00 10 FFFFFFDB FFFFFFDE 08
+<6>ndiswrndiswrapper (ExpInterlockedPushEntrySList:fCallDriver:366): Exit
+<6>ndiswrapper (IofCompleteRequest:418): Exit
+ock:803): Exit
+<6>ndiswrapper (:2506): Exk:801): EList:491): head = f59d2888, ret = dec64000
+iswrapper (NdisReleaseSpinLock:809): Enter lock f5d48ce0
+, 220758
+PAGES:375): pages = 1
+Enter nt_urb = f4ac0864, irp = f49d1dc0, length = 72, function = 9
+<6>ndiswraswrapper  (NdisReleaseSpinLock:809): Enter lock f4b3c698
+<6>ndiswrapper (NdisReleaseSpinLock:811): Exit
+<6>ndiswrapper (NdisAcquireSpinLoc, nt_urb: 6>ndiswrapper (NdisAcquireSpinLock:8
+03): Exit
+: Enter lock f59d2d60
+<6>ndiswriswrapper (NdisReleaseSpinLock:811): Exit
+<6>ndiswrapper (NdisAcquireSpinLock:801): Enter lock f59d29cc
+<6>ndiswrapper (NdisAcquireSpinLock:803): Exit
+6>ndiswrapper (InterlockedDecrement:958): E f4ac4820 (210105) coming back: buf:
+d269e8ec, len: 1660, pipe: 0xc0408280
+<6>ndiswrf6e4e1aRemoveHerapper (N
+<6>ndister f4e lock f59d2acc
+per (NdisReleaseSpinLock:809): Enter lock f59ok 1
+<6>ndiswrapper (send_packrapper (NdisAcquireSpinLock:801): Enter lock f59d2d60
+:801): Enter lock f5d48ce0
+<6>ndiswrapper (: FFFFFF83 00 00 00 00 00 00 00 00 00 00 00 00 00 pper (NdisAcqu
+ireSpinLock:801): Enter lock f4b3c698
+easeSpinLock:811): Exit
+<6>ndiswr
+<6>ndiswrapper (ExpInterlockedPushEntrySList:491): head = f59d2888, ret = d27a28
+00
+ockedInsertTailList:4urb_complete:429): ur00 (ep 0xe)
+sReleaseSpinLock:809): Enter lock f59d2d60
+ 0, nt_urb: f49e6444, event: 00000000
+<6>ndiswrapper (irp_complete_worker:476): irp: f49e94a0, stack size: 1, cl: 1, s
+l: f49e9544, dev_obj: c185Lock:803): Exit
+<6>ndiswrapper (NdisReleaseSpinLock:809): Enter lock f59d2b4c
+000000
+ing completion_routine at: f8c3a0e8, f6dd1aa0
+er:360): calling f8fe7ae7
+ndiswrapper (ExInterlockedAddLargeStatistic:1013): Enter f4b3c518 = 1664924, n =
+ 66
+eSpinLock:811): Exit
+<6>ndisw<6>ndiswra6>ndiswrapper (InterlockedDecrement:963): Exit
+ntendiswrapper (timer_proc:563): Enter f6e259e0(f4b3c7f0), 221522
+hEntrySList:487): Enter head = f59d2888
+apper (NdisGetFirstBufferFromPacketSafe:1220): Exit
+drv_obj: f6eadc08
+
+<6>ndiswdr: ce241620
+<6>ndiswr Exit
+<6>ndiswrapper (return_packet:2004): Enter f614b2c0, f5faad80
+<6>ndiswrapper (irp_complete_worker:476): irp: f6e4e0a0, stack size: 1, cl: 1, s
+l: f6e4e144, dev_obj: c185917c, mj_fn: 15, minor_fn: 0, nt_urb: f4ac0a64, event:
+ 00000000
+Exit
+<6>ndiswrn: 0, n
+<6>ndiswrapper (pinLock:811): Exit
+r (NdisAcquireSpinLock:80c:563): Enter f6e259e0(f4b3c7f0),_urb: f6dd1b24, event:
+ 00000000
+ (wrap_urb_complete:454): urb f4ac4820 (irp: f49d8a80) completed
+Exit
+88
+88
+<6>ndiswraist:491): head = f59d2828, ret = ce241660
+<6>ndiswrapper (InterlockedDecrement:958): Enter
+<6>ndiswrapper (InterlockedDecrement:963): Exit
+6>ndiswrapper (NdisReleaseSpinLock:811):6e259e0(f4b3c7f0), 2217 f4b3c88c
+<6>ndiswrapper (wrap_work_item_worker:860)1491) coming back: buf: f57b86be, len:
+ 10, pipe: 0xc0070200
+leaseSpinLock:811): E_proc:563): Enter f6e259e0(f4b3c7f0), 221833
+isReleaseSpinLock:811): Exit
+<6>ndiswraswrapper (InterlockedIncrement:972): Enter
+:416): calling f8c3a21c
+6>ndiswrapper (InterlockedIncrement:977): Exit
+NdisMSendComplete:2109): Exit
+<6>ndiswrapper (ExInterlockedRemoveHeadList:456): Enter f59d2a6c
+<6>ndiswrapper (ExfInterlockedRemoveHeadList:445): Enter head = f59d2a6c
+patchDeviceControl:89): irp: f49d8680, stack size: 1, cl: 1, sl: f49d8724, dev_o
+bj: c185917c, mj_fn: 15, minor_fn: 0, nt_urb: f6dd1124, event: 00000000
+ize: 1, cl: 1, sl: f49d8324, dev_obj: c185917c, mj_fn: 15, minor_fn: 0, nt_urb:
+f49e6c44, event: 00000000
+<6>ndiswrapper (NdisAllocateBuffer:998): Enter pool: f76c0700, allocated: 18
+rb = f6dd1824, irp = f49d8d80, length = 72, function = 9
+<6>ndiswrapper (NdisReleaseSpinLock:809): Enter lock f4b3c88c
+<6>ndiswrapper (NdisReleaseSpinLock:811): Exit
+or_fn: 0, nt_urb: f6dd1924, event: 00000000
+<6>ndiswrapper (ExInterlockedRemoveHeadList:456): Enter f59d2a6c
+b_complete:454): urb f4ac46a0 (irp: f6e4e8a0) completed
+<6>ndiswrapper (NdisMIndicateReceivePacket:2082): Exit
+swrapper (ExfInterlockedInsertTailList:422): Enter head = f59d2aac, entry = f6dd
+18a0
+<6>ndiswrapper (wrap_work_item_worker:860): calling f8c47806
+: Enter pool_type: 0, size: 128, tag: 1701664066
+r6>ndiswrapper (NdisReleaseSpinLock:809): Enter lock f4b3c88c
+29): freeing urb: f4bad220
+<6>ndiswrapper (NdisReleaseSpinLock:809): Enter lock f59d2d60
+<6>ndiswrapper (NdisReleaseSpinLock:811): Exit
+er (NdisReleaseSpinLock:809): Enter lock f59d2acc
+<6>ndiswrock:803)c185917c, mj_fn: 15, minor_fn: 0, nt_urb: f6dd1b24, event: 0000
+0000
+iswrapper (ExFreePool:1052): addr: cee27000
+<6>ndiswferAtFront:1179): Enter ea6498a0
+per (NdisAcquireSpinLock:803): Exit
+swrapper (NdisFreePacket:1448): Enter packet: f49e3be0, pool: f681e340
+<6>ndiswrapDeviceCont): 298, 1514
+<6>ndiswrapper (NDIS_BUFFER_TO_SPAN_PAGES:370): Enter e7b5615c
+99): Enter f41a(timer_proc:563): Enter f78c42e0(f4b3c1f0), 222373
+eivePacket:2038): 1514, 1514
+iswrapper (NdisAllocateMemoryWithTag:195): Exit
+>ndiswrapper (NdisAcquireSpinLock:801): Enter lock f5d48c1c
+c47a0
+er (NdisAcquireSpinLock:803): Exit
+<6>ndiswrapper (ExInterlockedInsertE 6E
+<6>ndiswrapper (wrap_free_urb:229): freeing urb: f4ac4820
+Exit
+<6>ndiswrisReleaseSpinLock:809): Enter lock f59d2acc
+rapper (ExFreePool:1052): addr: ddae3da0
+<6>ndiswrapper (ExfInterlockedRemoveHeadList:449): head = f59d2a6c, ret = 000000
+00
+0c
+<6>ndiswrapper (NdisAcquireSpinLock:801): Enter lock f59d2d60
+<6>ndiswrapper (NdisAcquireSpinLock:803): Exit
+ (wrap_submit_irp:1155): c185917c, f49d8d80
+<6>ndiswrapper (ExfInterlockedRemoveHeadList:449): head = f59d2a6c, ret = 000000
+00
+>ndiswrapper (NdisAcquireSpinLock:801): Enter lock f5d48c1c
+isAcquireSpinLock:803): Exit
+easeSpinLock:809): Enter lock f59d2acc
+<6>ndiswrapper (NdisAcquireSpinLock:803): EacketSafe:1205): Enter f5faa880(e7b56
+60c)
+diswrapper (ExFreePool:1052): addr: cd172f20
+<6>ndiswrappeock f4b3c698
+<6>ndiswrapper (NdisAcquireSpinLock:803): Exit
+<6>ndiswrapper (NdisReleaseSpinLock:809): Enter lock f4b3c698
+seSpinLock:811): Exi_urb_complete:429): urb f4ac4820 (213384) coming back: buf:
+dc3c88ec, len: 1660, pipe: 0xc0408280
+<6>ndiswr6>ndiswrapper (NdisReleaseSpinLock:811): Exit
+ (wndiswrapper (xmit_worker:557): EnteferOffset:1145): 2346, 1514
+: 0, nt_urb: f57b8ap_urb_comp2828
+<6>ndiswrapper (ExpInterlocerlockedRemoveHeadList:449): head = f59d2a6c, ret = 0
+0000000
+3c698
+88
+k:>ndiswrapper (timer_proc:563): Enter f6e259e0(f4b3c7f0), 223364
+r lock f59d2acc
+<6>ndiswrapper (wrap_urb_complete:429): urb f4ac47a0 (213690) coming back: buf:
+f59d2000, len: 36, pipe: 0xc0008200
+r lock f59d2d60
+<6>ndiswrapper (ExInterlockediswrapper (NdisAcquireSpinLock:801): Enter lock f59
+d2d60
+r lock f59d29cc
+ (NdisAllocatePacket:1432): Exit
+bj: f6eadc08
+<6>ndiswraReleaseSpinLock:809): ELock:809): Enter lock f4b3c698
+er (wrap_urb_complete:454): urb f4ac4820 (irp: f49d8980) completed
+1, cl: 1, sl: f49d8c24, dev_obj: c185917c, mj_fn: 15, minor_fn: 0, nt_urb: f6dd1
+624, event: 00000000
+88
+er (NdisAcquireSpinLock:801): Enter lock f4b3c88c
+per (ExpInterlockedPopEntrySList:516): Enter head = f59d2828
+ement:972): Ent(wrap_work_item_worker:860): calling f8c47806
+3): Enter f6e259e0(f4b3c7f0), 223872
+88
+IofCallDriver:357): major_func: f8fe7ae7, dev_obj: c185917c
+<6>ndiswr 0000000ock:801): Enter lock f59d2d60
+0
+
+<6>ndiswrapper (NdisAcquireSpinLock:801): Enter lock f59d2acc
+c
+<6>ndiswrapper (ExpInterlockedPushEntrySList:491): head = f59d2888, ret = d278c0
+00
+ag:1027): Enter pool_type: 0, size: 128, tag: 1701664066
+<6>ndiswrapper (NdisAcquireSpinLock:803): Exit
+apper (NdisReleaseSpinLock:811): Exit
+<6>ndiswrapper (NdisReleaseSpinLock:809): Enter lock f4b3c698
+<6>ndiswrapper (NdisReleaseSpinLock:811): Exit
+wrapper (wrap_bulk_or_intr_trans:628): irp: f6e4e6a0, stack size: 1, cl: 1, sl:
+f6e4e744, dev_obj: c185917c, mj_fn: 15, minor_fn: 0, nt_urb: f49e6144, event: 00
+000000
+<6>ndiswrapper (InterlockedDecrement:958): Enter
+iswrapper (ExfInterlockedRemoveHeadList:445): Enter head = f59d29ac
+t_urb: f6dd1624, event: 00000000
+ status: 40000000
+ReleaseSpinLock:811): Exit
+<6>ndiswrapper (ExInterlockedPushEntrySList:499): Enter f59d2888
+<6>ndiswrapper (ExpInterlocked 0, nt_urb: f49e6244, event: 00000000
+<6>ndiswrapper (IofCompleteRequest:414): calling completion_routine at: f8c3ne a
+t: f8c3a21c, f49e60c0
+tTailList:422):(timer_proc:563): Enter f6e259e0(f4b3c7f0), 224365
+ment:972): Enter
+<6>ndiswrsubmit_urb:398ead = f59d2888
+0
+ 15, minor_fn: 0, nt_urb: f57b82e4, event: 00000000
+88
+599): flags = 3, length = 1660, buffer = f1e768ec, handle: c18a7424
+<6>ndiswrapper (wrap_submit_urb:414): Exit
+pper (NdisAcquireSpinLock:801): Enter lock f5d48c1c
+<6>ndiswrhEntrySList:487): Enter head = f59d2888
+= f59d29bc, entry = f57b8260
+hDeviceControl:103): status: 00000103
+xc0070200 (ep 0xe)
+88
+<6>ndiswrapper (NdisA 15, minor_fn: 0, nt_urb: f6dd1924, event: 00000000
+er (wrawrapper (wrap_urb_complete:429): urb f4ac4820 (01): Enter lock f4b3c698
+<6>ndiswrapper (NdisAcquireSpinLock:803): Exit
+<6>ndiswrapperead = f59d2aac, ret = f6dd19a0
+ent: 00000000
+er (NdisAcquireSpinLock:803): Exit
+<6>ndiswra9fc)
+<6SList:516): Enter head = f599): Enter _send_packet:456): Enter packet6): Enter
+kedPopEntr6>ndiswackets:rv_obj: f6eadc08
+alling completionrap_urb_c4a0
+<6>ndiswrapper (wrap_process_nt_urb:1050): Enter nt_urb = f4ac0e64, irp = f6e4e4
+a0, length = 72, function = 9
+cc
+fInterlockpper (wrap_urb_complete:429): urb f4ac4820 Exit
+<6>ndiswrapper (NdisScheduleWorkItem:2503): Enter f5d48cb8
+809): Enter lock f5er_proc:563): Enter f6e259e0(f4b3c7f0), 225486
+<6>ndiswrapper (irp_complete_worker:476): irp: f49d8d80, stockedAddLargeStatisti
+c:1013): Enter f4b3c4c8 = 82003, n = 1
+<6>ndiswrapper (ExInterlockedAddLargeStatistic:1013): Enter f4b3c4d0 = 120175078
+, n = 743
+: 40000000
+<6>ndiswr lock f59d2b4c
+<6>ndiswrapper (NdisReleaseSpinLock:811): Exit
+56): Enter f59d2aac
+en: 1660, pipe: 0xc0408280
+88
+<6>ndiswrapper (NdisReleaseSpinLock:809): Enter lock f5d48c1c
+r = d4eb50ec, handle: c18a7424
+irp = f6e4e1a0, length = 72, function = 9
+<6>ndiswrapper (NdisMIndicateReceivePacket:2026): Enter f614b6d0, 2
+<6>ndiswrapper (NdisGetFirstBufferFromPacketSafe:1205): Enter f5faa180(e7b5669c)
+
+diswrapper (ExAllocatePoolWithTag:1027): Enter pool_type: 0, size: 52, tag: 1919
+309122
+<6>ndiswrapper (NdisReleaseSpinLock:809): Enter lock f59d2d60
+<6>ndiswrapper (NdisReleaseSpinLock:811): Exit
+emoveHeadList:449): head = f59d2a6c, ret = 00000000
+aseSpinLock:811): Exit
+<6>ndiswrapper (ExInterlockedPushEntrySList:499): Enter f59d2888
+er (NdisReleaseSpinLock:809): Enter lock f59d2acc
+<6>ndiswrapper (ExfInterlockedInsertTailList:426): head = f59d2aac, old = f6dd1a
+a0
+s6>ndiswrapper (wrap_urb_complete:429): urb f4ac46a0 (217981) coming back: buf:
+f59d2000, len: 36, pipe: 0xc0008200
+k f4b3c88c
+<6>ndiswrS_BUFFER_TO_SPAN_PAGES:375): pages = 1
+<6>ndiswrapper (NDIS_BUFFER_TO_SPAN_PAGES:376): Exit
+di>ndiswrapper (NdisAllocateBuffer:998): Enter pool: f76c0700, allocated: 18
+<6>ndiswrapper (NdisReleasper (ExpInterkedPopEntrySList:527): Enter f59d2828
+pinLock:811): Exit
+<6>ndiswLock:811): Exit
+<6>ndiswrapperworker:499): 36: 14 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 0
+1 FFFFFF80 08Safe:1205): Enter f49e34e0(e7b5657c)
+<6>ndiswrapper (NdisGetFirstBufferFromPacketSafe:1219): cee4392a, 66, 66
+ = 00000000
+f8fe7ae7, dev_obj: c185917c
+ntrySList:527): Enter f59d2888
+<6>ndiswrapper (InterlockedDecrement:963): Exit
+<6>ndiswrapper (ExInterlockedPushEntrySList:499): Enter f59d2888
+6>ndiswrapper (ExfInterlockedInsertTailList:422): Enter head = f59d2aec, entry =
+ f4ac06e0
+:628): irp: f5396ae0, stack size: 1, cl: 1, sl: f5396b84, dev_obj: c185917c, mj_
+fn: 15, minor_fn: 0, nt_urb: f6ecf544, event: 00000000
+<6>ndiswr buf: f5
+<6>ndiswrswrapper (IofCaSpinLock:803): Exit
+Enter lock f4b3c698
+mer_proc:571): kdpc f4b3c818 (f8c472b8)
+<6>ndiswrapper (NdisReleaseSpinLock:809): Enter lock f59d2b0c
+rapper (NdisReleaseSpinLock:811): Exit
+<6>ndiswrapper (NdisReleaseSpinLock:809): Enter lock f4b3c88c
+<6>ndiswrapper (NdisReleaseSpinLock:811): Exit
+(NdisAcquireSpinLock:801): Enter lock f4bEnter pool: f76c0700, allocated: 18
+n_routine at: f8c3a21c, f57b8660
+<6>ndiswrappeck:811): Exit
+_worker:484):r (timer_proc:563): Enter f6e25e20(f5d48c40), 227427
+<6<6>ndiswrapper (NdisReleaseSpinLock:809): Enter lock f4b3c88c
+2aac, old = f6dd1aa0
+er (IofCompleteRequest:416): calling f8c3a0e8
+r:366): Exit
+r (NdisAcquireSpinLock:803): Exit
+<6>ndiswrapper (InterlockedDecrement:958): Enter
+diswrapper (NdisAcquireSpinLock:803): Exit
+iswrapper (NdisGetFirstBufferFromPacketSafe:1205): Enter f6ead9e0(f41a357c)
+<6>ndiswrapper (wrap_alloc_urb:330): allocated urb: f4ac4820
+pper (irp_complete_worker:484): urb: f4ac46a0, nt_urb: f4ac0264, status:k: buf:
+dc0350ec, len: 1660, pipe: 0xc0408280
+
+4ac4820
+er (NdisAcquireSpinLock:803): Exit
+<6>ndiswrapper (ExFreePool:1052): addr: f1e76800
+handle: c18a7544
+disAcquireSpinLock:801): Enter lock f59d2b0c
+edPushEntrySList:487): Enter head = f59d2888

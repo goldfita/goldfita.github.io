@@ -1,0 +1,117 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+<head>
+<title>External Firewire Drive</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<link rel="stylesheet" type="text/css" href="../../index.css" />
+<meta name="description" content="
+This is about my experience trying to get an external Fantom Firewire 
+Hard Drive to work.                                                  " />
+<!-- ....10........20........30........40........50........60........70........80 -->
+</head>
+
+<body>
+<table>
+<tr><td class="article">
+<h1 class="topofpage">External Firewire Drive</h1>
+
+<p>
+Backups are good.  That's why I bought myself an 80GB external drive
+to keep my data safe.  I decided to take my friend's advice and check
+out customer feedback on various drives.  So I surfed on over to <a
+href="http://www.newegg.com">newegg</a> and took a look at some external
+drives.  I was hoping to get one with both a usb and firewire
+interface, but they were more expensive, and there were fewer choices.
+The Fantom Drive got excellent ratings; so, I went with it.  
+</p>
+
+<p>
+When it arrived, I had an immediate disappointment.   I had read that
+firewire provides its own power.  But the drive came with an
+external power adaptor and wouldn't turn on without it.  I plugged in
+the drive and turned it on.  It was very quiet at least.  I tried to
+run fdisk on the corresponding device, but it failed complaining about
+not being able to read the partition table along with other errors.
+</p>
+
+<p>
+After posting to the linux1394-users list, someone had me patch my
+kernel from <a href="http://me.in-berlin.de/~s5r6/linux1394/updates/">here</a>.  Unfortunately, that didn't help.  He
+then had me generate some debug output.  To do this compile the
+following into the kernel.  Also, disable your log files so your
+internal hard disk is not being used.  Last, you'll need to do the follwing each 
+time you reboot.  <span class="bold">echo 9216 &gt; /sys/module/scsi_mod/parameters/scsi_logging_level</span>
+</p>
+<pre>
+--&gt; Device Drivers
+    --&gt; SCSI Device Support
+        --&gt; SCSI Logging Facility
+</pre>
+
+<p>
+Eventually I removed the pci card with the firewire ports and
+transferred it to a windows box.  In linux, I could at least see that
+there was an 80GB hard drive there.  In windows XP, it didn't work at
+all.  At one point it told me there may be a problem with the device.
+I later tried it on a mac without my pci card and it worked just fine.
+So the pci card I was using was suspect now.  I had read that
+the via controllers do have some known problems with certain devices.
+But I was told that linux has a simple work around and that this was
+probably not the problem.
+</p>
+
+<p>
+I finally got around to calling tech support.  The first thing they
+told me was that firewire pci card has a connection for more power.
+This seemed a bit strange.  The hard disk has an external power
+adaptor, gets power over the pci bus, and requires another internal
+power adaptor.  I bought an adaptor from the standard four pin power
+supply in the case to the smaller four pins on the pci card.  It's the
+exact same adaptor as for a floppy drive.  But I had to file a little
+plastic tab off the back to get it fit over the pins.  (I noticed when
+ I returned that this connection actually came with my power supply.  Oops.)
+The adaptor didn't help at all.
+</p>
+
+<p>
+At this point I tried it on another windows machine (again with the
+same pci card).  Windows seemed to recognize a device.  But that was
+about as far as it got.  There were some funny error codes that even
+the tech support guy didn't recognize.
+</p>
+
+<p>
+At this point I finally went out and got another pci card.  I noticed
+that one of the more expensive cards had the full size power connector
+on it.  It didn't require an adaptor.  The card I bought did need the
+adaptor though.  This one did not have any via chips on it.  I tried
+it in the windows machine and it worked.  When I later tried it on my
+linux box, I removed the power adaptor, and it still worked (as I
+suspected).
+</p>
+
+<p>
+Apparently, either the via firewire chip does not work, or there is a
+problem with the electronics on the pci card, or it has some kind of
+conflict with this hard drive.  For your reference, the pci card I have
+has four external usb ports and one internal.  There are two external
+firewire ports and one internal.  There are two chips on the card.
+One is for usb -- VT6212.  The other is for firewire -- VT6306. 
+</p>
+
+<p>
+The drive came formatted as FAT32.  I re-partitioned using fdisk.  I
+created a standard 30GB linux partition for backing up my internal raid
+drive and a 50GB one for anything else.  Then I ran <span
+class="bold">mkfs -t ext2 /dev/sdf1</span> to create the file system.
+And then <span class="bold">mount /dev/sdf1 /dev/fire</span>.  That's
+it.  I use flexbackup to make my backups.
+</p>
+</td></tr>
+
+</table>
+<p><br /><a href="../../index.html">home</a></p>
+
+</body>
+</html>

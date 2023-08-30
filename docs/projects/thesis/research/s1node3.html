@@ -1,0 +1,166 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!--Converted with LaTeX2HTML 2K.1beta (1.61)
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta name="generator" content=
+"HTML Tidy for Windows (vers 12 April 2005), see www.w3.org" />
+<title>2 Types of Adaptive Algorithms</title>
+<meta name="description" content=
+"2 Types of Adaptive Algorithms" />
+<meta name="keywords" content="sec1" />
+<meta name="resource-type" content="document" />
+<meta name="distribution" content="global" />
+<meta http-equiv="Content-Type" content=
+"text/html; charset=us-ascii" />
+<meta name="Generator" content="LaTeX2HTML v2K.1beta" />
+<meta http-equiv="Content-Style-Type" content="text/css" />
+<link rel="STYLESHEET" href="sec1.css" type="text/css" />
+<link rel="previous" href="s1node2.html" />
+<link rel="up" href="s1node1.html" />
+<style type="text/css">
+/*<![CDATA[*/
+ div.c1 {text-align: center}
+/*]]>*/
+</style>
+</head>
+<body>
+<!--Navigation Panel-->
+<a name="tex2html56" href="sec2.html" id="tex2html56"><img width=
+"37" height="24" align="bottom" border="0" alt="next" src=
+"file:/usr/local/lib/latex2html/icons/next.gif" /></a> <a name=
+"tex2html50" href="s1node1.html" id="tex2html50"><img width="26"
+height="24" align="bottom" border="0" alt="up" src=
+"file:/usr/local/lib/latex2html/icons/up.gif" /></a> <a name=
+"tex2html44" href="s1node2.html" id="tex2html44"><img width="63"
+height="24" align="bottom" border="0" alt="previous" src=
+"file:/usr/local/lib/latex2html/icons/prev.gif" /></a> <a name=
+"tex2html52" href="node1.html" id="tex2html52"><img width="65"
+height="24" align="bottom" border="0" alt="contents" src=
+"file:/usr/local/lib/latex2html/icons/contents.gif" /></a> <a name=
+"tex2html54" href="node3.html" id="tex2html54"><img width="43"
+height="24" align="bottom" border="0" alt="index" src=
+"file:/usr/local/lib/latex2html/icons/index.gif" /></a><br />
+<b>Next:</b> <a name="tex2html57" href="sec2.html" id=
+"tex2html57">Section 2 title</a> <b>Up:</b> <a name="tex2html51"
+href="s1node1.html" id="tex2html51">1 Acoustic Echo
+Cancellation</a> <b>Previous:</b> <a name="tex2html45" href=
+"s1node2.html" id="tex2html45">1 The Basic Problem</a> &nbsp;
+<b><a name="tex2html53" href="node1.html" id=
+"tex2html53">Contents</a></b> &nbsp; <b><a name="tex2html55" href=
+"node3.html" id="tex2html55">Index</a></b><br />
+<br />
+<!--End of Navigation Panel-->
+<h2><a name="SECTION00012000000000000000" id=
+"SECTION00012000000000000000">2 Types of Adaptive
+Algorithms</a></h2>
+The two most common adaptive algorithms are known as Least Mean
+Squares (LMS) and Recursive Least Squares (RLS). Most other
+algorithms are some variation on these two. LMS is computationally
+cheap compared to RLS, but it converges to the room response
+slowly. It also tracks changes in the room response slowly and
+doesn't not converge as close to the Minimum Mean Square Error
+(MMSE) as RLS does.
+<p>The rate of convergence of the filter and the computational cost
+are both dependent on the length of the room model echo path.
+Because the speed of sound is relatively slow, we will need a
+fairly long filter. This rules out RLS as a possible algorithm. LMS
+is still a possibility, but because of the long filter and the high
+degree of self correlation in speech, we should not expect this
+algorithm to perform very well. There is a class of algorithms
+which are a generalization of LMS and RLS known as Affine
+Projection Algorithms (APA).<br /></p>
+<div class="c1"><!-- MATH
+ \begin{eqnarray}
+\hat{y} & = & \mathbf{cx}\\
+e & = & y - \hat{y}\\
+\mathbf{c}_{n+1} & = & \mu{e}\mathbf{c}_n\\
+\end{eqnarray}
+ -->
+<table align="center" cellpadding="0" width="100%">
+<tr valign="middle">
+<td></td>
+<td align="center" nowrap="nowrap"><img width="10" height="27"
+align="middle" border="0" src="s1img2.gif" alt=
+"$\textstyle =$" /></td>
+<td align="left" nowrap="nowrap"><img width="14" height="17" align=
+"middle" border="0" src="s1img3.gif" alt=
+"$\displaystyle \mathbf{cx}$" /></td>
+<td width="10" align="right">(1)</td>
+</tr>
+<tr valign="middle">
+<td nowrap="nowrap" align="right"><img width="19" height="19"
+align="middle" border="0" src="s1img4.gif" alt=
+"$\displaystyle e$" /></td>
+<td align="center" nowrap="nowrap"><img width="10" height="27"
+align="middle" border="0" src="s1img2.gif" alt=
+"$\textstyle =$" /></td>
+<td align="left" nowrap="nowrap"><img width="9" height="19" align=
+"middle" border="0" src="s1img5.gif" alt=
+"$\displaystyle y - \hat{y}$" /></td>
+<td width="10" align="right">(2)</td>
+</tr>
+<tr valign="middle">
+<td nowrap="nowrap" align="right"><img width="38" height="27"
+align="middle" border="0" src="s1img6.gif" alt=
+"$\displaystyle \mathbf{c}_{n+1}$" /></td>
+<td align="center" nowrap="nowrap"><img width="10" height="27"
+align="middle" border="0" src="s1img2.gif" alt=
+"$\textstyle =$" /></td>
+<td align="left" nowrap="nowrap"><img width="35" height="19" align=
+"middle" border="0" src="s1img7.gif" alt=
+"$\displaystyle \mu{e}\mathbf{c}_n$" /></td>
+<td width="10" align="right">(3)</td>
+</tr>
+</table>
+</div>
+<br clear="all" />
+These algorithms converge much quicker than LMS. Unfortunately, APA
+is still too slow, but there are a number of fast versions of the
+algorithm (FAP). The one I have implemented, uses Gauss-Seidel
+iterations to approximate the inverse of the correlation matrix.
+For low projection orders, it is not too much slower than LMS.
+<p>As we will see later, it will be necessary to have multiple
+copies of the algorithm running at once. To keep the amount of
+computation manageable, we will use a block exact form of the
+algorithm (BEFAP). The block form only updates the filter once in a
+while. This decreases the amount of computation, but the filter
+converges slower. The block exact form is exactly equivalent to the
+orignal algorithm (except for numerical effects), but it still
+results in a faster algorithm. The cost is a delay equal to the
+block size. We want to keep delays as short as possible. So there
+is some trade off between the amount of tolerable delay and the
+amount of computation.</p>
+<hr />
+<!--Navigation Panel-->
+<a name="tex2html56" href="sec2.html" id="tex2html56"><img width=
+"37" height="24" align="bottom" border="0" alt="next" src=
+"file:/usr/local/lib/latex2html/icons/next.gif" /></a> <a name=
+"tex2html50" href="s1node1.html" id="tex2html50"><img width="26"
+height="24" align="bottom" border="0" alt="up" src=
+"file:/usr/local/lib/latex2html/icons/up.gif" /></a> <a name=
+"tex2html44" href="s1node2.html" id="tex2html44"><img width="63"
+height="24" align="bottom" border="0" alt="previous" src=
+"file:/usr/local/lib/latex2html/icons/prev.gif" /></a> <a name=
+"tex2html52" href="node1.html" id="tex2html52"><img width="65"
+height="24" align="bottom" border="0" alt="contents" src=
+"file:/usr/local/lib/latex2html/icons/contents.gif" /></a> <a name=
+"tex2html54" href="node3.html" id="tex2html54"><img width="43"
+height="24" align="bottom" border="0" alt="index" src=
+"file:/usr/local/lib/latex2html/icons/index.gif" /></a><br />
+<b>Next:</b> <a name="tex2html57" href="sec2.html" id=
+"tex2html57">Section 2 title</a> <b>Up:</b> <a name="tex2html51"
+href="s1node1.html" id="tex2html51">1 Acoustic Echo
+Cancellation</a> <b>Previous:</b> <a name="tex2html45" href=
+"s1node2.html" id="tex2html45">1 The Basic Problem</a> &nbsp;
+<b><a name="tex2html53" href="node1.html" id=
+"tex2html53">Contents</a></b> &nbsp; <b><a name="tex2html55" href=
+"node3.html" id="tex2html55">Index</a></b> 
+<!--End of Navigation Panel-->
+<address>Todd A Goldfinger 2004-10-25</address>
+</body>
+</html>

@@ -1,0 +1,173 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+<head>
+<title>Latex Tips</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<link rel="stylesheet" type="text/css" href="../index.css" />
+<meta name="description" content="
+Some latex tips based off what I learned working on my thesis.
+                                                              " />
+<!-- ....10........20........30........40........50........60........70........80 -->
+</head>
+
+<body>
+<table>
+<tr><td class="article">
+<h1 class="topofpage">Latex Tips</h1>
+<p>
+So you've finally completed your research and are ready to write your
+thesis.  And you want to use latex.  Latex is great for doing any kind
+of equation editing.  It will also automatically generate figure
+numbers, table of contents and figures, and do a lot of formating for
+you.  But if you need to do anything more advanced than the basics,
+it's not going to be anywhere near as easy as, say, the WYSIWYG of
+Microsoft Word.</p>
+
+<p>
+My school had a number of standard formating requirements that were
+not the same as the latex defaults.  Trying to figure out how to
+change the formating rules requires some in depth knowledge of latex
+(and  a lot of Googling).  I'll share with you what I learned to get
+my thesis formated right.
+</p>
+
+<ul>
+<li>Use <span class="bold">\linespread{2}</span> to double space your thesis.  You can also use
+non-integer spacing.<br /><br /></li>
+
+<li>You can redefine almost anything you want, but use a special
+purpose package if you need to do something difficult or non-obvious.
+I used the following packages.<br /><br />
+
+<ul>
+<li>fancyhdr - Use this to change things like page numbering, headers,
+and footers.<br /><br /></li>
+
+<li>graphicx - You'll need this for importing graphics.  I always used
+.eps for postscript and .pdf (use ps2pdf) for pdf extensions.  You can
+have latex decide which extension is appropriate by not giving it the
+extension.  It will figure out whether to use the .pdf or .eps.  As an
+example, use<br /><br />
+<span class="bold">\includegraphics[totalheight=0.6 \textheight,width=1\textwidth]{texfigs/misalign}</span>
+<br /><br />
+The directory of my images is texfigs.  The file is
+misalign[.pdf][.eps].<br /><br /></li>
+
+<li>maple2e - You can use this package if you want to import maple
+code.<br /><br /></li>
+
+<li>subfig - I used this for figures broken across many pages.  All
+you have to do is put <span class="bold">/ContinuedFloat</span> inside the next figure and latex
+will number it the same as the last one.  You can also use this package
+to control multiple images or figures inside a single figure.  I
+didn't know about this and did it the hard way by redefining
+<span class="bold">fnum@figure</span>.  If you want to go that route, use<br /><br />
+<span class="bold">\makeatletter \renewcommand{\fnum@figure}{Figure \thefigure
+\hspace{1em}(cont.)} \makeatother</span>
+<br /><br />
+before the figure to redefine the caption.  The <span class="bold">\thefigure</span> command is
+the figure number.  Make sure to change it back after the figure
+unless you want to keep it that way.<br /><br /></li>
+
+<li>caption - You can use<br /><br />
+<span class="bold">
+\usepackage[justification=raggedright,
+singlelinecheck=false]{caption}</span><br /><br />
+
+to left justify all your captions<br /><br /></li>
+</ul></li>
+
+<li>Change the page numbering style using <span class="bold">\pagenumbering{roman}</span> or
+<span class="bold">\pagenumbering{arabic}</span>.<br /><br /></li>
+
+<li>Get a new page with <span class="bold">/newpage</span>.  You might need this if you need a
+special page before the first chapter that isn't a standard page (like
+the table of contents).  Use <span class="bold">/clearpage</span> to end the current page.  This
+will force latex to flush all it's images.<br /><br /></li>
+
+<li>Change page dimensions with <br />
+<pre>
+<span class="bold">\addtolength{\oddsidemargin}{-.3in}
+\addtolength{\evensidemargin}{-.3in}
+\addtolength{\textwidth}{.7in}</span>
+</pre>
+<br />
+Change float spacing with <br />
+<pre><span class="bold">\renewcommand\floatpagefraction{.9}
+\renewcommand\topfraction{.9}
+\renewcommand\bottomfraction{.9}
+\renewcommand\textfraction{.1}   
+\setcounter{totalnumber}{50}
+\setcounter{topnumber}{50}
+\setcounter{bottomnumber}{50}</span>
+</pre>
+<br /><br /></li>
+
+<li>If you don't want the really fancy contents title that latex uses,
+you can do <br /><br />
+
+<span class="bold">\renewcommand{\contentsname}{\hspace{1.8in} \large
+CONTENTS}</span>.<br /><br /></li>
+
+<li>If you need to remove a dangling line and increase or decrease a
+page size one line, use <span class="bold">\enlargethispage{+\baselineskip}</span>.  Change the
+'+' to '-' to shrink the page.  Make sure to place it between two
+paragraphs.<br /><br /></li>
+
+<li>Use <span class="bold">/def</span> to define symbols and text you use often.  This will be
+especially helpful for equation editing.<br /><br /></li>
+
+
+<li>Use <span class="bold">/label</span> directly after captions in figures.  Make sure the
+caption is outside of any inner environments in the figure
+environment.<br /><br /></li>
+
+<li>Use <span class="bold">//</span> to force a new line.  I often use this in eqnarray.  Use
+<span class="bold">/nonumber</span> to skip numbering the equation.  You can skip equation
+numbering for the entire environment by putting a star after the
+environment name.  E.g. <span class="bold">/begin{eqnarray*}</span>.<br /><br /></li>
+
+<li>You can add lines to the table of contents using
+<span class="bold">\addcontentsline{toc}{chapter}{References}</span>.  Place this right before
+the bibliography and you'll get References added to the TOC.<br /><br /></li>
+
+<li>If you need to enter non-bibitems in the bibliography, one
+solution is to use an empty bibitem.  For example, <br /><br />
+<span class="bold">\makeatletter\def\@biblabel#1{\bf{General References}}\makeatother 
+\bibitem[ ]{}</span>
+<br /><br />
+</li>
+
+
+<li>To shorten captions in the list of figures, use <span class="bold">/caption[Short
+version]{Loooooong version}</span>.<br /><br /></li>
+
+<li>Sometimes importing certain images will change the amount of
+whitespace around the image.  To fix this, use the viewport option
+inside include - <span class="bold">,viewport=75 180 550 600,clip</span>.  That's left of
+image, bottom of image, right of image, and top of image respectively.<br /></li>
+</ul>
+
+<span class="bold">Resources</span><br />
+<a
+href="http://www-h.eng.cam.ac.uk/help/tpl/textprocessing/">www-h.eng.cam.ac.uk</a><br
+/>
+<a href="http://www.tug.org/">www.tug.org</a><br />
+<a
+href="http://dcwww.camp.dtu.dk/~schiotz/comp/LatexTips/LatexTips.html">Latex
+Tips</a><br />
+<a
+href="http://groups.google.com/group/comp.text.tex?lnk=srg&amp;hl=en">comp.text.tex</a><br
+/>
+<a
+href="http://groups.google.com/group/latexlovers?lnk=lr">latexlovers</a><br
+/>
+
+</td></tr>
+
+</table>
+<p><br /><a href="../index.html">home</a></p>
+
+</body>
+</html>

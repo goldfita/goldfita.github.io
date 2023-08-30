@@ -1,0 +1,109 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!--Converted with LaTeX2HTML 2K.1beta (1.61)
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta name="generator" content=
+"HTML Tidy for Windows (vers 12 April 2005), see www.w3.org" />
+<title>1 The Basic Problem and Standard Solution</title>
+<meta name="description" content=
+"1 The Basic Problem and Standard Solution" />
+<meta name="keywords" content="sec1" />
+<meta name="resource-type" content="document" />
+<meta name="distribution" content="global" />
+<meta http-equiv="Content-Type" content=
+"text/html; charset=us-ascii" />
+<meta name="Generator" content="LaTeX2HTML v2K.1beta" />
+<meta http-equiv="Content-Style-Type" content="text/css" />
+<link rel="STYLESHEET" href="sec1.css" type="text/css" />
+<link rel="next" href="s1node3.html" />
+<link rel="previous" href="s1node1.html" />
+<link rel="up" href="s1node1.html" />
+<link rel="next" href="s1node3.html" />
+</head>
+<body>
+<!--Navigation Panel-->
+<a name="tex2html42" href="s1node3.html" id=
+"tex2html42"><img width="37" height="24" align="bottom" border="0"
+alt="next" src=
+"file:/usr/local/lib/latex2html/icons/next.gif" /></a> <a name=
+"tex2html36" href="s1node1.html" id="tex2html36"><img width="26"
+height="24" align="bottom" border="0" alt="up" src=
+"file:/usr/local/lib/latex2html/icons/up.gif" /></a> <a name=
+"tex2html30" href="s1node1.html" id="tex2html30"><img width="63"
+height="24" align="bottom" border="0" alt="previous" src=
+"file:/usr/local/lib/latex2html/icons/prev.gif" /></a> <a name=
+"tex2html38" href="node1.html" id="tex2html38"><img width="65"
+height="24" align="bottom" border="0" alt="contents" src=
+"file:/usr/local/lib/latex2html/icons/contents.gif" /></a> <a name=
+"tex2html40" href="node3.html" id="tex2html40"><img width="43"
+height="24" align="bottom" border="0" alt="index" src=
+"file:/usr/local/lib/latex2html/icons/index.gif" /></a><br />
+<b>Next:</b> <a name="tex2html43" href="s1node3.html" id=
+"tex2html43">2 Types of Adaptive</a> <b>Up:</b> <a name=
+"tex2html37" href="s1node1.html" id="tex2html37">1 Acoustic Echo
+Cancellation</a> <b>Previous:</b> <a name="tex2html31" href=
+"s1node1.html" id="tex2html31">1 Acoustic Echo Cancellation</a>
+&nbsp; <b><a name="tex2html39" href="node1.html" id=
+"tex2html39">Contents</a></b> &nbsp; <b><a name="tex2html41" href=
+"node3.html" id="tex2html41">Index</a></b><br />
+<br />
+<!--End of Navigation Panel-->
+<h2><a name="SECTION00011000000000000000" id=
+"SECTION00011000000000000000">1 The Basic Problem and Standard
+Solution</a></h2>
+In the situation below, the microphone detects a signal from the
+talker and the loudspeaker (plus noise). As a result, the talker in
+the far room will here himself speaking with a slight delay. One
+simple solution to the problem is to supress the signal received at
+the microphone in the near room when there is speech coming from
+the near loud speaker. But this clearly will not work when both
+rooms have an active talker.
+<p>Another solution is to model the acoustic echo path of the near
+room. Since we know the reference signal, the input to the
+microphone can be corrected by processing the reference signal with
+our model of the room echo response and subtracting it from the
+received signal. Unfortunately there is no way to know the room
+echo response ahead of time, and worse yet, the room response can
+change at any time.</p>
+<p>The typical solution is to use an adaptive filter. An adaptive
+filter uses the statistics of the reference signal and the error in
+the filter output to estimate a new filter. The new filter is
+recomputed after every new sample of data (that's about 8000 times
+a second for telephone quality speech). Because the filter is
+updated many times a second, we always have an estimate of the room
+response, even when it's changing.</p>
+<hr />
+<!--Navigation Panel-->
+<a name="tex2html42" href="s1node3.html" id=
+"tex2html42"><img width="37" height="24" align="bottom" border="0"
+alt="next" src=
+"file:/usr/local/lib/latex2html/icons/next.gif" /></a> <a name=
+"tex2html36" href="s1node1.html" id="tex2html36"><img width="26"
+height="24" align="bottom" border="0" alt="up" src=
+"file:/usr/local/lib/latex2html/icons/up.gif" /></a> <a name=
+"tex2html30" href="s1node1.html" id="tex2html30"><img width="63"
+height="24" align="bottom" border="0" alt="previous" src=
+"file:/usr/local/lib/latex2html/icons/prev.gif" /></a> <a name=
+"tex2html38" href="node1.html" id="tex2html38"><img width="65"
+height="24" align="bottom" border="0" alt="contents" src=
+"file:/usr/local/lib/latex2html/icons/contents.gif" /></a> <a name=
+"tex2html40" href="node3.html" id="tex2html40"><img width="43"
+height="24" align="bottom" border="0" alt="index" src=
+"file:/usr/local/lib/latex2html/icons/index.gif" /></a><br />
+<b>Next:</b> <a name="tex2html43" href="s1node3.html" id=
+"tex2html43">2 Types of Adaptive</a> <b>Up:</b> <a name=
+"tex2html37" href="s1node1.html" id="tex2html37">1 Acoustic Echo
+Cancellation</a> <b>Previous:</b> <a name="tex2html31" href=
+"s1node1.html" id="tex2html31">1 Acoustic Echo Cancellation</a>
+&nbsp; <b><a name="tex2html39" href="node1.html" id=
+"tex2html39">Contents</a></b> &nbsp; <b><a name="tex2html41" href=
+"node3.html" id="tex2html41">Index</a></b> 
+<!--End of Navigation Panel-->
+<address>Todd A Goldfinger 2004-10-25</address>
+</body>
+</html>

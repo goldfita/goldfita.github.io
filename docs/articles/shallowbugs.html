@@ -1,0 +1,113 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+<head>
+<title>Shallow Bugs</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<link rel="stylesheet" type="text/css" href="../index.css" />
+<meta name="description" content=
+"An analysis of an analysis of one aspect of the Bazaar method of
+developing software. 
+                                                           " />
+<!-- ....10........20........30........40........50........60........70........80 -->
+</head>
+
+<body>
+<table>
+<tr><td class="article">
+<h1 class="topofpage">Shallow Bugs</h1>
+
+<p>
+It has been said that given enough pairs of eyes, all bugs are
+shallow.  What this means is that any bug can be easy to find if the
+right person is looking at it.  I want to present a brief analysis of
+why this might be true, but first an example.
+</p>
+
+<p>
+Back when I was working with Asterisk, I needed to have a fine grain
+of control over writes and reads to wav files.  It became apparent
+very quickly when I started working on the features I was asked to
+implement that something was wrong.  It didn't take me too terribly
+long poking around inside the code and figure out what was going on.
+One problem was that the flags were not being set correctly for
+appending to the end of the file.  Another was that the header was not
+always getting corrected before the file was closed.  The first
+problem was fixed promptly (merged into the Asterisk code base).  I
+don't know what happened with the second.
+</p>
+
+<p>
+So why is it that a few hundred thousand people were using Asterisk,
+and no one was even aware (as far as I know) of the problem?  The
+thing about software, as you should know, is that it grows
+exponentially complex.  Imagine a decently large program between
+10,000 and 100,000 lines.  Think how many conditional branches are in
+that code.  Trying to exercise every line of code, and error
+conditions especially, is an incredible
+task.  With programs such as Asterisk, you also have a lot of I/O and
+timing issues on top of that.  But this doesn't even begin to describe
+the magnitude of the problem.  To truly test your code, you must
+exercise, not every line, but every path through the source.  You must
+put your program in all possible states and see how it behaves.
+Adding one more conditional branch to your program can double the
+complexity.  This is where the exponential part comes in.
+</p>
+
+<p>
+Most programs work under normal every day use.  Even without rigorous
+testing, the programmer can easily verify that the code works
+basically in the way intended.  It's when the code is subjected to
+extreme situations, such as under heavy load, with low memory
+available, and asked to do uncommon tasks that it fails.  This is
+because the code can be extremely difficult to test in these corner
+cases.  It might be difficult to test because there are just so many
+features.  Or the state machines are just incredibly complicated.  Or
+it's hard to simulate a low-memory, heavily-loaded machine.  Or
+perhaps the programmer just didn't think (or didn't have time) to test
+that portion of the code.
+</p>
+
+<p>
+Consider my task with Asterisk.  I was using a very specific feature
+in the file I/O portion of Asterisk which probably isn't used often or
+at all.  There is special code for half a
+dozen different file types and half a dozen different codecs in
+Asterisk.  Even with so many people using Asterisk, it may have only
+been me and maybe a few other people who had ever really needed this
+feature to work.  In my case it was imperative that it work
+correctly.  I highly focused my efforts on this feature to ensure that
+it was working.  In effect, I became a unit test(er).
+</p>
+
+<p>
+Under normal circumstances, the programmer does not critically examine
+every bit of code.  He might test a few basic cases to convince
+himself it works.  Thus, it's not until someone like me comes along
+who needs that obscure feature, that the problem is discovered.  I am
+doing, what ideally, it was th programmer's (or QAs) job to do.  But
+if you think about it, this process of bug elimination is effective.  If
+no one is using that code, how much does it matter if it's broken?
+When I needed it to work, I found the problem immediately.  My focus
+was that feature, not the main program.
+</p>
+
+<p>
+That is why bugs are shallow.  A popular program will effectively have
+an army of unit testers.  Many will use only the standard features.
+But a decent number will need to utilize the more esoteric
+capabilities.  It's their focus on the edge cases that makes bugs,
+which seem difficult to track down for others, easy.  They are testing
+exactly the feature they need, whereas someone else may only be
+testing it accidentally and on rare occasions and in the wrong way, from
+the wrong perspective.
+</p>
+
+
+</td></tr>
+</table>
+<p><br /><a href="../index.html">home</a></p>
+
+</body>
+
+</html>

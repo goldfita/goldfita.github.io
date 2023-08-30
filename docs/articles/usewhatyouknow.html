@@ -1,0 +1,147 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+<head>
+<title>Use What You Know</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<link rel="stylesheet" type="text/css" href="../index.css" />
+<meta name="description" content=
+"How to use what you know to solve problems better.
+                                                                           " />
+<!-- ....10........20........30........40........50........60........70........80 -->
+</head>
+
+<body>
+<table>
+<tr><td class="article">
+<h1 class="topofpage">Use What You Know</h1>
+
+<p>
+During my OS class at Rose, we had a lecture on page table
+replacement algorithms.  Page table replacement deals with how best to move
+memory back and forth between RAM and the hard disk.  By letting you
+swap memory back and forth from the hard disk, you effectively have a
+much larger amount of RAM.  But it's slow.  And the challenge is to
+figure out which pages to swap out to disk when you need to swap a new
+one in.  Ideally, you want to move out the page that won't be used for
+the longest amount of time.  If you were to swap out a page that needs
+to be accessed by the very next instruction, you're going to have a very
+slow program.
+</p>
+
+<p>
+Unfortunately, you can't really know which pages are going to be
+needed when.  Or can you?  I made the suggestion that there may be
+some programs which don't have a lot of control logic.  Thus they
+should need the same sequence of pages on every run.  You could
+write a tool to map out the relative memory accesses ahead of time.
+Then inform the operating system at program load time which pages will
+be used when.  My professor said this might be feasible with large
+weather simulation algorithms.  I now know of a class of algorithms
+for which this is a possibility.  DSP algorithms!  However, frequently,
+DSP algorithms are implemented on special architectures and done at a
+level low enough that memory access can be mostly laid out by the
+programmer.  So page table hits probably aren't too big an issue in
+most cases.  But the idea should still work.
+</p>
+
+<p>
+Now what have I done here?  How is it that I have an algorithm that
+can, in theory, outperform the best ones out there?  I have changed
+the problem.  Most algorithms on modern computers are fairly well
+generalized.  They aren't written for the best case, the worst case,
+or a specific case.  They're written for all conceivable cases.  I have
+suggested a specific case for which a more efficient algorithm can be
+implemented.  By having additional information, it is safe to make
+certain assumptions, and then you can de-generalize your algorithm to
+the specific problem at hand.
+</p>
+
+<p>
+I call this Using What You Know.  By using what you know, you can find
+better solutions to your problems.  And it doesn't apply to just
+programming or technology.  Think about what a business man does when
+he's negotiating a deal or writing a contract.  He's considering a
+very large number of inputs.  He may be looking at financial issues,
+timing, internal capabilities, and even the emotional state and
+desires of the client.  Perhaps he has to know something about the
+cost of cocoa in Brazil.  Any number of things can effect the return
+on investment and future partnerships and contacts.
+</p>
+
+<p>
+Here's a compression example.  Compression makes use of Information
+Theory to minimize the number of bits needed to represent a document.
+It's possible to compress content because there is a lot of duplicate
+information.  Compression makes use of statistics and correlations
+among data to remove duplicate information.  The better the algorithm
+is at removing duplicate information, the higher the compression
+ratio.  Compression algorithms utilize our knowledge of different
+types of documents to get higher compression ratios.
+</p>
+
+<p>
+Some audio compression algorithms attempt to model the vocal tract to
+remove as much duplicate information as possible.  They don't treat
+the content as some unknown quantity.  The assumptions are very
+specifically tailored to.  Some algorithms even completely remove parts of the signal
+altogether based on psychoacoustics.  It turns out humans can't hear
+certain sounds.  Instead of compressing those frequencies, why not just throw them
+out completely?
+</p>
+
+<p>
+I believe Andrew Morton said in a recent interview that it would be
+useful for someone to write a filesystem that models real-world
+workloads.  This is using what you know.  In this scenario, you would
+need to step back and do some learning.  Many engineers are very
+competent with technology.  But that doesn't mean they understand the
+problem.  If you want to build a filesytsem such as this, you need to
+do some research into how real programs actually behave.  This means
+studying popular programs and looking at plots of read times vs block
+sizes or read block sizes vs write block sizes or read frequency vs
+write frequency.  Then you will know more.  And you can use what you
+know to build a better filesytsem.
+</p>
+
+<p>
+Think about how you might write a string matching function.  There are
+some pretty crazy algorithms out there that can actually perform in
+sub-linear time.  But consider the statistics of the strings you're
+matching.  In the extreme case, imagine if you knew that 'G' occurs
+with 95% frequency, 'A' with  3% frequency, and 'B' with 2% frequency,
+and all other characters never occur in the string you're comparing against.
+In the other string you would probably want to look for matching Bs
+first.  Since they hardly ever occur, you'll almost never need to
+compare more than one letter before you can shift the string over one
+and compare again.  If you plan to do many comparisons, you might even
+record all the positions of the Bs.  Then you would only have to
+compare against the pre-stored indices.
+</p>
+
+<pre>
+str =
+GGGGGBGAGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGAG
+GGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGG
+
+Bind = [5]
+
+comp_str = 
+GGGB
+</pre>
+
+<p>
+Now see how very easy this comparison is going to be?  There is only
+one match, and you know exactly where it is immediately.  And it's all
+because you knew something about the statistics (and in this case
+also pre-parsing) of the string.  The more you know, the better you
+can solve a problem; so, use what you know.
+</p>
+
+</td></tr>
+</table>
+<p><br /><a href="../index.html">home</a></p>
+
+</body>
+
+</html>

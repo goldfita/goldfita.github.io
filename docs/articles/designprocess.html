@@ -1,0 +1,95 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+<head>
+<title>The Design Process</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<link rel="stylesheet" type="text/css" href="../index.css" />
+<meta name="description" content=
+"This is a little bit about what I've learned on the process of
+designing software.
+                                                                         " />
+<!-- ....10........20........30........40........50........60........70........80 -->
+</head>
+
+<body>
+<table>
+<tr><td class="article">
+<h1 class="topofpage">The Design Process</h1>
+
+<p>
+When I was working at Infraware, I designed a small framework to solve
+ a problem.  I then implemented my solution using that framework.  But
+in reality it wasn't that simple.  It would be nice if we could design
+a tool or server or protocol and get it right the first
+time.  But even for an experienced architect this is unlikely to
+happen.
+</p>
+
+<p>
+The trouble is that each problem is different.  The only way to learn
+about the problem you are working on is to, well, work on it.  This
+means the first version will probably be a mess.  The second version
+might be a little better, and then the third, and so on.  But the most
+important part of the design will actually be the mistakes you make
+and the feedback you get.
+</p>
+
+<p>
+The first version of my framework was extremely simple.  In fact, it
+was hardly a framework at all.  As I used the framework,  I learned of
+little problems.  Often I could get around those problems, but the
+solution was ugly.  The real solution, I found out,  was to change the
+framework itself.  I went through this process a number of times.  I
+would run into a limitation or a flaw of the framework, and eventually
+I would have to fix the problem.  This is where the real learning
+occurred.  It wasn't the design and implementation of the framework,
+but the uncovering of problems that allowed me to gain a deeper
+understanding of the framework and make it better.
+</p>
+
+<p>
+However, the best way to learn about your design is to let other
+people use your tool.  You are only one person.  You can't foresee
+every possible way in which your tool will be used.  By getting feedback
+directly from many people, your insights will be far greater.  Some
+users may even make design suggestions.  The iterative process of
+design, implement, discover faults, repeat is instrumental to a
+successful project.  It is unfortunate that so
+much code is never used.  The architect will never learn from his
+mistakes.  In many circumstances, the feedback goes to a different
+person or it may not come until years after the initial design.
+</p>
+
+<p>
+The last version of the framework before I left still had some
+issues.  But I chose not to try and correct these problems because it
+just didn't make sense under the circumstances.  Sometimes it just
+won't be worth your time.  In other cases, there may be design
+tradeoffs.  You will have to chose what your design will support and
+what it won't support.  The more powerful and abstract the tool, the
+harder it will be to implement.  It will also be harder to learn how
+to use it.  Sometimes a special purpose design or a tool with limited
+functionality will be better (and faster).
+</p>
+
+<p>
+Developing an end-user application is difficult.  But the person who
+builds the tools and APIs that allow for the development of those applications
+has a far greater challenge.  He must conceive of entire classes of
+applications that will be built using his software.  He will have to
+make difficult decisions about what will be possible.  His decisions
+will effect the design and implementation of thousands of
+applications.  It may even alter or dictate how future programmers
+think and solve problems.  So go forth and start making mistakes now.  The sooner
+you get it wrong will be the beginnings of getting it right.  And that
+may be the birth of a project that spawns a million other projects.
+</p>
+
+</td></tr>
+</table>
+<p><br /><a href="../index.html">home</a></p>
+
+</body>
+
+</html>

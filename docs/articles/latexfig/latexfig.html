@@ -1,0 +1,257 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+<head>
+<title>Latex Figures</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<link rel="stylesheet" type="text/css" href="../../index.css" />
+<meta name="description" content=
+"Some tips on dealing on images with latex figures.
+                                                  " />
+<!-- ....10........20........30........40........50........60........70........80 -->
+</head>
+
+<body>
+<table>
+<tr><td class="article">
+<h1 class="topofpage">Latex Figures</h1>
+
+<p>
+From looking at my log files, I've noticed a number of people
+searching for information about latex figures.  I hope they haven't
+been too disappointed with the sentence or two I wrote about that.
+I've decided to write something a little more in depth.
+</p>
+
+<p>
+Dealing with images and figures in latex was the most difficult part of formatting
+my thesis.  I learned a few things along the way, such as don't take a
+screen shot of your matlab figures.  Either save them as figures and
+convert in gimp, or export as postscript from matlab if you can.
+Otherwise, you'll end up with low resolution images.  I also learned
+a little bit about positioning images in figures, changing captions,
+and dealing with multi-page figures.
+</p>
+
+<p>
+There are a couple ways to build a pdf from a tex file.  The first
+requires you to build a ps file first.<br />
+latex fig1.tex<br />
+dvips -Ppdf fig1.dvi<br />
+ps2pdf fig1.ps<br />
+The other way is to use pdflatex.  I believe if you use the first
+method, the images in the pdf and ps files will look the same.  But
+the images may look different if you generate the pdfs using different
+methods.  I drew a red border around the flower so you can see where
+the difference is.  Be careful, though.  In kpdf, I discovered resizing
+the pages would make a difference in how much of the image was
+displayed.  If I made the size too small, the right side of the border
+I drew wasn't visible, even though it was actually there.
+<br /><br />
+<a href="fig3_1.png">Method 1</a><br />
+<a href="fig1_1.png">Method 2</a>
+</p>
+
+<p>
+The code for these images is
+</p>
+
+<pre class="code"><span class="flkf">
+\begin</span>{<span class="flfnf">figure</span>}[htb]
+<span class="flkf">\caption</span>{view (0,0,580,480)}
+<span class="flkf">\begin</span>{<span class="flfnf">center</span>}
+<span class="flcf">%left,bottom,right,top
+</span><span class="flkf">\includegraphics</span>[totalheight=1<span
+class="flkf">\textheight</span>,
+width=1<span class="flkf">\textwidth</span>,viewport=0 0 580 480,clip]{flower}
+<span class="flkf">\end</span>{<span class="flfnf">center</span>}
+<span class="flkf">\end</span>{<span class="flfnf">figure</span>}
+<span class="flkf">\clearpage</span>
+</pre>
+
+<p>
+Make sure to move the caption and label outside the center environment.  It
+doesn't appear to matter in my current version of latex.  But in the
+version I used for my thesis, if I put the label inside the center
+environment, the reference would be wrong.
+</p>
+
+<p>
+The interesting statement here is <span
+class="bold">\includegraphics[totalheight=1\textheight,
+width=1\textwidth,viewport=0
+0 580 480,clip]{flower}</span>.  This says to make the image fill the
+width and height of the text area on the page.  The viewport clips the
+image.  The first number is pixels from the left.  Next is from the
+bottom, then to the right, and final to the top.  Often, you'll have
+to set the viewport, or only a piece of the image will display.  It
+depends on the original format of the image.
+</p>
+
+<p>
+Also notice I didn't specify an extension for the image file name.  I put
+flower.eps and flower.pdf (using ps2pdf) in the directory.  If you use
+the graphicx package, don't specify an extension with includegraphics
+and it will figure out if you want the (e)ps or pdf file.
+</p>
+
+<p>
+I clipped the photo a little short on top and right sides in the next
+image.  Notice the red border isn't showing.
+<br /><br />
+<a href="fig1_2.png">Clipped right and top</a>
+</p>
+
+<p>
+Next I clipped it on all sides.  It's clear now that the physical size
+of the image is the same, but the image has been resized to fit.  The
+only change between that and the next image is that I removed clip.
+Instead of clipping the image at the viewport boundary, the image was
+resized within the physical boundary but the rest of it was still
+displayed.  In this case it covered the whole page.
+<br /><br />
+<a href="fig1_3.png">Clipped on all sides</a><br />
+<a href="fig1_4.png">Clipped on all sides (but without clip)</a>
+</p>
+
+<p>
+Then I removed the includegraphics options altogether.  After that, only the viewport
+was removed.  Following that are image with
+only the height specified and only the width, respectively.
+<br /><br />
+<a href="fig1_5.png">No options</a><br />
+<a href="fig1_6.png">No viewport</a><br />
+<a href="fig1_7.png">Height only</a><br />
+<a href="fig1_8.png">Width only</a>
+</p>
+
+<p>
+This last one is with the height and width set to .5.  The entire
+image is still displayed, but it's smaller.
+<br /><br />
+<a href="fig1_9.png">Half height and width</a>
+</p>
+
+<p>
+You might get a silly idea in your head, as I did, that you want to
+change the way captions work, or you want to display multiple images
+in one figure that may span more than a page.  The following code does
+two new things.  It changes the start of the caption by redefining
+<span class="bold">\fnum@figure</span>.  If you do this, you have to
+remember to change it back later.  It also puts two images on one page
+by using separate figures.  The problem is there is a lot of space
+between the figures.
+</p>
+
+<pre class="code"><span class="flkf">
+\makeatletter</span> <span class="flkf">\renewcommand</span>{<span
+class="flkf">\fnum@figure</span>}
+{New caption for figure <span class="flkf">\thefigure</span>} <span class="flkf">\makeatother</span>
+<span class="flkf">\begin</span>{<span class="flfnf">figure</span>}[htb]
+<span class="flkf">\begin</span>{<span class="flfnf">center</span>}
+<span class="flkf">\includegraphics</span>[totalheight=.3<span
+class="flkf">\textheight</span>,
+width=.7<span class="flkf">\textwidth</span>,viewport=0 0 580 480]{flower}
+<span class="flkf">\end</span>{<span class="flfnf">center</span>}
+<span class="flkf">\end</span>{<span class="flfnf">figure</span>}
+
+<span class="flkf">\begin</span>{<span class="flfnf">figure</span>}[htb]
+<span class="flkf">\begin</span>{<span class="flfnf">center</span>}
+<span class="flkf">\includegraphics</span>[totalheight=.3<span
+class="flkf">\textheight</span>,
+width=.7<span class="flkf">\textwidth</span>,viewport=0 0 580 480]{flower}
+<span class="flkf">\end</span>{<span class="flfnf">center</span>}
+<span class="flkf">\caption</span>{(inside caption)}
+<span class="flkf">\end</span>{<span class="flfnf">figure</span>}
+<span class="flkf">\clearpage</span>
+</pre>
+
+
+<p>
+<a href="fig2_1.png">Two figures</a>
+<br /><br />
+So instead, place both images in a single figure.  That removes the
+space.  But what if I want to make the images bigger?  Then the figure
+might split into two pages.  But when I increase the height, one image
+just gets clipped at the bottom of the page.  You need to include the
+subfig package and use <span class="bold">\ContinuedFloat</span>.
+Add this to a figure and it will be considered part of the last figure.
+Also notice I created some blank captions.  This will ensure the
+figure gets numbered.
+</p>
+
+<pre class="code"><span class="flkf">
+\begin</span>{<span class="flfnf">figure</span>}[htb]
+<span class="flkf">\begin</span>{<span class="flfnf">center</span>}
+<span class="flkf">\includegraphics</span>[totalheight=.7<span
+class="flkf">\textheight</span>,
+width=.7<span class="flkf">\textwidth</span>,viewport=0 0 580 480]{flower}
+<span class="flkf">\caption</span>[]{}
+<span class="flkf">\end</span>{<span class="flfnf">center</span>}
+<span class="flkf">\end</span>{<span class="flfnf">figure</span>}
+
+<span class="flkf">\begin</span>{<span class="flfnf">figure</span>}[htb]
+<span class="flkf">\ContinuedFloat</span>
+<span class="flkf">\begin</span>{<span class="flfnf">center</span>}
+<span class="flkf">\includegraphics</span>[totalheight=.7<span
+class="flkf">\textheight</span>,
+width=.7<span class="flkf">\textwidth</span>,viewport=0 0 580 480]{flower}
+<span class="flkf">\end</span>{<span class="flfnf">center</span>}
+<span class="flkf">\caption</span>[]{}
+<span class="flkf">\end</span>{<span class="flfnf">figure</span>}
+<span class="flkf">\clearpage</span>
+</pre>
+
+<p>
+<a href="fig2_2.png">One figure, two images</a><br />
+<a href="fig2_3.png">One figure, two large images</a><br />
+<a href="fig2_4a.png">Two figures numbered as one (A)</a><br />
+<a href="fig2_4b.png">Two figures numbered as one (B)</a>
+</p>
+
+<hr />
+<p>
+The default latex install doesn't come with the subfig package.  Here
+are the steps I took in gentoo to install it.  I had to first install the latest
+caption package before subfig would build.  Your experience may be
+different.  You can also put the sty files in the directory with your
+latex file, but you'll need to do a system-wide install if you want to
+be use the packages from anywhere.
+</p>
+
+<p>
+First, make sure you have <a
+href="http://www.gnu.org/software/a2ps/">a2ps</a>.  If not, <span
+class="bold">emerge a2ps</span>.  Unzip the <a href="http://www.ctan.org/tex-archive/macros/latex/contrib/caption/">caption</a>
+package and follow the directions <a
+href="http://www.tex.ac.uk/cgi-bin/texfaq2html?label=instpackages">here</a>
+to build.  Copy caption.sty, caption2.sty, and caption3.sty to
+/usr/share/texmf/tex/latex/caption.  You might want to backup any
+caption files allready in there.  Run texhash.
+</p>
+
+<p>
+Unzip the <a href="http://www.ctan.org/tex-archive/macros/latex/contrib/subfig/">subfig</a>
+package and type <span class="bold">make</span>.  Make a subfig
+directory in /usr/share/texmf/tex/latex/.  Copy subfig.sty there.  And
+run texhash again.  That should be it.
+</p>
+
+<hr />
+<h3>Resources</h3>
+<p>
+<a href="fig1.tex">fig1.tex</a><br />
+<a href="fig2.tex">fig2.tex</a><br />
+<a href="fig3.tex">fig3.tex</a><br />
+<a href="fig1.pdf">fig1.pdf</a><br />
+<a href="fig2.pdf">fig2.pdf</a><br />
+<a href="fig3.pdf">fig3.pdf</a><br />
+</p>
+
+</td></tr>
+</table>
+<p><br /><a href="../../index.html">home</a></p>
+
+</body>
+
+</html>

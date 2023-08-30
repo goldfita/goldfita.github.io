@@ -1,0 +1,102 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!--Converted with LaTeX2HTML 2K.1beta (1.61)
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta name="generator" content=
+"HTML Tidy for Windows (vers 12 April 2005), see www.w3.org" />
+<title>Some Implementation Details</title>
+<meta name="description" content="Some Implementation Details" />
+<meta name="keywords" content="research" />
+<meta name="resource-type" content="document" />
+<meta name="distribution" content="global" />
+<meta http-equiv="Content-Type" content=
+"text/html; charset=us-ascii" />
+<meta name="Generator" content="LaTeX2HTML v2K.1beta" />
+<meta http-equiv="Content-Style-Type" content="text/css" />
+<link rel="STYLESHEET" href="research.css" type="text/css" />
+<link rel="previous" href="node12.html" />
+<link rel="up" href="node11.html" />
+<link rel="next" href="node14.html" />
+</head>
+<body>
+<!--Navigation Panel-->
+<a name="tex2html195" href="node14.html" id=
+"tex2html195"><img width="37" height="24" align="bottom" border="0"
+alt="next" src="next.gif" /></a> <a name="tex2html191" href=
+"node11.html" id="tex2html191"><img width="26" height="24" align=
+"bottom" border="0" alt="up" src="up.gif" /></a> <a name=
+"tex2html187" href="node12.html" id="tex2html187"><img width="63"
+height="24" align="bottom" border="0" alt="previous" src=
+"prev.gif" /></a> <a name="tex2html193" href="node1.html" id=
+"tex2html193"><img width="65" height="24" align="bottom" border="0"
+alt="contents" src="contents.gif" /></a><br />
+<b>Next:</b> <a name="tex2html196" href="node14.html" id=
+"tex2html196">Bibliography</a> <b>Up:</b> <a name="tex2html192"
+href="node11.html" id="tex2html192">Combining the Beamformer
+with</a> <b>Previous:</b> <a name="tex2html188" href="node12.html"
+id="tex2html188">Final Results</a> &nbsp; <b><a name="tex2html194"
+href="node1.html" id="tex2html194">Contents</a></b><br />
+<br />
+<!--End of Navigation Panel-->
+<h2><a name="SECTION00052000000000000000" id=
+"SECTION00052000000000000000">Some Implementation Details</a></h2>
+The processor I'm using is a TMS320C6711 DSP. It runs at 150mhz and
+has 4k L1 cache for code and 4k L2 cache for data. The L2 cache is
+64k, and all other memory is external to the chip. The echo
+canceller has a filter of length 1024 (that's about 1/8 second) and
+it uses a projection order of 16.
+<p>To take advantage of the blocking algorithm, matrix
+multiplication is implemented using Fast Fourier Transforms (FFT).
+The optimized FFT routine executes a length 512 FFT in
+approximately 7200 cycles. I am using a property of the FFT to do
+two real valued FFTs in one FFT operation (with some overhead). The
+number of FFTs per block is <img width="69" height="29" align=
+"middle" border="0" src="img42.gif" alt="$1+6.5M$" /> where M is
+the number of microphones. The block size is length 256. So for a
+sample rate of 8khz, the total computation for the FFT code alone
+is approximately <!-- MATH
+ $8000/256*(1+6.5M)*7200$
+ -->
+<img width="207" height="31" align="middle" border="0" src=
+"img43.gif" alt="$8000/256*(1+6.5M)*7200$" /> or about 12 million
+cycles for 8 microphones. At first this seems pretty good. But
+after you consider the matrix inverse update code, the FFT
+overhead, and correcting the filter output, it turns out to be more
+than 5 or 6 times as much computation. And this doesn't even
+include beamforming.</p>
+<p>Ok, so it still runs in under 150 million cycles, right? Not
+quite. The memory requirements exceed the 64k on the processor. And
+even the L2 cache runs considerably slower than the L1 cache. At a
+minimum we need to try to keep memory in the L2 cache as much as
+possible. Unfortunately, the algorithm runs through more than 64k
+of memory 8000 times a second. So just using cache may not be very
+efficient. Another solution is to use memory overlays. This gives
+the programmer more control over where the memory is at all times.
+And this is what I'm currently working on.</p>
+<hr />
+<!--Navigation Panel-->
+<a name="tex2html195" href="node14.html" id=
+"tex2html195"><img width="37" height="24" align="bottom" border="0"
+alt="next" src="next.gif" /></a> <a name="tex2html191" href=
+"node11.html" id="tex2html191"><img width="26" height="24" align=
+"bottom" border="0" alt="up" src="up.gif" /></a> <a name=
+"tex2html187" href="node12.html" id="tex2html187"><img width="63"
+height="24" align="bottom" border="0" alt="previous" src=
+"prev.gif" /></a> <a name="tex2html193" href="node1.html" id=
+"tex2html193"><img width="65" height="24" align="bottom" border="0"
+alt="contents" src="contents.gif" /></a><br />
+<b>Next:</b> <a name="tex2html196" href="node14.html" id=
+"tex2html196">Bibliography</a> <b>Up:</b> <a name="tex2html192"
+href="node11.html" id="tex2html192">Combining the Beamformer
+with</a> <b>Previous:</b> <a name="tex2html188" href="node12.html"
+id="tex2html188">Final Results</a> &nbsp; <b><a name="tex2html194"
+href="node1.html" id="tex2html194">Contents</a></b> 
+<!--End of Navigation Panel-->
+<address>Todd A Goldfinger 2004-11-22</address>
+</body>
+</html>

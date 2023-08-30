@@ -1,0 +1,197 @@
+% Todd Goldfinger
+% resume.tex
+% ``latex2html resume.tex -no_navigation -info 0 -address 0''
+% ``latex resume.tex; dvips resume.dvi -o resume.ps''
+% ``pdflatex resume.tex''
+\documentclass[10.5pt]{article}
+\usepackage{fullpage,html}
+\textheight=9.0in
+\pagestyle{empty}
+\raggedbottom
+\raggedright
+\setlength{\tabcolsep}{0in}
+
+%http://64.233.167.104/search?q=cache:oQ9wgatmQrQJ:www.cs.man.ac.uk/software/latex2html/manual/Hnode4.html+latexhtml++%5Chtml&hl=en
+\latex{\def\addrhspace{\textwidth}}
+\latex{\def\addrspacetwo{.25}}
+\html{\renewenvironment{itemize}{}{}}
+\html{\renewcommand{item}{\\}}
+\html{\def\addrhspace{\textwidth}}
+\html{\def\addrspacetwo{.5}}
+\latexhtml{\def\fixvspaceA{}}{\def\fixvspaceA{\\\\\\\\\\\\\\\\\\}}
+\latexhtml{\def\fixvspaceB{}}{\def\fixvspaceB{\\\\\\\\}}
+\latexhtml{\def\fixvspaceC{}}{\def\fixvspaceC{\\\\}}
+\latexhtml{\def\fixvspaceD{}}{\def\fixvspaceD{\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\}}
+
+\begin{document}
+
+\begin{center}
+\large{\textbf{Todd A. Goldfinger}}\\
+812-251-6644\\
+\htmladdnormallink{goldfita@signalsguru.net}{mailto:goldfita@signalsguru.net}
+\end{center}
+
+%\begin{tabular*}{\addrhspace}{l@{\extracolsep{\fill}}r}
+%\textbf{School:} & \textbf{Home:} \\
+%1130 1/2 N 8th Street & 9030 Shinleaf Ct. \\
+%Terre Haute, IN 47807 & Columbia, MD 21045 \\
+%(410) 730-3850 & (812) 478-1425 \\
+%\begin{minipage}[t]{.75\linewidth}
+%\textbf{School:}\\
+%1130 1/2 N 8th Street\\
+%Terre Haute, IN 47807 \\
+%(812) 478-1425 \\
+%\end{minipage} &
+%\begin{minipage}[t]{\addrspacetwo\linewidth}
+%\textbf{Home:}\\
+%9030 Shinleaf Ct.\\
+%Columbia, MD 21045 \\
+%(410) 730-3850 \\
+%\end{minipage}\\
+%\end{tabular*}
+
+
+%\vspace{0.2in}
+%\textbf{Objective:\ \ } A challenging position using signal processing and
+%communication theory. \\
+%\vspace{0.3in}
+
+\begin{tabular*}{\textwidth}[t]{ll}
+
+\begin{minipage}[t]{.15\linewidth}
+\textbf{Education:}\fixvspaceA
+\end{minipage} &
+
+\begin{minipage}[t]{.9\linewidth}
+	\begin{itemize}
+	\item 
+	\begin{tabular*}{.9\linewidth}{l@{\extracolsep{\fill}}r}
+		\textbf{Rose-Hulman Institute of Technology} & Terre Haute, IN \\
+		M.S. Electrical Engineering (GPA: \textbf{3.72}/4.0), January 2006 & \\
+	\end{tabular*}
+
+	\item 
+	\begin{tabular*}{.9\linewidth}{l@{\extracolsep{\fill}}r}
+		\textbf{Rose-Hulman Institute of Technology} & Terre Haute, IN \\
+		B.S. Computer Science (GPA: \textbf{3.65}/4.0), February 2003 & \\
+		Minor in Japanese Language\\
+	\end{tabular*}
+	\end{itemize}
+\end{minipage}\\
+
+&\\
+\begin{minipage}[t]{.15\linewidth}
+\textbf{Skills:}\fixvspaceB
+\end{minipage} &
+
+\begin{minipage}[t]{.9\linewidth}
+	\begin{itemize}\addtolength{\itemsep}{-0.5\baselineskip}
+	\item Matlab, Maple, Python, C/C++, Scheme, Assembly, SQL, Basic
+	\item Java, Servlets, JSP, XHTML, XML, \LaTeX, TCP/IP, Threading 
+ 	\item TMS320C67x, Beamforming, TDOA, Echo Cancellation, DTD, Intel IPP
+	\item Simulation, Algorithms, Real-Time, Fixed Point, Electronics
+	\item Solaris, Linux, Windows, MS Word, Visual Studio, Excel, Asterisk, OrCAD
+	\end{itemize}
+\end{minipage}\\
+
+&\\
+\begin{minipage}[t]{.15\linewidth}
+\textbf{Classes:} \fixvspaceC
+\end{minipage} &
+
+\begin{minipage}[t]{.9\linewidth}
+	\begin{itemize}\addtolength{\itemsep}{-0.5\baselineskip}
+	\item Electronic Music Synthesis, DSP, DSP Projects, Numerical
+Analysis
+	\item Linear Algebra, Probability, Modeling, Fourier Optics, Microcomputers
+	\item Image Processing, DSP System Design, Error Correcting Codes
+	\end{itemize}
+\end{minipage}\\
+
+&\\
+\begin{minipage}[t]{.15\linewidth}
+\textbf{Experience:}\fixvspaceD
+\end{minipage} &
+
+\begin{minipage}[t]{.9\linewidth}
+	\begin{itemize}
+	\item
+	\begin{tabular*}{.9\linewidth}{l@{\extracolsep{\fill}}r}
+		\textbf{Signalscape} & Cary, NC \\
+		\emph{Software Engineer} (6/2006-current)  &\\
+	\end{tabular*}
+	\begin{itemize}\addtolength{\itemsep}{-0.5\baselineskip}
+	\item deblocking research and work with MPEG4 and JPEG standards
+	\end{itemize}
+	\end{itemize}
+
+	\begin{itemize}
+	\item
+	\begin{tabular*}{.9\linewidth}{l@{\extracolsep{\fill}}r}
+		\textbf{Infraware} & Terre Haute, IN \\
+		\emph{Programmer} (9/2004-1/2006)  &\\
+	\end{tabular*}
+	\begin{itemize}\addtolength{\itemsep}{-0.5\baselineskip}
+	\item designed menu framework, AGI server in Python/Jython for
+Asterisk PBX
+	\item custom applications in Octave and Snd
+	\end{itemize}
+	\end{itemize}
+
+	\begin{itemize}
+	\item
+	\begin{tabular*}{.9\linewidth}{l@{\extracolsep{\fill}}r}
+		\textbf{MusicRebellion} & Terre Haute, IN \\
+		\emph{Software Developer} (6/2001-5/2002)  &\\
+	\end{tabular*}
+	\begin{itemize}\addtolength{\itemsep}{-0.5\baselineskip}
+	\item designed and built e-commerce web system in Java as part
+of a team
+	\item set up and maintained email and ftp servers in linux
+	\end{itemize}
+	\end{itemize}
+
+	\begin{itemize}
+	\item
+	\begin{tabular*}{.9\linewidth}{l@{\extracolsep{\fill}}r}
+		\textbf{Johns Hopkins Applied Physics Laboratory} & Laurel, MD \\
+		\emph{Summer student and intern} (9/1998-8/1999, 6/2000-8/2000) &\\
+	\end{tabular*}
+	\begin{itemize}\addtolength{\itemsep}{-0.5\baselineskip}
+	\item implemented SMO for training of SVMs in Java
+	\item meta-search engine in Java
+	\item numerical experiments in C for bioinformatics research
+	\end{itemize}
+	\end{itemize}
+
+	
+	\begin{itemize}
+	\item
+	\begin{tabular*}{.9\linewidth}{l@{\extracolsep{\fill}}r}
+		\textbf{Study Abroad} (6/2002-7/2002) & Kanazawa, Japan
+	\end{tabular*}
+	\begin{itemize}\addtolength{\itemsep}{-0.5\baselineskip}
+	\item intensive program in Japanese for science and technology 
+	\end{itemize}
+	\end{itemize}
+\end{minipage}\\
+
+&\\
+\begin{minipage}[t]{.15\linewidth}
+\textbf{Extracurricular:}\fixvspaceC
+\end{minipage} &
+
+\begin{minipage}[t]{.9\linewidth}
+	\begin{itemize}\addtolength{\itemsep}{-0.5\baselineskip}
+	\item Track - 3 years, Cross Country - 6 years (Team Captain in 1998)
+	\item Outdoor Venturing Club
+	\end{itemize}
+\end{minipage}\\
+
+
+%&\\
+%&	References available upon request.\\
+
+\end{tabular*}
+
+\end{document}

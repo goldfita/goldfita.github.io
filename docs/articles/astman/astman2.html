@@ -1,0 +1,167 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+<head>
+<title>A Web Interface to the AMI</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<link rel="stylesheet" type="text/css" href="../../index.css" />
+<meta name="description" content=
+"This is a guide to building a web site from scratch that monitors a
+server.  It's full of my opinions on design.                    " />
+<!-- ....10........20........30........40........50........60........70........80 -->
+</head>
+
+<body>
+<table>
+<tr><td class="article">
+
+<h4 class="nounderline">The Protocol</h4>
+
+<p>
+The AMI server and client communicate via packets which are made up of
+single line commands.  Every command is made up of a key/value pair as
+below.
+</p>
+
+<p>
+Action: Ping\r\n
+</p>
+
+<p>
+Every line is terminated by carriage return and line feed.  In the
+case of the ping command, the command is the packet except for the
+terminating new line.  An example of a complete packet with four
+commands is below.
+</p>
+
+<pre>
+Action: Login\r\n
+Username: todd\r\n
+Secret: todd\r\n
+Event: off\r\n
+\r\n
+</pre>
+
+<p>
+The first three commands are mandatory and will get you logged in
+assuming the manager.conf file is setup correctly.  The event command
+tells Asterisk not to send back event responses when off is specified
+(although I could not get it to work with login).  The final '\r\n'
+terminates the packet.  You can also turn off events using an event
+command.  (However, once it's off, on doesn't seem to work.)
+</p>
+
+<pre>
+Action: Events\r\n
+Eventmask: off\r\n
+\r\n
+</pre>
+
+<p>
+Once a packet is sent, the response can come back at any time and I
+belive it can also come back in any order.  As an experiment, I pasted
+the following into a telnet session.
+</p>
+
+<pre>
+telnet localhost 5038
+
+Action: Ping
+ActionID: A
+
+Action: Ping
+ActionID: B
+
+Action: Ping
+ActionID: C
+</pre>
+
+<p>
+This is three packets, each consisting of two commands, sent all at
+once.  The ActionID key tells Asterisk that you want it to send back
+the value that follows (the id) as a tag for the command.  That way,
+you know which responses are associated with the commands that were
+sent.  In this case, I got back the following.  The responses are in
+order, but I don't believe this is guaranteed.  I could take a look at
+the source code and see if the responses would, in fact, come back in the
+same order.  However, that doesn't mean the implementation won't
+change in the future.  So I will assume the most general case: packets
+can come back in any order.
+</p>
+
+<pre>
+Response: Pong
+ActionID: A
+
+Response: Pong
+ActionID: B
+
+Response: Pong
+ActionID: C
+</pre>
+
+<p>
+Some commands are not truly complete after only one packet is sent.
+In the following scenario, I send a packet to monitor a channel.  A
+response is sent back that says the channel is being monitored -- a
+file is being recorded.  Then I send a ping command.  Last I request
+that the channel stop being monitored.  Some commands will send back a
+list of packets, all with the same id.    Events will be sent from
+Asterisk periodically without any commands from the client at all.  As I
+mentioned, these can be disabled.
+</p>
+
+<pre>
+ACTION: Monitor
+Channel: SIP/555-bfcc
+File: channelsavefile
+Mix: 1
+
+Response: Success
+Message: Started monitoring channel
+
+Action: Ping
+
+Response: Pong
+
+Action: StopMonitor
+Channel: SIP/555-bfcc
+
+Response: Success
+Message: Stopped monitoring channel
+</pre>
+
+<p>
+Writing a client for this protocol is a bit tricky.  It must satisfy
+the following requirements.
+</p>
+
+<ul>
+<li>detect start/end of packets</li>
+<li>handle concurrency</li>
+<li>handle out-of-order responses</li>
+<li>allow for association of commands and responses</li>
+<li>handle unexpected responses</li>
+</ul>
+
+<p>
+Because I would like to make the interface web accessible, the interface should
+not take too long to timeout, or worse, hang permanently, when
+something goes wrong.  Given these constraints, I decided to have two
+threads.  One thread will be responsible for reading responses into
+a buffer.  The other thread will write commands and read completed
+and processed responses from the input buffer.  This is much more
+difficult to code than a single-threaded, blocking design, but it
+allows me to separate reading and parsing of data from the interface.
+More importantly, it lets me guarantee that the interface thread will
+never hang, even if the reader thread does.
+</p>
+
+<p><a href="astman.html">prev</a> <a href="astman3.html">next</a></p>
+
+</td></tr>
+</table>
+<p><br /><a href="../../index.html">home</a></p>
+
+</body>
+</html>

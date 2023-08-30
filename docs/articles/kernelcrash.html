@@ -1,0 +1,267 @@
+ <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+<head>
+<title>To Catch a Kernel Crash</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<link rel="stylesheet" type="text/css" href="../index.css" />
+<meta name="description" content="
+This is about my experience with trying to stabalize a linux machine that would 
+hang frequently.  It will mostly be about the lkcd utility." />
+<!-- ....10........20........30........40........50........60........70........80 -->
+</head>
+
+<body>
+<table>
+<tr><td class="article">
+<h1 class="topofpage">To Catch a Kernel Crash</h1>
+<p>
+It took me several weeks from the time I assembled my computer from parts, to the point at which I had a
+fully operational machine with internet connection.  A large part of the problem was that the machine was
+locking up badly multiple times a day.  I eventually found and corrected two problems.  The first was a
+bug in the scsi raid module, aic7xxx.  I had to upgrade to kernel 2.6.16-rc2 from 2.6.15.1 to fix the 
+problem.  The second problem was ndiswrapper (or the driver I installed with it).  I eventually replaced
+the ethernet hardware, and all my problems went away.
+</p>
+
+<h3>Getting Debug Output</h3>
+<p>
+The nasty thing about a driver that controls your hard disk is that it
+can really mess-up your disks.  After 
+my machine would go down, I could often hear the raid drives being rebuilt for 5 or 10 minutes after reboot.  
+A few times I had to start from the livecd and manually tell the drives to rebuild. 
+</p>
+
+<p>
+So, how did I diagnose the problem?  The first thing I did was compile some debug modules into the kernel.  
+The modules I have are:
+</p>
+<pre>
+--&gt; Kernel Hacking
+    --&gt; Kernel Debugging
+    --&gt; Detect Soft Lockups
+    --&gt; Mutex Debugging Deadlock Detection
+    --&gt; Check for Stack Overflows
+</pre>
+<p>
+Also, enable logging.  Log files are written to /var/log/xxx where xxx may be any log file or directory 
+of log files.  My logger was not enabled by default.  Make sure you configure it to print kernel output.  And 
+add it to the default runlevel.  In Gentoo you can do this with <span
+class="bold">rc-update</span>.  Turn up kernel output as high as you can with <span class="bold">dmesg -n8</span>.
+You will need to do this again after reboot.  I didn't know about this at the time.  But I suggest you 
+experiment.  Try just typing <span class="bold">dmesg</span>.
+</p>
+
+<p>
+I was lucky enough to get some output before the machine locked up for good.  Unfortunately, I had no way of 
+saving the output -- it was just dumped to the console.  And furthermore, much of it scrolled off the screen.  
+I ended up taking some low quality pictures of the screen.  This was enough.  I posted a bug to <a href="http://bugzilla.kernel.org/">
+bugzilla.kernel.org</a>.  I was told to try kernel 2.6.16-rc2.  So far this has been working for me.  Unfortunately, 
+one of the irritating things about having a release kernel is that you can no longer compile some drivers.  For example, I need 
+the fglrx module for my video card.  (I'm not sure if this is compiled or in binary form.)  It won't work with the kernel I have now.
+But having a working raid disk is more important to me.
+</p>
+
+<p>
+I later learned how to capture the output that's dumped to the console.  It has come in handy for a few 
+different problems.  You will need a second computer, a null modem cable (just a few dollars), and serial 
+port access.  Add serial support for console output over the serial port:
+</p>
+<pre>
+--&gt; Device Drivers
+    --&gt; Character Devices
+        --&gt; Serial Drivers
+            --&gt; Console on 8250/16550
+                and Compatible Serial Port
+</pre>
+<p>
+Add the correct tty parameters to your boot configuration.  My grub configuration looks like
+<span class="bold">kernel /boot/kernel-2.6.15.1 root=/dev/md2 hda=scsi nmi_watchdog=2 console=ttyS0,57600 
+console=tty0</span>.  I'll talk about nmi_watchdog later.  The first console parameter says to output at 
+57600 bps over the serial port, ttyS0.  The other one (tty0), says to output to the standard console.  (You can also 
+view tty1 through tty5 by typing <span class="bold">Ctrl+Alt+Fx</span> where x can be 1 - 6.  These are known as 
+virtual consoles.)  After you reboot, you should be able to type <span class="bold">echo hi &gt; /dev/ttyS0</span> 
+and see the output on the other computer.  In order to read the data over the cable, make sure the cable is connected to 
+both serial ports.  I'm using hyperterminal in windows on the other machine.  Run it, select com1, and make sure to set 
+the bit rate to 57600 (or whatever you used).  You should see 'hi'.  The connection should continue to work 
+even after you reboot the linux machine.  Now, any kernel output should be displayed both on your screen and in 
+hyperterminal.
+</p>
+
+<hr />
+
+<h3>LKCD</h3>
+<p>
+I decided I needed to be more aggressive in my debugging attempts.  So, I installed the Linux Kernel Core Dump 
+utility.  I wrote my own live <a href="../freesoft/opensource.html">ebuild</a> for this since there was no way to emerge.  
+By the time you read this, a stable 8.0 version may be out.  But I had to use the 7.x.x development version.  It ended
+up working ok, but it took a lot of effort to set it up.
+</p>
+
+<p>
+You need a custom patch for your kernel that you may have to download separately from sourceforge.  Because I had 
+an rc kernel, someone made me a custom patch.  After applying the patch, you need to compile the lkcd modules.  I 
+used modules because compiling into the kernel wouldn't work for some reason.  Also compile in watchdog timer support.
+</p>
+<pre>
+--&gt; Kernel Hacking
+    --&gt; LKCD Crash Dump Support
+    --&gt; LKCD Crash DUMP Device Driver
+    --&gt; LKCD Crash Dump Gzip Compression
+
+--&gt; Device Drivers
+    --&gt; Character Devices
+        --&gt; Watchdog Cards
+            --&gt; Watchdog Timer Support
+</pre>
+<p>
+And you will need to add the nmi_watchdog parameter to the boot line
+as mentioned before.  Try assigning the value 1 first.  
+Then check the NMI line in /proc/interrupts.  If it's zero, try setting nmi_watchdog=2.  If it's still zero, you may not
+have NMI watchdog timer support.  If you used modules, make sure to include the modules dump_gzip, dump_blockdev, dump, 
+zlib_inflate, zlib_deflate in your autoload modules file (/etc/modules.autoload.d/kernel-2.6 on my machine).
+</p>
+
+<p>
+Next you need to configure dumputils.  Just use my /etc/<a href="http://www.signalsguru.net/articles/builtpc/dumputils.conf">dumputils.conf</a> unless you want to do something 
+fancy.  Create a link from /dev/vmdump to your swap partition (<span class="bold">ln -s /dev/sda2 /dev/vmdump</span>).  
+You can now configure and start lkcd -- <span class="bold">/etc/init.d/dumputils start</span>.  Then check that /sys/dump/polling is 1.  If it's 0,
+you don't have polling, which is bad.  The dumputils script 
+needs to be run at startup.  Unfortunately, you can't just add it to the startup scripts.  It has to be run before swapon so that the dump
+can be copied from the swap to /var/log/dump/x (x will be between 0 and 9).  Alternatively, you could have lkcd dump to a reserved 
+partition if you have one free.  Because my swapon is in the localmount startup script which is in the boot runlevel, I tried
+to add my script before localmount.  I had two problems.  The first is that the script was apparently not written in a way such that it could 
+be used as a start script (in Gentoo).  It was basically just a bash script with a case statement.  I changed it so that it used the standard 
+start/stop functions.  I also added a dependency.
+</p>
+<pre class="code">
+depend() {
+	before localmount
+}
+</pre>
+<p>
+This is supposed to ensure that if you add the script to the same runlevel as mount, it will run before mount.  But 
+for some reason it just wouldn't work.  The localmount script really wanted to run first.  But at least the script was running
+at startup now.  I finally just copied the relevant code over to my localmount script.  Insert the following before 
+swapon.
+</p>
+<pre class="code">
+CONFIGDUMP=/usr/sbin/configdump
+SAVEDUMP=/usr/sbin/savedump
+${CONFIGDUMP}
+${SAVEDUMP}
+</pre>
+<p>
+Now it was working.  In order to test it, check out buncho in the lkcd 
+<a href="http://cvs.sourceforge.net/viewcvs.py/lkcd/lkcd/buncho/">directory</a>.  After you build and install, type 
+<span class="bold">./do_insmod</span> to insert the modules.  Then type <span class="bold">dmesg -n8 &amp;&amp; ./bunchotest hello</span>.
+It should run the hello test.  Next try read_oops.  (I suggest you backup first.)  If lkcd is setup properly, it will dump a kernel
+image to your swap partition and reboot.  On reboot, it will copy the dump from swap to /var/log/dump/0/dump.0.  If lkcd was not
+working properly, the kernel will probably complain, but it shouldn't crash.  There are several other tests you can do with bunchotest.  
+All of them will attempt to crash or lockup your kernel (except for hello).
+</p>
+
+<p>
+That's the hardest part.  You have successfully acquired a dump.  Now you can analyze it by going to the dump directory and running 
+lcrash -n x, where x is the number of the directory.  First you should make sure you have the files dump.x (the kernel dump), map.x, 
+and kerntypes.x.  Run a diff on map.x and /usr/src/linux/System.map.  Also run a diff on kerntypes.x and /usr/src/linux/init/kerntypes.o.  
+If either is different, copy the one from the linux directory.  Otherwise, lcrash won't start.  You can type <span class="bold">?</span> for help.
+Also try <span class="bold">report</span> and <span class="bold">trace</span> for some immediate feedback on what crashed your kernel.
+</p>
+
+<p>
+This took me a a long time to get set up correctly.  However, I could probably do it in about 10 minutes now.  Unfortunately, it could not catch 
+the bug that was crashing my kernel*.  I didn't get a dump at all.  But I did find out that it was ndiswrapper that was causing the problems.  When I 
+bought the null modem cable, I also got a cheap ethernet card (on suspicion).  When I replaced the wireless usb device, the crashes stopped.  Whatever the 
+problem was, it must have been really nasty.  It is still unfortunate that I could not generate a dump of the problem however.
+</p>
+
+<hr />
+
+<h3>Patching a Kernel</h3>
+<p>
+I had to patch and reverse patch the kernel many times.  It's second nature now.  My first kernel was 2.6.12-gentoo-r6.  I moved to
+2.6.15.1 so I could install a device driver (which turned out to be the wrong one).  I later had to patch to 2.6.16-rc2 because of 
+the bug in aic7xxx.  There were numerous other patches, such as one that allows the kernel to have 16k stacks, one for lkcd, and one 
+for the firewire drive I bought (which still doesn't work).  There are a few things you need to know when patching.  You always have to patch
+from the previous version.  So,
+</p>
+<pre>
+patch -p1 &lt; patch-2.6.15
+</pre>
+<p>
+will get you from kernel 2.6.14 to 2.6.15.  To get to 2.6.16-rc2 (release candidate two), apply the patch to 2.6.15 (not 16).  If you needed to
+go from 2.6.15-rc1 to 2.6.15-rc2, look in the <a href="http://www.kernel.org/pub/linux/kernel/v2.6/testing/incr/">testing/incremental</a> directory for patch-2.6.16-rc1-rc2.  There are also incremental 
+kernel patches for stable release kernels.  Sometimes you will need to reverse patch.  For example, I needed to move from 2.6.15.1 to 2.6.15 so I 
+could patch to 2.6.16-rc2.  Use the <span class="bold">-R</span> option.  Here is an example of some of the patching/reverse patching I had to do.  (I'm 
+in 2.6.16-rc3 now.)
+</p>
+<pre>
+    2.6.15.1
+       --&gt; 16k patch
+       &lt;-- remove 16k patch (A)
+&lt;-- reverse 2.6.15.1 patch
+--&gt;patch 16k
+    --&gt; 2.6.16-rc2 patch
+        --&gt; 2.6.16-rc2-git6 patch (B)
+            --&gt; lkcd patch
+            &lt;-- reverse lkcd patch
+        &lt;-- reverse 2.6.16-rc2-git6 patch
+        --&gt; lkcd patch
+            --&gt; 2.6.16-rc2-rc3 patch
+</pre>
+
+<p>
+(A) I'm not sure if it's necessary to reverse the 16k patch since I'm going to apply it again anyway.  But I did it just to be sure 
+the following patches succeeded.  (B) I can't remember now if the git patch is applied to the rc2 kernel or another version.  The 
+git kernel is the latest kernel in the git repo.  I'm not even sure if it's guarantee to compile.  It turned out I didn't even need it.  
+</p>
+
+<p>
+<span class="bold">*</span>
+I've updated to ndiswrapper 1.10, which is supposed to be stable with smp.  So far it appears to be stable (at least with 
+debug output disabled).
+</p>
+
+<hr />
+<h4 class="nounderline">Update</h4>
+
+<p>
+In the past month or so I've had very little problem, but my machine
+has crashed a few times.  It crashed twice one day.  This time LKCD
+was able to catch the crash.  I <a href="http://ndiswrapper.sourceforge.net/forums/viewtopic.php?t=813">posted</a> about it, but there was no
+interest.  Since I'm the type of person who doesn't like to throw
+things away, especially useful information, I've decided to post it
+here in case it ever comes in handy.  It will also give you a preview
+of a real life crash report.  I have named the links the same as the lcrash
+command that generated the output.
+</p>
+
+<pre>
+DUMP INFORMATION:
+
+     architecture: i386
+       byte order: little
+     pointer size: 32
+   bytes per word: 4
+
+   kernel release: 2.6.16
+      memory size: 939524096 (0G 896M 0K 0Byte)
+   num phys pages: 229376
+   number of cpus: 2
+</pre>
+
+<p>
+<a href="lkcd/trace1.txt">trace</a>1<br />
+<a href="lkcd/report1.txt">report</a>1<br />
+<a href="lkcd/trace2.txt">trace</a>2<br />
+<a href="lkcd/report2.txt">report</a>2<br />
+</p>
+
+</td></tr>
+
+</table>
+<p><br /><a href="../index.html">home</a></p>
+
+</body>
+</html>

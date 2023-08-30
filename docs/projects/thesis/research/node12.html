@@ -1,0 +1,102 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!--Converted with LaTeX2HTML 2K.1beta (1.61)
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta name="generator" content=
+"HTML Tidy for Windows (vers 12 April 2005), see www.w3.org" />
+<title>Final Results</title>
+<meta name="description" content="Final Results" />
+<meta name="keywords" content="research" />
+<meta name="resource-type" content="document" />
+<meta name="distribution" content="global" />
+<meta http-equiv="Content-Type" content=
+"text/html; charset=us-ascii" />
+<meta name="Generator" content="LaTeX2HTML v2K.1beta" />
+<meta http-equiv="Content-Style-Type" content="text/css" />
+<link rel="STYLESHEET" href="research.css" type="text/css" />
+<link rel="next" href="node13.html" />
+<link rel="previous" href="node11.html" />
+<link rel="up" href="node11.html" />
+<link rel="next" href="node13.html" />
+</head>
+<body>
+<!--Navigation Panel-->
+<a name="tex2html185" href="node13.html" id=
+"tex2html185"><img width="37" height="24" align="bottom" border="0"
+alt="next" src="next.gif" /></a> <a name="tex2html181" href=
+"node11.html" id="tex2html181"><img width="26" height="24" align=
+"bottom" border="0" alt="up" src="up.gif" /></a> <a name=
+"tex2html175" href="node11.html" id="tex2html175"><img width="63"
+height="24" align="bottom" border="0" alt="previous" src=
+"prev.gif" /></a> <a name="tex2html183" href="node1.html" id=
+"tex2html183"><img width="65" height="24" align="bottom" border="0"
+alt="contents" src="contents.gif" /></a><br />
+<b>Next:</b> <a name="tex2html186" href="node13.html" id=
+"tex2html186">Some Implementation Details</a> <b>Up:</b> <a name=
+"tex2html182" href="node11.html" id="tex2html182">Combining the
+Beamformer with</a> <b>Previous:</b> <a name="tex2html176" href=
+"node11.html" id="tex2html176">Combining the Beamformer with</a>
+&nbsp; <b><a name="tex2html184" href="node1.html" id=
+"tex2html184">Contents</a></b><br />
+<br />
+<!--End of Navigation Panel-->
+<h2><a name="SECTION00051000000000000000" id=
+"SECTION00051000000000000000">Final Results</a></h2>
+Now that we've seen two ways of improving the quality of our
+signal, it's time to combine them. There are two ways to do this.
+The more efficient way is place a single echo canceller after the
+microphone array. The problem with this method is the beamformer is
+now a part of the room echo response. And because the beamformer
+can change its look direction rapidly, the echo canceller will not
+be able to track the response fast enough [<a href=
+"node14.html#BW">BW</a>]. This means the echo canceller will not
+work when the talker moves.
+<p>The other method is to place an echo canceller on each
+microphone. This makes the amount of computation depend on the
+number of microphones. There are some things we can do to decrease
+the workload. One is to use a block exact algorithm. Also, some of
+the work (inverting the correlation matrix) done by the FAP
+algorithm depends only on the reference signal. So, this
+computation is done only once. Beyond these few tricks, we'll just
+have to optimize our code and find a Digital Signal Proecessor
+(DSP) that can handle the work.</p>
+<p>Here is the <a name="tex2html5" href="sounds/sumout.wav" id=
+"tex2html5">output</a> of a 16 microphone simulation. Some of the
+noise can be removed from the <a name="tex2html6" href=
+"sounds/sumoutgaiting.wav" id="tex2html6">signal</a> using a
+thresholding technique. If you compare the second signal to the
+first one, you might notice it sounds like the talker has a hand
+over his mouth. This is because the delay-and-sum beamformer acts
+as a low pass filter. There are ways of dealing with this. By
+applying a Finite Impulse Response (FIR) approximation of an
+inverse filter, there is some improvement in the resultant <a name=
+"tex2html7" href="sounds/sumoutgaitingfilter.wav" id=
+"tex2html7">signal</a>. For this simulation the time delays were
+known ahead of time.</p>
+<hr />
+<!--Navigation Panel-->
+<a name="tex2html185" href="node13.html" id=
+"tex2html185"><img width="37" height="24" align="bottom" border="0"
+alt="next" src="next.gif" /></a> <a name="tex2html181" href=
+"node11.html" id="tex2html181"><img width="26" height="24" align=
+"bottom" border="0" alt="up" src="up.gif" /></a> <a name=
+"tex2html175" href="node11.html" id="tex2html175"><img width="63"
+height="24" align="bottom" border="0" alt="previous" src=
+"prev.gif" /></a> <a name="tex2html183" href="node1.html" id=
+"tex2html183"><img width="65" height="24" align="bottom" border="0"
+alt="contents" src="contents.gif" /></a><br />
+<b>Next:</b> <a name="tex2html186" href="node13.html" id=
+"tex2html186">Some Implementation Details</a> <b>Up:</b> <a name=
+"tex2html182" href="node11.html" id="tex2html182">Combining the
+Beamformer with</a> <b>Previous:</b> <a name="tex2html176" href=
+"node11.html" id="tex2html176">Combining the Beamformer with</a>
+&nbsp; <b><a name="tex2html184" href="node1.html" id=
+"tex2html184">Contents</a></b> <!--End of Navigation Panel-->
+<address>Todd A Goldfinger 2004-11-22</address>
+</body>
+</html>

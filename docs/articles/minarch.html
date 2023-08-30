@@ -1,0 +1,160 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+<head>
+<title>Minimal Architecture</title>
+<link rel="stylesheet" type="text/css" href="../index.css" />
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+
+<meta name="description" content=
+"Some ideas on designing software based on what I've learned from the open source
+model.                                                                           "></meta>
+<!-- ....10........20........30........40........50........60........70........80 -->
+</head>
+
+<body>
+
+<table>
+<tr><td class="article">
+<h1 class="topofpage">Minimal Architecture</h1>
+<p>
+Can you remember the last time you needed to do something with your
+software, but the feature wasn't available?  Or there was a work
+around, but it required far more work than it should have.  Why does
+it have all these advanced features that look effortless in the
+tutorial, but the one simple thing you need to do requires 75 steps,
+talking to four experts, and ends up looking like incomprehensible
+garbage.
+</p>
+
+<p>
+And the reason is too many features.  That's right, too many.
+Software should be designed with the <a
+href="http://xp.c2.com/YouArentGonnaNeedIt.html">least possible number
+of features</a> in mind.  The architect should focus his time on
+extensibility, usebility, and robustness.  Spending enormous amounts
+of time implementing every little feature that may or may not be used
+is not a good use of time.  The focus should be on the framework and
+how it can allow others to build onto it.
+</p>
+
+<p>
+Consider two different projects.  Alex, the designer of project A,
+intends to cram all his ideas into a one-time finished product with
+which to supply the end user.  The next major release, if there is
+one, won't come for a long time.  So he needs to spend lots of time
+designing and implementing every feature he believes will be useful.
+Project B, by Bob, will have only the bare bones functionality that
+make it just useful enough that someone might want to try it.
+</p>
+
+<p>
+The major benefit of A is its immediate usefulness.  Right from the
+start it's a fully functional product (or so it seems).  But consider
+how long it took to get to this point and that during that time it was
+being used by no one.  And what happens when someone needs a feature
+that it doesn't have?  After all that work, it turns out it's not
+complete.  Alex, or whoever is maintaing the project, needs to go back
+and figure out how to work the new feature into the original design.
+But since it wasn't designed with the intent of letting others build
+onto it, it may be difficult to implement the new features without
+major changes, even by Alex himself.  Nevermind the fact that Alex
+thought he was done.  You'll just have to wait two years for the new
+features.
+</p>
+
+<p>
+Bob's project suffers where Alex's shined.  It doesn't do much.  But
+that's ok because Bob can always add some more features to make it at
+least usable by someone.  So what happens when Bob starts getting
+emails asking him how to do x, y, and z?  "Well," he replies, "Sorry,
+I just didn't have time for that.  But you can do it yourself using
+the config file.  Or if that doesn't work, try making a macro.  Still
+not good enough?  Use the built-in interpreter.  If all else fails,
+you can always write your own plug in module."  Do you see the
+advantage of this type of architecture?  If it's important enough,
+someone will do it himself.  Eventually, there will be enough
+additions that Bob's bare bones system will exceed the functionality
+of Alex's all in one system.
+</p>
+
+<p>
+The trouble is this.  A really talented programmer might be able to
+carefully think through a large project and all the features that
+should go into it.  But no matter how bright he is, he just won't be
+able to think of every possible thing someone might want to use it
+for.  By trying to over design from the start, the project is
+immediately limited.  All the features he thought through from the
+beginning might work flawlessly.  But what he didn't consider is of
+far greater importance because there will be far more of it.  And even
+something simple may not integrate nicely into his code.
+</p>
+
+<p>
+So what happens is, even a less talented programmer can deliver a
+product that is ultimately superior if he lets the users determine the
+feature set and how they should be implemented.  And not only will it
+save him programming time, but the features will be better than what
+he might have done.  The user knows what he needs and is more
+motivated to get it working.  The software will become exponentially
+more useful as more users begin to make contributions; whereas, with
+the previous design, users simply can't make contributions.  It would
+require directly modifying the framework of the software.  Although
+this might be possible, it would be a bottleneck, in that only a small
+number of people could make changes at the same time.  And it may
+require significant structural changes to make it do what something
+new.
+</p>
+
+<p>
+Now it seems for a number of reasons that Bob's project works better
+with the open source model.  But that doesn't have to be true.  Either
+project could be closed or open.  Usually closed, commercial projects
+don't allow users to make contributions.  But it's easily possible to
+allow for contributions even without letting the users add directly
+onto the software's foundation.  What Alex definitely shouldn't do is
+only allow the program to be modified by a small config file with a
+few parameters, or even worse, force the user to go through a GUI.
+Compare this to Bob's reply.
+</p>
+
+<p>
+It is unfortunate that most commercial enterprises either don't have
+the money (or don't wish to spend it) on building a truly useful,
+framework or all-encompassing software package.  Sometimes it's just
+impractical.  That's one reason a lot of good software comes out of
+academia or open source.  These projects are long running, often
+without any predetermined scope, and can just become better over time.
+Commercial interests determine a project's size from the beginning.
+And it has to be something that's going to earn back more than what it
+cost to build it.  And this will tend to make the commercial products
+look like what Alex built instead of Bob.  For example, the text
+editor in an IDE may have only some basic methods of customization
+because it's just not worth the time and money to do more with it.
+But, one developed as a hobby could be infinitely more useful if the
+author chooses to spend time on it.  Once again, open source seems to
+have the advantage here.  The programmers aren't constrained by time
+and money.  They are free to whatever they choose, no matter how
+impractical.  That is, impractical in the short term, but possibly
+very practical in the long term.
+</p>
+
+<p>
+Now, Bob is basking in glory as his users extend his software to do
+things he never imagined possible, while Alex is slaving away
+implementing features he never thought anyone would want.  But to be
+fair, there are situations where Alex's model is more appropriate.  If
+there are a very small number of non-technical users, who will never
+make their own modifications, it might make more sense to include all
+the features from the start.  And hopefully there won't be many to add
+later.  Generally, if it just needs to be easy to use and work out of
+the box, this model is probably better so long as the user
+understands what he's giving up.
+</p>
+</td></tr>
+</table>
+
+<p><a href="index.html">home</a></p>
+
+</body>
+</html>

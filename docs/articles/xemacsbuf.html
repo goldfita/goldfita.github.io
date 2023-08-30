@@ -1,0 +1,257 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+<head>
+<style type="text/css">
+span.red {color:#ff0000}
+span.highlight {background-color:cyan}
+pre {background-color:#66CC66}
+</style>
+
+<title>Maneuvering the Xemacs Buffer</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<link rel="stylesheet" type="text/css" href="../index.css" />
+<meta name="description" content=
+"A litte introduction on how to quickly move around in Xemacs buffer
+space.                                                       " />
+<!-- ....10........20........30........40........50........60........70........80 -->
+</head>
+
+<body>
+<table>
+<tr><td class="article">
+<h1 class="topofpage">Maneuvering the Xemacs Buffer</h1>
+
+<p>
+You are sitting in your cubicle admiring the perfect weather outside,
+waiting for your boss to bring in the new client.  Everything is going
+just swell.  Then it happens.  A glitch occurs in the space-time
+continuum.  The vortex rips through your masterful work and the work
+of an infinite number of quantum copies of you in parallel universes.
+Bits of code are scattered through the infinite universes.
+Your binary is wrecked beyond repair.  The code is intermixed with
+the less sophisticated work of your Dopplegangers in parallel worlds.
+</p>
+
+<p>
+Your boss had told you if anything goes wrong with the demo, she'll wave her magic
+wand and turn you into a frog and revoke the health insurance clause
+from your contract.  A frog?  How are you going to get home?
+Nevermind that.  What are you going to tell your wife about the
+the family health insurance plan?  You know how she gets.
+</p>
+
+<p>
+You can hear footsteps and chatter in the hall.  Oh my God, they're
+here!  It's over.  You can feel the sheer panic tearing through your
+body.  What are you going to do?  Calm down.  You've been training for this
+your whole life.  You are an Xemacs wizard.  A few brief keystrokes
+and you can repair the entire source in just seconds.
+</p>
+
+<p>
+First you note that you cannot use the mouse.  You're ssh'd into a
+remote machine through the console.  It's going to have to be done
+using only command keys.  You quickly scan your eyes over the buffer
+and observe the damage.  Then you lay out a plan of attack to maneuver
+the buffer and fix the text.  Your cursor is located at the red
+brace.  The highlighted text needs to be repaired.  (Also, note the
+missing text in main, which, unfortunately, does not appear
+highlighted in my browser.)
+</p>
+
+
+<pre>
+#include &lt;stdio<span class="highlight">,</span>h&gt;
+
+char *helloworld(void);
+
+int main(void)
+<span class="red">{</span>
+    puts(helloworld())<span class="highlight">
+
+</span>
+char *helloworld(<span class="highlight">b</span>oid)
+{
+    return "hello world";
+}
+
+<span class="highlight">/*
+  Print 'hello world' to stdout.
+ */</span>
+</pre>
+
+<p>
+The following sequence of keystrokes will get you from the opening
+brace to just beyond the only statement in main.  It takes only a
+handful of keys to get there, repair the semicolon, return statement,
+and right brace.
+</p>
+
+
+<table>
+<tr><td>C-n</td><td>next line</td></tr>
+<tr><td>C-e</td><td>end of line</td></tr>
+<tr><td>;</td><td></td></tr>
+<tr><td>C-j</td><td>new line and indent</td></tr>
+<tr><td>return 0;</td><td></td></tr>
+<tr><td>&lt;RET&gt;</td><td>new line</td></tr>
+<tr><td>}</td><td></td></tr>
+</table>
+
+<pre>
+#include &lt;stdio<span class="highlight">,</span>h&gt;
+
+char *helloworld(void);
+
+int main(void)
+{
+    puts(helloworld());
+    return 0;
+}
+
+
+char *helloworld(<span class="highlight">b</span>oid)
+{
+    return "hello world";
+}
+
+<span class="highlight">/*
+  Print 'hello world' to stdout.
+ */
+</span>
+</pre>
+
+<p>
+Next, you need to change boid to void.  You have no idea what the
+programmer who typed boid was thinking, but it doesn't matter.  It
+takes only three keys to get there and three more to correct the
+problem.
+</p>
+
+<table>
+<tr><td>C-s b</td><td>search for b</td></tr>
+<tr><td>M-&lt;BS&gt;</td><td>delete word backwords</td></tr>
+<tr><td>v</td><td></td></tr>
+</table>
+
+<pre>
+#include &lt;stdio<span class="highlight">,</span>h&gt;
+
+char *helloworld(void);
+
+int main(void)
+{
+    puts(helloworld());
+    return 0;
+}
+
+
+char *helloworld(void)
+{
+    return "hello world";
+}
+
+<span class="highlight">/*
+  Print 'hello world' to stdout.
+ */
+</span>
+</pre>
+
+<p>
+The comment at the end needs to be moved to the top.  For now, you
+just need to move the text to the kill ring.  You can get there in
+three strokes.  Mark the start of the text.  Move to the end in two
+strokes.  And cut with just two more strokes.  It's just two remaining
+strokes to return to the start of the buffer.
+</p>
+
+<table>
+<tr><td>C-4 C-n</td><td>move down 4 lines</td></tr>
+<tr><td>C-&lt;SPC&gt;</td><td>set mark</td></tr>
+<tr><td>M-}</td><td>move to end of paragrah</td></tr>
+<tr><td>C-w</td><td>cut text from mark to point</td></tr>
+<tr><td>M-&lt;</td><td>goto start of buffer</td></tr>
+</table>
+
+<pre>
+#include &lt;stdio<span class="highlight">,</span>h&gt;
+
+char *helloworld(void);
+
+int main(void)
+{
+    puts(helloworld());
+    return 0;
+}
+
+
+char *helloworld(void)
+{
+    return "hello world";
+}
+
+/*
+  Print 'hello world' to stdout.
+ */
+</pre>
+
+<p>
+They're entering the room, but you're nearly done.  Move to the end of
+the line.  Backup to the semicolon which should be a period.  Just
+delete the last few characters; it will only take a fraction of a
+second to retype them.  Finally, move to the next line and yank the
+text back from the kill ring.  You're done.  But there's still a half
+second before the client meets you.  So you kill a few lines to remove
+superfluous whitespace.
+</p>
+
+<table>
+<tr><td>C-e</td><td>end of line</td></tr>
+<tr><td>&lt;BS&gt;&lt;BS&gt;&lt;BS&gt;</td><td>backspace three
+characters</td></tr>
+<tr><td>.h&gt;</td><td></td></tr>
+<tr><td>&lt;RET&gt;</td><td>new line</td></tr>
+<tr><td>C-y</td><td>yank text</td></tr>
+<tr><td>C-n</td><td>next line</td></tr>
+<tr><td>C-k</td><td>kill line</td></tr>
+<tr><td>C-k</td><td>kill line</td></tr>
+</table>
+
+<pre>
+#include &lt;stdio.h&gt;
+/*
+  Print 'hello world' to stdout.
+ */
+
+char *helloworld(void);
+
+int main(void)
+{
+    puts(helloworld());
+    return 0;
+}
+
+
+char *helloworld(void)
+{
+    return "hello world";
+}
+</pre>
+
+<p>
+Recompile.  Success!  You will not be a frog today.  I frequently use
+the arrow keys instead of C-p, C-n, C-b, C-f to move around in the
+buffer.  Our hero went the other route, but using arrow keys is OK if
+they're supported.  I also compile in a terminal window instead of
+Xemacs.  You can do this quickly by typing Alt-Tab and then the up
+key, followed by &lt;RET&gt;, assuming you just ran a compile.
+</p>
+
+</td></tr>
+</table>
+<p><br /><a href="../index.html">home</a></p>
+
+</body>
+
+</html>

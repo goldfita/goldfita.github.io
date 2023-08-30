@@ -1,0 +1,351 @@
+ndiswrapper (NdisReleaseSpinLock:809): Enter lock f3aa8b0c
+ndiswrapper (NdisReleaseSpinLock:811): Exit
+ndiswrapper (IoFreeIrp:225): Enter irp = ea805960
+ndiswrapper (IoFreeIrp:230): Exit
+ndiswrapper (ExFreePool:1052): addr: ea804ac0
+ndiswrapper (ExFreePool:1052): addr: ea804b40
+ndiswrapper (NdisAcquireSpinLock:801): Enter lock f3aa8b0c
+ndiswrapper (NdisAcquireSpinLock:803): Exit
+ndiswrapper (NdisReleaseSpinLock:809): Enter lock f3aa8b0c
+ndiswrapper (NdisReleaseSpinLock:811): Exit
+ndiswrapper (IoFreeIrp:225): Enter irp = ea805860
+ndiswrapper (IoFreeIrp:230): Exit
+ndiswrapper (ExFreePool:1052): addr: ea8049c0
+ndiswrapper (ExFreePool:1052): addr: ea804a40
+ndiswrapper (NdisAcquireSpinLock:801): Enter lock f3aa8b0c
+ndiswrapper (NdisAcquireSpinLock:803): Exit
+ndiswrapper (NdisReleaseSpinLock:809): Enter lock f3aa8b0c
+ndiswrapper (NdisReleaseSpinLock:811): Exit
+ndiswrapper (IoFreeIrp:225): Enter irp = ea805760
+ndiswrapper (IoFreeIrp:230): Exit
+ndiswrapper (ExFreePool:1052): addr: ea8048c0
+ndiswrapper (ExFreePool:1052): addr: ea804940
+ndiswrapper (NdisAcquireSpinLock:801): Enter lock f3aa8b0c
+ndiswrapper (NdisAcquireSpinLock:803): Exit
+ndiswrapper (NdisReleaseSpinLock:809): Enter lock f3aa8b0c
+ndiswrapper (NdisReleaseSpinLock:811): Exit
+ndiswrapper (IoFreeIrp:225): Enter irp = ea805660
+ndiswrapper (IoFreeIrp:230): Exit
+ndiswrapper (ExFreePool:1052): addr: ea8047c0
+ndiswrapper (ExFreePool:1052): addr: ea804840
+ndiswrapper (NdisAcquireSpinLock:801): Enter lock f3aa8b0c
+ndiswrapper (NdisAcquireSpinLock:803): Exit
+ndiswrapper (NdisReleaseSpinLock:809): Enter lock f3aa8b0c
+ndiswrapper (NdisReleaseSpinLock:811): Exit
+ndiswrapper (IoFreeIrp:225): Enter irp = ea805560
+ndiswrapper (IoFreeIrp:230): Exit
+ndiswrapper (ExFreePool:1052): addr: ea8046c0
+ndiswrapper (ExFreePool:1052): addr: ea804740
+ndiswrapper (NdisAcquireSpinLock:801): Enter lock f3aa8b0c
+ndiswrapper (NdisAcquireSpinLock:803): Exit
+ndiswrapper (NdisReleaseSpinLock:809): Enter lock f3aa8b0c
+ndiswrapper (NdisReleaseSpinLock:811): Exit
+ndiswrapper (IoFreeIrp:225): Enter irp = ea805460
+ndiswrapper (IoFreeIrp:230): Exit
+ndiswrapper (ExFreePool:1052): addr: ea8045c0
+ndiswrapper (ExFreePool:1052): addr: ea804640
+ndiswrapper (NdisAcquireSpinLock:801): Enter lock f3aa8b0c
+ndiswrapper (NdisAcquireSpinLock:803): Exit
+ndiswrapper (NdisReleaseSpinLock:809): Enter lock f3aa8b0c
+ndiswrapper (NdisReleaseSpinLock:811): Exit
+ndiswrapper (NdisAcquireSpinLock:801): Enter lock f3aa8b4c
+ndiswrapper (NdisAcquireSpinLock:803): Exit
+ndiswrapper (NdisReleaseSpinLock:809): Enter lock f3aa8b4c
+ndiswrapper (NdisReleaseSpinLock:811): Exit
+ndiswrapper (IoFreeIrp:225): Enter irp = ea805360
+ndiswrapper (IoFreeIrp:230): Exit
+ndiswrapper (ExFreePool:1052): addr: ea8044c0
+ndiswrapper (ExFreePool:1052): addr: ea804540
+ndiswrapper (NdisAcquireSpinLock:801): Enter lock f3aa8b4c
+ndiswrapper (NdisAcquireSpinLock:803): Exit
+ndiswrapper (NdisReleaseSpinLock:809): Enter lock f3aa8b4c
+ndiswrapper (NdisReleaseSpinLock:811): Exit
+ndiswrapper (IoFreeIrp:225): Enter irp = ea805260
+ndiswrapper (IoFreeIrp:230): Exit
+ndiswrapper (ExFreePool:1052): addr: ea8043c0
+ndiswrapper (ExFreePool:1052): addr: ea804440
+ndiswrapper (NdisAcquireSpinLock:801): Enter lock f3aa8b4c
+ndiswrapper (NdisAcquireSpinLock:803): Exit
+ndiswrapper (NdisReleaseSpinLock:809): Enter lock f3aa8b4c
+ndiswrapper (NdisReleaseSpinLock:811): Exit
+ndiswrapper (IoFreeIrp:225): Enter irp = ea805160
+ndiswrapper (IoFreeIrp:230): Exit
+ndiswrapper (ExFreePool:1052): addr: ea8042c0
+ndiswrapper (ExFreePool:1052): addr: ea804340
+ndiswrapper (NdisAcquireSpinLock:801): Enter lock f3aa8b4c
+ndiswrapper (NdisAcquireSpinLock:803): Exit
+ndiswrapper (NdisReleaseSpinLock:809): Enter lock f3aa8b4c
+ndiswrapper (NdisReleaseSpinLock:811): Exit
+ndiswrapper (IoFreeIrp:225): Enter irp = ea805060
+ndiswrapper (IoFreeIrp:230): Exit
+ndiswrapper (ExFreePool:1052): addr: ea8041c0
+ndiswrapper (ExFreePool:1052): addr: ea804240
+ndiswrapper (NdisAcquireSpinLock:801): Enter lock f3aa8b4c
+ndiswrapper (NdisAcquireSpinLock:803): Exit
+ndiswrapper (NdisReleaseSpinLock:809): Enter lock f3aa8b4c
+ndiswrapper (NdisReleaseSpinLock:811): Exit
+ndiswrapper (NdisAcquireSpinLock:801): Enter lock f3aa8b8c
+ndiswrapper (NdisAcquireSpinLock:803): Exit
+ndiswrapper (NdisReleaseSpinLock:809): Enter lock f3aa8b8c
+ndiswrapper (NdisReleaseSpinLock:811): Exit
+ndiswrapper (IoFreeIrp:225): Enter irp = ea806e80
+ndiswrapper (IoFreeIrp:230): Exit
+ndiswrapper (ExFreePool:1052): addr: ea8040c0
+ndiswrapper (ExFreePool:1052): addr: ea804140
+ndiswrapper (NdisAcquireSpinLock:801): Enter lock f3aa8b8c
+ndiswrapper (NdisAcquireSpinLock:803): Exit
+ndiswrapper (NdisReleaseSpinLock:809): Enter lock f3aa8b8c
+ndiswrapper (NdisReleaseSpinLock:811): Exit
+ndiswrapper (IoFreeIrp:225): Enter irp = ea806d80
+ndiswrapper (IoFreeIrp:230): Exit
+ndiswrapper (ExFreePool:1052): addr: ea807ee0
+ndiswrapper (ExFreePool:1052): addr: ea807f60
+ndiswrapper (NdisAcquireSpinLock:801): Enter lock f3aa8b8c
+ndiswrapper (NdisAcquireSpinLock:803): Exit
+ndiswrapper (NdisReleaseSpinLock:809): Enter lock f3aa8b8c
+ndiswrapper (NdisReleaseSpinLock:811): Exit
+ndiswrapper (IoFreeIrp:225): Enter irp = ea806c80
+ndiswrapper (IoFreeIrp:230): Exit
+ndiswrapper (ExFreePool:1052): addr: ea807de0
+ndiswrapper (ExFreePool:1052): addr: ea807e60
+ndiswrapper (NdisAcquireSpinLock:801): Enter lock f3aa8b8c
+ndiswrapper (NdisAcquireSpinLock:803): Exit
+ndiswrapper (NdisReleaseSpinLock:809): Enter lock f3aa8b8c
+ndiswrapper (NdisReleaseSpinLock:811): Exit
+ndiswrapper (IoFreeIrp:225): Enter irp = ea806b80
+ndiswrapper (IoFreeIrp:230): Exit
+ndiswrapper (ExFreePool:1052): addr: ea807ce0
+ndiswrapper (ExFreePool:1052): addr: ea807d60
+ndiswrapper (NdisAcquireSpinLock:801): Enter lock f3aa8b8c
+ndiswrapper (NdisAcquireSpinLock:803): Exit
+ndiswrapper (NdisReleaseSpinLock:809): Enter lock f3aa8b8c
+ndiswrapper (NdisReleaseSpinLock:811): Exit
+ndiswrapper (NdisAcquireSpinLock:801): Enter lock f3aa8cd0
+ndiswrapper (NdisAcquireSpinLock:803): Exit
+ndiswrapper (NdisReleaseSpinLock:809): Enter lock f3aa8cd0
+ndiswrapper (NdisReleaseSpinLock:811): Exit
+ndiswrapper (NdisFreeSpinLock:794): Enter lock f3aa8cd0
+ndiswrapper (NdisFreeSpinLock:795): Exit
+ndiswrapper (NdisAcquireSpinLock:801): Enter lock f3aa8c60
+ndiswrapper (NdisAcquireSpinLock:803): Exit
+ndiswrapper (NdisReleaseSpinLock:809): Enter lock f3aa8c60
+ndiswrapper (NdisReleaseSpinLock:811): Exit
+ndiswrapper (NdisFreeSpinLock:794): Enter lock f3aa8c60
+ndiswrapper (NdisFreeSpinLock:795): Exit
+ndiswrapper (ExFreePool:1052): addr: e3de8000
+ndiswrapper (ExFreePool:1052): addr: f3aa9e20
+ndiswrapper (ExFreePool:1052): addr: e320f000
+ndiswrapper (NdisFreeSpinLock:794): Enter lock f3aa898c
+ndiswrapper (NdisFreeSpinLock:795): Exit
+ndiswrapper (NdisFreeSpinLock:794): Enter lock f3aa89cc
+ndiswrapper (NdisFreeSpinLock:795): Exit
+ndiswrapper (NdisFreeSpinLock:794): Enter lock f3aa8a0c
+ndiswrapper (NdisFreeSpinLock:795): Exit
+ndiswrapper (NdisFreeSpinLock:794): Enter lock f3aa8a4c
+ndiswrapper (NdisFreeSpinLock:795): Exit
+ndiswrapper (NdisFreeSpinLock:794): Enter lock f3aa8a8c
+ndiswrapper (NdisFreeSpinLock:795): Exit
+ndiswrapper (NdisFreeSpinLock:794): Enter lock f3aa8acc
+ndiswrapper (NdisFreeSpinLock:795): Exit
+ndiswrapper (NdisFreeSpinLock:794): Enter lock f3aa8b0c
+ndiswrapper (NdisFreeSpinLock:795): Exit
+ndiswrapper (NdisFreeSpinLock:794): Enter lock f3aa8b4c
+ndiswrapper (NdisFreeSpinLock:795): Exit
+ndiswrapper (NdisFreeSpinLock:794): Enter lock f3aa8b8c
+ndiswrapper (NdisFreeSpinLock:795): Exit
+ndiswrapper (NdisAcquireSpinLock:801): Enter lock f3aa8d60
+ndiswrapper (NdisAcquireSpinLock:803): Exit
+ndiswrapper (NdisReleaseSpinLock:809): Enter lock f3aa8d60
+ndiswrapper (NdisReleaseSpinLock:811): Exit
+ndiswrapper (ExDeleteNPagedLookasideList:1115): Enter lookaside = f3aa8828
+ndiswrapper (ExpInterlockedPopEntrySList:516): Enter head = f3aa8828
+ndiswrapper (ExpInterlockedPopEntrySList:520): head = f3aa8828, ret = 00000000
+ndiswrapper (ExDeleteNPagedLookasideList:1120): Exit
+ndiswrapper (ExDeleteNPagedLookasideList:1115): Enter lookaside = f3aa8888
+ndiswrapper (ExpInterlockedPopEntrySList:516): Enter head = f3aa8888
+ndiswrapper (ExpInterlockedPopEntrySList:520): head = f3aa8888, ret = 00000000
+ndiswrapper (ExDeleteNPagedLookasideList:1120): Exit
+ndiswrapper (ExFreePool:1052): addr: f3aa8000
+ndiswrapper (NdisAcquireSpinLock:801): Enter lock f3aa8958
+ndiswrapper (NdisAcquireSpinLock:803): Exit
+ndiswrapper (NdisReleaseSpinLock:809): Enter lock f3aa8958
+ndiswrapper (NdisReleaseSpinLock:811): Exit
+ndiswrapper (NdisFreeSpinLock:794): Enter lock f3aa8958
+ndiswrapper (NdisFreeSpinLock:795): Exit
+ndiswrapper (NdisFreeSpinLock:794): Enter lock f3aa8d60
+ndiswrapper (NdisFreeSpinLock:795): Exit
+ndiswrapper (ExFreePool:1052): addr: f3aa8800
+ndiswrapper (ExFreePool:1052): addr: dd1774a0
+ndiswrapper (ExFreePool:1052): addr: cd9a6ea0
+ndiswrapper (ExFreePool:1052): addr: dd177a60
+ndiswrapper (ExFreePool:1052): addr: dd177540
+ndiswrapper (ExFreePool:1052): addr: dd177700
+ndiswrapper (ExFreePool:1052): addr: dd177560
+ndiswrapper (ExFreePool:1052): addr: dd177d20
+ndiswrapper (ExFreePool:1052): addr: f31ec000
+ndiswrapper (ExFreePool:1052): addr: ef1e0000
+ndiswrapper (ExFreePool:1052): addr: ef247800
+ndiswrapper (ExFreePool:1052): addr: ef247000
+ndiswrapper (NdisAcquireSpinLock:801): Enter lock e563c88c
+ndiswrapper (NdisAcquireSpinLock:803): Exit
+ndiswrapper (NdisReleaseSpinLock:809): Enter lock e563c88c
+ndiswrapper (NdisReleaseSpinLock:811): Exit
+ndiswrapper (NdisAcquireSpinLock:801): Enter lock e563c858
+ndiswrapper (NdisAcquireSpinLock:803): Exit
+ndiswrapper (NdisReleaseSpinLock:809): Enter lock e563c858
+ndiswrapper (NdisReleaseSpinLock:811): Exit
+ndiswrapper (NdisFreeSpinLock:794): Enter lock e563c858
+ndiswrapper (NdisFreeSpinLock:795): Exit
+ndiswrapper (NdisFreeSpinLock:794): Enter lock e563c88c
+ndiswrapper (NdisFreeSpinLock:795): Exit
+ndiswrapper (NdisFreePacket:1448): Enter packet: f77493c0, pool: dd177740
+ndiswrapper (NdisFreePacket:1469): Exit
+ndiswrapper (ExInterlockedPushEntrySList:499): Enter e563c638
+ndiswrapper (ExpInterlockedPushEntrySList:487): Enter head = e563c638
+ndiswrapper (ExpInterlockedPushEntrySList:491): head = e563c638, ret = 00000000
+ndiswrapper (NdisFreePacket:1448): Enter packet: f7749cc0, pool: dd177740
+ndiswrapper (NdisFreePacket:1469): Exit
+ndiswrapper (ExInterlockedPushEntrySList:499): Enter e563c638
+ndiswrapper (ExpInterlockedPushEntrySList:487): Enter head = e563c638
+ndiswrapper (ExpInterlockedPushEntrySList:491): head = e563c638, ret = dd177200
+ndiswrapper (NdisFreePacket:1448): Enter packet: f77497c0, pool: dd177740
+ndiswrapper (NdisFreePacket:1469): Exit
+ndiswrapper (ExInterlockedPushEntrySList:499): Enter e563c638
+ndiswrapper (ExpInterlockedPushEntrySList:487): Enter head = e563c638
+ndiswrapper (ExpInterlockedPushEntrySList:491): head = e563c638, ret = dd177780
+ndiswrapper (NdisFreePacket:1448): Enter packet: f77490c0, pool: dd177740
+ndiswrapper (NdisFreePacket:1469): Exit
+ndiswrapper (ExInterlockedPushEntrySList:499): Enter e563c638
+ndiswrapper (ExpInterlockedPushEntrySList:487): Enter head = e563c638
+ndiswrapper (ExpInterlockedPushEntrySList:491): head = e563c638, ret = dd177220
+ndiswrapper (NdisFreePacket:1448): Enter packet: f77494c0, pool: dd177740
+ndiswrapper (NdisFreePacket:1469): Exit
+ndiswrapper (ExFreePool:1052): addr: dd177480
+ndiswrapper (NdisFreePacket:1448): Enter packet: f77491c0, pool: dd177740
+ndiswrapper (NdisFreePacket:1469): Exit
+ndiswrapper (ExFreePool:1052): addr: dd177420
+ndiswrapper (NdisFreePacket:1448): Enter packet: f7749dc0, pool: dd177740
+ndiswrapper (NdisFreePacket:1469): Exit
+ndiswrapper (ExFreePool:1052): addr: dd177ba0
+ndiswrapper (NdisFreePacket:1448): Enter packet: f77495c0, pool: dd177740
+ndiswrapper (NdisFreePacket:1469): Exit
+ndiswrapper (ExFreePool:1052): addr: d8d983e0
+ndiswrapper (NdisFreePacket:1448): Enter packet: f7812360, pool: dd177740
+ndiswrapper (NdisFreePacket:1469): Exit
+ndiswrapper (ExFreePool:1052): addr: d8d98da0
+ndiswrapper (NdisFreePacket:1448): Enter packet: f7812260, pool: dd177740
+ndiswrapper (NdisFreePacket:1469): Exit
+ndiswrapper (ExFreePool:1052): addr: d8d982a0
+ndiswrapper (NdisFreePacket:1448): Enter packet: f7812060, pool: dd177740
+ndiswrapper (NdisFreePacket:1469): Exit
+ndiswrapper (ExFreePool:1052): addr: d8d98880
+ndiswrapper (NdisFreePacket:1448): Enter packet: f7812160, pool: dd177740
+ndiswrapper (NdisFreePacket:1469): Exit
+ndiswrapper (ExFreePool:1052): addr: d8d98b40
+ndiswrapper (NdisFreePacket:1448): Enter packet: f7812560, pool: dd177740
+ndiswrapper (NdisFreePacket:1469): Exit
+ndiswrapper (ExFreePool:1052): addr: d8d98b60
+ndiswrapper (NdisFreePacket:1448): Enter packet: f7812460, pool: dd177740
+ndiswrapper (NdisFreePacket:1469): Exit
+ndiswrapper (ExFreePool:1052): addr: d8d98fe0
+ndiswrapper (NdisFreePacket:1448): Enter packet: f6e791e0, pool: dd177740
+ndiswrapper (NdisFreePacket:1469): Exit
+ndiswrapper (ExFreePool:1052): addr: d8d982c0
+ndiswrapper (NdisFreePacket:1448): Enter packet: f6e792e0, pool: dd177740
+ndiswrapper (NdisFreePacket:1469): Exit
+ndiswrapper (ExFreePool:1052): addr: d8d98a20
+ndiswrapper (ExDeleteNPagedLookasideList:1115): Enter lookaside = e563c638
+ndiswrapper (ExpInterlockedPopEntrySList:516): Enter head = e563c638
+ndiswrapper (ExpInterlockedPopEntrySList:520): head = e563c638, ret = dd177d80
+ndiswrapper (ExFreePool:1052): addr: dd177d80
+ndiswrapper (ExpInterlockedPopEntrySList:516): Enter head = e563c638
+ndiswrapper (ExpInterlockedPopEntrySList:520): head = e563c638, ret = dd177220
+ndiswrapper (ExFreePool:1052): addr: dd177220
+ndiswrapper (ExpInterlockedPopEntrySList:516): Enter head = e563c638
+ndiswrapper (ExpInterlockedPopEntrySList:520): head = e563c638, ret = dd177780
+ndiswrapper (ExFreePool:1052): addr: dd177780
+ndiswrapper (ExpInterlockedPopEntrySList:516): Enter head = e563c638
+ndiswrapper (ExpInterlockedPopEntrySList:520): head = e563c638, ret = dd177200
+ndiswrapper (ExFreePool:1052): addr: dd177200
+ndiswrapper (ExpInterlockedPopEntrySList:516): Enter head = e563c638
+ndiswrapper (ExpInterlockedPopEntrySList:520): head = e563c638, ret = 00000000
+ndiswrapper (ExDeleteNPagedLookasideList:1120): Exit
+ndiswrapper (NdisFreeBufferPool:1077): pool: dd177640
+ndiswrapper (NdisFreeBufferPool:1093): Exit
+ndiswrapper (NdisFreePacketPool:1344): Enter pool: dd177740
+ndiswrapper (NdisFreePacketPool:1360): pool: dd177740
+ndiswrapper (NdisFreePacketPool:1362): Exit
+ndiswrapper (NdisFreeSpinLock:794): Enter lock e563c698
+ndiswrapper (NdisFreeSpinLock:795): Exit
+ndiswrapper (NdisAcquireSpinLock:801): Enter lock ece3ac1c
+ndiswrapper (NdisAcquireSpinLock:803): Exit
+ndiswrapper (NdisReleaseSpinLock:809): Enter lock ece3ac1c
+ndiswrapper (NdisReleaseSpinLock:811): Exit
+ndiswrapper (NdisFreeSpinLock:794): Enter lock e563c774
+ndiswrapper (NdisFreeSpinLock:795): Exit
+ndiswrapper (NdisAcquireSpinLock:801): Enter lock e563c7e4
+ndiswrapper (NdisAcquireSpinLock:803): Exit
+ndiswrapper (NdisReleaseSpinLock:809): Enter lock e563c7e4
+ndiswrapper (NdisReleaseSpinLock:811): Exit
+ndiswrapper (ExDeleteNPagedLookasideList:1115): Enter lookaside = e563c790
+ndiswrapper (ExpInterlockedPopEntrySList:516): Enter head = e563c790
+ndiswrapper (ExpInterlockedPopEntrySList:520): head = e563c790, ret = 00000000
+ndiswrapper (ExDeleteNPagedLookasideList:1120): Exit
+ndiswrapper (NdisFreeSpinLock:794): Enter lock e563c7e4
+ndiswrapper (NdisFreeSpinLock:795): Exit
+ndiswrapper (NdisAcquireSpinLock:801): Enter lock e563c150
+ndiswrapper (NdisAcquireSpinLock:803): Exit
+ndiswrapper (ExFreePool:1052): addr: f78085e0
+ndiswrapper (ExFreePool:1052): addr: f78083a0
+ndiswrapper (ExFreePool:1052): addr: f3aa9fa0
+ndiswrapper (ExFreePool:1052): addr: f3aa9f60
+ndiswrapper (ExFreePool:1052): addr: f3aa9f20
+ndiswrapper (ExFreePool:1052): addr: f78087a0
+ndiswrapper (ExFreePool:1052): addr: f7808620
+ndiswrapper (ExFreePool:1052): addr: f7808320
+ndiswrapper (ExFreePool:1052): addr: cd9a6120
+ndiswrapper (ExFreePool:1052): addr: f7808360
+ndiswrapper (ExFreePool:1052): addr: f7808460
+ndiswrapper (ExFreePool:1052): addr: f78083e0
+ndiswrapper (NdisReleaseSpinLock:809): Enter lock e563c150
+ndiswrapper (NdisReleaseSpinLock:811): Exit
+ndiswrapper (NdisFreeSpinLock:794): Enter lock e563c150
+ndiswrapper (NdisFreeSpinLock:795): Exit
+ndiswrapper (NdisAcquireSpinLock:801): Enter lock e563c258
+ndiswrapper (NdisAcquireSpinLock:803): Exit
+ndiswrapper (NdisReleaseSpinLock:809): Enter lock e563c258
+ndiswrapper (NdisReleaseSpinLock:811): Exit
+ndiswrapper (NdisFreeSpinLock:794): Enter lock e563c258
+ndiswrapper (NdisFreeSpinLock:795): Exit
+ndiswrapper (ExFreePool:1052): addr: e563c000
+ndiswrapper (NdisFreeSpinLock:794): Enter lock ece3ac1c
+ndiswrapper (NdisFreeSpinLock:795): Exit
+ndiswrapper (ExFreePool:1052): addr: ece3ac00
+ndiswrapper (miniport_init:225): init returns: C0010006, irql: 0
+ndiswrapper (miniport_init:227): couldn't initialize device: C0010006
+ndiswrapper (miniport_init:228): Exit
+ndiswrapper (_NdisDispatchPnp:1367): res: C0000001
+ndiswrapper (IofCompleteRequest:377): irp: f77492c0, stack size: 2, cl: 2, sl: f
+7749388, dev_obj: f77498dc, mj_fn: 27, minor_fn: 0, nt_urb: 00000000, event: 000
+00000
+ndiswrapper (IofCompleteRequest:438): freeing irp f77492c0
+ndiswrapper (IoFreeIrp:225): Enter irp = f77492c0
+ndiswrapper (IoFreeIrp:230): Exit
+ndiswrapper (IofCompleteRequest:446): Exit
+ndiswrapper (IofCallDriver:366): Exit
+ndiswrapper (pnp_start_device:533): Windows driver couldn't initialize the devic
+e (C0000001)
+ndiswrapper (wrap_remove_thread:1795): terminating thread: e36ed0dc, task: f6ed4
+a70, pid: 7093
+ndiswrapper (ObfDereferenceObject:2196): Enter object: e36ed0dc
+ndiswrapper (ObfDereferenceObject:2199): hdr: e36ed0c0
+ndiswrapper (free_object:314): freed hdr: e36ed0c0, body: e36ed0dc
+ndiswrapper (ExFreePool:1052): addr: e36ed0c0
+ndiswrapper (pnp_start_device:536): Exit
+ndiswrapper (wrap_pnp_start_usb_device:775): ret: -22
+ndiswrapper: probe of 1-3:1.0 failed with error -22
+usbcore: registered new driver ndiswrapper
+ndiswrapper (register_devices:771): Exit
+ndiswrapper (wrapper_ioctl:831): Exit
+ndiswrapper (wrapper_ioctl_release:836): Enter
+ndiswrapper (wrapper_init:196): Exit

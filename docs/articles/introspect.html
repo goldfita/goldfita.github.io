@@ -1,0 +1,118 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+<head>
+<title>Powerful HLL Features</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<link rel="stylesheet" type="text/css" href="../index.css" />
+<meta name="description" content=
+"My spiel on the features and benefits of using a high level language.
+                                                            " />
+<!-- ....10........20........30........40........50........60........70........80 -->
+</head>
+
+<body>
+<table>
+<tr><td class="article">
+<h1 class="topofpage">Powerful HLL Features</h1>
+
+<h3>Reflection</h3>
+<p>
+When I was at <a
+href="http://www.musicrebellion.com">MusicRebellion</a> I tried to
+automate a lot of things in code to make my life easier.  At the time,
+the work was mostly done in Java, which has pretty good support for
+reflection, or introspection, or so I thought.  Introspection is necessary to do a lot of
+automation.  If you want to auto assign variables from configuration
+files without having to rewrite code in multiple places each time a
+new variable is added, you need introspection.  Although my code
+mostly worked, I did have problems.  Some of it had to do with
+permissions on variables.  Some of the trouble was just because using
+introspection in Java was a lot of work.  After I left that project, I
+decided that too much power was bad.  I later changed my mind.
+</p>
+
+<p>
+The trouble with Java's reflection is it gives you enough power to get
+80% of the way there, but you can't quite finish the job, at least not
+painfully.  It's like having a saw that cuts half way through a piece
+of wood.  You get stuck and try to back out, but you can't so you try
+to go forward.  Pretty soon your nice neat cut has turned into an
+awful mess.  So you throw it all away and go for round two.  But you
+cut yourself the second time.  Finally, you give up, cursing all the while.
+</p>
+
+<p>
+Then I met Python.  Python's introspection is built right into the
+language.  You don't need any special packages.  Even if you choose not
+to explicitly use it, it's there hiding in the special functions every
+object has.  It's just so much easier and more natural.  Although I
+don't know Ruby very well yet, sometimes when I look at examples, I'm
+not even sure what's code and what's data.  There may not be an
+enormous difference.  Lisp is the ultimate conclusion of
+introspecting a language, even though it's been around for a bit
+longer.  There is no difference at all between code and data.  That's
+where much of its power comes from.
+</p>
+
+<p>
+So I said I changed my mind.  What it comes down to is this: if you're
+going to use reflection, you have to go all the way.  It has to be an innate
+part of the language.  You can't just add it in as module or a wimpy
+feature.  Partial reflection is worse than none at all.
+</p>
+
+<hr />
+
+<h3>Indirection</h3>
+<p>
+Another powerful feature of high level languages are the many levels
+of indirection.  Have you ever thought about what happens when you
+invoke a function in C versus what happens when you invoke a function
+in Python?  Not much happens in C.  The compiler may push a few
+registers on the stack and set up a stack frame.  That's about it.
+Sure it's great if you're worried about speed.
+</p>
+
+<p>
+In a language like
+Python, there's much more going on underneath.  The interpreter needs
+to make sure it has a definition for the symbol.  Then it has to
+figure out what you're trying to do with the symbol.  Are you
+assigning it or invoking it.  Since functions are objects too, you
+might even be accessing a member variable.  You have more power in
+the types of data that can be passed to and returned from Python
+functions.  I haven't looked at the implementation, but there may be
+issues with how exceptions are handled at the entrance and exit of
+functions.  Before any symbol is used, Python has special functions
+you can write which execute just before any action is taken.
+Inheritance and polymorphism allow further indirection.
+</p>
+
+<p>
+Each of these features will increase code and slow things down, but it
+gives the developer all kinds of power.  In C, many functions often
+have hooks.  This allows you and me and your sister to have control
+over library functions we didn't write.  But if the library developer
+didn't put in a hook, you're out of luck.  Python and many modern
+languages essentially has these hooks built into every function and
+variable.  You might write 10000 lines of code and suddenly realize
+you have to change one thing in 75 different places.  Often, in a high
+level language you can get around the problem by simply making the
+change in one place.  This magical place is that code between where
+the interpreter first sees your symbol and where the function is
+actually invoked.  That magical place doesn't exist in C.  There is
+only a jump to a memory address and a new stack frame.  That's all.
+You can't sneak any special code in there, which means you'll need to
+change all 75 lines.  I hope you have mastered EMACS macros.
+</p>
+
+</td></tr>
+</table>
+<p><br /><a href="../index.html">home</a></p>
+
+</body>
+
+</html>
+
+

@@ -1,0 +1,306 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+<head>
+<title>Memory Management in C</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<link rel="stylesheet" type="text/css" href="../../index.css" />
+<meta name="description" content="
+Some of my ideas on memory management in C.
+                                                                        " />
+<!-- ....10........20........30........40........50........60........70........80 -->
+</head>
+
+<body>
+<table>
+<tr><td class="article">
+<h1 class="topofpage">Memory Management in C</h1>
+
+<p>
+Two things that really drive me crazy when coding in C are how to
+handle errors and memory management.  I want to discuss memory
+management techniques.
+</p><p>
+When I first started working in C lifetimes ago, I didn't worry about
+memory allocation too much.  I probably used fixed size allocation.
+In fact, the thought of having to use a malloc probably scared the pants
+off me.  But malloc isn't the only way to allocate memory, is it?
+There's allocation that happens when you compile, and variable length
+arrays and alloca (which are nearly the same thing).  Every time you
+need to allocate some memory or call a function, you need to think
+about these things.  Who is going to allocate the memory -- the caller
+or the callee?  Is it going to be on the stack or the heap?  Who's
+going to free it?  What kind of data structure will hold the memory?
+How do you deal with freeing the memory when there's an error?
+</p><p>
+The very first thing that you should know is what not to do.  When you
+write a function and allocate some memory on the stack, do not ever
+keep a reference to that memory once the function goes out of scope.
+</p>
+
+<pre class="code">
+<span class="fltf">char</span> *<span class="flfnf">foo</span>(<span class="fltf">void</span>)
+{
+    <span class="fltf">char</span> <span class="flvnf">b</span>[]="<span class="flsf">hello world</span>";
+    <span class="flkf">return</span> b;
+}
+</pre>
+
+<p>
+That string is on the stack.  When the function returns, you will have
+a pointer to memory that isn't yours.  I had to do this a few times
+before I learned this, and it still tempts me.  The trouble is,
+introductory texts on programming don't tell you these things.  When
+you're learning a language that's close to the hardware, it's
+important to understand what's really going on.  So, what are your options
+here?  You could try this.
+</p>
+
+<pre class="code">
+<span class="fltf">char</span> *<span class="flfnf">foo</span>(<span class="fltf">void</span>)
+{
+    <span class="fltf">char</span> *<span class="flvnf">b</span> = malloc(<span class="flkf">sizeof</span>(<span class="fltf">char</span>)*(11+1));
+    strcpy(b,"<span class="flsf">hello world</span>");
+    <span class="flkf">return</span> b;
+}
+</pre>
+
+<p>
+This memory is ours until the process quits or calls free on it.  But
+now the caller needs to free it.  It's also unsafe because I
+didn't check to see if malloc returned NULL.  What if you need to
+allocate memory for multiple variables?  You can't return multiple
+pointers, but you might try this.
+</p>
+
+<pre class="code">
+<span class="fltf">void</span> <span class="flfnf">foo</span>(<span class="fltf">int</span> *<span class="flvnf">a</span>, <span class="fltf">char</span> *<span class="flvnf">b</span>)
+{
+    *a = 10;
+    strcpy(b,"<span class="flsf">hello world</span>");
+}
+
+<span class="fltf">int</span> <span class="flfnf">main</span>(<span class="fltf">void</span>)
+{
+    <span class="fltf">int</span> *<span class="flvnf">a</span>;
+    <span class="fltf">char</span> *<span class="flvnf">b</span>;
+    
+    <span class="flkf">if</span>(!(a=malloc(<span class="flkf">sizeof</span>(<span class="fltf">int</span>))))
+	<span class="flkf">return</span> 1;
+    <span class="flkf">if</span>(!(b=malloc(<span class="flkf">sizeof</span>(<span class="fltf">char</span>)*(256))))
+	<span class="flkf">return</span> 1; <span class="flcf">//a will be freed on return
+</span>    foo(a,b);
+    free(a); <span class="flcf">//just for demonstration
+</span>    free(b);
+    <span class="flkf">return</span> 0;
+}
+</pre>
+
+<p>
+It seems less likely now that we would cause a memory leak since both
+malloc and free are both called in the same function.  Of course,
+there is still the opportunity.  Not to mention we have made the
+higher level code ugly.  I would prefer to relegate the ugliness to
+the lower level functions and keep the high level ones clean since
+people might be reading and using them.  You might clean it up a
+little.
+</p>
+
+<pre class="code">
+
+<span class="fltf">int</span> <span class="flfnf">main</span>(<span class="fltf">void</span>)
+{
+    <span class="fltf">int</span> <span class="flvnf">a</span>;
+    <span class="fltf">char</span> <span class="flvnf">b</span>[256];
+    
+    foo(&amp;a,b);
+    <span class="flkf">return</span> 0;
+}
+</pre>
+
+<p>
+Now that memory is on the stack.  But we can still use it in foo as it
+remains valid until we exit from main.  There is nothing wrong with
+this, but you have to be very careful about putting too much memory on
+the stack.  You can request as much heap space as you want until the
+OS tells you there is no more available.  You won't get a warning when
+you run out of stack space.  And I believe programs are generally only
+given a relatively small amount by default.  Not to mention you might
+<span class="italics">accidentally</span> assign a pointer to that memory and later try to access
+it when the function that allocated it has gone out of scope.  Of
+course, you could always allocate the memory in the callee as I did
+before if you're really determined.
+</p> 
+
+<pre class="code">
+<span class="fltf">int</span> <span class="flfnf">foo</span>(<span class="fltf">int</span> **<span class="flvnf">a</span>, <span class="fltf">char</span> **<span class="flvnf">b</span>)
+{
+    <span class="flkf">if</span>(!(*a=malloc(<span class="flkf">sizeof</span>(<span class="fltf">int</span>))))
+        <span class="flkf">return</span> -1;
+    <span class="flkf">if</span>(!(*b=malloc(<span class="flkf">sizeof</span>(<span class="fltf">char</span>)*(11+1))))
+        <span class="flkf">return</span> -1;
+    **a = 10;
+    strcpy(*b,"<span class="flsf">hello world</span>");
+    <span class="flkf">return</span> 0;
+}
+
+<span class="fltf">int</span> <span class="flfnf">main</span>(<span class="fltf">void</span>)
+{
+    <span class="fltf">int</span> *<span class="flvnf">a</span>;
+    <span class="fltf">char</span> *<span class="flvnf">b</span>;
+    
+    foo(&amp;a,&amp;b);
+    <span class="flkf">return</span> 0;
+}
+</pre>
+
+<p>
+What have I done here?  If you declare a pointer in the calling
+function and allocate the memory there, you can access the memory that
+is being pointed to in the callee.  But you can't change what the
+pointer is pointing to in the callee.  This is what would happen if
+you tried.
+</p>
+</td><td></td></tr>
+
+<tr><td colspan="2">
+<pre>
+char *b_caller=NULL&#59; //b_caller --> NULL
+char *b_callee&#59;
+b_callee = b_caller&#59; //b_callee --> NULL
+b_callee = malloc(sizeof(int))&#59;
+/* Now b_callee --> NULL (still) and b_caller --> memory for integer */
+</pre>
+</td><td></td></tr>
+
+<tr><td>
+<p>
+You see?  The b_callee pointer did not change the b_caller pointer.
+All this did was allocate some memory for an integer and point
+b_callee to it.  The pointer in the caller is still NULL.  You need
+pointers to pointers.
+</p>
+</td><td></td></tr>
+
+<tr><td colspan="2">
+<pre>
+char *b_caller=NULL&#59; //b_caller --> NULL
+char **b_callee&#59;
+b_callee = &amp;b_caller&#59; //b_callee -->  b_caller --> NULL
+
+*b_callee = malloc(sizeof(int))&#59;
+/* You now need to dereference b_callee everywhere it is used so that
+you are referring to b_caller.  What you have after this statement is
+//b_callee --> b_caller --> memory for integer 
+Thus you have changed b_caller so that it no longer points to NULL. */
+</pre>
+
+<p>As another example look at it this way.</p>
+
+<pre>
+b_callee --> b_caller1 --> 100
+</pre>
+
+<p>I can change the number using either variable.</p>
+
+<pre>
+*b_caller1 = 99&#59;  //b_caller1 --> 99
+**b_callee = 98&#59;  //b_caller1 --> 98
+</pre>
+</td><td></td></tr>
+
+<tr><td>
+<p>
+Or I could change what b_callee points to.  But that's not what we want.</p>
+
+<pre>
+b_callee --> b_caller1 --> 100
+             b_caller2 --> 80
+
+b_callee = &amp;b_caller2&#59;
+
+b_callee -|   b_caller1 --> 100
+          |-> b_caller2 --> 80 //**b_callee --> 80
+</pre>
+
+<p>
+That was fun.  But we need to add another variable, c.  Oops, and
+another, d.  Darn it, foo is used 97 times.  We now have a maintenance
+nightmare.  What is needed is a data structure.  A carefully thought
+out data structure will solve our problems.  And even a not carefully
+thought out one will help a lot.  Let the code be a slave to the
+data.  The data (and the interface) will dictate the structure of the code.
+</p>
+
+<pre class="code">
+<span class="flkf">struct</span> <span class="fltf">foovar</span> {
+    <span class="fltf">int</span> *<span class="flvnf">a</span>;
+    <span class="fltf">char</span> *<span class="flvnf">b</span>;
+};
+
+<span class="flkf">struct</span> <span class="fltf">foovar</span> *<span class="flfnf">new_fv</span>(<span class="fltf">void</span>)
+{
+    <span class="flkf">struct</span> <span class="fltf">foovar</span> *<span class="flvnf">self</span>;
+
+    <span class="flkf">if</span>(!(self=malloc(<span class="flkf">sizeof</span>(<span class="flkf">struct</span> <span class="fltf">foovar</span>))))
+        <span class="flkf">return</span> <span class="flconstf">NULL</span>;
+    <span class="flkf">if</span>(!(self-&gt;a=malloc(<span class="flkf">sizeof</span>(<span class="fltf">int</span>))))
+        <span class="flkf">return</span> <span class="flconstf">NULL</span>;
+    <span class="flkf">if</span>(!(self-&gt;b=malloc(<span class="flkf">sizeof</span>(<span class="fltf">char</span>)*(11+1))))
+        <span class="flkf">return</span> <span class="flconstf">NULL</span>;
+    *(self-&gt;a) = 10;
+    strcpy(self-&gt;b,"<span class="flsf">hello world</span>");
+    <span class="flkf">return</span> self;
+}
+
+<span class="fltf">int</span> <span class="flfnf">main</span>(<span class="fltf">void</span>)
+{
+    <span class="flkf">struct</span> <span class="fltf">foovar</span> *<span class="flvnf">fv</span>;
+    
+    <span class="flkf">if</span>(!(fv=new_fv()))
+        <span class="flkf">return</span> 1;
+    printf("<span class="flsf">%d %s\n</span>",*(fv-&gt;a),fv-&gt;b);
+    free_fv(fv); <span class="flcf">//frees a foovar
+</span>    <span class="flkf">return</span> 0;
+}
+</pre>
+
+<p>
+And now we have something reminiscent of object oriented code.
+Notice, I can add c and d to the structure (object) without changing
+anything else.  The memory allocation is all handled in one place.
+The ugliness is hidden.  I didn't put lots of memory on the stack.
+And you can easily write more functions that can be applied to struct
+foovar.
+</p>
+
+<pre class="code">
+fv = new_fv();
+res = action1(fv);
+res = action2(fv);
+res = action3(fv);
+free_fv();
+</pre>
+
+<p>
+If you like, you can still pass a foovar to new_fv and have the memory
+allocated this way.  You will still need to use pointers to pointers
+unless you allocate the structure on the stack (which will be less
+memory than allocating a and b on the stack).  But this will allow you
+to return error codes from the functions.  Now you can do all sorts of
+crazy things with foovar, like make it a hash table that can store
+linked lists, trees, and hash tables of pointers to arrays.  And main
+doesn't care about the memory allocation.  As far as it's concerned,
+it might as well be using the simple malloc/free idiom.  The object
+foovar handles its own memory allocation.  And this brings me to the
+next topic.
+</p>
+
+<a href="cpolyex.html">next</a>
+
+</td><td></td></tr>
+</table>
+<p><br /><a href="../../index.html">home</a></p>
+
+</body>
+</html>

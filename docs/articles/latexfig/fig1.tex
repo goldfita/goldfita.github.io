@@ -1,0 +1,80 @@
+\documentclass[a4paper,12pt]{report}
+\usepackage{graphicx}
+\begin{document}
+%latex fig1.tex; dvips -Ppdf fig1.dvi; ps2pdf fig1.ps; kpdf fig1.pdf &
+
+\begin{figure}[htb]
+\caption{view (0,0,580,480)}
+\begin{center}
+%left,bottom,right,top
+\includegraphics[totalheight=1\textheight,width=1\textwidth,viewport=0 0 580 480,clip]{flower}
+\end{center}
+\end{figure}
+\clearpage
+
+\begin{figure}[htb]
+\caption{view (0,0,400,420)}
+\begin{center}
+\includegraphics[totalheight=1\textheight,width=1\textwidth,viewport=0 0 400 420,clip]{flower}
+\end{center}
+\end{figure}
+\clearpage
+
+\begin{figure}[htb]
+\caption{view (100,100,300,300)}
+\begin{center}
+\includegraphics[totalheight=1\textheight,width=1\textwidth,viewport=100 100 300 300,clip]{flower}
+\end{center}
+\end{figure}
+\clearpage
+
+\begin{figure}[htb]
+\caption{view (100,100,300,300)}
+\begin{center}
+\includegraphics[totalheight=1\textheight,width=1\textwidth,viewport=100 100 300 300]{flower}
+\end{center}
+\end{figure}
+\clearpage
+
+\begin{figure}[htb]
+\caption{No options}
+\begin{center}
+\includegraphics{flower}
+\end{center}
+\end{figure}
+\clearpage
+
+\begin{figure}[htb]
+\caption{totalheight = 1, width = 1}
+\begin{center}
+\includegraphics[totalheight=1\textheight,width=1\textwidth]{flower}
+\end{center}
+\end{figure}
+\clearpage
+
+\begin{figure}[htb]
+\caption{totalheight = 1}
+\begin{center}
+\includegraphics[totalheight=1\textheight]{flower}
+\end{center}
+\end{figure}
+\clearpage
+
+\begin{figure}[htb]
+\caption{width = 1}
+\begin{center}
+\includegraphics[width=1\textwidth]{flower}
+\end{center}
+\end{figure}
+\clearpage
+
+\begin{figure}[htb]
+\caption{totalheight = .5, width = .5}
+\begin{center}
+\includegraphics[totalheight=.5\textheight,width=.5\textwidth]{flower}
+\end{center}
+\end{figure}
+\clearpage
+
+\end{document}
+

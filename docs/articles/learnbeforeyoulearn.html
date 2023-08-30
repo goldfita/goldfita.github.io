@@ -1,0 +1,90 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+<head>
+<title>Learn Before You Learn</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<link rel="stylesheet" type="text/css" href="../index.css" />
+<meta name="description" content=
+"How you should go about learning new techniques and technologies for
+real world projects.                                                 " />
+<!-- ....10........20........30........40........50........60........70........80 -->
+</head>
+
+<body>
+<table>
+<tr><td class="article">
+<h1 class="topofpage">Learn Before You Learn</h1>
+
+<p>
+My friend likes to say you need to eat before you eat.  By this he
+means you should snack before you go out to eat or you'll order too
+much food.  It's similar to the concept of not going grocery shopping
+on an empty stomach.
+</p>
+
+<p>
+I have my own saying: learn before you learn.  By this, I mean you
+should try to really understand a new (to you) technology or concept
+before you use it on a real project.  It's similar to building a
+prototype of a software project.  You're trying to understand as much
+as you can about the design as quickly as you can before you do it for
+real.  The goal is to make all the mistakes up front, so you can get
+it right on the real project.
+</p>
+
+<p>
+I did this when I was working on my master's thesis.  Taking complex
+algorithms from matlab and migrating them onto a real-time DSP is no
+simple task.  I chose a small learning project to get myself warmed
+up.  The previous year I had worked on a <a href="../projects/formants/formant.html">formant tracking project</a>
+which I was never able to get working quite right.  Part of the
+problem was that it was just too complex to try implementing right on
+the DSP.
+</p>
+
+<p>
+I decided to modify the algorithm.  The original used Levinson-Durbin
+recursion with a Muller's root finding method.  Unfortunately it
+wasn't implemented quite right and the root finding method was too
+slow.  I decided to change it to approximate the formants with an LMS
+and an iterative Newton's method.  (My final results weren't very
+good, but it was working as far as I could tell.)  I first got it
+working in matlab.  Then I implemented it in C and tested it in the
+emulator.  This was a definite improvement over how I had tried to do
+it the first time.  Finally I migrated that code to the DSP.  It took
+a while, but I was able to get it working.
+</p>
+
+<p>
+This process of matlab -> emulation -> DSP was far more effective than
+just trying a few matlab experiments and then going right to the DSP.
+So I already learned a useful thing or two.  And it's good I did
+because my master's project was 10 to 100 times more difficult.  From
+what I learned on this project, I was able to refine the process to
+matlab -&gt; mex file -&gt; emulation -&gt; DSP.  I may never have completed my
+work if it hadn't been for some of the initial mistakes I made.  Once
+you start doing things the wrong way on a project, it's hard to get
+yourself to backup and fix the process and the problems.  But it's easy to start out
+doing it correctly on a fresh project.  You just have to have made the
+mistakes already.
+</p>
+
+<p>
+Well now I have done a small project and a big one.  I have learned
+before I learned before I learned.  My new process now looks like
+matlab -&gt; mex file -&gt; emulation -&gt; <a href="regressiontests.html">regression
+tests</a> -&gt; DSP.  I have come a long way from my initial
+process (basically none).  The learn-before-you-learn technique can
+push you a little ways up that hill before you start working on
+something real.  It will help you uncover problems before they
+actually matter.
+</p>
+
+</td></tr>
+</table>
+<p><br /><a href="../index.html">home</a></p>
+
+</body>
+
+</html>

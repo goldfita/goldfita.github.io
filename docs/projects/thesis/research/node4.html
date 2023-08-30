@@ -1,0 +1,164 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!--Converted with LaTeX2HTML 2K.1beta (1.61)
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta name="generator" content=
+"HTML Tidy for Windows (vers 12 April 2005), see www.w3.org" />
+<title>Types of Adaptive Algorithms</title>
+<meta name="description" content="Types of Adaptive Algorithms" />
+<meta name="keywords" content="research" />
+<meta name="resource-type" content="document" />
+<meta name="distribution" content="global" />
+<meta http-equiv="Content-Type" content=
+"text/html; charset=us-ascii" />
+<meta name="Generator" content="LaTeX2HTML v2K.1beta" />
+<meta http-equiv="Content-Style-Type" content="text/css" />
+<link rel="STYLESHEET" href="research.css" type="text/css" />
+<link rel="previous" href="node3.html" />
+<link rel="up" href="node2.html" />
+<link rel="next" href="node5.html" />
+<style type="text/css">
+/*<![CDATA[*/
+ div.c1 {text-align: center}
+/*]]>*/
+</style>
+</head>
+<body>
+<!--Navigation Panel-->
+<a name="tex2html85" href="node5.html" id="tex2html85"><img width=
+"37" height="24" align="bottom" border="0" alt="next" src=
+"next.gif" /></a> <a name="tex2html81" href="node2.html" id=
+"tex2html81"><img width="26" height="24" align="bottom" border="0"
+alt="up" src="up.gif" /></a> <a name="tex2html77" href="node3.html"
+id="tex2html77"><img width="63" height="24" align="bottom" border=
+"0" alt="previous" src="prev.gif" /></a> <a name="tex2html83" href=
+"node1.html" id="tex2html83"><img width="65" height="24" align=
+"bottom" border="0" alt="contents" src="contents.gif" /></a><br />
+<b>Next:</b> <a name="tex2html86" href="node5.html" id=
+"tex2html86">Double Talk Detection (DTD)</a> <b>Up:</b> <a name=
+"tex2html82" href="node2.html" id="tex2html82">Acoustic Echo
+Cancellation</a> <b>Previous:</b> <a name="tex2html78" href=
+"node3.html" id="tex2html78">The Problem and Standard</a> &nbsp;
+<b><a name="tex2html84" href="node1.html" id=
+"tex2html84">Contents</a></b><br />
+<br />
+<!--End of Navigation Panel-->
+<h2><a name="SECTION00022000000000000000" id=
+"SECTION00022000000000000000">Types of Adaptive Algorithms</a></h2>
+The two most common adaptive algorithms are known as Least Mean
+Squares (LMS) and Recursive Least Squares (RLS). Most other
+algorithms are some variation of these two. LMS is computationally
+cheap compared to RLS, but it converges to the room response
+slowly. It also tracks changes in the room response slowly and does
+not converge as close to the Minimum Mean Square Error (MMSE) as
+RLS does. The LMS equations are<br />
+<div class="c1"><!-- MATH
+ \begin{eqnarray}
+\hat{y} & = & \mathbf{C}_n^T\mathbf{X}\nonumber\\
+e & = & y - \hat{y}\nonumber\\
+\mathbf{C}_{n+1} & = & \mathbf{C}_n + \mu{e}\mathbf{X}_n\nonumber\\
+\end{eqnarray}
+ -->
+<table align="center" cellpadding="0" width="100%">
+<tr valign="middle">
+<td nowrap="nowrap" align="right"><img width="12" height="29"
+align="middle" border="0" src="img2.gif" alt=
+"$\displaystyle \hat{y}$" /></td>
+<td align="center" nowrap="nowrap"><img width="16" height="28"
+align="middle" border="0" src="img3.gif" alt=
+"$\textstyle =$" /></td>
+<td align="left" nowrap="nowrap"><img width="41" height="36" align=
+"middle" border="0" src="img4.gif" alt=
+"$\displaystyle \mathbf{C}_n^T\mathbf{X}$" /></td>
+<td width="10" align="right">&nbsp;</td>
+</tr>
+<tr valign="middle">
+<td nowrap="nowrap" align="right"><img width="12" height="28"
+align="middle" border="0" src="img5.gif" alt=
+"$\displaystyle e$" /></td>
+<td align="center" nowrap="nowrap"><img width="16" height="28"
+align="middle" border="0" src="img3.gif" alt=
+"$\textstyle =$" /></td>
+<td align="left" nowrap="nowrap"><img width="40" height="29" align=
+"middle" border="0" src="img6.gif" alt=
+"$\displaystyle y - \hat{y}$" /></td>
+<td width="10" align="right">&nbsp;</td>
+</tr>
+<tr valign="middle">
+<td nowrap="nowrap" align="right"><img width="42" height="29"
+align="middle" border="0" src="img7.gif" alt=
+"$\displaystyle \mathbf{C}_{n+1}$" /></td>
+<td align="center" nowrap="nowrap"><img width="16" height="28"
+align="middle" border="0" src="img3.gif" alt=
+"$\textstyle =$" /></td>
+<td align="left" nowrap="nowrap"><img width="85" height="29" align=
+"middle" border="0" src="img8.gif" alt=
+"$\displaystyle \mathbf{C}_n + \mu{e}\mathbf{X}_n$" /></td>
+<td width="10" align="right">&nbsp;</td>
+</tr>
+</table>
+</div>
+<br clear="all" />
+<img width="26" height="29" align="middle" border="0" src=
+"img9.gif" alt="$\mathbf{C}_n$" /> filter<br />
+<img width="12" height="28" align="middle" border="0" src=
+"img10.gif" alt="$y$" /> input<br />
+<img width="12" height="29" align="middle" border="0" src=
+"img11.gif" alt="$\hat{y}$" /> estimated input<br />
+<img width="18" height="14" align="bottom" border="0" src=
+"img12.gif" alt="$\mathbf{X}$" /> reference signal<br />
+<img width="14" height="28" align="middle" border="0" src=
+"img13.gif" alt="$\mu$" /> adaptation step<br />
+<p>The rate of convergence of the filter and the computational cost
+are both dependent on the length of the room model echo path.
+Because the speed of sound is relatively slow, we will need a
+fairly long filter. This rules out RLS as a possible algorithm. LMS
+is still a possibility, but because of the long filter and the high
+degree of self correlation in speech, we should not expect this
+algorithm to perform very well. There is a class of algorithms
+which are a generalization of LMS known as Affine Projection
+Algorithms (APA) [<a href="node14.html#OU">OU</a>]. These
+algorithms converge much quicker than LMS. Unfortunately, APA is
+still too slow, but there are a number of fast versions of the
+algorithm (FAP) [<a href="node14.html#GT">GT</a>]. The one I have
+implemented, uses Gauss-Seidel iterations to approximate the
+inverse of the correlation matrix [<a href=
+"node14.html#AKCF">AKCF</a>]. For low projection orders, it is not
+too much slower than LMS.</p>
+<p>As we will see later, it will be necessary to have multiple
+copies of the algorithm running at once. To keep the amount of
+computation manageable, we will use a block exact form of the
+algorithm (BEFAP) [<a href="node14.html#TMK">TMK</a>]. The block
+form only updates the filter once in a while. This decreases the
+amount of computation, but the filter converges slower. The block
+exact form is exactly equivalent to the orignal algorithm (except
+for numerical effects), but it still results in a faster algorithm.
+The cost is a delay equal to the block size. We want to keep delays
+as short as possible. So there is some trade off between the amount
+of tolerable delay and the amount of computation.</p>
+<hr />
+<!--Navigation Panel-->
+<a name="tex2html85" href="node5.html" id="tex2html85"><img width=
+"37" height="24" align="bottom" border="0" alt="next" src=
+"next.gif" /></a> <a name="tex2html81" href="node2.html" id=
+"tex2html81"><img width="26" height="24" align="bottom" border="0"
+alt="up" src="up.gif" /></a> <a name="tex2html77" href="node3.html"
+id="tex2html77"><img width="63" height="24" align="bottom" border=
+"0" alt="previous" src="prev.gif" /></a> <a name="tex2html83" href=
+"node1.html" id="tex2html83"><img width="65" height="24" align=
+"bottom" border="0" alt="contents" src="contents.gif" /></a><br />
+<b>Next:</b> <a name="tex2html86" href="node5.html" id=
+"tex2html86">Double Talk Detection (DTD)</a> <b>Up:</b> <a name=
+"tex2html82" href="node2.html" id="tex2html82">Acoustic Echo
+Cancellation</a> <b>Previous:</b> <a name="tex2html78" href=
+"node3.html" id="tex2html78">The Problem and Standard</a> &nbsp;
+<b><a name="tex2html84" href="node1.html" id=
+"tex2html84">Contents</a></b> <!--End of Navigation Panel-->
+<address>Todd A Goldfinger 2004-11-22</address>
+</body>
+</html>

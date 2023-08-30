@@ -1,0 +1,85 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+<head>
+<title>Lisp Browser</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<link rel="stylesheet" type="text/css" href="../index.css" />
+<meta name="description" content=
+"Some more of my crazy ideas about embedding Lisp into just about
+everything.                                                 " />
+<!-- ....10........20........30........40........50........60........70........80 -->
+</head>
+
+<body>
+<table>
+<tr><td class="article">
+<h1 class="topofpage">Lisp Browser</h1>
+
+<p>
+An old idea I <a href="embedlisp.html">posted</a> was brought back
+from the grave in my mind when I read this <a
+href="http://www.cabochon.com/~stevey/blog-rants/the-emacs-problem.html">blog
+entry</a>.  I was specifically interested in the Lisp-log-message
+idea.
+</p>
+
+<p>
+Not too long ago I had this idea that browsers should just be
+specialized Lisp interpreters.  EMACS has a web browser called W3.
+But I've seen it, and it's not so good.  I think a specialized browser
+application would be far more successful.
+</p>
+
+<p>
+I've often found myself wondering if maybe GET/POST isn't the way to
+go.  Think about all the technologies that work over HTTP.  Javascript
+is embedded into HTML comments.  SOAP is over HTTP.  Pretty much
+everything browser related is in some way over HTTP.  But GET and POST
+an HTML/XML, so far as I can tell, were really meant for static or
+near static content.  That's why we keep coming up with things like
+Javascript, SOAP, and AJAX.  It's a way to circumvent the limitations
+of HTTP and HTML.
+</p>
+
+<p>
+Maybe we just need something different.  Maybe instead of sending
+static pages with mini-embedded languages, we should just send the
+whole program... as a Lisp script.  If the browser itself were just a
+Lisp interpreter, than interpreting the incoming script should be
+trivial.  Also notice how much of a load this would take off servers.
+They would no longer need to execute much business logic.  Instead,
+the server would be responsible for extracting information from the
+database, performing the minimum number of calculations needed on the
+server side, and then send the Lisp (data, code and all) right over to
+the client.
+</p>
+
+<p>
+How exactly this would work, I have no idea.  Unfortunately it's far
+more complicated than my simplified idea here.  There would still have
+to be some kind of standard way of representing the data in the way that
+HTML and CSS work.  But instead of embedding code into the static data
+as with HTML and Javascript, the data would be in structures in the
+Lisp code.  If the client needed something from the server, the call
+would be made right from the Lisp as if it were just a normal
+application executing on your desktop.  You might have the rest of
+the program on the server.  So a client/server connection would be
+nothing more than invoking a (remote) function.
+</p>
+
+<p>
+Sometimes I wonder if Lisp interpreters shouldn't be like DSPs.  We
+could put a little embedded Lisp interpreter in everything.  You
+wouldn't even need know that they were there.  But the engineers will
+know, and they'll make heavy use of them.
+</p>
+
+
+</td></tr>
+</table>
+<p><br /><a href="../index.html">home</a></p>
+
+</body>
+
+</html>

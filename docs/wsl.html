@@ -1,0 +1,908 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html><head>
+<title>WSL Development Environment</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<link rel="stylesheet" type="text/css" href="index.css">
+<meta name="description" content="Discussion of setting up a WSL development environment">
+</head>
+
+<body>
+<table>
+<tbody><tr><td class="article">
+<h1 class="topofpage">WSL Development Environment</h1>
+
+<p>
+TL;DR <a href="https://gist.github.com/goldfita/20c1e002b1188b054aa27ea271cd8c8e">Gist</a> with my source.
+</p>
+
+<hr>
+<h2>Network Namespace</h2>
+
+<p>
+I wrote a brief post about setting up <a href="https://blog.signalsguru.net/archives/363">multiple WSL
+instances</a>, only to later discover that every instance is on the same virtual adapter. In other words,
+completely separate OS instances live in the same network namespace. Assigning them different IPs accomplishes
+nothing since all IPs are shared by every instance (all bound to the same device). So I had to learn how to
+create my own network namespaces. Fortunately, there
+are <a href="https://superuser.com/questions/1715273/wsl2-two-separate-centos-distributions-have-same-eth0-inet-addres/1715457#1715457">lots
+of examples</a> of how to do this.
+</p>
+
+<p>
+First we'll need an IP per development instance on the Windows side so that we can treat each instance as
+separate as viewed from Windows. The IP octet will be the same as the instance number. There might be a way to
+put evenything on the last octet, but I'm not a networking expert, and this was the easiest way to get things
+working. It's also easy to understand how IPs are mapped from Windows to Linux with this
+scheme: <b>192.168.xxx.1 (Windows) -> 192.168.1.0 (Linux)</b>. There will need to be a single static IP on the
+Linux side. So on Windows, add a couple of IPs for a couple of development instances.
+</p>
+
+<pre class="code">
+netsh.exe interface ip add address "vEthernet (WSL)" 192.168.1.1 255.255.255.0
+netsh.exe interface ip add address "vEthernet (WSL)" 192.168.2.1 255.255.255.0
+</pre>
+
+<p>
+And then on Linux, a single IP:
+</p>
+
+<pre class="code">ip addr add "192.168.1.0/16" dev eth0</pre>
+
+<p>
+Next we need to map any ports we'll be using. This is so I can use the hostname (e.g. <b>dev1.rocky</b> and
+<b>dev2.rocky</b>) instead of needing to remember port numbers (e.g. <b>dev.rocky:443</b>
+and <b>dev.rocky:1443</b>) since you can have a hostname associated to each unique IP. The ports can be mapped
+however you like. I found it easiest to add 1000. If you're using a lot of instances, this scheme will
+obviously eventually run into issues. On the Windows side, you use <b>netsh interface portproxy</b>, run as
+admin, to map ports from the Windows side to the Linux side.
+</p>
+
+<pre class="code">netsh interface portproxy add v4tov4 listenport=443 listenaddress=192.168.1.1 connectport=1443 connectaddress=192.168.1.0</pre>
+
+<p>
+If we were using ssh, http, and https on two development instances, the port forwarding would look like this.
+Again, the IPs in the left column need to be added as a gateway in Windows.
+</p>
+
+<pre class="code">
+>netsh interface portproxy show v4tov4
+Listen on ipv4:             Connect to ipv4:
+
+Address         Port        Address         Port
+--------------- ----------  --------------- ----------
+192.168.1.1     22          192.168.1.0     1022
+192.168.1.1     80          192.168.1.0     1080
+192.168.1.1     443         192.168.1.0     1443
+192.168.2.1     22          192.168.2.0     2022
+192.168.2.1     80          192.168.2.0     2080
+192.168.2.1     443         192.168.2.0     2443
+</pre>
+
+<p>
+Of course, you'll need to add the hostnames to your hosts file on windows.
+</p>
+
+<pre class="code">
+192.168.1.1 dev1.rocky 1.dev.rocky
+192.168.2.1 dev2.rocky 2.dev.rocky
+</pre>
+
+<img src="port_forward.png" alt="port_forward.png">
+
+<p>
+So far our network is not very interesting. We can access the ssl port from <b>dev1</b> or <b>dev2</b> in our
+browser, and it will appear as if these are two different machines, but on the other end, everything is going
+to the same IP, the same virtual interface, and the same network stack. Also, there's not actually anything
+listening on either of those ports. At this point, you might decide this is good enough. We can run a web
+server on 1443 and 2443 just as well as on 443. But you'll have to set up special ports for every service:
+sshd, database, web server, debug ports, etc. Instead, we're going to add a whole new network stack, and
+internally map the shifted ports back to the correct ports.
+</p>
+
+<p>
+Now we make it more interesting by creating some virtual servers, where a virtual server, so far, just means a
+network namespace. Network address translation is happening both on the Windows side and on the Linux side.
+Basically we shift all the standard ports up by 1000 when going to Linux; then we shift all the ports down by
+1000 when going from Linux to the network namespace. And just like we changed the IP on the Windows side when
+assigning a new port, we're assigning a new IP when changing the port back in the namespace. But now the IP
+corresponds to an actual virtual device with its own network stack. On the Windows side, all the IPs were on a
+single device.
+</p>
+
+<img src="virtual_servers.png" alt="virtual_servers.png">
+
+<p>
+The bridge isn't strictly necessary. However, you need an IP associated to each end of the virtual device
+pair. Without the bridge, you would need 2*N IPs instead of N+1, where the +1 is for the bridge itself. The
+host, where host means Linux in this context, is basically just doing NAT, routing, and bridging the virtual
+servers. All the interesting stuff will happen inside the virtual servers from now on. I believe the following
+essentially sets up <a href="https://www.gilesthomas.com/2021/03/fun-with-network-namespaces">routing and
+NAT</a>. There are many similar posts online explaining how this works.
+</p>
+
+<pre class="code">
+iptables -P FORWARD DROP
+iptables -A FORWARD -o eth0 -i br1 -j ACCEPT
+iptables -A FORWARD -i eth0 -o br1 -j ACCEPT
+iptables -t nat -A POSTROUTING -s "192.168.200.0/255.255.255.0" -o eth0 -j MASQUERADE
+sysctl -w net.ipv4.ip_forward=1
+</pre>
+
+<p>
+You'll need to add the bridge if the forwarding rules are actually going to apply. You can simplify things a
+bit by adding the WSL interface directly to the bridge instead of forwarding. However, I couldn't figure out
+any way to get from the namespace out to the internet when I tried this. But then again, there's not really
+any reason I would need to do that.
+</p>
+
+<pre class="code">
+ip link add name br1 type bridge
+ip addr add "192.168.200.0/24" brd + dev br1
+ip link set br1 up
+</pre>
+
+<p>
+So we have a bridge! But there's nothing to add to it yet (unless you want to add eth0). Before we create the
+virtual device pairs, there's a couple of annoyances we need to get out of the way. First, the <b>ip</b> tool
+puts net namespaces in <b>/run/netns/</b>. If you want your configuration to persist across reboot, you'll
+have to put it somewhere else and then link to it.
+</p>
+
+<pre class="code">
+ln -s /containers/1/ns/net /run/netns/net
+chmod 0 /run/netns/net
+</pre>
+
+<p>
+The bind mount at <b>/run/netns/net</b> needs to already exist before you can assign the namespace end of the
+virtual device pair to it. One simple way to do that is using unshare and immediately exiting, though there is
+probably a more elegant way. Once we create the persistence file, we can use it to re-enter the namespace
+with <b>nsenter</b>.
+</p>
+
+<pre class="code">unshare --net=/containers/1/ns/net true</pre>
+
+<p>
+Now that that's out of the way, we can create the virtual device pair, move the one end into the net
+namespace, bring up the host end, and finally add the host end to the bridge. Note that we still haven't
+gotten to the virtual device inside the namespace. You can configure it either using ip with <b>ip netns exec
+vnet1 ip ...</b>, or you can enter the namespace and configure it there. I prefer the latter because the <b>ip</b>
+commands are already long and intimidating as it is.
+</p>
+
+<pre class="code">
+ip link add veth1 type veth peer name br-veth1
+ip link set veth1 netns vnet1
+ip link set br-veth1 up
+ip link set br-veth1 master br1
+</pre>
+
+<p>
+Before entering the namespace, though, there is some additional IP routing we need to do to map the ports back
+to the standard ones. I'm using iptables chains to simplify the process of adding/removing rules. The
+interface for iptables is a bit frustrating. To remove a rule, you either need to know the existing rule in
+its entirety or you need to know the position of the rule in the list and remove it by number. By using
+chains, you can use the flush option to delete a bunch of rules all at once.
+</p>
+
+<p>
+First add a forwarding chain and prerouting chain for the container. Then add a rule to go to
+the <b>c1-forward</b> chain if the destination is for the container one IP. I don't know what most of these
+flags do; I basically copy-pasted. For prerouting, we go to the <b>c1-preroute</b> chain for tcp packets
+coming in on <b>eth0</b>.
+</p>
+
+<pre class="code">
+iptables -N "c1-forward"
+iptables -A FORWARD -d "192.168.200.1" -p tcp -m tcp -m state \
+         --state NEW,RELATED,ESTABLISHED -j "c1-forward"
+iptables -N "c1-preroute"
+iptables -t nat -A PREROUTING -i eth0 -p tcp -m tcp -j "c1-preroute"
+</pre>
+
+<p>
+Next add as many ports to preroute and forward as we like. The preroute rules take anything coming in on eth0
+on the shifted port and maps it to <b>192.168.200.1</b> on the standard port. This is only needed for non-web
+ports since we'll be using Nginx to handle web ports. All the ports have forward rules. Again, I didn't take
+the time to really understand these.
+</p>
+
+<pre class="code">
+iptables -A "c1-forward" -p tcp -m tcp --dport 22 -j ACCEPT
+iptables -A "c1-forward" -p tcp -m tcp --dport 80 -j ACCEPT
+iptables -A "c1-forward" -p tcp -m tcp --dport 443 -j ACCEPT
+iptables -t nat -A "c1-preroute" -p tcp -m tcp --dport 1022 -j DNAT \
+         --to-destination "192.168.200.1:22"
+</pre>
+
+<p>
+To delete these rules, you only need to flush the <b>c1-forward</b> and <b>c1-preroute</b> chains. Another
+thing about iptables is it doesn't filter out duplicate rules. If you add the same rules over and over, the
+list will grow each time.
+</p>
+
+<p>
+Now we need to enter the namespace. This is done with <b>nsenter</b>. I'll discuss the other two namespaces in
+the following sections. The reason the other two use <b>unshare</b> is because they haven't been created yet.
+If I used unshare with the same path for the net namespace, the existing configuration would be wiped out.
+</p>
+
+<pre class="code">
+nsenter --net=/containers/1/ns/net unshare -f --mount-proc \
+        --pid=/containers/1/ns/pid --mount=/containers/1/ns/mount
+</pre>
+
+<p>
+Once we're in the network namespace, we still need to configure its virtual adapter. Remember, we've only
+configured the other end up to this point. This just adds the IP <b>192.168.200.1</b> with
+route <b>192.168.200.0</b> and brings <b>veth1</b> and <b>lo</b> up. The last command allows non-root to ping.
+</p>
+
+<pre class="code">
+ip addr add "192.168.200.1/24" dev veth1
+ip link set veth1 up
+ip route add default via "192.168.200.0"
+ip link set up dev lo
+sysctl net.ipv4.ping_group_range="0 2147483647"
+</pre>
+
+<p>
+Once you have the net namespace set up, you still need to make sure basic services are started in the
+namespace. <b>Systemd</b> has a way to do this. For example, you can start <b>sshd</b> in the <b>vnet1</b> net
+namespace by adding the following to <b>sshd.service</b>. But I eventually decided it was easier not to use an
+init system at all and just start all the servers I needed at the time I entered the namespaces.
+</p>
+
+<pre class="code">
+[Service]
+NetworkNamespacePath=/run/netns/vnet1
+</pre>
+
+<p>
+At this point I had a solution to the problem of all WSL instances sharing a single network interface. But I
+thought WSL would work more like Docker with each container instance sharing a read-only image where I could
+put most of the installed files. It doesn't work this way. A WSL instance is a lot lighter weight than
+VirtualBox, but not nearly as light-weight as a Docker container. So I decided to take it one step further and
+add in mount and process namespaces. This allowed me to have as many development containers as I wanted on a
+single WSL instance.
+</p>
+
+<hr>
+<h2>Mount Namespace</h2>
+
+<p>
+There are only a handfull of directories that differ among my development machines (e.g. deployed binaries and
+database storage). What I would like to have is a view of the filesystem for each development instance that
+differs by only these directories. The rest of the directories will be shared. Fully containerized solutions
+isolate the entire filesystem. But I don't need the isolation. All I need is a
+location to put each instance's deployed files and a view of the system that's identical to each instance.
+</p>
+
+<p>
+You might be wondering why I didn't just use docker. Sure I'd have to install docker and there's probably a
+little more overhead per container than using the absolute bare bones namespaces, but my motivation wasn't to
+get the lightest weight possible solution. The issue was that I already had working Ansible scripts, and I
+already poured some effort into getting them working in both VirtualBox and WSL. And I didn't want to have to
+figure out how to modify them to build a docker image. Maybe it would have been less effort, but this way I
+learned how to use namespaces and I have a re-usable script.
+</p>
+
+<p>
+In order to make this work, we'll need couple more ingredients: overlays and bind mounts.
+</p>
+
+<h3>Overlay Filesystem</h3>
+
+<p>
+The first order of business is to create a read-only view of the directories that differ for each instance.
+But I'm also going to need to write to those directories. So what I'm saying is, I need the overlay
+filesystem. Rather than create a separate overlayfs mount for every directory, it's easiest to mount the
+entire filesystem as an overlay all in one go. Each instance -- I'll refer to them as containers from now on
+(e.g. C1 for container one) -- will have its own directory that mounts the entire filesystem as an overlay.
+The lower layer points to the root of the filesystem. The merge layer is where C1 will make changes without
+needing to worry about altering anything on the actual filesystem.
+</p>
+
+<img src="layers.png" alt="layers.png">
+
+<h3>Bind mount</h3>
+
+<p>
+But this is really just storage. I need my application server, database, scripts, and so on to have a standard
+view of the filesystem. I don't want to point them to some random different directory for each container.
+Somehow I need to create multiple views of the root filesystem where each view only differs for the
+directories that can change. So, for example, let's say I want <b>/var</b> to be different for each container,
+but I want <b>/</b> and <b>/etc</b> to be shared. What I'm showing here are different views, not layers as in
+the previous diagram.
+</p>
+
+<img src="views.png" alt="views.png">
+
+<p>
+The solution I found was to use bind mounts. This allows you to have another view of a directory, and
+crucially, you can bind mount right over an existing directory, hiding the original. How does that help us? If
+I bind mount over a directory, won't every container see the same thing? That's where we finally get to the
+mount namespace.
+</p>
+
+<h3>Mount</h3>
+
+<p>
+The <b>overlayfs</b> mount and the bind mounts are only created <u>inside</u> the mount namespace. So each
+container will see a different filesystem. If I bind mount each directory, that differs across containers, to
+the <b>overlayfs</b> mount I created for each container, then each container will have a different view of
+only those directories. All other directories on the filesystem will be shared. The following creates the
+overlay of the entire filesystem in <b>/containers/1/ns/root</b>. Then it bind mounts the
+overlay's <b>/var</b> on top of the actual <b>/var</b>. But remember this is only visible within container
+one's mount namespace. It won't be visible anywhere else.
+</p>
+
+<pre class="code">
+upper="/containers/1/ns/upper"
+work="/containers/1/ns/work"
+merge="/containers/1/ns/root"
+mkdir -p "$upper" "$work" "$merge"
+mount -t overlay overlay -o lowerdir=/,upperdir="$upper",workdir="$work" "$merge"
+mount --bind "$merge"/var /var
+</pre>
+
+<p>
+I should mention that the <b>overlayfs</b> mount doesn't really need to happen inside the mount namespace.
+Only the bind mount needs to be done this way. The advantage of creating the <b>overlayfs</b> at the time the
+namespace is created is that it only gets mounted when it's needed, but there's no reason I couldn't reverse
+the order and mount with <b>overlayfs</b> first and then create the mount namespace. If I did this, the
+<b>overlayfs</b> mount would be visible to the other containers. But since I'm not terribly concerned with
+isolation, it doesn't really matter one way or the other.
+</p>
+
+<p>
+The namespace mount points need to be mounted under a mount with private propagation. I didn't investigate
+why. The way you do this is by bind mounting a directory to itself which allows you to change the properties
+of the mount. Then you can put <b>mount</b>, <b>pid</b>, and <b>net</b> files under this that <b>unshare</b>
+will use as bind mounts.
+</p>
+
+<pre class="code">
+mkdir -p /containers/1/ns/
+mount --bind /containers/1/ns/ /containers/1/ns/
+mount --make-rprivate /containers/1/ns/
+</pre>
+
+<p>
+Putting it all together, each container, consisting of three namespaces, has a slightly different view of the
+filesystem, a separate network stack, and its own set of processes, which will mostly be identical across
+containers.
+</p>
+
+<div class="large-image"><img src="layers_and_views.png" alt="layers_and_views.png"></div>
+
+<p>
+There is one last loose end to tidy up. I need to add my hostname to <b>/etc/hosts</b>, but there is the
+slight problem that every container will have the same hostname, and in any case, I don't want to monkey with
+the hosts file every time I add or remove a container. So I'll bind mount just the hosts file to a version
+that resolves the hostname to this container's IP. Yes, you can bind mount a single file. Isn't that clever?
+Remember, this happens inside the namespace, so only this container will see this version of the hosts file.
+</p>
+
+<pre class="code">
+cp /etc/hosts /containers/1/merge/hosts
+echo "192.168.200.1 dev1.rocky" >> /containers/1/merge/hosts
+mount -o ro,bind /containers/1/merge/hosts /etc/hosts
+</pre>
+
+
+<hr>
+<h2>Process Namespace</h2>
+
+<p>
+Having your own view of the filesystem and your own private network stack is not quite enough. Servers and
+daemons tend to want to be singletons. While you can often figure out how to run more than one instance, as
+with net namespaces, life is a lot easier if you make your server think it's a singleton so you don't have to
+set any special environment variables or flags or need to worry about how to idenitify which instance to kill.
+This is where the process namespace comes in.
+</p>
+
+<p>
+Unlike with mount and net, there's no extra setup for <b>pid</b>. You just <b>unshare</b> and you're ready to
+go. However, there is one issue you might want to deal with. As soon as you exit from the <b>unshare</b> that
+created the process namespace, all processes in that namespace are immediately terminated. It would be really
+unfortunate if you exited inadvertently. The only solution I have is to <b>sleep infinity</b>
+after <b>unshare</b>. And then <b>nsenter</b> the namespace from elsewhere. Then kill the namespace when you
+really do want to quit. Or just leave it up until IT forces a Windows restart.
+</p>
+
+<p>
+Just before going to sleep is where you'll want to start services (e.g. a local instance of the database).
+Note that some services will be system wide (e.g. <b>ntpd</b> or <b>chronyd</b>). These will have already been
+started by appropriatley configuring <b>wsl.conf</b>.
+</p>
+
+<hr>
+<h2>User Namespace</h2>
+
+<p>
+I didn't make use of a user namespace, but it might be useful for binding to ports less than <b>1024</b> and
+in general going rootless or fakeroot. The issue for me is that I already have a lot of scripts that are using
+sudo when necessary, and I don't see any compelling reason to change them just for working on an unsecure
+development machine. I know of at least three different ways to bind to ports less than <b>1024</b> without
+root. Well four, sort of, apparently there is something called <b>authbind</b>. To do this in a user namespace, you
+just need to set <b>/proc/child_gid/uid_map</b> and <b>/proc/child_pid/gid_map</b>.
+<p>
+
+<pre class="code">
+> unshare -U
+# get child_pid
+> echo $$
+82
+</pre>
+
+<p>
+In the parent user namespace, using the same user, set the uid and gid maps. You can write to them directly or
+use <b>newuidmap</b>. Note that you can only make a change to these files once.
+</p>
+
+<pre class="code">
+> newuidmap 82 0 $(id -u myuser) 1
+> newgidmap 82 0 $(id -u myuser) 1
+> more /proc/82/uid_map
+         0       1000          1
+</pre>
+
+<p>Then back in the child namespace:</p>
+
+<pre class="code">
+> exec bash
+> id
+uid=0(root) gid=0(root) groups=0(root),65534(nobody)
+</pre>
+
+<p>
+Now, within our private network stack and using fakeroot, we can bind to any port. It's probably easier to
+accomplish this without a user namespace though. You can either add <b>net bind capability</b> to the binary
+or change the value of the first unprivileged port. Do the latter inside the network namespace so it's not
+system wide. For <b>net bind</b>, make sure to apply it to the actual binary, not a symlink.
+</p>
+
+<pre class="code">
+# Modifies binary privileges
+setcap cap_net_bind_service=+ep /usr/bin/python3.9
+# Or, change first unprivileged port number (within net namespace)
+sysctl net.ipv4.ip_unprivileged_port_start=0
+</pre>
+
+
+<hr>
+<h2>UNIX Time-Sharing</h2>
+
+<p>
+Initially, I planned on using a <b>UTS</b> namespace, but I realized using Nginx makes it unnecessary. If you
+don't want to go the trouble of Nginx, you can use <b>unshare --uts</b> and then set the hostname. This way
+each instance can have its own hostname. You may still need to update <b>/etc/hosts</b>.
+</p>
+
+<hr>
+<h2>NGINX</h2>
+
+<p>
+So far this is great. I have the containerized solution I initially thought I was getting with WSL. But
+there's one more little nitpicky thing. Creating a new container means creating new certificates for both the
+browser and application server. What I would really like is for each container to have an identical domain
+name in addition to identical everything else (except IP). I decided to use Nginx to accomplish this.
+Actually, you might be able to get around needing to generate new certificates for each container by using
+<b>Subject Alternative Names</b>. This is how I dealt with the problem on the client side.
+</p>
+
+<p>
+We're going to take incoming requests which will be <b>xxx.dev.rocky</b> and replace the host header
+with <b>dev.rocky</b>. Since the traffic is SSL encrypted, the only way to do this is by terminating the
+connection at the proxy and then creating a new connection between the proxy and the backend server. By
+terminating the connection, we'll be able to inspect and modify the traffic in any way we choose. In order to
+do this, you need to have a copy of the client certificate and private key on the proxy. There is no way
+around this. By design, the proxy or any other intermediary can't act as a <b>MITM</b>; it needs the private
+key to initiate a new connection with the backend server. You could hard code the name of the file storing the
+private key. If you have more than one, you might extract it from the common name of the certificate sent by
+the client. I think I grabbed this solution from a stackoverflow post. The <b>ssl_client_s_dn</b> variable
+stores the certificate <b>Distinguished Name</b>.
+</p>
+
+<pre class="code">
+map $ssl_client_s_dn $client_cert_file {
+    ~CN=([^,]+)  $1;
+    default      '';
+}
+
+server_name $server_num.dev.rocky;
+location / {
+    proxy_ssl_certificate     "/home/myuser/certs/${client_cert_file}.pem";
+    proxy_ssl_certificate_key "/home/myuser/certs/${client_cert_file}.pem";
+    proxy_pass https://192.168.200.$server_num:$proxy_port;
+}
+</pre>
+
+<p>
+So far this only routes traffic to a new IP and port. We still need to re-write the host header. In addition
+we'll need to change the host of any responses from the backend server as well as the domain in any cookies.
+</p>
+
+<pre class="code">
+proxy_set_header          Host               dev.rocky:$proxy_port;
+proxy_redirect            https://dev.rocky  https://$server_num.dev.rocky;
+proxy_cookie_domain       dev.rocky          $server_num.dev.rocky;
+</pre>
+
+<p>
+We also need to send a certificate to the client to initiate the SSL session between client and proxy.
+The <b>optional_no_ca</b> requests that the client sends its certificate. This prompts your browser to ask you
+to select a certificate when you first visit a web page.
+</p>
+
+<pre class="code">
+ssl_certificate      "/home/myuser/certs/dev.rocky.crt";
+ssl_certificate_key  "/home/myuser/certs/dev.rocky.key";
+ssl_verify_client    optional_no_ca;
+</pre>
+
+<p>
+Unless you are using relative URLs everywhere, you'll also need to replace URLs in web pages returned by the
+backend. You can do this with Nginx's <b>sub_filter</b> function. For this to work, the pages need to be
+uncompressed. You can force them to be uncompressed by setting <b>Accept-Encoding</b> to empty string.
+</p>
+
+<pre class="code">
+proxy_set_header          Accept-Encoding    "";
+sub_filter                dev.rocky          $server_num.dev.rocky;
+sub_filter_once           off;
+sub_filter_types          *;
+</pre>
+
+<p>
+It's also possible you could have domain names passed in the URL as query parameters. I actually ran into this
+issue with ActiveMQ. It's easy to replace a part of the query string using regular expressions, but it's not
+so easy to replace multiple instances. I found a suggestion on stackoverflow to replace a single instance,
+redirect with the new URL, then replace another instance until all instances are replaced. This seems rather
+inefficient, but it's probably uncommon for there to be even a single domain in the query parameters. I'm
+using map below to set <b>replace_host_args</b> with the new query parameters. Then I return <b>302</b> with
+this change. If replace_host_args is empty, it skips this step.
+</p>
+
+<pre class="code">
+map $args $replace_host_args {
+    ~(.*)\d+\.dev\.rocky(.*)  $1dev.rocky$2;
+    default                   '';
+}
+
+set $new_req $scheme://$server_num.dev.rocky:$proxy_port;
+if ($replace_host_args !~ ^$) { return 302 $new_req$uri?$replace_host_args; }
+</pre>
+
+<pre>
+GET https://1.dev.rocky?foo=1.dev.rocky&amp;boo=1.dev.rocky
+  --> 302 https://1.dev.rocky?foo=dev.rocky&amp;boo=1.dev.rocky
+GET https://1.dev.rocky?foo=dev.rocky&amp;boo=1.dev.rocky
+  --> 302 https://1.dev.rocky?foo=dev.rocky&amp;boo=dev.rocky
+GET https://1.dev.rocky?foo=dev.rocky&amp;boo=dev.rocky
+</pre>
+
+<p>
+It's possible to use a regular expression with capturing groups in the <b>server_name</b> line to extract the
+container number or whatever else you want. Initially, I was extracting <b>server_num</b> this way, but then I
+was having problems using $server_name as a variable. It's more flexible to use map on the <b>host</b>
+variable. Then you can match both <b>xxx.dev.rocky</b> and <b>devxxx.rocky</b>. The <b>301</b> below
+permanently redirects from devxxx.rocky to xxx.dev.rocky.
+</p>
+
+<pre class="code">
+map $host $server_num {
+    ~^(\d+)\.dev\.rocky$  $1;
+    ~^dev(\d+)\.rocky$    $1;
+    default               '';
+}
+
+if ($host ~ ^dev(\d+)\.rocky) { return 301 $new_req$request_uri; }
+</pre>
+
+<p>
+Somehow we still need to map incoming shifted ports to actual ports on the backend. Nginx doesn't support
+arithmetic without calling external scripts, but there is a simple way to do this using map. The one challenge
+is that the port mappings will need to be added dynamically, and I don't want to modify the file each time, so
+I'll create a file fore each container and then include all the map files at once.
+</p>
+
+<pre class="code">
+map $server_port $proxy_port {
+    include /etc/nginx/conf.d/port-map*.map;
+    default 0;
+}
+</pre>
+
+<p>
+The map file is just a simple table. The table will be generated by the same script that sets up the
+namespaces. For example, <b>port-map1.map</b> might look like this.
+</p>
+
+<pre class="code">
+1080          80;
+1443         443;
+</pre>
+
+<p>
+If you need your site to still be operational even when no certificate is provided by the client, you can deal
+with this by temporarily rewriting the URL path, forwarding to a special location that doesn't send a
+certificate to the server based on this temporary path, and then rewriting the path back to its original
+value.
+</p>
+
+<pre class="code">
+if ($client_cert_file ~ ^$)   { rewrite ^/(.*) /__no_such_path__/$1; }
+
+location ~ /__no_such_path__/.* {
+    rewrite ^/__no_such_path__/(.*) /$1 break;
+    proxy_pass https://192.168.200.$server_num:$proxy_port;
+}
+</pre>
+
+<p>
+Nginx now handles any web ports, but all other ports are still routed with IP tables. The network diagram now
+shows two paths (orange for web and blue otherwise). I'm omitting some details that were in earlier images.
+</p>
+
+<img src="nginx_containers.png" alt="nginx_containers.png">
+
+<p>
+The two major issues with this solution are: (1) You need to have client authentication certificates and keys
+on the server. This sholudn't be an issue, unless you need to create them dynamically. (2) If the URLs are
+encoded or built out of fragments in JavaScript, it will break the proxy. In practice, I haven't run into this
+problem.
+</p>
+
+<p>
+It might be a lot simpler to use <b>UTS</b> namespaces instead of a proxy. However, the one big advantage to
+doing it this way is that, except for IP, every instance is identical. That means you don't need to create new
+certificates and modify keystores and truststores for each new container. You don't need to modify any
+configuration files that reference hostnames, and so on.
+</p>
+
+
+<hr>
+<h2>EMACS</h2>
+
+<p>
+What's this doing here? Some Emacs packages don't work very well on Windows for various reasons. One common
+problem is that E-lisp code shells out to run Linux utilities, which aren't readily available on Windows. So I
+thought I'd give running Emacs from WSL a try. Packages also load way faster if you build
+with <a href="https://www.masteringemacs.org/article/speed-up-emacs-libjansson-native-elisp-compilation">native
+compilation</a>, which is easy to do on Linux.
+</p>
+
+<p>
+To make sure the docker daemon is running, you'll either have to add <b>systemd</b> to <b>wsl.conf</b> or
+start it yourself using the <b>command</b> option. If running manually, you'll need to set up the path. This
+will likely depend on your system.
+</p>
+
+<pre class="code">PATH="${PATH}:/usr/bin:/usr/sbin" dockerd</pre>
+
+<p>
+Emacs can access WSL shares directly, which means you don't even need to bother with Tramp to edit files on
+your development box(es). There are a couple of caveats. You won't have permissions to edit files unless the
+default user in <b>wsl.conf</b> is root. This isn't much of a problem, though. Just make the default user root
+and then use the <b>-u</b> flag in Windows Terminal (settings -> profile -> distro -> Command line) to always
+log in as your user. The other issue is that you'll need to mount those drives from WSL.
+</p>
+
+<pre class="code">
+mkdir -p /mnt/rocky
+mountpoint -q /mnt/rocky || mount -t drvfs '\\wsl.localhost\rocky' /mnt/rocky
+</pre>
+
+<p>
+If you don't know the share names ahead of time, you can get them from the wsl command. Strings that come back
+from Windows need to be converted to UTF-8 and have any carriage returns stripped off.
+</p>
+
+<pre class="code">cmd.exe /C "wsl --list -q" | iconv -f UTF-16LE -t UTF-8 | tr -d '\r'</pre>
+
+<p>
+To get X11 applications running in docker in WSL, you need to pass along some environment variables and mount
+some directories as described in
+this <a href="https://stackoverflow.com/questions/73092750/how-to-show-gui-apps-from-docker-desktop-container-on-windows-11">SO
+post</a>. I set the user and group in order to silence warnings. Also, I put the container in the same network
+namespace as the host so I don't have to do any additional network configuration. To use windows programs
+inside the container, you'll need to pass along the <b>WSL_INTEROP</b> variable and mount the <b>/run/WSL</b>
+directory. You also need to run as privileged. I'm not sure if there is any way around this. Finally, I've
+mapped some additional directories on Windows for convenience, especially <b>/mnt/rocky</b>. This allows you
+to access root-owned files in WSL through Windows that you would otherwise need to access either through Tramp
+or by running Emacs as root. It's a bit goofy that you need to go out through Windows to access the Linux host
+running the container, but it works.
+</p>
+
+<pre class="code">
+docker run --user $(id -u):$(id -g) --group-add sudo --rm --privileged --network=host \
+      -v /:/wsl -v /home/share:/share \
+      -v /mnt/c:/win \
+      -v /mnt/c:/mnt/c \
+      -v /mnt/rocky:/mnt/rocky \
+      -v /mnt/wslg/.X11-unix:/tmp/.X11-unix \
+      -v /mnt/wslg:/mnt/wslg \
+      -v /run/WSL:/run/WSL \
+      -e DISPLAY=:0 \
+      -e WAYLAND_DISPLAY=wayland-0 \
+      -e XDG_RUNTIME_DIR=/mnt/wslg/runtime-dir \
+      -e PULSE_SERVER=/mnt/wslg/PulseServer \
+      -e WSL_INTEROP="$WSL_INTEROP" \
+      -e PATH="$PATH" \
+      emacs/run-env emacs
+</pre>
+
+<p>
+As an alternative to adding Windows programs to <b>PATH</b> in the container, you can create a script in the
+container that runs the executable using the full path. This has the additional advantage that you don't need
+to figure out how to override the name of the executable in every Emacs package that uses that executable. For
+example, ripgrep is <b>rg</b> in Linux and <b>rg.exe</b> in Windows. So instead of changing rg to rg.exe in
+multiple places, you would have a script named rg call /path/to/rg.exe.
+<p>
+
+
+<hr>
+<h2>Identifying Containers</h2>
+
+<p>
+It's easy to get confused about what namespace you're in. I've inadvertently run scripts from the root
+namespace that should have been run from a container numerous times now. One way to deal with this is to
+modify your <b>.bashrc</b> to make it obvious which namespace it is and prevent you from running the wrong
+scripts. In bash, something like this will work to change the prompt. You may then want to bail
+from <b>.bashrc</b> before changing the <b>PATH</b> or whatever.
+</p>
+
+<pre class="code">
+if [[ $- =~ i ]]  && [ ! -z "$WSL_DISTRO_NAME" ]; then
+    if [ -z "$VM_NUM" ]; then
+        PS1="\[$(tput setaf 1)\]${PS1}\[$(tput sgr0)\]"
+    else
+        PS1="[${VM_NUM}] ${PS1}"
+    fi
+fi
+</pre>
+
+<p>
+In fish, you can use something like the following.
+</p>
+
+<pre class="code">
+if [ -n "$WSL_DISTRO_NAME" ]
+    functions -c fish_prompt old_fish_prompt
+    if [ -z "$VM_NUM" ]
+        function fish_prompt
+            set -l old_fish_color_cwd  $fish_color_cwd
+            set -l old_fish_color_user $fish_color_user
+            set -l old_fish_color_host $fish_color_host
+            set -xl fish_color_cwd  red
+            set -xl fish_color_user red
+            set -xl fish_color_host red
+            old_fish_prompt
+            set -l fish_color_cwd  old_fish_color_cwd
+            set -l fish_color_user old_fish_color_user
+            set -l fish_color_host old_fish_color_host
+        end
+    else
+        function fish_prompt
+            printf "[$VM_NUM] "
+            old_fish_prompt
+        end
+    end
+end
+</pre>
+
+<hr>
+<h2>Testing from the command line</h2>
+
+<p>
+I don't have my hostname in /etc/hosts in the root namespace so as not to get it confused with any of the
+network namespaces. The problem with this is that you can't use an IP when testing from the command line
+because it won't match the certificate. Fortunately, you can use the hostname you want and remap it to the IP
+of the network namespace
+using <b>curl</b>'s <a href="https://curl.se/docs/manpage.html#--connect-to">--connect-to</a> flag.
+</p>
+
+<pre class="code">
+curl -s -H "X-myheader: test" 'https://dev1.rocky' --connect-to dev1.rocky:443:192.168.1.2:1443 \
+     -v -m 1 --cacert dev1.rocky.pem -k
+</pre>
+
+<p>
+However, this won't work when Nginx sends back a redirect. Curl will again try to connect to <b>dev1.rocky</b>. In
+this case, you can use <a href="https://curl.se/docs/manpage.html#--resolve">--resolve</a>, which will create
+a temporary, internal DNS entry for the duration of the command execution.
+</p>
+
+<pre class="code">
+curl -s -H "X-header: test" 'https://dev1.rocky:1443' --resolve dev1.rocky:1443:192.168.1.2 \
+     -v -m 1 --cacert dev1.rocky.pem -k -L --max-redirs 5
+</pre>
+
+<p>
+To add <b>Subject Alternative Name</b>(s) to a certificate, you just need to provide <b>openssl</b> with
+the <b>-addext</b> flag. This will add the top level domain <b>dev</b> and all immediate sub-domains as valid
+domains.
+</p>
+
+<pre class="code">
+dn="/C=US/ST=.../L=.../O=.../OU=.../CN=dev.rocky"
+constraints="basicConstraints=critical,CA:false"
+san="subjectAltName = DNS:dev.rocky,DNS:*.dev.rocky"
+openssl genrsa -out dev.rocky.key 4096
+openssl req -new -x509 -days 3000 -subj "$dn" -addext "$san" -addext "$constraints" \
+        -outform pem -key dev.rocky.key -out dev.rocky.crt
+</pre>
+
+<p>
+It's a good idea to check that the certificate contains the right information. You can also verify that it
+will accept sub-domains. If <b>verify</b> doesn't work on the certificate, the certificate probably won't work
+in your browser either. It's important to note that the top level domain can't be a wildcard, which is why I'm
+using <b>*.dev.rocky</b> instead of <b>dev*.rocky</b>. You can use the latter in a certificate, but it will fail
+when you run <b>verify</b>.
+</p>
+
+<pre class="code">
+> openssl x509 -in dev.rocky.crt -noout -ext subjectAltName,basicConstraints
+X509v3 Basic Constraints:
+    CA:TRUE
+X509v3 Subject Alternative Name:
+    DNS:dev.rocky, DNS:*.dev.rocky
+
+> openssl verify -CAfile dev.rocky.crt -verify_hostname 2.dev.rocky dev.rocky.crt
+certs/rocky.crt: OK
+</pre>
+
+<hr>
+<h2>WSL Headaches</h2>
+
+<p>
+There are some issues for which I haven't come up with a good fix. The one major problem is that
+the <b>Hyper-V Host Compute Service</b> is buggy. On Win11, you have to restart the service after reboot to
+get WSL to start. I have a task that runs on login and starts WSL so that I can add the gateway IPs to the
+virtual ethernet adapter. To get around the problem of it not working correctly at start, I tried also
+restarting the host compute service in the task, but that was consistently causing a BSOD. In fact, restarting
+host compute at any time risks a BSOD.
+</p>
+
+<p>
+If you need to terminate and restart WSL for some reason, you may not be able to get it to start again without a reboot. This seems to mainly be an issue on Win11.
+</p>
+
+<p>
+Occasionally port forwarding will suddenly break. If you realize what's happened, all you have to do is remove
+the Windows port forwarding rules and immediately add them again.
+</p>
+
+<p>
+I had some problems running <b>cmd.exe</b> and <b>powershell.exe</b> from within a process namespace entered
+with <b>nsenter</b>. If you're in a shell prompt that was initially created with <b>unshare</b>, it seems to
+work. But if you enter from elsewhere, you get the error below. I sort of fixed this by making sure to pass on
+the environment variable <b>WSL_INTEROP</b>, but something is still not right. I have to change the directory
+before it will work.
+</p>
+
+<pre class="code">
+<3>WSL (117) ERROR: UtilGetPpid:1244: Failed to parse: /proc/92/stat, content: 92 (bash) S 0 92 0 34816 117 4194560 795 4643 0 1 1 0 3 0 20 0 1 0 19049897 7680000 1060 18446744073709551615 94462841421824 94462842315989 140725225608544 0 0 0 65536 3686404 1266761467 1 0 0 17 0 0 0 0 0 0 94462842555408 94462842603152 94462872178688 140725225610468 140725225610474 140725225610474 140725225611246 0
+</pre>
+
+<p>
+There is no drag-and-drop for GUI applications. I often drag files from explorer to Emacs, so this is
+annoying.
+</p>
+
+<p>
+In general, interop is a pain. Anything coming from Windows needs to be converted to UTF-8 and have carriage
+returns stripped off; paths need to be converted. Anything going to Windows will at least need to have paths
+converted. It's best to only send data one way. If you're piping strings back and forth between Windows and
+Linux, it's going to become an ugly mess quickly.
+</p>
+
+
+
+
+</td></tr>
+</tbody></table>
+<p><br><a href="../index.html">home</a></p>
+</body></html>

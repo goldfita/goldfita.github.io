@@ -1,0 +1,80 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!--Converted with LaTeX2HTML 2K.1beta (1.61)
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta name="generator" content=
+"HTML Tidy for Windows (vers 12 April 2005), see www.w3.org" />
+<title>Basic Idea</title>
+<meta name="description" content="Basic Idea" />
+<meta name="keywords" content="research" />
+<meta name="resource-type" content="document" />
+<meta name="distribution" content="global" />
+<meta http-equiv="Content-Type" content=
+"text/html; charset=us-ascii" />
+<meta name="Generator" content="LaTeX2HTML v2K.1beta" />
+<meta http-equiv="Content-Style-Type" content="text/css" />
+<link rel="STYLESHEET" href="research.css" type="text/css" />
+<link rel="next" href="node8.html" />
+<link rel="previous" href="node6.html" />
+<link rel="up" href="node6.html" />
+<link rel="next" href="node8.html" />
+<style type="text/css">
+/*<![CDATA[*/
+ div.c1 {text-align: center}
+/*]]>*/
+</style>
+</head>
+<body>
+<!--Navigation Panel-->
+<a name="tex2html125" href="node8.html" id=
+"tex2html125"><img width="37" height="24" align="bottom" border="0"
+alt="next" src="next.gif" /></a> <a name="tex2html121" href=
+"node6.html" id="tex2html121"><img width="26" height="24" align=
+"bottom" border="0" alt="up" src="up.gif" /></a> <a name=
+"tex2html115" href="node6.html" id="tex2html115"><img width="63"
+height="24" align="bottom" border="0" alt="previous" src=
+"prev.gif" /></a> <a name="tex2html123" href="node1.html" id=
+"tex2html123"><img width="65" height="24" align="bottom" border="0"
+alt="contents" src="contents.gif" /></a><br />
+<b>Next:</b> <a name="tex2html126" href="node8.html" id=
+"tex2html126">Performance</a> <b>Up:</b> <a name="tex2html122"
+href="node6.html" id="tex2html122">Delay-and-Sum Beamforming</a>
+<b>Previous:</b> <a name="tex2html116" href="node6.html" id=
+"tex2html116">Delay-and-Sum Beamforming</a> &nbsp; <b><a name=
+"tex2html124" href="node1.html" id=
+"tex2html124">Contents</a></b><br />
+<br />
+<!--End of Navigation Panel-->
+<h2><a name="SECTION00041000000000000000" id=
+"SECTION00041000000000000000">Basic Idea</a></h2>
+If we assume the talker is far away from the microphone array, the
+acoustic wave will be nearly planer. Notice that the wavefront
+propogates across every microphone. The simplest way to make use of
+this is to delay the signal received at each microphone and sum
+them together. This has the effect of increasing the Signal to
+Noise Ratio (SNR) and increasing the Signal to Interference plus
+Noise Ratio (SINR) if the interference is at a different angle than
+the source relative to the array.
+<div class="c1"><img width="500" height="402" align="bottom"
+border="0" src="img16.gif" alt=
+"\includegraphics[totalheight=0.4\textheight,totalwidth=.4\textwidth]{texfigs/ula.ps}" /></div>
+<p>In the example below, consider the large squiggle to be our
+source, the little squiggle to be interference, and the fuzziness
+to be noise. If S1 and S2 are delayed in time and added to S3, the
+result is the bottom signal. Notice the noise and interference seem
+smaller. (A real signal would not have the source and interference
+separated in time. And the first and last signal would be seperated
+by at most a few samples.)</p>
+<div class="c1"><img width="537" height="403" align="bottom"
+border="0" src="img17.gif" alt=
+"\includegraphics[totalheight=0.4\textheight,totalwidth=.4\textwidth]{texfigs/das.eps}" /></div>
+<p><br /></p>
+<hr />
+<address>Todd A Goldfinger 2004-11-22</address>
+</body>
+</html>

@@ -1,0 +1,90 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+<head>
+<title>Hardware Level Primitive Generics</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<link rel="stylesheet" type="text/css" href="../index.css" />
+<meta name="description" content=
+"An idea for implementing generic types at the hardware level for
+efficiency and to limit code size.                                 " />
+<!-- ....10........20........30........40........50........60........70........80 -->
+</head>
+
+<body>
+<table>
+<tr><td class="article">
+<h1 class="topofpage">Hardware Level Primitive Generics</h1>
+
+<p>
+The C++ language has a very useful feature that allows heavy reuse of
+code.  The feature is called templates.  I have never used them, but one can
+easily see what makes templates so popular.  Suppose you wanted to
+sort on arbitrary types.  In C, you would do this by passing a pointer
+to a function which compares the operands.  This, sadly, requires a
+lot of overhead for something so simple.  If you are comparing
+strings, the overhead might be relatively small.  If you're comparing
+integers or characters, the overhead might be several times the amount
+of work of the actual operation.
+</p>
+
+<p>
+The C++ templates take care of this problem by generating all the code
+you need.  That is, (my understanding is) it compiles code for every
+case.  This will generate efficient code for all cases, but there are
+drawbacks.  There is code bloat.  You end up with multiple copies of
+code for every function.  With modern hardware, I don't believe there
+is any way around that.  The build process tends to require additional
+steps beyond the standard compile and link phases.  I also wonder how
+templates are handled in shared object files.  If you write a library
+that uses templates and is compiled before the code that will access
+it, how can it have the code for types yet unknown?
+</p>
+
+<p>
+An idea occurred to me for a limited subset of this problem.  Suppose
+our types are limited to a handful of primitives: char, int, float,
+double.  Even having a generic type for only these types would be
+useful for many algorithms.  You may want to try the algorithm on
+different types.  This could be implemented in hardware.  The typing
+issues would be mostly transparent to the programmer and the compiler.
+</p>
+
+<p>
+Let's say I make a special register file of 64 bit registers that can
+store any of the types above.  Somehow the machine needs to know the
+types of the data in each register.  One way to handle this is to add
+two extra bits to each register to identify its type.  When any two
+types are operated on (say by multiply or add), the hardware will cast
+the type with less precision to the type with more precision.  This
+means the compiler only has to worry about moving types in and out of
+generic registers.  Any operations on generic registers are handled
+by the hardware.  Anywhere an explicit cast occurs in code will also
+have to be handled by the compiler.  This would allow you to have a
+completely generic primitive type without any code duplication or
+overhead.  In addition, it's far less work for the compiler.
+</p>
+
+<p>
+As usual, I have left a few things out of the discussion.  To make
+this more practical, you would want to be able to store generic types
+back to memory.  By adding two extra bits to each type, you create the
+problem of having 66 bit types, which really doesn't fit into memory.
+There are probably many ways to handle this.  You might have a
+separate memory space which indicates the types.  You might simply
+have the compiler work with the machine to determine types.  Of course
+that would increase the burden on the compiler and probably slow
+things down.  However, once the generic types are in registers, the
+computation should be as fast or even faster than normally generated
+code.
+</p>
+
+
+</td></tr>
+</table>
+<p><br /><a href="../index.html">home</a></p>
+
+</body>
+
+</html>
+

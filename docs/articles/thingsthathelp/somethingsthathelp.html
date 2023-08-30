@@ -1,0 +1,153 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+<head>
+<title>Some Things that Help</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<link rel="stylesheet" type="text/css" href="../../index.css" />
+<meta name="description" content="
+Some simple procedures you can follow to make your code work a little
+better, a little faster, with a little less headache."></meta>
+<!-- ....10........20........30........40........50........60........70........80 -->
+</head>
+
+<body>
+
+<table>
+<tr><td class="article">
+
+<h1 class="topofpage">Some Things that Help</h1>
+<p>
+These are some mistakes I've made over the years.  Only after doing
+things the wrong way for a few months or years did I finally realize
+what I should have been doing.  Or someone smarter was kind enough to
+tell me.  Hopefully the suggestions below will be helpful.  I know I
+intend to try them.</p>
+
+
+<h3>Installation</h3>
+<p>
+Document everything.  Even better, write scripts to do the
+installation for you.  If you're anything like me and can't remember
+configuration and setup information for more than about 3 hours, this
+will save you a lot of time.  As soon as you figure out all the steps
+involved in installing a new package, make a script that does it for
+you.  This has a number of advantages.  Obviously, you'll never have
+to do it again (unless you install a different version or on a
+different OS).  It gives you something you can post to your web site.
+If you learned something new during the installation, you have your
+script to refer back to, and it's easier to understand code you've
+written than someone else's example.
+</p>
+<h3>Initialization</h3>
+<p>
+Initialize everything, even if you don't need to.  Initialize
+immediately, even if you'll be doing so again just below.  Bugs that involve
+random initialization values are not fun to track down.  You might
+not need to initialize now, but later after you make some changes,
+you'll be glad you did.  Or at least you would have been very sad if
+you didn't.
+</p>
+<h3>Type size</h3>
+<p>
+Start with the largest reasonable type.  I know you think you're safe
+now, but wait a few months and 5000 lines of code later.  If you
+really need to make a type smaller, do it only when it has to be done.
+If this causes a problem, it may show up immediately.
+</p>
+<h3>Error Handling</h3>
+<p>
+Die violently.  Make as much noise as possible.  Have you ever found
+yourself writing code that attempts to hide error messages and cover up
+the fact that something bad happened?  I have and I've seen it done.
+Don't do it.  If something goes wrong, you want the entire world to
+know.  When one thing goes wrong, it's only a matter of time before
+others follow.  You don't want to obscure the original error.
+</p>
+<p>When should you check for invalid data?  Inside the function, or
+outside?  Unless speed is really important, I suggest both.
+</p><p>
+Write error handling code immediately.  You'll forget to do it
+later.  It will come back to bite you.  Even if you don't know how to
+handle the problem yet, put something there.
+</p>
+<h3>Introspection</h3>
+<p>
+Meta data is good.  Use lots of it.  The mistake I make is usually not
+keeping enough data around to know the state of the program.  In fact
+I tend to do quite the opposite, and strip data structures down to the
+bare minimum.  Don't do that.  This is especially problematic when
+you're using threads and they need to talk to each other.
+</p>
+<h3>Resources</h3>
+<p>
+When you find information on the internet on how to accomplish a
+programming task, copy the link into a comment.  Even if you don't
+need to revisit that link, someone else might.  It only takes a second,
+and someone will be glad you did it.
+</p>
+<h3>Experiments</h3>
+
+<p>Keep a directory around for code experiments.  When you don't
+understand how something works or you can't find decent documentation
+(or it's just wrong), make a little experiment file.  This is what a
+scientist does.  Only you've got it easier because someone (at least
+at one point) understands how it works, and there is probably some
+documentation.  Keep your experiments around so you can refer to them
+later.  And again, this gives you some content for your web site.  You
+never know who else might find your little example helpful.  Here is
+an example <a href="exp/python/exper1.py">script</a> (and <a
+href="exp/python/exper2.py">another</a>) that demonstrates multiple inheritance
+in python.
+</p>
+
+<h3>Learn the tools</h3>
+<p>Take the time to understand the tools you use regularly.  If you find
+yourself using the same tool over and over, learn how to actually use
+it properly.  Often you'll only use a tool a few times and you don't
+want to take the time to learn it.  That's ok.  But if you later find
+that one or two times has turned into 60, it's time to spend a few
+hours learning how to really use it.
+</p>
+
+<h3>Document the Details</h3> <p>Whenever you learn a little quirk
+about your code or design, write it down somewhere.  It's all those
+little things that cause you to sit there forever trying to figure out
+what in the world is going on.  When you fix a bug, explain what you
+did and why you did it.  If you don't do this, someone else (or even
+you) may come by at a later time and CHANGE IT BACK!  That's bad.
+Don't keep it in your head.  Tell the world.
+</p>
+
+<h3>Customize Your Environment</h3>
+<p>
+I've found myself customizing and recustomizing my .emacs, .bashrc,
+and .bash_profile.  Each time it's a little different.  Take the time
+to customize your environment the way you want it.  Then put the
+customizations in a convenient place.  I have mine backed up on my
+website so that I can access them from anywhere.  I just drop my .emacs
+into /usr/share/emacs and create a link to it for any user on the
+machine I want to use.  And I only need to update it once for all users.
+</p>
+
+<h3>Record Your History</h3>
+<p>
+Keep a file around to store recent or unusual commands.  I started
+storing new and/or long shell commands in a file, linuxcommands.txt.
+I have already found it to be invaluable and have refered to it a
+number of times.  And it's only been a few weeks!  Imagine how useful
+it will be a year from now.  Also, if you insist on using <span
+class="bold">echo "my cool command" >> linuxcommands.txt</span> to
+append to files, make sure you keep frequent backups.  I've already
+forgoten the second greater than sign once.
+</p>
+
+<a href="exp">experiments</a>
+</td></tr>
+
+</table>
+
+<p><a href="../../index.html">home</a></p>
+
+</body>
+</html>

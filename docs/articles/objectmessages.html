@@ -1,0 +1,100 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+<head>
+<title>Object Polymorphism</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<link rel="stylesheet" type="text/css" href="../index.css" />
+<meta name="description" content=
+"Solving the monster, er, polymorphism problem.
+                                                            " />
+<!-- ....10........20........30........40........50........60........70........80 -->
+</head>
+
+<body>
+<table>
+<tr><td class="article">
+<h1 class="topofpage">Object Polymorphism</h1>
+
+
+<p>
+I was reading <a
+href="http://www.cabochon.com/~stevey/blog-rants/polymorphism-fails.html">this
+blog</a>.  And the monster problem caught my attention.  I decided to
+take a stab at solving it.  Actually, my solution was immediately
+obvious to me.  I'll share it with you.  Incidentally, the author of
+the blog is very prolific.  You'll learn a lot from reading his
+entries.
+</p>
+
+<p>
+The problem is that in order to extend object oriented code without
+having access to the code, you need to do some ugly coding.  Take a
+look at the OpinionatedELF example.  He suggests runtime typing every
+other object to determine how the Elf will react to the other
+monsters.  Obviously you don't want to do this because you have to add
+a new line and recompile each time a new monster is added.
+</p>
+
+<p>
+My solution was to instead add a name method to each monster.  In fact
+in Python, thanks to powerful introspection, this can be done by
+adding the name method to the base class only.  Thus no monsters need
+to be touched.  Now all the Opinionated Elf has to do is ask the
+monster who he is by invoking his name method.  This is better than
+using the runtime typing because it removes the dependence, in some
+sense, from the language.  One monster is "talking" to the other
+instead of the monster relying on the language or the interpreter for
+the answer.  The example is below.
+</p>
+
+<pre class="code">
+<span class="flkf">class</span> <span class="fltf">monster</span>:
+    <span class="flkf">def</span> <span class="flfnf">name</span>(<span class="py-pseudo-keyword-face">self</span>):
+        s = <span class="py-builtins-face">str</span>(<span class="py-pseudo-keyword-face">self</span>.name)
+        <span class="flkf">return</span> s[14:s.find("<span class="flsf">.name</span>")]
+
+<span class="flkf">class</span> <span class="fltf">orc</span>(monster):
+    <span class="flkf">pass</span>
+
+<span class="flkf">class</span> <span class="fltf">elf</span>(monster):
+    <span class="flkf">pass</span>
+
+<span class="flkf">class</span> <span class="fltf">opinionated_elf</span>:
+    __likes = {"<span class="flsf">orc</span>": <span class="py-pseudo-keyword-face">False</span>,
+               "<span class="flsf">elf</span>": <span class="py-pseudo-keyword-face">True</span>}
+    <span class="flkf">def</span> <span class="flfnf">do_i_like</span>(<span class="py-pseudo-keyword-face">self</span>,monster):
+        <span class="flkf">return</span> <span class="py-pseudo-keyword-face">self</span>.__likes[monster.name()]
+    
+<span class="flkf">print</span> opinionated_elf().do_i_like(orc())
+<span class="flkf">print</span> opinionated_elf().do_i_like(elf())
+</pre>
+
+<p>
+Notice that when you do it this way the Opinionated Elf can be
+updated without recompiling any code.  The hash table of likes could
+be read from a file.  It could be updated in real-time over the
+network.  The solution is on a slightly higher level of abstraction
+using inter-object communication instead of object-interpreter
+communication.
+</p>
+
+<p>
+I e-mailed the author, and he told me I had an "eminently reasonable
+solution", but that I went outside the class model.  I didn't quite
+get that last part.  It seems to me that it's still polymorphic given
+that each monster will respond with its own name.  It's just that I've
+moved the decision into the Elf, where it should be.  I believe the
+idea of message passing was one of the original ideas behind objects.
+But in any case, it works with virtually no special code.  And it's
+completely extensible.
+</p>
+
+
+</td></tr>
+</table>
+<p><br /><a href="../index.html">home</a></p>
+
+</body>
+
+</html>

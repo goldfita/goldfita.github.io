@@ -1,0 +1,936 @@
+=======================
+LCRASH CORE FILE REPORT
+=======================
+
+GENERATED ON:
+    Wed Apr 19 22:05:00 2006
+
+
+TIME OF CRASH:
+    Tue Apr 11 16:39:45 2006
+
+
+PANIC STRING:
+    NMI Watchdog detected LOCKUP
+
+MAP:
+    map.1
+
+DUMP:
+    dump
+
+KERNTYPES:
+    kerntypes.1
+
+================
+COREFILE SUMMARY
+================
+
+    The system died due to a software failure.
+
+===================
+UTSNAME INFORMATION
+===================
+
+   sysname : Linux
+  nodename : geb
+   release : 2.6.16
+   version : #12 SMP Mon Apr 3 16:39:49 UTC 2006
+   machine : i686
+domainname : (none)
+
+===============
+LOG BUFFER DUMP
+===============
+
+    <<<<<<<<<<<< Dump Card State Ends >>>>>>>>>>>>>>>>>>
+    <4>(scsi0:A:3:0): Device is disconnected, re-queuing SCB
+    <4>Recovery code sleeping
+    <4>(scsi0:A:3:0): Abort Tag Message Sent
+    <4>(scsi0:A:3:0): SCB 140 - Abort Tag Completed.
+    <4>Recovery SCB completes
+    <4>Recovery code awake
+    <4>aic7xxx_abort returns 0x2002
+    <6>sd 0:0:3:0: Attempting to queue an ABORT message
+    <4>CDB: 0x2a 0x0 0x0 0x40 0xe1 0xd2 0x0 0x0 0x8 0x0
+    <4>scsi0: At time of recovery, card was not paused
+    <4>>>>>>>>>>>>>>>>>>> Dump Card State Begins <<<<<<<<<<<<<<<<<
+    <4>scsi0: Dumping Card State while idle, at SEQADDR 0x8
+    <4>Card was paused
+    <4>ACCUM = 0x0, SINDEX = 0x6d, DINDEX = 0xe4, ARG_2 = 0x0
+    <4>HCNT = 0x0 SCBPTR = 0x15
+    <4>SCSISIGI[0x0] ERROR[0x0] SCSIBUSL[0x0] LASTPHASE[0x1]:(P_BUSFREE)
+    <4>SCSISEQ[0x12]:(ENAUTOATNP|ENRSELI) SBLKCTL[0xa]:(SELWIDE|SELBUSB)
+    <4>SCSIRATE[0x0] SEQCTL[0x10]:(FASTMODE) SEQ_FLAGS[0xc0]:(NO_CDB_SENT|NOT_IDENTIFIED)
+    <4>SSTAT0[0x0] SSTAT1[0xa]:(PHASECHG|BUSFREE) SSTAT2[0x0]
+    <4>SSTAT3[0x0] SIMODE0[0x8]:(ENSWRAP) SIMODE1[0xa4]:(ENSCSIPERR|ENSCSIRST|ENSELTIMO)
+    <4>SXFRCTL0[0x80]:(DFON) DFCNTRL[0x0] DFSTATUS[0x89]:(FIFOEMP|HDONE|PRELOAD_AVAIL)
+    <4>STACK: 0xe5 0x167 0x10d 0x3
+    <4>SCB count = 164
+    <4>Kernel NEXTQSCB = 54
+    <4>Card NEXTQSCB = 54
+    <4>QINFIFO entries:
+    <4>Waiting Queue entries:
+    <4>Disconnected Queue entries: 12:126
+    <4>QOUTFIFO entries:
+    <4>Sequencer Free SCB List: 21 7 25 10 5 19 29 30 0 31 24 11 9 26 4 3 27 20 23 1 8 6 16 15 13 18 14 17 22 28 2
+    <4>Sequencer SCB Info:
+    <4>  0 SCB_CONTROL[0xe0]:(TAG_ENB|DISCENB|TARGET_SCB) SCB_SCSIID[0x47]
+    <4>SCB_LUN[0x0] SCB_TAG[0xff]
+    <4>  1 SCB_CONTROL[0xe0]:(TAG_ENB|DISCENB|TARGET_SCB) SCB_SCSIID[0x57]
+    <4>SCB_LUN[0x0] SCB_TAG[0xff]
+    <4>  2 SCB_CONTROL[0xe0]:(TAG_ENB|DISCENB|TARGET_SCB) SCB_SCSIID[0x27]
+    <4>SCB_LUN[0x0] SCB_TAG[0xff]
+    <4>  3 SCB_CONTROL[0xe0]:(TAG_ENB|DISCENB|TARGET_SCB) SCB_SCSIID[0x47]
+    <4>SCB_LUN[0x0] SCB_TAG[0xff]
+    <4>  4 SCB_CONTROL[0xe0]:(TAG_ENB|DISCENB|TARGET_SCB) SCB_SCSIID[0x47]
+    <4>SCB_LUN[0x0] SCB_TAG[0xff]
+    <4>  5 SCB_CONTROL[0xe0]:(TAG_ENB|DISCENB|TARGET_SCB) SCB_SCSIID[0x27]
+    <4>SCB_LUN[0x0] SCB_TAG[0xff]
+    <4>  6 SCB_CONTROL[0xe0]:(TAG_ENB|DISCENB|TARGET_SCB) SCB_SCSIID[0x37]
+    <4>SCB_LUN[0x0] SCB_TAG[0xff]
+    <4>  7 SCB_CONTROL[0xe2]:(TAG_ENB|DISCENB|TARGET_SCB) SCB_SCSIID[0x37]
+    <4>SCB_LUN[0x0] SCB_TAG[0xff]
+    <4>  8 SCB_CONTROL[0xe0]:(TAG_ENB|DISCENB|TARGET_SCB) SCB_SCSIID[0x27]
+    <4>SCB_LUN[0x0] SCB_TAG[0xff]
+    <4>  9 SCB_CONTROL[0xe0]:(TAG_ENB|DISCENB|TARGET_SCB) SCB_SCSIID[0x37]
+    <4>SCB_LUN[0x0] SCB_TAG[0xff]
+    <4> 10 SCB_CONTROL[0xe0]:(TAG_ENB|DISCENB|TARGET_SCB) SCB_SCSIID[0x37]
+    <4>SCB_LUN[0x0] SCB_TAG[0xff]
+    <4> 11 SCB_CONTROL[0xe0]:(TAG_ENB|DISCENB|TARGET_SCB) SCB_SCSIID[0x47]
+    <4>SCB_LUN[0x0] SCB_TAG[0xff]
+    <4> 12 SCB_CONTROL[0x64]:(DISCONNECTED|TAG_ENB|DISCENB) SCB_SCSIID[0x37]
+    <4>SCB_LUN[0x0] SCB_TAG[0x7e]
+    <4> 13 SCB_CONTROL[0xe0]:(TAG_ENB|DISCENB|TARGET_SCB) SCB_SCSIID[0x57]
+    <4>SCB_LUN[0x0] SCB_TAG[0xff]
+    <4> 14 SCB_CONTROL[0xe0]:(TAG_ENB|DISCENB|TARGET_SCB) SCB_SCSIID[0x27]
+    <4>SCB_LUN[0x0] SCB_TAG[0xff]
+    <4> 15 SCB_CONTROL[0xe0]:(TAG_ENB|DISCENB|TARGET_SCB) SCB_SCSIID[0x37]
+    <4>SCB_LUN[0x0] SCB_TAG[0xff]
+    <4> 16 SCB_CONTROL[0xe0]:(TAG_ENB|DISCENB|TARGET_SCB) SCB_SCSIID[0x47]
+    <4>SCB_LUN[0x0] SCB_TAG[0xff]
+    <4> 17 SCB_CONTROL[0xe0]:(TAG_ENB|DISCENB|TARGET_SCB) SCB_SCSIID[0x47]
+    <4>SCB_LUN[0x0] SCB_TAG[0xff]
+    <4> 18 SCB_CONTROL[0xe0]:(TAG_ENB|DISCENB|TARGET_SCB) SCB_SCSIID[0x57]
+    <4>SCB_LUN[0x0] SCB_TAG[0xff]
+    <4> 19 SCB_CONTROL[0xe0]:(TAG_ENB|DISCENB|TARGET_SCB) SCB_SCSIID[0x37]
+    <4>SCB_LUN[0x0] SCB_TAG[0xff]
+    <4> 20 SCB_CONTROL[0xe0]:(TAG_ENB|DISCENB|TARGET_SCB) SCB_SCSIID[0x37]
+    <4>SCB_LUN[0x0] SCB_TAG[0xff]
+    <4> 21 SCB_CONTROL[0xe0]:(TAG_ENB|DISCENB|TARGET_SCB) SCB_SCSIID[0x57]
+    <4>SCB_LUN[0x0] SCB_TAG[0xff]
+    <4> 22 SCB_CONTROL[0xe0]:(TAG_ENB|DISCENB|TARGET_SCB) SCB_SCSIID[0x37]
+    <4>SCB_LUN[0x0] SCB_TAG[0xff]
+    <4> 23 SCB_CONTROL[0xe0]:(TAG_ENB|DISCENB|TARGET_SCB) SCB_SCSIID[0x47]
+    <4>SCB_LUN[0x0] SCB_TAG[0xff]
+    <4> 24 SCB_CONTROL[0xe0]:(TAG_ENB|DISCENB|TARGET_SCB) SCB_SCSIID[0x27]
+    <4>SCB_LUN[0x0] SCB_TAG[0xff]
+    <4> 25 SCB_CONTROL[0xe2]:(TAG_ENB|DISCENB|TARGET_SCB) SCB_SCSIID[0x47]
+    <4>SCB_LUN[0x0] SCB_TAG[0xff]
+    <4> 26 SCB_CONTROL[0xe0]:(TAG_ENB|DISCENB|TARGET_SCB) SCB_SCSIID[0x57]
+    <4>SCB_LUN[0x0] SCB_TAG[0xff]
+    <4> 27 SCB_CONTROL[0xe0]:(TAG_ENB|DISCENB|TARGET_SCB) SCB_SCSIID[0x37]
+    <4>SCB_LUN[0x0] SCB_TAG[0xff]
+    <4> 28 SCB_CONTROL[0xe0]:(TAG_ENB|DISCENB|TARGET_SCB) SCB_SCSIID[0x57]
+    <4>SCB_LUN[0x0] SCB_TAG[0xff]
+    <4> 29 SCB_CONTROL[0xe0]:(TAG_ENB|DISCENB|TARGET_SCB) SCB_SCSIID[0x37]
+    <4>SCB_LUN[0x0] SCB_TAG[0xff]
+    <4> 30 SCB_CONTROL[0xe0]:(TAG_ENB|DISCENB|TARGET_SCB) SCB_SCSIID[0x57]
+    <4>SCB_LUN[0x0] SCB_TAG[0xff]
+    <4> 31 SCB_CONTROL[0xe0]:(TAG_ENB|DISCENB|TARGET_SCB) SCB_SCSIID[0x57]
+    <4>SCB_LUN[0x0] SCB_TAG[0xff]
+    <4>Pending list:
+    <4>126 SCB_CONTROL[0x60]:(TAG_ENB|DISCENB) SCB_SCSIID[0x37]
+    <4>SCB_LUN[0x0]
+    <4>Kernel Free SCB list: 109 105 37 13 5 3 129 25 71 120 98 139 32 30 76 132 35 81 16 104 12 88 4 118 130 69 17 128 1 123 62 8 24 163 63 44 142 60 33 89 42 6 26 53 143 87 59 79 114 84 61 23 28 107 106 20 11 66 152 133 10 68 83 117 78 85 27 140 146 147 13455 157 124 137 7 38 70 47 96 48 135 15 36 49 110 108 77 74 2 127 65 51 9 50 136 122 43 94 115 82 93 39 90 72 57 29 40 150 155 153 156 91 158 111 101 86 45 154 119 159 151 97 34 19 58 52 145 113 138 121 144 149 125 148 18 73 41 99 141 131 75 103 95 56 64 4     21 80 31 0 116 22 100 92 112 102 14 67 162 161 160
+    <4>
+    <4><<<<<<<<<<<<<<<<< Dump Card State Ends >>>>>>>>>>>>>>>>>>
+    <4>(scsi0:A:3:0): Device is disconnected, re-queuing SCB
+    <4>Recovery code sleeping
+    <4>(scsi0:A:3:0): Abort Tag Message Sent
+    <4>(scsi0:A:3:0): SCB 126 - Abort Tag Completed.
+    <4>Recovery SCB completes
+    <4>Recovery code awake
+    <4>aic7xxx_abort returns 0x2002
+    <6>sd 0:0:3:0: Attempting to queue an ABORT message
+    <4>CDB: 0x2a 0x0 0x0 0x1f 0xe3 0x82 0x0 0x0 0x38 0x0
+    <4>scsi0: At time of recovery, card was not paused
+    <4>>>>>>>>>>>>>>>>>>> Dump Card State Begins <<<<<<<<<<<<<<<<<
+    <4>scsi0: Dumping Card State while idle, at SEQADDR 0x8
+    <4>Card was paused
+    <4>ACCUM = 0x0, SINDEX = 0x7c, DINDEX = 0xe4, ARG_2 = 0x0
+    <4>HCNT = 0x0 SCBPTR = 0x1e
+    <4>SCSISIGI[0x0] ERROR[0x0] SCSIBUSL[0x0] LASTPHASE[0x1]:(P_BUSFREE)
+    <4>SCSISEQ[0x12]:(ENAUTOATNP|ENRSELI) SBLKCTL[0xa]:(SELWIDE|SELBUSB)
+    <4>SCSIRATE[0x0] SEQCTL[0x10]:(FASTMODE) SEQ_FLAGS[0xc0]:(NO_CDB_SENT|NOT_IDENTIFIED)
+    <4>SSTAT0[0x0] SSTAT1[0xa]:(PHASECHG|BUSFREE) SSTAT2[0x0]
+    <4>SSTAT3[0x0] SIMODE0[0x8]:(ENSWRAP) SIMODE1[0xa4]:(ENSCSIPERR|ENSCSIRST|ENSELTIMO)
+    <4>SXFRCTL0[0x80]:(DFON) DFCNTRL[0x0] DFSTATUS[0x89]:(FIFOEMP|HDONE|PRELOAD_AVAIL)
+    <4>STACK: 0xe5 0x167 0x10d 0x3
+    <4>SCB count = 164
+    <4>Kernel NEXTQSCB = 34
+    <4>Card NEXTQSCB = 34
+    <4>QINFIFO entries:
+    <4>Waiting Queue entries:
+    <4>Disconnected Queue entries: 23:120
+    <4>QOUTFIFO entries:
+    <4>Sequencer Free SCB List: 30 20 22 25 9 17 31 24 19 10 0 15 29 2 13 28 26 8 12 1 7 11 3 27 14 4 5 21 18 6 16
+    <4>Sequencer SCB Info:
+    <4>  0 SCB_CONTROL[0xe0]:(TAG_ENB|DISCENB|TARGET_SCB) SCB_SCSIID[0x57]
+    <4>SCB_LUN[0x0] SCB_TAG[0xff]
+    <4>  1 SCB_CONTROL[0xe0]:(TAG_ENB|DISCENB|TARGET_SCB) SCB_SCSIID[0x37]
+    <4>SCB_LUN[0x0] SCB_TAG[0xff]
+    <4>  2 SCB_CONTROL[0xe0]:(TAG_ENB|DISCENB|TARGET_SCB) SCB_SCSIID[0x37]
+    <4>SCB_LUN[0x0] SCB_TAG[0xff]
+    <4>  3 SCB_CONTROL[0xe0]:(TAG_ENB|DISCENB|TARGET_SCB) SCB_SCSIID[0x47]
+    <4>SCB_LUN[0x0] SCB_TAG[0xff]
+    <4>  4 SCB_CONTROL[0xe0]:(TAG_ENB|DISCENB|TARGET_SCB) SCB_SCSIID[0x47]
+    <4>SCB_LUN[0x0] SCB_TAG[0xff]
+    <4>  5 SCB_CONTROL[0xe0]:(TAG_ENB|DISCENB|TARGET_SCB) SCB_SCSIID[0x47]
+    <4>SCB_LUN[0x0] SCB_TAG[0xff]
+    <4>  6 SCB_CONTROL[0xe0]:(TAG_ENB|DISCENB|TARGET_SCB) SCB_SCSIID[0x57]
+    <4>SCB_LUN[0x0] SCB_TAG[0xff]
+    <4>  7 SCB_CONTROL[0xe0]:(TAG_ENB|DISCENB|TARGET_SCB) SCB_SCSIID[0x47]
+    <4>SCB_LUN[0x0] SCB_TAG[0xff]
+    <4>  8 SCB_CONTROL[0xe0]:(TAG_ENB|DISCENB|TARGET_SCB) SCB_SCSIID[0x27]
+    <4>SCB_LUN[0x0] SCB_TAG[0xff]
+    <4>  9 SCB_CONTROL[0xe0]:(TAG_ENB|DISCENB|TARGET_SCB) SCB_SCSIID[0x37]
+    <4>SCB_LUN[0x0] SCB_TAG[0xff]
+    <4> 10 SCB_CONTROL[0xe0]:(TAG_ENB|DISCENB|TARGET_SCB) SCB_SCSIID[0x47]
+    <4>SCB_LUN[0x0] SCB_TAG[0xff]
+    <4> 11 SCB_CONTROL[0xe0]:(TAG_ENB|DISCENB|TARGET_SCB) SCB_SCSIID[0x57]
+    <4>SCB_LUN[0x0] SCB_TAG[0xff]
+    <4> 12 SCB_CONTROL[0xe0]:(TAG_ENB|DISCENB|TARGET_SCB) SCB_SCSIID[0x57]
+    <4>SCB_LUN[0x0] SCB_TAG[0xff]
+    <4> 13 SCB_CONTROL[0xe0]:(TAG_ENB|DISCENB|TARGET_SCB) SCB_SCSIID[0x27]
+    <4>SCB_LUN[0x0] SCB_TAG[0xff]
+    <4> 14 SCB_CONTROL[0xe0]:(TAG_ENB|DISCENB|TARGET_SCB) SCB_SCSIID[0x47]
+    <4>SCB_LUN[0x0] SCB_TAG[0xff]
+    <4> 15 SCB_CONTROL[0xe0]:(TAG_ENB|DISCENB|TARGET_SCB) SCB_SCSIID[0x27]
+    <4>SCB_LUN[0x0] SCB_TAG[0xff]
+    <4> 16 SCB_CONTROL[0xe0]:(TAG_ENB|DISCENB|TARGET_SCB) SCB_SCSIID[0x37]
+    <4>SCB_LUN[0x0] SCB_TAG[0xff]
+    <4> 17 SCB_CONTROL[0xe0]:(TAG_ENB|DISCENB|TARGET_SCB) SCB_SCSIID[0x37]
+    <4>SCB_LUN[0x0] SCB_TAG[0xff]
+    <4> 18 SCB_CONTROL[0xe0]:(TAG_ENB|DISCENB|TARGET_SCB) SCB_SCSIID[0x57]
+    <4>SCB_LUN[0x0] SCB_TAG[0xff]
+    <4> 19 SCB_CONTROL[0xe0]:(TAG_ENB|DISCENB|TARGET_SCB) SCB_SCSIID[0x27]
+    <4>SCB_LUN[0x0] SCB_TAG[0xff]
+    <4> 20 SCB_CONTROL[0xe0]:(TAG_ENB|DISCENB|TARGET_SCB) SCB_SCSIID[0x57]
+    <4>SCB_LUN[0x0] SCB_TAG[0xff]
+    <4> 21 SCB_CONTROL[0xe0]:(TAG_ENB|DISCENB|TARGET_SCB) SCB_SCSIID[0x47]
+    <4>SCB_LUN[0x0] SCB_TAG[0xff]
+    <4> 22 SCB_CONTROL[0xe0]:(TAG_ENB|DISCENB|TARGET_SCB) SCB_SCSIID[0x27]
+    <4>SCB_LUN[0x0] SCB_TAG[0xff]
+    <4> 23 SCB_CONTROL[0x64]:(DISCONNECTED|TAG_ENB|DISCENB) SCB_SCSIID[0x37]
+    <4>SCB_LUN[0x0] SCB_TAG[0x78]
+    <4> 24 SCB_CONTROL[0xe0]:(TAG_ENB|DISCENB|TARGET_SCB) SCB_SCSIID[0x47]
+    <4>SCB_LUN[0x0] SCB_TAG[0xff]
+    <4> 25 SCB_CONTROL[0xe0]:(TAG_ENB|DISCENB|TARGET_SCB) SCB_SCSIID[0x37]
+    <4>SCB_LUN[0x0] SCB_TAG[0xff]
+    <4> 26 SCB_CONTROL[0xe0]:(TAG_ENB|DISCENB|TARGET_SCB) SCB_SCSIID[0x47]
+    <4>SCB_LUN[0x0] SCB_TAG[0xff]
+    <4> 27 SCB_CONTROL[0xe0]:(TAG_ENB|DISCENB|TARGET_SCB) SCB_SCSIID[0x37]
+    <4>SCB_LUN[0x0] SCB_TAG[0xff]
+    <4> 28 SCB_CONTROL[0xe0]:(TAG_ENB|DISCENB|TARGET_SCB) SCB_SCSIID[0x37]
+    <4>SCB_LUN[0x0] SCB_TAG[0xff]
+    <4> 29 SCB_CONTROL[0xe0]:(TAG_ENB|DISCENB|TARGET_SCB) SCB_SCSIID[0x27]
+    <4>SCB_LUN[0x0] SCB_TAG[0xff]
+    <4> 30 SCB_CONTROL[0xe0]:(TAG_ENB|DISCENB|TARGET_SCB) SCB_SCSIID[0x57]
+    <4>SCB_LUN[0x0] SCB_TAG[0xff]
+    <4> 31 SCB_CONTROL[0xe0]:(TAG_ENB|DISCENB|TARGET_SCB) SCB_SCSIID[0x27]
+    <4>SCB_LUN[0x0] SCB_TAG[0xff]
+    <4>Pending list:
+    <4>120 SCB_CONTROL[0x60]:(TAG_ENB|DISCENB) SCB_SCSIID[0x37]
+    <4>SCB_LUN[0x0]
+    <4>Kernel Free SCB list: 124 78 72 32 98 139 49 20 155 127 129 97 94 128 26 1 37 50 17 35 39 137 59 38 19 82 108 81 12 42 54 58 47 122 135 146 109 85 68 101 126 6 5 117 130 140 154 105 33 93 114 62 30 3 136 8 23 151 90 45 69 119 150 53 111 48 10 104 84 15 159 61 86 28 83 156 107 152 71 29 87 143 106 123 63 76 133 77 43 70 7 74 65 110 55 163 13 142 115 88 24 118 4 36 52 132 66 2 25 157 11 147 27 15 9 51 134 60 16 153 96 57 89 44 91 40 79 145 113 138 121 144 149 125 148 18 73 41 99 141 131 75 103 95 56 64 4     21 80 31 0 116 22 100 92 112 102 14 67 162 161 160
+    <4>
+    <4><<<<<<<<<<<<<<<<< Dump Card State Ends >>>>>>>>>>>>>>>>>>
+    <4>(scsi0:A:3:0): Device is disconnected, re-queuing SCB
+    <4>Recovery code sleeping
+    <4>(scsi0:A:3:0): Abort Tag Message Sent
+    <4>(scsi0:A:3:0): SCB 120 - Abort Tag Completed.
+    <4>Recovery SCB completes
+    <4>Recovery code awake
+    <4>aic7xxx_abort returns 0x2002
+    <6>sd 0:0:3:0: Attempting to queue an ABORT message
+    <4>CDB: 0x2a 0x0 0x0 0x40 0xe1 0xca 0x0 0x0 0x10 0x0
+    <4>scsi0: At time of recovery, card was not paused
+    <4>>>>>>>>>>>>>>>>>>> Dump Card State Begins <<<<<<<<<<<<<<<<<
+    <4>scsi0: Dumping Card State while idle, at SEQADDR 0x9
+    <4>Card was paused
+    <4>ACCUM = 0x0, SINDEX = 0x31, DINDEX = 0xe4, ARG_2 = 0x0
+    <4>HCNT = 0x0 SCBPTR = 0x10
+    <4>SCSISIGI[0x0] ERROR[0x0] SCSIBUSL[0x0] LASTPHASE[0x1]:(P_BUSFREE)
+    <4>SCSISEQ[0x12]:(ENAUTOATNP|ENRSELI) SBLKCTL[0xa]:(SELWIDE|SELBUSB)
+    <4>SCSIRATE[0x0] SEQCTL[0x10]:(FASTMODE) SEQ_FLAGS[0xc0]:(NO_CDB_SENT|NOT_IDENTIFIED)
+    <4>SSTAT0[0x0] SSTAT1[0xa]:(PHASECHG|BUSFREE) SSTAT2[0x0]
+    <4>SSTAT3[0x0] SIMODE0[0x8]:(ENSWRAP) SIMODE1[0xa4]:(ENSCSIPERR|ENSCSIRST|ENSELTIMO)
+    <4>SXFRCTL0[0x80]:(DFON) DFCNTRL[0x0] DFSTATUS[0x89]:(FIFOEMP|HDONE|PRELOAD_AVAIL)
+    <4>STACK: 0xe5 0x167 0x10d 0x3
+    <4>SCB count = 164
+    <4>Kernel NEXTQSCB = 143
+    <4>Card NEXTQSCB = 143
+    <4>QINFIFO entries:
+    <4>Waiting Queue entries:
+    <4>Disconnected Queue entries: 27:60
+    <4>QOUTFIFO entries:
+    <4>Sequencer Free SCB List: 16 19 28 5 23 1 3 4 12 15 30 20 22 18 26 2 0 25 8 10 11 9 21 14 7 24 13 29 31 17 6
+    <4>Sequencer SCB Info:
+    <4>  0 SCB_CONTROL[0xe0]:(TAG_ENB|DISCENB|TARGET_SCB) SCB_SCSIID[0x37]
+    <4>SCB_LUN[0x0] SCB_TAG[0xff]
+    <4>  1 SCB_CONTROL[0xe0]:(TAG_ENB|DISCENB|TARGET_SCB) SCB_SCSIID[0x27]
+    <4>SCB_LUN[0x0] SCB_TAG[0xff]
+    <4>  2 SCB_CONTROL[0xe0]:(TAG_ENB|DISCENB|TARGET_SCB) SCB_SCSIID[0x47]
+    <4>SCB_LUN[0x0] SCB_TAG[0xff]
+    <4>  3 SCB_CONTROL[0xe0]:(TAG_ENB|DISCENB|TARGET_SCB) SCB_SCSIID[0x27]
+    <4>SCB_LUN[0x0] SCB_TAG[0xff]
+    <4>  4 SCB_CONTROL[0xe0]:(TAG_ENB|DISCENB|TARGET_SCB) SCB_SCSIID[0x37]
+    <4>SCB_LUN[0x0] SCB_TAG[0xff]
+    <4>  5 SCB_CONTROL[0xe0]:(TAG_ENB|DISCENB|TARGET_SCB) SCB_SCSIID[0x37]
+    <4>SCB_LUN[0x0] SCB_TAG[0xff]
+    <4>  6 SCB_CONTROL[0xe0]:(TAG_ENB|DISCENB|TARGET_SCB) SCB_SCSIID[0x57]
+    <4>SCB_LUN[0x0] SCB_TAG[0xff]
+    <4>  7 SCB_CONTROL[0xe0]:(TAG_ENB|DISCENB|TARGET_SCB) SCB_SCSIID[0x27]
+    <4>SCB_LUN[0x0] SCB_TAG[0xff]
+    <4>  8 SCB_CONTROL[0xe0]:(TAG_ENB|DISCENB|TARGET_SCB) SCB_SCSIID[0x27]
+    <4>SCB_LUN[0x0] SCB_TAG[0xff]
+    <4>  9 SCB_CONTROL[0xe0]:(TAG_ENB|DISCENB|TARGET_SCB) SCB_SCSIID[0x37]
+    <4>SCB_LUN[0x0] SCB_TAG[0xff]
+    <4> 10 SCB_CONTROL[0xe0]:(TAG_ENB|DISCENB|TARGET_SCB) SCB_SCSIID[0x57]
+    <4>SCB_LUN[0x0] SCB_TAG[0xff]
+    <4> 11 SCB_CONTROL[0xe0]:(TAG_ENB|DISCENB|TARGET_SCB) SCB_SCSIID[0x47]
+    <4>SCB_LUN[0x0] SCB_TAG[0xff]
+    <4> 12 SCB_CONTROL[0xe0]:(TAG_ENB|DISCENB|TARGET_SCB) SCB_SCSIID[0x57]
+    <4>SCB_LUN[0x0] SCB_TAG[0xff]
+    <4> 13 SCB_CONTROL[0xe0]:(TAG_ENB|DISCENB|TARGET_SCB) SCB_SCSIID[0x27]
+    <4>SCB_LUN[0x0] SCB_TAG[0xff]
+    <4> 14 SCB_CONTROL[0xe0]:(TAG_ENB|DISCENB|TARGET_SCB) SCB_SCSIID[0x57]
+    <4>SCB_LUN[0x0] SCB_TAG[0xff]
+    <4> 15 SCB_CONTROL[0xe0]:(TAG_ENB|DISCENB|TARGET_SCB) SCB_SCSIID[0x57]
+    <4>SCB_LUN[0x0] SCB_TAG[0xff]
+    <4> 16 SCB_CONTROL[0xe0]:(TAG_ENB|DISCENB|TARGET_SCB) SCB_SCSIID[0x27]
+    <4>SCB_LUN[0x0] SCB_TAG[0xff]
+    <4> 17 SCB_CONTROL[0xe0]:(TAG_ENB|DISCENB|TARGET_SCB) SCB_SCSIID[0x47]
+    <4>SCB_LUN[0x0] SCB_TAG[0xff]
+    <4> 18 SCB_CONTROL[0xe0]:(TAG_ENB|DISCENB|TARGET_SCB) SCB_SCSIID[0x47]
+    <4>SCB_LUN[0x0] SCB_TAG[0xff]
+    <4> 19 SCB_CONTROL[0xe0]:(TAG_ENB|DISCENB|TARGET_SCB) SCB_SCSIID[0x47]
+    <4>SCB_LUN[0x0] SCB_TAG[0xff]
+    <4> 20 SCB_CONTROL[0xe0]:(TAG_ENB|DISCENB|TARGET_SCB) SCB_SCSIID[0x47]
+    <4>SCB_LUN[0x0] SCB_TAG[0xff]
+    <4> 21 SCB_CONTROL[0xe0]:(TAG_ENB|DISCENB|TARGET_SCB) SCB_SCSIID[0x47]
+    <4>SCB_LUN[0x0] SCB_TAG[0xff]
+    <4> 22 SCB_CONTROL[0xe0]:(TAG_ENB|DISCENB|TARGET_SCB) SCB_SCSIID[0x37]
+    <4>SCB_LUN[0x0] SCB_TAG[0xff]
+    <4> 23 SCB_CONTROL[0xe0]:(TAG_ENB|DISCENB|TARGET_SCB) SCB_SCSIID[0x37]
+    <4>SCB_LUN[0x0] SCB_TAG[0xff]
+    <4> 24 SCB_CONTROL[0xe0]:(TAG_ENB|DISCENB|TARGET_SCB) SCB_SCSIID[0x47]
+    <4>SCB_LUN[0x0] SCB_TAG[0xff]
+    <4> 25 SCB_CONTROL[0xe0]:(TAG_ENB|DISCENB|TARGET_SCB) SCB_SCSIID[0x57]
+    <4>SCB_LUN[0x0] SCB_TAG[0xff]
+    <4> 26 SCB_CONTROL[0xe0]:(TAG_ENB|DISCENB|TARGET_SCB) SCB_SCSIID[0x27]
+    <4>SCB_LUN[0x0] SCB_TAG[0xff]
+    <4> 27 SCB_CONTROL[0x64]:(DISCONNECTED|TAG_ENB|DISCENB) SCB_SCSIID[0x37]
+    <4>SCB_LUN[0x0] SCB_TAG[0x3c]
+    <4> 28 SCB_CONTROL[0xe0]:(TAG_ENB|DISCENB|TARGET_SCB) SCB_SCSIID[0x37]
+    <4>SCB_LUN[0x0] SCB_TAG[0xff]
+    <4> 29 SCB_CONTROL[0xe0]:(TAG_ENB|DISCENB|TARGET_SCB) SCB_SCSIID[0x37]
+    <4>SCB_LUN[0x0] SCB_TAG[0xff]
+    <4> 30 SCB_CONTROL[0xe0]:(TAG_ENB|DISCENB|TARGET_SCB) SCB_SCSIID[0x27]
+    <4>SCB_LUN[0x0] SCB_TAG[0xff]
+    <4> 31 SCB_CONTROL[0xe0]:(TAG_ENB|DISCENB|TARGET_SCB) SCB_SCSIID[0x27]
+    <4>SCB_LUN[0x0] SCB_TAG[0xff]
+    <4>Pending list:
+    <4> 60 SCB_CONTROL[0x60]:(TAG_ENB|DISCENB) SCB_SCSIID[0x37]
+    <4>SCB_LUN[0x0]
+    <4>Kernel Free SCB list: 49 91 111 19 137 122 1 127 146 72 71 76 153 119 82 128 13 17 129 27 11 109 7 106 47 43 130 155 2 150 39 30 133 79 87 68 74 81 52 32 139 142 135 123 42 36 98 97 147 44 33 53 118 40 9 4 84 66 35 89 110 26 16 23 29 12 108 63 28 45 10 55 124 77 51 151 8 24 62 90 136 93 37 58 132 158 134 48 25 154 59 114 96 101 107 61 140 34 120 86 57 5 38 94 54 3 88 163 85 78 6 65 20 159 69 10 15 152 83 157 126 50 156 104 115 117 70 145 113 138 121 144 149 125 148 18 73 41 99 141 131 75 103 95 56 64 4     21 80 31 0 116 22 100 92 112 102 14 67 162 161 160
+    <4>
+    <4><<<<<<<<<<<<<<<<< Dump Card State Ends >>>>>>>>>>>>>>>>>>
+    <4>(scsi0:A:3:0): Device is disconnected, re-queuing SCB
+    <4>Recovery code sleeping
+    <4>(scsi0:A:3:0): Abort Tag Message Sent
+    <4>(scsi0:A:3:0): SCB 60 - Abort Tag Completed.
+    <4>Recovery SCB completes
+    <4>Recovery code awake
+    <4>aic7xxx_abort returns 0x2002
+    <6>sd 0:0:3:0: Attempting to queue an ABORT message
+    <4>CDB: 0x2a 0x0 0x0 0x40 0xe1 0xca 0x0 0x0 0x10 0x0
+    <4>scsi0: At time of recovery, card was not paused
+    <4>>>>>>>>>>>>>>>>>>> Dump Card State Begins <<<<<<<<<<<<<<<<<
+    <4>scsi0: Dumping Card State while idle, at SEQADDR 0x9
+    <4>Card was paused
+    <4>ACCUM = 0x0, SINDEX = 0x3c, DINDEX = 0xe4, ARG_2 = 0x0
+    <4>HCNT = 0x0 SCBPTR = 0xd
+    <4>SCSISIGI[0x0] ERROR[0x0] SCSIBUSL[0x0] LASTPHASE[0x1]:(P_BUSFREE)
+    <4>SCSISEQ[0x12]:(ENAUTOATNP|ENRSELI) SBLKCTL[0xa]:(SELWIDE|SELBUSB)
+    <4>SCSIRATE[0x0] SEQCTL[0x10]:(FASTMODE) SEQ_FLAGS[0xc0]:(NO_CDB_SENT|NOT_IDENTIFIED)
+    <4>SSTAT0[0x0] SSTAT1[0xa]:(PHASECHG|BUSFREE) SSTAT2[0x0]
+    <4>SSTAT3[0x0] SIMODE0[0x8]:(ENSWRAP) SIMODE1[0xa4]:(ENSCSIPERR|ENSCSIRST|ENSELTIMO)
+    <4>SXFRCTL0[0x80]:(DFON) DFCNTRL[0x0] DFSTATUS[0x89]:(FIFOEMP|HDONE|PRELOAD_AVAIL)
+    <4>STACK: 0xe5 0x167 0x10d 0x3
+    <4>SCB count = 164
+    <4>Kernel NEXTQSCB = 123
+    <4>Card NEXTQSCB = 123
+    <4>QINFIFO entries:
+    <4>Waiting Queue entries:
+    <4>Disconnected Queue entries: 6:139
+    <4>QOUTFIFO entries:
+    <4>Sequencer Free SCB List: 13 15 2 10 25 22 28 21 31 26 3 20 17 29 23 18 19 27 16 9 1 24 7 5 14 4 12 30 0 11 8
+    <4>Sequencer SCB Info:
+    <4>  0 SCB_CONTROL[0xe0]:(TAG_ENB|DISCENB|TARGET_SCB) SCB_SCSIID[0x57]
+    <4>SCB_LUN[0x0] SCB_TAG[0xff]
+    <4>  1 SCB_CONTROL[0xe0]:(TAG_ENB|DISCENB|TARGET_SCB) SCB_SCSIID[0x47]
+    <4>SCB_LUN[0x0] SCB_TAG[0xff]
+    <4>  2 SCB_CONTROL[0xe2]:(TAG_ENB|DISCENB|TARGET_SCB) SCB_SCSIID[0x47]
+    <4>SCB_LUN[0x0] SCB_TAG[0xff]
+    <4>  3 SCB_CONTROL[0xe0]:(TAG_ENB|DISCENB|TARGET_SCB) SCB_SCSIID[0x27]
+    <4>SCB_LUN[0x0] SCB_TAG[0xff]
+    <4>  4 SCB_CONTROL[0xe0]:(TAG_ENB|DISCENB|TARGET_SCB) SCB_SCSIID[0x37]
+    <4>SCB_LUN[0x0] SCB_TAG[0xff]
+    <4>  5 SCB_CONTROL[0xe0]:(TAG_ENB|DISCENB|TARGET_SCB) SCB_SCSIID[0x37]
+    <4>SCB_LUN[0x0] SCB_TAG[0xff]
+    <4>  6 SCB_CONTROL[0x64]:(DISCONNECTED|TAG_ENB|DISCENB) SCB_SCSIID[0x37]
+    <4>SCB_LUN[0x0] SCB_TAG[0x8b]
+    <4>  7 SCB_CONTROL[0xe0]:(TAG_ENB|DISCENB|TARGET_SCB) SCB_SCSIID[0x47]
+    <4>SCB_LUN[0x0] SCB_TAG[0xff]
+    <4>  8 SCB_CONTROL[0xe0]:(TAG_ENB|DISCENB|TARGET_SCB) SCB_SCSIID[0x27]
+    <4>SCB_LUN[0x0] SCB_TAG[0xff]
+    <4>  9 SCB_CONTROL[0xe0]:(TAG_ENB|DISCENB|TARGET_SCB) SCB_SCSIID[0x57]
+    <4>SCB_LUN[0x0] SCB_TAG[0xff]
+    <4> 10 SCB_CONTROL[0xe0]:(TAG_ENB|DISCENB|TARGET_SCB) SCB_SCSIID[0x27]
+    <4>SCB_LUN[0x0] SCB_TAG[0xff]
+    <4> 11 SCB_CONTROL[0xe0]:(TAG_ENB|DISCENB|TARGET_SCB) SCB_SCSIID[0x47]
+    <4>SCB_LUN[0x0] SCB_TAG[0xff]
+    <4> 12 SCB_CONTROL[0xe0]:(TAG_ENB|DISCENB|TARGET_SCB) SCB_SCSIID[0x37]
+    <4>SCB_LUN[0x0] SCB_TAG[0xff]
+    <4> 13 SCB_CONTROL[0xe0]:(TAG_ENB|DISCENB|TARGET_SCB) SCB_SCSIID[0x27]
+    <4>SCB_LUN[0x0] SCB_TAG[0xff]
+    <4> 14 SCB_CONTROL[0xe0]:(TAG_ENB|DISCENB|TARGET_SCB) SCB_SCSIID[0x57]
+    <4>SCB_LUN[0x0] SCB_TAG[0xff]
+    <4> 15 SCB_CONTROL[0xe0]:(TAG_ENB|DISCENB|TARGET_SCB) SCB_SCSIID[0x57]
+    <4>SCB_LUN[0x0] SCB_TAG[0xff]
+    <4> 16 SCB_CONTROL[0xe0]:(TAG_ENB|DISCENB|TARGET_SCB) SCB_SCSIID[0x47]
+    <4>SCB_LUN[0x0] SCB_TAG[0xff]
+    <4> 17 SCB_CONTROL[0xe0]:(TAG_ENB|DISCENB|TARGET_SCB) SCB_SCSIID[0x47]
+    <4>SCB_LUN[0x0] SCB_TAG[0xff]
+    <4> 18 SCB_CONTROL[0xe0]:(TAG_ENB|DISCENB|TARGET_SCB) SCB_SCSIID[0x27]
+    <4>SCB_LUN[0x0] SCB_TAG[0xff]
+    <4> 19 SCB_CONTROL[0xe0]:(TAG_ENB|DISCENB|TARGET_SCB) SCB_SCSIID[0x37]
+    <4>SCB_LUN[0x0] SCB_TAG[0xff]
+    <4> 20 SCB_CONTROL[0xe0]:(TAG_ENB|DISCENB|TARGET_SCB) SCB_SCSIID[0x37]
+    <4>SCB_LUN[0x0] SCB_TAG[0xff]
+    <4> 21 SCB_CONTROL[0xe0]:(TAG_ENB|DISCENB|TARGET_SCB) SCB_SCSIID[0x37]
+    <4>SCB_LUN[0x0] SCB_TAG[0xff]
+    <4> 22 SCB_CONTROL[0xe0]:(TAG_ENB|DISCENB|TARGET_SCB) SCB_SCSIID[0x37]
+    <4>SCB_LUN[0x0] SCB_TAG[0xff]
+    <4> 23 SCB_CONTROL[0xe0]:(TAG_ENB|DISCENB|TARGET_SCB) SCB_SCSIID[0x37]
+    <4>SCB_LUN[0x0] SCB_TAG[0xff]
+    <4> 24 SCB_CONTROL[0xe0]:(TAG_ENB|DISCENB|TARGET_SCB) SCB_SCSIID[0x37]
+    <4>SCB_LUN[0x0] SCB_TAG[0xff]
+    <4> 25 SCB_CONTROL[0xe0]:(TAG_ENB|DISCENB|TARGET_SCB) SCB_SCSIID[0x57]
+    <4>SCB_LUN[0x0] SCB_TAG[0xff]
+    <4> 26 SCB_CONTROL[0xe0]:(TAG_ENB|DISCENB|TARGET_SCB) SCB_SCSIID[0x37]
+    <4>SCB_LUN[0x0] SCB_TAG[0xff]
+    <4> 27 SCB_CONTROL[0xe0]:(TAG_ENB|DISCENB|TARGET_SCB) SCB_SCSIID[0x47]
+    <4>SCB_LUN[0x0] SCB_TAG[0xff]
+    <4> 28 SCB_CONTROL[0xe0]:(TAG_ENB|DISCENB|TARGET_SCB) SCB_SCSIID[0x37]
+    <4>SCB_LUN[0x0] SCB_TAG[0xff]
+    <4> 29 SCB_CONTROL[0xe0]:(TAG_ENB|DISCENB|TARGET_SCB) SCB_SCSIID[0x57]
+    <4>SCB_LUN[0x0] SCB_TAG[0xff]
+    <4> 30 SCB_CONTROL[0xe0]:(TAG_ENB|DISCENB|TARGET_SCB) SCB_SCSIID[0x57]
+    <4>SCB_LUN[0x0] SCB_TAG[0xff]
+    <4> 31 SCB_CONTROL[0xe0]:(TAG_ENB|DISCENB|TARGET_SCB) SCB_SCSIID[0x57]
+    <4>SCB_LUN[0x0] SCB_TAG[0xff]
+    <4>Pending list:
+    <4>139 SCB_CONTROL[0x60]:(TAG_ENB|DISCENB) SCB_SCSIID[0x37]
+    <4>SCB_LUN[0x0]
+    <4>Kernel Free SCB list: 60 11 129 1 27 97 43 42 71 155 44 111 109 39 106 133 137 33 153 91 47 142 49 32 36 135 68 122 19 82 143 119 128 7 79 13 147 130 87 17 30 150 76 146 2 98 72 52 81 127 74 53 118 40 9 4 84 66 35 89 110 26 16 23 29 12 108 63 28 45 10555 124 77 51 151 8 24 62 90 136 93 37 58 132 158 134 48 25 154 59 114 96 101 107 61 140 34 120 86 57 5 38 94 54 3 88 163 85 78 6 65 20 159 69 10 15 152 83 157 126 50 156 104 115 117 70 145 113 138 121 144 149 125 148 18 73 41 99 141 131 75 103 95 56 64 46    21 80 31 0 116 22 100 92 112 102 14 67 162 161 160
+    <4>
+    <4><<<<<<<<<<<<<<<<< Dump Card State Ends >>>>>>>>>>>>>>>>>>
+    <4>(scsi0:A:3:0): Device is disconnected, re-queuing SCB
+    <4>Recovery code sleeping
+    <4>(scsi0:A:3:0): Abort Tag Message Sent
+    <4>(scsi0:A:3:0): SCB 139 - Abort Tag Completed.
+    <4>Recovery SCB completes
+    <4>Recovery code awake
+    <4>aic7xxx_abort returns 0x2002
+    <6>sd 0:0:3:0: Attempting to queue an ABORT message
+    <4>CDB: 0x28 0x0 0x0 0x1f 0xe5 0x82 0x0 0x0 0x40 0x0
+    <4>scsi0: At time of recovery, card was not paused
+    <4>>>>>>>>>>>>>>>>>>> Dump Card State Begins <<<<<<<<<<<<<<<<<
+    <4>scsi0: Dumping Card State while idle, at SEQADDR 0x8
+    <4>Card was paused
+    <4>ACCUM = 0x0, SINDEX = 0x61, DINDEX = 0xe4, ARG_2 = 0x0
+    <4>HCNT = 0x0 SCBPTR = 0x0
+    <4>SCSISIGI[0x0] ERROR[0x0] SCSIBUSL[0x0] LASTPHASE[0x1]:(P_BUSFREE)
+    <4>SCSISEQ[0x12]:(ENAUTOATNP|ENRSELI) SBLKCTL[0xa]:(SELWIDE|SELBUSB)
+    <4>SCSIRATE[0x0] SEQCTL[0x10]:(FASTMODE) SEQ_FLAGS[0xc0]:(NO_CDB_SENT|NOT_IDENTIFIED)
+    <4>SSTAT0[0x0] SSTAT1[0xa]:(PHASECHG|BUSFREE) SSTAT2[0x0]
+    <4>SSTAT3[0x0] SIMODE0[0x8]:(ENSWRAP) SIMODE1[0xa4]:(ENSCSIPERR|ENSCSIRST|ENSELTIMO)
+    <4>SXFRCTL0[0x80]:(DFON) DFCNTRL[0x0] DFSTATUS[0x89]:(FIFOEMP|HDONE|PRELOAD_AVAIL)
+    <4>STACK: 0xe5 0x167 0x10d 0x3
+    <4>SCB count = 164
+    <4>Kernel NEXTQSCB = 163
+    <4>Card NEXTQSCB = 163
+    <4>QINFIFO entries:
+    <4>Waiting Queue entries:
+    <4>Disconnected Queue entries: 8:20
+    <4>QOUTFIFO entries:
+    <4>Sequencer Free SCB List: 0 15 12 7 22 18 2 21 9 13 20 16 24 23 29 30 5 6 27 4 25 26 28 3 19 17 14 31 11 10 1
+    <4>Sequencer SCB Info:
+    <4>  0 SCB_CONTROL[0xe0]:(TAG_ENB|DISCENB|TARGET_SCB) SCB_SCSIID[0x27]
+    <4>SCB_LUN[0x0] SCB_TAG[0xff]
+    <4>  1 SCB_CONTROL[0xe0]:(TAG_ENB|DISCENB|TARGET_SCB) SCB_SCSIID[0x57]
+    <4>SCB_LUN[0x0] SCB_TAG[0xff]
+    <4>  2 SCB_CONTROL[0xe0]:(TAG_ENB|DISCENB|TARGET_SCB) SCB_SCSIID[0x57]
+    <4>SCB_LUN[0x0] SCB_TAG[0xff]
+    <4>  3 SCB_CONTROL[0xe0]:(TAG_ENB|DISCENB|TARGET_SCB) SCB_SCSIID[0x57]
+    <4>SCB_LUN[0x0] SCB_TAG[0xff]
+    <4>  4 SCB_CONTROL[0xe0]:(TAG_ENB|DISCENB|TARGET_SCB) SCB_SCSIID[0x47]
+    <4>SCB_LUN[0x0] SCB_TAG[0xff]
+    <4>  5 SCB_CONTROL[0xe0]:(TAG_ENB|DISCENB|TARGET_SCB) SCB_SCSIID[0x27]
+    <4>SCB_LUN[0x0] SCB_TAG[0xff]
+    <4>  6 SCB_CONTROL[0xe0]:(TAG_ENB|DISCENB|TARGET_SCB) SCB_SCSIID[0x37]
+    <4>SCB_LUN[0x0] SCB_TAG[0xff]
+    <4>  7 SCB_CONTROL[0xe0]:(TAG_ENB|DISCENB|TARGET_SCB) SCB_SCSIID[0x37]
+    <4>SCB_LUN[0x0] SCB_TAG[0xff]
+    <4>  8 SCB_CONTROL[0x64]:(DISCONNECTED|TAG_ENB|DISCENB) SCB_SCSIID[0x37]
+    <4>SCB_LUN[0x0] SCB_TAG[0x14]
+    <4>  9 SCB_CONTROL[0xe0]:(TAG_ENB|DISCENB|TARGET_SCB) SCB_SCSIID[0x47]
+    <4>SCB_LUN[0x0] SCB_TAG[0xff]
+    <4> 10 SCB_CONTROL[0xe0]:(TAG_ENB|DISCENB|TARGET_SCB) SCB_SCSIID[0x37]
+    <4>SCB_LUN[0x0] SCB_TAG[0xff]
+    <4> 11 SCB_CONTROL[0xe0]:(TAG_ENB|DISCENB|TARGET_SCB) SCB_SCSIID[0x27]
+    <4>SCB_LUN[0x0] SCB_TAG[0xff]
+    <4> 12 SCB_CONTROL[0xe0]:(TAG_ENB|DISCENB|TARGET_SCB) SCB_SCSIID[0x47]
+    <4>SCB_LUN[0x0] SCB_TAG[0xff]
+    <4> 13 SCB_CONTROL[0xe0]:(TAG_ENB|DISCENB|TARGET_SCB) SCB_SCSIID[0x27]
+    <4>SCB_LUN[0x0] SCB_TAG[0xff]
+    <4> 14 SCB_CONTROL[0xe0]:(TAG_ENB|DISCENB|TARGET_SCB) SCB_SCSIID[0x37]
+    <4>SCB_LUN[0x0] SCB_TAG[0xff]
+    <4> 15 SCB_CONTROL[0xe0]:(TAG_ENB|DISCENB|TARGET_SCB) SCB_SCSIID[0x57]
+    <4>SCB_LUN[0x0] SCB_TAG[0xff]
+    <4> 16 SCB_CONTROL[0xe0]:(TAG_ENB|DISCENB|TARGET_SCB) SCB_SCSIID[0x47]
+    <4>SCB_LUN[0x0] SCB_TAG[0xff]
+    <4> 17 SCB_CONTROL[0xe0]:(TAG_ENB|DISCENB|TARGET_SCB) SCB_SCSIID[0x47]
+    <4>SCB_LUN[0x0] SCB_TAG[0xff]
+    <4> 18 SCB_CONTROL[0xe0]:(TAG_ENB|DISCENB|TARGET_SCB) SCB_SCSIID[0x27]
+    <4>SCB_LUN[0x0] SCB_TAG[0xff]
+    <4> 19 SCB_CONTROL[0xe0]:(TAG_ENB|DISCENB|TARGET_SCB) SCB_SCSIID[0x47]
+    <4>SCB_LUN[0x0] SCB_TAG[0xff]
+    <4> 20 SCB_CONTROL[0xe0]:(TAG_ENB|DISCENB|TARGET_SCB) SCB_SCSIID[0x37]
+    <4>SCB_LUN[0x0] SCB_TAG[0xff]
+    <4> 21 SCB_CONTROL[0xe0]:(TAG_ENB|DISCENB|TARGET_SCB) SCB_SCSIID[0x37]
+    <4>SCB_LUN[0x0] SCB_TAG[0xff]
+    <4> 22 SCB_CONTROL[0xe0]:(TAG_ENB|DISCENB|TARGET_SCB) SCB_SCSIID[0x47]
+    <4>SCB_LUN[0x0] SCB_TAG[0xff]
+    <4> 23 SCB_CONTROL[0xe0]:(TAG_ENB|DISCENB|TARGET_SCB) SCB_SCSIID[0x27]
+    <4>SCB_LUN[0x0] SCB_TAG[0xff]
+    <4> 24 SCB_CONTROL[0xe0]:(TAG_ENB|DISCENB|TARGET_SCB) SCB_SCSIID[0x27]
+    <4>SCB_LUN[0x0] SCB_TAG[0xff]
+    <4> 25 SCB_CONTROL[0xe0]:(TAG_ENB|DISCENB|TARGET_SCB) SCB_SCSIID[0x57]
+    <4>SCB_LUN[0x0] SCB_TAG[0xff]
+    <4> 26 SCB_CONTROL[0xe0]:(TAG_ENB|DISCENB|TARGET_SCB) SCB_SCSIID[0x37]
+    <4>SCB_LUN[0x0] SCB_TAG[0xff]
+    <4> 27 SCB_CONTROL[0xe0]:(TAG_ENB|DISCENB|TARGET_SCB) SCB_SCSIID[0x37]
+    <4>SCB_LUN[0x0] SCB_TAG[0xff]
+    <4> 28 SCB_CONTROL[0xe0]:(TAG_ENB|DISCENB|TARGET_SCB) SCB_SCSIID[0x27]
+    <4>SCB_LUN[0x0] SCB_TAG[0xff]
+    <4> 29 SCB_CONTROL[0xe0]:(TAG_ENB|DISCENB|TARGET_SCB) SCB_SCSIID[0x47]
+    <4>SCB_LUN[0x0] SCB_TAG[0xff]
+    <4> 30 SCB_CONTROL[0xe0]:(TAG_ENB|DISCENB|TARGET_SCB) SCB_SCSIID[0x57]
+    <4>SCB_LUN[0x0] SCB_TAG[0xff]
+    <4> 31 SCB_CONTROL[0xe0]:(TAG_ENB|DISCENB|TARGET_SCB) SCB_SCSIID[0x37]
+    <4>SCB_LUN[0x0] SCB_TAG[0xff]
+    <4>Pending list:
+    <4> 20 SCB_CONTROL[0x60]:(TAG_ENB|DISCENB) SCB_SCSIID[0x37]
+    <4>SCB_LUN[0x0]
+    <4>Kernel Free SCB list: 97 11 9 86 7 142 51 71 8 30 6 83 49 37 82 139 114 12 66 52 68 44 1 19 84 23 38 36 24 151 156 128 33 135 120 32 53 62 159 158 76 17 129 107 119 88 133 157 153 91 93 57 78 13 48 60 35 27 3 98 69 43 39 106 42 134 72 122 108 74 109 14 61 117 63 29 26 105 150 65 81 146 137 123 118 94 58 4 124 15 136 89 126 28 152 147 111 79 40 5 70 127 47 34 85 50 155 59 77 90 2 16 140 87 55 10 45 130 132 101 110 115 54 96 25 154 104 145 113 138 121 144 149 125 148 18 73 41 99 141 131 75 103 95 56 64 4     21 80 31 0 116 22 100 92 112 102 14 67 162 161 160
+    <4>
+    <4><<<<<<<<<<<<<<<<< Dump Card State Ends >>>>>>>>>>>>>>>>>>
+    <4>(scsi0:A:3:0): Device is disconnected, re-queuing SCB
+    <4>Recovery code sleeping
+    <4>(scsi0:A:3:0): Abort Tag Message Sent
+    <4>(scsi0:A:3:0): SCB 20 - Abort Tag Completed.
+    <4>Recovery SCB completes
+    <4>Recovery code awake
+    <4>aic7xxx_abort returns 0x2002
+    <6>usb 1-3: USB disconnect, address 3
+    <4>ndiswrapper (wrap_ndis_worker_proc:1016): wlan0 is being reset
+    <0>NMI Watchdog detected LOCKUP on CPU0, eip f8beb73d, registers:
+    <4>Modules linked in: sbp2 dump_gzip dump_blockdev dump zlib_inflate zlib_deflate hci_usb ndiswrapper ide_scsi
+    <0>CPU:    0
+    <4>EIP:    0060:[<f8beb73d>]    Tainted: P   M  VLI
+    <4>EFLAGS: 00200002   (2.6.16 #12)
+    <0>EIP is at IoAcquireCancelSpinLock+0x19/0x1e [ndiswrapper]
+    <0>eax: 00000001   ebx: f797dbe0   ecx: c1b55174   edx: 00000001
+    <0>esi: f5cfd920   edi: f5c05140   ebp: 00000000   esp: f689bcd8
+    <0>ds: 007b   es: 007b   ss: 0068
+    <0>Process ndis_wq (pid: 1224, threadinfo=f6898000 task=c18ca5a0)
+    <0>Stack: <0>f8bf1cd3 f797dc05 f5c05140 c18e7800 00000000 c02a679a f5c05140 00000000
+    <0>       c18e78e0 f5c05140 c18e78d0 c02b124c c18e7800 f5c05140 00000000 80048d80
+    <0>       c18f41e0 f5c05140 c18c0380 c02b146a c18e78d0 f5c05140 00000000 038e78d0
+    <0>Call Trace:
+    <0> [<f8bf1cd3>] wrap_urb_complete+0x16/0xa4 [ndiswrapper]
+    <0> [<c02a679a>] usb_hcd_giveback_urb+0x2d/0x5c
+    <0> [<c02b124c>] ehci_urb_done+0x77/0x85
+    <0> [<c02b146a>] qh_completions+0x210/0x295
+    <0> [<c02b4029>] ehci_urb_dequeue+0x66/0xbc
+    <0> [<c02a6404>] unlink1+0x25/0x28
+    <0> [<c02a652c>] hcd_unlink_urb+0x125/0x14f
+    <0> [<c02a70da>] usb_unlink_urb+0x2e/0x31
+    <0> [<f8bf1ea3>] _wrap_cancel_irp+0x1a/0xab [ndiswrapper]
+    <0> [<f8bf1f41>] win_wrap_cancel_irp+0xd/0x12 [ndiswrapper]
+    <0> [<f8beb914>] IoCancelIrp+0x2f/0x46 [ndiswrapper]
+    <0> [<f8be3167>] NdisAcquireSpinLock+0x0/0x63 [ndiswrapper]
+    <0> [<f8beef97>] miniport_reset+0xb7/0x22c [ndiswrapper]
+    <0> [<c0118b3a>] printk+0xe/0x11
+    <0> [<f8bf051c>] wrap_ndis_worker_proc+0x1a4/0x1b9 [ndiswrapper]
+    <0> [<c0125f68>] run_workqueue+0x83/0xc1
+    <0> [<f8bf0378>] wrap_ndis_worker_proc+0x0/0x1b9 [ndiswrapper]
+    <0> [<c012609d>] worker_thread+0xf7/0x12a
+    <0> [<c0114139>] default_wake_function+0x0/0x12
+    <0> [<c0114139>] default_wake_function+0x0/0x12
+    <0> [<c0125fa6>] worker_thread+0x0/0x12a
+    <0> [<c0128c13>] kthread+0x7c/0xa6
+    <0> [<c0128b97>] kthread+0x0/0xa6
+    <0> [<c0100ec1>] kernel_thread_helper+0x5/0xb
+    <0>Code: bf f8 68 40 67 bf f8 e8 0e d4 52 c7 83 c4 0c c3 90 90 9c 8f 05 9c 45 c0 f8 fa 31 c0 ba 01 00 00 00 f0 0f b1 15 5c 45 c0 f8 85 c0 <75> ed c2 04 00 c6 05 5c 45 c0 f8 00 ff 35 9c 45 c0 f8 9d c2 04
+    <4>LKCD: Dumping from interrupt handler!
+    <4>LKCD: smp_num_cpus in header 2
+    <4>LKCD: Dumping to block device (8,2) on CPU 0 ...
+    <4>LKCD: Writing dump header
+    <4>_CONTROL[0xe0]:(TAG_ENB|DISCENB|TARGET_SCB) SCB_SCSIID[0x17]
+    <4>SCB_LUN[0x0] SCB_TAG[0xff]
+    <4> 13 SCB_CONTROL[0xe0]:(TAG_ENB|DISCENB|TARGET_SCB) SCB_SCSIID[0x17]
+    <4>SCB_LUN[0x0] SCB_TAG[0xff]
+    <4> 14 SCB_CONTROL[0xe0]:(TAG_ENB|DISCENB|TARGET_SCB) SCB_SCSIID[0x17]
+    <4>SCB_LUN[0x0] SCB_TAG[0xff]
+    <4> 15 SCB_CONTROL[0xe0]:(TAG_ENB|DISCENB|TARGET_SCB) SCB_SCSIID[0x37]
+    <4>SCB_LUN[0x0] SCB_TAG[0xff]
+    <4> 16 SCB_CONTROL[0xe0]:(TAG_ENB|DISCENB|TARGET_SCB) SCB_SCSIID[0x17]
+    <4>SCB_LUN[0x0] SCB_TAG[0xff]
+    <4> 17 SCB_CONTROL[0xe0]:(TAG_ENB|DISCENB|TARGET_SCB) SCB_SCSIID[0x37]
+    <4>SCB_LUN[0x0] SCB_TAG[0xff]
+    <4> 18 SCB_CONTROL[0xe0]:(TAG_ENB|DISCENB|TARGET_SCB) SCB_SCSIID[0x17]
+    <4>SCB_LUN[0x0] SCB_TAG[0xff]
+    <4> 19 SCB_CONTROL[0xe0]:(TAG_ENB|DISCENB|TARGET_SCB) SCB_SCSIID[0x37]
+    <4>SCB_LUN[0x0] SCB_TAG[0xff]
+    <4> 20 SCB_CONTROL[0xe2]:(TAG_ENB|DISCENB|TARGET_SCB) SCB_SCSIID[0x57]
+    <4>SCB_LUN[0x0] SCB_TAG[0xff]
+    <4> 21 SCB_CONTROL[0xe0]:(TAG_ENB|DISCENB|TARGET_SCB) SCB_SCSIID[0x27]
+    <4>SCB_LUN[0x0] SCB_TAG[0xff]
+    <4> 22 SCB_CONTROL[0xe0]:(TAG_ENB|DISCENB|TARGET_SCB) SCB_SCSIID[0x37]
+    <4>SCB_LUN[0x0] SCB_TAG[0xff]
+    <4> 23 SCB_CONTROL[0xe0]:(TAG_ENB|DISCENB|TARGET_SCB) SCB_SCSIID[0x27]
+    <4>SCB_LUN[0x0] SCB_TAG[0xff]
+    <4> 24 SCB_CONTROL[0xe0]:(TAG_ENB|DISCENB|TARGET_SCB) SCB_SCSIID[0x37]
+    <4>SCB_LUN[0x0] SCB_TAG[0xff]
+    <4> 25 SCB_CONTROL[0xe0]:(TAG_ENB|DISCENB|TARGET_SCB) SCB_SCSIID[0x37]
+    <4>SCB_LUN[0x0] SCB_TAG[0xff]
+    <4> 26 SCB_CONTROL[0xe0]:(TAG_ENB|DISCENB|TARGET_SCB) SCB_SCSIID[0x37]
+    <4>SCB_LUN[0x0] SCB_TAG[0xff]
+    <4> 27 SCB_CONTROL[0xe0]:(TAG_ENB|DISCENB|TARGET_SCB) SCB_SCSIID[0x37]
+    <4>SCB_LUN[0x0] SCB_TAG[0xff]
+    <4> 28 SCB_CONTROL[0xe0]:(TAG_ENB|DISCENB|TARGET_SCB) SCB_SCSIID[0x17]
+    <4>SCB_LUN[0x0] SCB_TAG[0xff]
+    <4> 29 SCB_CONTROL[0xe0]:(TAG_ENB|DISCENB|TARGET_SCB) SCB_SCSIID[0x17]
+    <4>SCB_LUN[0x0] SCB_TAG[0xff]
+    <4> 30 SCB_CONTROL[0xe0]:(TAG_ENB|DISCENB|TARGET_SCB) SCB_SCSIID[0x37]
+    <4>SCB_LUN[0x0] SCB_TAG[0xff]
+    <4> 31 SCB_CONTROL[0xe0]:(TAG_ENB|DISCENB|TARGET_SCB) SCB_SCSIID[0x37]
+    <4>SCB_LUN[0x0] SCB_TAG[0xff]
+    <4>Pending list:
+    <4>140 SCB_CONTROL[0x64]:(DISCONNECTED|TAG_ENB|DISCENB) SCB_SCSIID[0x37]
+    <4>SCB_LUN[0x0]
+    <4>Kernel Free SCB list: 107 134 129 37 8 96 60 118 4 104 16 124 123 87 105 110 9 117 3 27 50 109 5 12 48 15 114 146 20 2 32 84 127 23 137 38 142 135 59 55 28 147 83 132 133 163 70 85 17 66 10 74 128 6 126 65 108 79 53 143 78 68 81 25 62 11 26 42 33 106 6 120 51 13 76 98 49 36 54 157 152 69 1 130 44 47 35 30 139 24 71 7 88 63 77 136 122 43 94 115 82 93 39 90 72 57 29 40 150 155 153 156 91 158 111 101 86 45 154 119 159 151 97 34 19 58 52 145 113 138 121 144 149 125 148 18 73 41 99 141 131 75 103 95 56 64 4     21 80 31 0 116 22 100 92 112 102 14 67 162 161 160
+    <4>
+    <4><<<<<
+
+
+====================
+CURRENT SYSTEM TASKS
+====================
+
+      ADDR    UID    PID   PPID  STATE     FLAGS CPU  NAME
+===============================================================================
+type >struct runqueue< not in Kerntypes
+0xc042db40      0      0      0      0    0x2000   -  swapper
+type >struct runqueue< not in Kerntypes
+0xc1849a50      0      1      0      1  0x800100   -  init
+type >struct runqueue< not in Kerntypes
+0xc1849030      0      2      1      1    0xa040   -  migration/0
+type >struct runqueue< not in Kerntypes
+0xc184ea70      0      3      1      1    0xa040   -  ksoftirqd/0
+type >struct runqueue< not in Kerntypes
+0xc184e560      0      4      1      0    0xa140   -  watchdog/0
+type >struct runqueue< not in Kerntypes
+0xc184e050      0      5      1      1    0xa040   -  migration/1
+type >struct runqueue< not in Kerntypes
+0xc1854a90      0      6      1      1    0xa040   -  ksoftirqd/1
+type >struct runqueue< not in Kerntypes
+0xc1854580      0      7      1      0    0xa140   -  watchdog/1
+type >struct runqueue< not in Kerntypes
+0xc1854070      0      8      1      0    0xa040   -  events/0
+type >struct runqueue< not in Kerntypes
+0xc1918ab0      0      9      1      0    0xa040   -  events/1
+type >struct runqueue< not in Kerntypes
+0xc19185a0      0     10      1      1    0xa040   -  khelper
+type >struct runqueue< not in Kerntypes
+0xc1918090      0     11      1      1    0xa040   -  kthread
+type >struct runqueue< not in Kerntypes
+0xc1914a50      0     14     11      1    0xa040   -  kblockd/0
+type >struct runqueue< not in Kerntypes
+0xc1914540      0     15     11      1    0xa040   -  kblockd/1
+type >struct runqueue< not in Kerntypes
+0xc1914030      0     16     11      1    0xa040   -  kacpid
+type >struct runqueue< not in Kerntypes
+0xc1b44090      0     83     11      0    0x2040   -  khubd
+type >struct runqueue< not in Kerntypes
+0xc1bab030      0    158     11      1  0x1003040   -  pdflush
+type >struct runqueue< not in Kerntypes
+0xc1baea70      0    159     11      1  0x1003040   -  pdflush
+type >struct runqueue< not in Kerntypes
+0xc1bb3070      0    160      1      1  0x1042840   -  kswapd0
+type >struct runqueue< not in Kerntypes
+0xc1bae560      0    161     11      1    0xa040   -  aio/0
+type >struct runqueue< not in Kerntypes
+0xc1bae050      0    162     11      1    0xa040   -  aio/1
+type >struct runqueue< not in Kerntypes
+0xf7f4ca90      0    750     11      1    0x2040   -  kseriod
+type >struct runqueue< not in Kerntypes
+0xc18ea030      0    789     11      1    0xa040   -  scsi_eh_0
+type >struct runqueue< not in Kerntypes
+0xc19b1050      0    827     11      1    0xa040   -  ata/0
+type >struct runqueue< not in Kerntypes
+0xc19b4a90      0    828     11      1    0xa040   -  ata/1
+type >struct runqueue< not in Kerntypes
+0xc18df030      0    857      1      1    0xa040   -  khpsbpkt
+type >struct runqueue< not in Kerntypes
+0xc18dba70      0    861      1      1    0x2040   -  knodemgrd_0
+type >struct runqueue< not in Kerntypes
+0xc18db560      0    864      1      1    0x2040   -  knodemgrd_1
+type >struct runqueue< not in Kerntypes
+0xc19b4580      0    902     11      1    0xa040   -  kpsmoused
+type >struct runqueue< not in Kerntypes
+0xc18db050      0    905      1      0    0x2040   -  kedac
+type >struct runqueue< not in Kerntypes
+0xc18d8a90      0    927      1      1    0xa040   -  krfcommd
+type >struct runqueue< not in Kerntypes
+0xc18d8580      0    930      1      1    0x2040   -  kirqd
+type >struct runqueue< not in Kerntypes
+0xc18cc070      0    936     11      1    0x2040   -  md2_raid5
+type >struct runqueue< not in Kerntypes
+0xc18cca90      0    939     11      1    0x2040   -  md0_raid1
+type >struct runqueue< not in Kerntypes
+0xc18dfa50      0    940     11      1    0xa040   -  reiserfs/0
+type >struct runqueue< not in Kerntypes
+0xc18cc580      0    941     11      1    0xa040   -  reiserfs/1
+type >struct runqueue< not in Kerntypes
+0xf6828090      0    993      1      1  0x800000   -  udevd
+type >struct runqueue< not in Kerntypes
+0xc18d35c0      0   1213     11      1    0xa040   -  scsi_eh_1
+type >struct runqueue< not in Kerntypes
+0xf7f4c580      0   1223     11      1    0xa040   -  wrapper_wq
+type >struct runqueue< not in Kerntypes
+0xc18ca5a0      0   1224     11      0    0xa040   -  ndis_wq
+type >struct runqueue< not in Kerntypes
+0xc1b530b0      0   1953      1      0  0x800140   -  syslog-ng
+type >struct runqueue< not in Kerntypes
+0xc1baba50      0   2319      1      0  0x800140   -  wpa_supplicant
+type >struct runqueue< not in Kerntypes
+0xc18ea540      0   2617      1      1  0x802040   -  dhcpcd
+type >struct runqueue< not in Kerntypes
+0xf6dc4a90      0   2690      1      1  0x802100   -  login
+type >struct runqueue< not in Kerntypes
+0xf6997540      0   2692      1      1  0x800000   -  agetty
+type >struct runqueue< not in Kerntypes
+0xc18cfa70      0   2693      1      1  0x800000   -  agetty
+type >struct runqueue< not in Kerntypes
+0xc18cf560      0   2694      1      1  0x800000   -  agetty
+type >struct runqueue< not in Kerntypes
+0xf69a4ad0      0   2695      1      1  0x800000   -  agetty
+type >struct runqueue< not in Kerntypes
+0xc18e1ad0      0   2696      1      1  0x800000   -  agetty
+type >struct runqueue< not in Kerntypes
+0xf6987ab0   1000   2886   2690      1  0x800100   -  bash
+type >struct runqueue< not in Kerntypes
+0xf6dc4580   1000   2891   2886      1  0x800000   -  startx
+type >struct runqueue< not in Kerntypes
+0xc1bb3580   1000   2902   2891      1  0x800000   -  xinit
+type >struct runqueue< not in Kerntypes
+0xc1bb3a90   1000   2903   2902      1  0x802100   -  X
+type >struct runqueue< not in Kerntypes
+0xf6908050   1000   2912   2902      1  0x800000   -  startkde
+type >struct runqueue< not in Kerntypes
+0xf681a540   1000   2927      1      1  0x800040   -  hcid
+type >struct runqueue< not in Kerntypes
+0xf6908a70   1000   2977      1      1  0x802040   -  kdeinit
+type >struct runqueue< not in Kerntypes
+0xc18d30b0   1000   2981      1      1  0x800040   -  dcopserver
+type >struct runqueue< not in Kerntypes
+0xf69a40b0   1000   2983   2977      1  0x802040   -  klauncher
+type >struct runqueue< not in Kerntypes
+0xc19b1a70   1000   2986      1      0  0x802040   -  kded
+type >struct runqueue< not in Kerntypes
+0xf6ddaa70   1000   2993   2986      0  0x802040   -  kded
+type >struct runqueue< not in Kerntypes
+0xc19b4070   1000   2997   2977      0  0x802000   -  artsd
+type >struct runqueue< not in Kerntypes
+0xf6908560   1000   2999      1      1  0x802040   -  kaccess
+type >struct runqueue< not in Kerntypes
+0xf6880a70   1000   3000   2912      0  0x800000   -  kwrapper
+type >struct runqueue< not in Kerntypes
+0xc1b53ad0   1000   3002      1      1  0x802040   -  ksmserver
+type >struct runqueue< not in Kerntypes
+0xc1b535c0   1000   3003   2977      1  0x802040   -  kwin
+type >struct runqueue< not in Kerntypes
+0xc18e15c0   1000   3007      1      1  0x802040   -  kdesktop
+type >struct runqueue< not in Kerntypes
+0xc18d3ad0   1000   3009      1      0  0x802040   -  kicker
+type >struct runqueue< not in Kerntypes
+0xc19b1560   1000   3011      1      0  0x802040   -  kbluetoothd
+type >struct runqueue< not in Kerntypes
+0xc18d8070   1000   3013      1      0  0x802040   -  klipper
+type >struct runqueue< not in Kerntypes
+0xf6997a50   1000   3016   2977      0  0x802040   -  konsole
+type >struct runqueue< not in Kerntypes
+0xf6dda050   1000   3017      1      1  0x802040   -  korgac
+type >struct runqueue< not in Kerntypes
+0xf68285a0   1000   3021      1      0  0x802040   -  knotify
+type >struct runqueue< not in Kerntypes
+0xc18e10b0   1000   3022   3016      1  0x800000   -  bash
+type >struct runqueue< not in Kerntypes
+0xc18eaa50   1000   3024   3016      1  0x800000   -  bash
+type >struct runqueue< not in Kerntypes
+0xf69875a0   1000   3030   3016      1  0x800000   -  bash
+type >struct runqueue< not in Kerntypes
+0xf6987090   1000   3040   2997      0  0x802040   -  artsd
+type >struct runqueue< not in Kerntypes
+0xc18ca090   1000   3076   3030      1  0x800000   -  mozilla-launche
+type >struct runqueue< not in Kerntypes
+0xeeda45a0   1000   3085   3076      1  0x802000   -  firefox-bin
+type >struct runqueue< not in Kerntypes
+0xf69a45c0   1000   3088   3085      0  0x802040   -  firefox-bin
+type >struct runqueue< not in Kerntypes
+0xeeda4ab0   1000   3089   3088      1  0x802040   -  firefox-bin
+type >struct runqueue< not in Kerntypes
+0xeecf8580   1000   3091      1      1  0x800000   -  gconfd-2
+type >struct runqueue< not in Kerntypes
+0xf681a030   1000   3093   3088      0  0x800040   -  firefox-bin
+type >struct runqueue< not in Kerntypes
+0xeecf8070   1000   3177   3030      1  0x802000   -  xemacs
+type >struct runqueue< not in Kerntypes
+0xeecf8a90      0   3471   3024      1  0x802100   -  su
+type >struct runqueue< not in Kerntypes
+0xe6e2f580      0   3474   3471      1  0x800000   -  bash
+type >struct runqueue< not in Kerntypes
+0xc1b44ab0     81   3484      1      0  0x802000   -  xemacs
+type >struct runqueue< not in Kerntypes
+0xf681aa50     81   3488   3484      1  0x800000   -  gnuserv
+type >struct runqueue< not in Kerntypes
+0xf6997030      0   3939   3474      1  0x802000   -  xemacs
+type >struct runqueue< not in Kerntypes
+0xe3a51090      0   4725   3022      1  0x802100   -  su
+type >struct runqueue< not in Kerntypes
+0xeeda4090      0   4728   4725      1  0x800000   -  bash
+type >struct runqueue< not in Kerntypes
+0xe3a51ab0      0   5290      1      0  0x800140   -  apache2
+type >struct runqueue< not in Kerntypes
+0xf6880560     81   5291   5290      1  0x802140   -  apache2
+type >struct runqueue< not in Kerntypes
+0xe31eaa90     81   5292   5290      1  0x800140   -  apache2
+type >struct runqueue< not in Kerntypes
+0xe0d595a0     81   5293   5290      1  0x800140   -  apache2
+type >struct runqueue< not in Kerntypes
+0xef8cc560     81   5295   5290      1  0x800140   -  apache2
+type >struct runqueue< not in Kerntypes
+0xf7f4c070     81   5297   5290      1  0x800140   -  apache2
+type >struct runqueue< not in Kerntypes
+0xe11650b0     81   5299   5290      1  0x800140   -  apache2
+type >struct runqueue< not in Kerntypes
+0xc18caab0     81   5301   5290      1  0x800140   -  apache2
+type >struct runqueue< not in Kerntypes
+0xe1d22ad0     81   5311   5290      1  0x800140   -  apache2
+type >struct runqueue< not in Kerntypes
+0xe1d220b0     81   5323   5291      1  0x802000   -  prettify.fcgi
+type >struct runqueue< not in Kerntypes
+0xe31ea070   1000   5380      1      1  0x802040   -  kio_uiserver
+type >struct runqueue< not in Kerntypes
+0xef8cc050   1000   5391   3088      1  0x802040   -  firefox-bin
+type >struct runqueue< not in Kerntypes
+0xc1bab540   1000  28666   2977      1  0x802040   -  kio_file
+type >struct runqueue< not in Kerntypes
+0xe1464ad0      0  29604      1      0  0x802100   -  artsd
+type >struct runqueue< not in Kerntypes
+0xe14640b0      0  29607  29604      0  0x802040   -  artsd
+type >struct runqueue< not in Kerntypes
+0xc18cf050      0    766   4728      1  0x802100   -  asterisk
+type >struct runqueue< not in Kerntypes
+0xf6dda560      0    767    766      0  0x802040   -  asterisk
+type >struct runqueue< not in Kerntypes
+0xe31ea580      0    769    767      1  0x802140   -  asterisk
+type >struct runqueue< not in Kerntypes
+0xc1b445a0      0    770    767      1  0x802140   -  asterisk
+type >struct runqueue< not in Kerntypes
+0xe11655c0      0    771    767      1  0x802140   -  asterisk
+type >struct runqueue< not in Kerntypes
+0xd508c540      0    772    767      0  0x802140   -  asterisk
+type >struct runqueue< not in Kerntypes
+0xd7704050      0    773    772      1  0x802040   -  asterisk
+type >struct runqueue< not in Kerntypes
+0xd508ca50      0    774    767      1  0x802140   -  asterisk
+type >struct runqueue< not in Kerntypes
+0xe14645c0      0    796    767      0  0x802140   -  asterisk
+type >struct runqueue< not in Kerntypes
+0xe0d59090      0    797    767      0  0x802140   -  asterisk
+type >struct runqueue< not in Kerntypes
+0xf6828ab0      0    798    767      0  0x802140   -  asterisk
+type >struct runqueue< not in Kerntypes
+0xf6dc4070      0    799    767      0  0x802140   -  asterisk
+type >struct runqueue< not in Kerntypes
+0xf079e5a0      0    800    767      0  0x802140   -  asterisk
+type >struct runqueue< not in Kerntypes
+0xf079eab0      0    801    767      0  0x802140   -  asterisk
+type >struct runqueue< not in Kerntypes
+0xe8ed2580      0    802    767      1  0x802140   -  asterisk
+type >struct runqueue< not in Kerntypes
+0xe8ed2070      0    803    767      1  0x802140   -  asterisk
+type >struct runqueue< not in Kerntypes
+0xd7704560      0    804    767      0  0x802140   -  asterisk
+type >struct runqueue< not in Kerntypes
+0xe8ed2a90      0    805    767      1  0x802140   -  asterisk
+type >struct runqueue< not in Kerntypes
+0xe6e2f070      0    806    767      0  0x802140   -  asterisk
+type >struct runqueue< not in Kerntypes
+0xd7704a70   1000    840   3088      1  0x800040   -  firefox-bin
+
+===========================
+STACK TRACE OF FAILING TASK
+===========================
+
+================================================================
+STACK TRACE FOR TASK: 0xc18ca5a0 (ndis_wq)
+
+================================================================
+>> DUMP INFORMATION:
+unknown command
+>>
+>>      architecture: i386
+unknown command
+>>        byte order: little
+unknown command
+>>      pointer size: 32
+unknown command
+>>    bytes per word: 4
+unknown command
+>>
+>>    kernel release: 2.6.16
+unknown command
+>>       memory size: 939524096 (0G 896M 0K 0Byte)
+unknown command
+>>    num phys pages: 229376
+unknown command
+>>    number of cpus: 2
+unknown command

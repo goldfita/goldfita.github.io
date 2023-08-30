@@ -1,0 +1,3 @@
+#ide-cd ignore=\"hda\"
+ide-cd dev=\dev\hdX ignore=\"hda\"
+

@@ -1,0 +1,291 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+<head>
+<title>Should You Learn C</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<link rel="stylesheet" type="text/css" href="../index.css" />
+<meta name="description" content="
+Just some of my thouhts on learning lower level languages.                      " />
+<!-- ....10........20........30........40........50........60........70........80 -->
+</head>
+
+<body>
+<table>
+<tr><td class="article">
+<h1 class="topofpage">Should You Learn C?</h1>
+
+<h3>You Probably Should</h3>
+<p>
+This is one of those questions that's been floating about for
+seemingly forever.  It has the power to ignite a flame war on any
+relevant forum almost instantly.  But really the question is whether
+or not you should learn languages that are close to the machine level
+even if you never intend to use them.  And this leads into which order
+should you learn them in.  So I'm going discuss, not answer, these
+questions instead.
+</p><p>
+
+There are a few advantages to knowing C well.  In some rare
+circumstances, you do actually need to write code that compiles to a
+program that runs quickly.  Usually you would want to do this in C or
+assembly.  However, I personally wouldn't touch assembly until all
+other options had been exhausted.  And even then, I wouldn't write
+more than a few pages of it.
+</p><p>
+C is like sleeping in a tent with a thin piece of plastic between you
+and the bumpy ground beneath.*  There's hardly anything between you and
+the ground.  By morning you're intimately familiar with the dirt
+beneath you.  You know exactly where all the hard spots and bumps
+are.  A language like Python or Ruby is like sleeping on a thousand
+dollar mattress in a luxury home, sitting where the bumpy ground
+was before it was excavated.
+</p><p>
+In the first case, you have no choice but to learn about the machine.
+In the second case, you're living in a fantasy world that has no real
+bearing on the true environment.  Sometimes it really helps to know
+what's beneath.  Other times it probably doesn't matter.  However, it
+might be difficult to know then it does matter if you've never had to
+take the real, physical hardware limits into consideration.  So that's
+another argument in favor of low level languages.
+</p><p>
+The obvious reason to learn C is if you're going to write an OS or a
+module or a device driver.  You absolutely can't do those things in
+Python.  (Go ahead, try.)  So you see, the essence of C can never go away.
+No matter how fast computers become and no matter how much memory is
+available, there will always be problems that require more speed than
+is available.  And even if compilers and interpreters were to become
+so smart that they could generate code as efficient as C or assembly,
+they don't grant you access to the hardware (at least none that I've
+seen).</p>
+
+<hr />
+<h3>C Is Not Difficult</h3>
+<p>
+C is actually not nearly as complicated as some other languages.  Even
+though you can start programming in Python almost immediately, it has
+a lot of crazy features, as do most high level scripting languages.
+Take for example map, lambda, list comprehensions, meta classes, and
+decorators.  C has only the basics -- functions, loops, conditionals,
+and type declarations.  You don't have to worry about concepts like
+objects, first class procedures, or byte codes.  Honestly, the only
+hurdle in learning C that I can think of is pointers.  Everything else
+was completely straight forward.  
+</p><p>
+And pointers aren't as <a
+href="http://www.joelonsoftware.com/articles/ThePerilsofJavaSchools.html">hard
+to learn</a> as some people think.  Although everyone might not be
+able to understand them, I think anyone who can do some basic (not the
+language) programming, has the ability to fully comprehend and make
+use of pointers.  The trouble is that many students may learn of
+pointers for the first time in a class.  This is dangerous.  Classes
+often tend to move fast with only minimal repetition.  You need
+repetition.  Anyone who's ever been in graduate school and worked with
+difficult material for months at a time understands this principle.
+If you only work a few homework sets and you don't understand the
+concept, you can become permanently afraid of the material.  If you
+study it at your own leisure for months, almost anything can become
+easy.
+</p><p>
+Let me give you some brief history about my experience (because
+everyone enjoys showing off).  Sometime around the end of 7th grade, I
+picked up a dummies book on programming in C from the library.  I
+don't recall any of the material being too confusing, but,
+unfortunately, I didn't make it very far due to a serious injury and
+the lack of a compiler.  My next attempt was in 9th grade.  I was luck
+at this point, that I had already learned basic and had written a
+number of substantial programs.  I worked my way through a several
+hundred page book.  The only parts that stick out in my mind now are
+quicksort and pointers with respect to trees and lists.  Those were
+the only subjects in the book that really caused me frustration
+(although quicksort wasn't actually explained).
+</p><p>
+I must have spent a number of hours going over the list/tree code trying
+to understand pointers and pointers to pointers.  I even wrote a
+program where I had to implement lists, but I still didn't feel like I
+fully understood.  It wasn't until a substitute covered pointers in
+my 10th grade Pascal class that it finally clicked.  I didn't write a
+lot of code between then graduating high school (at least not in C).
+Unlike some of you, I actually was busy in high school.  But when I
+was working at the JHUAPL the summer after school, I found that I had
+absolutely no problems at all with pointers or dynamic memory
+allocation.  At some point it just sunk in.  If I had only seen
+pointers, lists, and trees that one time in Pascal, my head surely
+would have exploded.
+</p><p>
+Ok, so what should you do if your head exploded because you had a
+difficult subject forced down your throat unwillingly?  I would set a
+side a few days, and study some code with heavy pointer usage.  Study
+lists and trees.  Study dynamic memory allocation.  Study arrays and
+pointers.  Implement your own data structures with pointers.  Make
+sure to use pointers to pointers.  Read the <a
+href="http://www.faqs.org/faqs/C-faq/">C FAQ</a>.  Study assembly.
+Learn about different addressing modes.  Implement a linked list in
+assembly.  Every computer engineer should understand pointers whether
+they know C or not.  If you've studied and understood anything about
+low level architecture, pointers should be easy.
+</p>
+
+<hr />
+
+<h3>When to Learn What</h3>
+
+<p>
+My opinion on this is you should start with the lowest level languages
+first and work your way up.  But everyone's different.  Most schools
+now-a-days will start with something like Java or Python.  The
+reasoning is that we should teach concepts.  Having to deal with
+things like memory management and null characters just gets in the way
+of learning.  The issue I have with this is 1) handling memory is an
+issue.  Ok maybe it's not an issue if you live in a mansion and own an
+expensive mattress.  But if you sleep in a tent, you still have to
+worry about these things.  And 2) it's hard to understand why many
+features exist in high level languages without first doing things the
+hard way in low level languages.
+</p><p>
+As an easy example, take <span class="bold">i++</span>.  Why would we
+do that?  Because it's a lot easier than typing <span class="bold">i = i +
+1</span>, and it lets you express some operations very succinctly, such
+as <span class="bold">*a++ = *b++</span>.  That one's sort of obvious,
+but there are better examples.
+</p><p>
+How about conditionals and loops?  The first several times you had to
+handle complex if statements in assembly, you probably had to do some
+thinking.  And you probably did it a little different each time.  And
+I bet it took several tries to get it right.  Wouldn't it be easier if
+we just had a standard way of doing if, if/else, if/elseif/else, and
+switch?  You can tell very quickly in any language higher than
+assembly which control structure to use.  What you don't realize is
+why it's so important unless you've ever had to do it in assembly.
+</p><p>
+If the first language you ever learned was Java, you may not have even
+known that objects have to be freed.  It's really great that Java and
+Lisp and Python handle all this stuff for you.  But if you never had
+to do it yourself, there's a serious gap in your understanding.  You
+really understand why garbage collection is so wonderful if you've
+ever forgotten to free some memory on an error condition or in a
+loop.  (I wonder why my little program is sucking up 400 MB of
+memory??)  Or perhaps you spent three hours tracking down a bug that
+tried to free already freed memory.  Or maybe you just got sick of
+having to worry about how to allocate memory every time you needed to
+write a function that does something useful.  Then garbage collection would
+really mean something to you.
+</p><p>
+Isn't it wonderful that you can so easily return anything you want in
+Python?  You can return objects, lists, tuples, and dictionaries.
+Really these are all just objects that get created at the time of
+return.  But you can't do this in C.  Your options are either to
+return a pointer to a struct or a built-in data type, like an integer
+or float.  If you want to return multiple items at once, you have to
+create a temporary special structure, populate it, and return a
+pointer to it.  The other option is to pass the address of the item you wish to
+return and modify it in the function which is kind of ugly, but it
+works.  The point being that you just wouldn't know why Python tries
+to make moving data in out of functions so darn easy.
+</p><p>
+Have you ever thought about what happens when you invoke a function?
+Did you know the compiler is handling all kinds of nasty stuff like
+setting up the stack frame, placing arguments on the stack, and putting
+the return value on the stack or in a register.  If you didn't know a little assembly,
+you wouldn't be able to understand any of that.  You would have no
+idea where that memory is coming from when you use a variable length
+array or any local variables on the stack.
+</p><p>
+I bet you take for granted the fact that you can pass around any
+object as a generic object and plop down objects of various types into
+a list.  The best you can do in C is create an array or list of void
+pointers.  And even then you still need some way of keeping track of
+the types.  You see?  There's all this stuff going on underneath that
+no one thinks about.
+</p><p>
+Ruby has this wonderful feature that treats instance variables as
+functions of the same name.  Suppose you wrote 50,000 lines of code
+that access foo 300 times in 92 different files.  Then you add a
+constraint that requires foo to have a value of at least 5.  Now you have to go and
+add some error checking code every place you used foo.  Yuck!
+Fortunately, in Ruby all you have to do is redefine the attribute
+reader such that it does the check.  Ruby will execute the attribute
+reader, which has the same name as foo, every time you access foo.  So
+you only have to add the code in once place.  This little bit of
+indirection has just saved us a lot of work.  In Java and other OO
+languages, you would typically use getter/setter or accessor/mutator
+functions.  But often programmers neglect to use them because they're
+so much extra work and they bloat the code (and all those function
+calls sure seem expensive).  Usually it doesn't seem like they're
+necessary.  But then after you've written 5 months worth of code, you
+realize you're going to have to through and add getter/setter
+methods.  Ruby doesn't allow you to make this mistake?  It's even more
+of a pain in C.  If you want getter/setter methods, you'll have to add
+pointers to functions in structs.  And who the heck does that?  You'll
+probably just go through and fix the code everywhere it's needed.
+That's what I would have done.  But if you had started with Ruby,
+would you understand just how much power you've been given?  Would you
+know how to make good use of it?
+</p><p>
+It just seems to me that it's really hard to properly use advanced
+features without using the basic ones first.  You have to do things
+wrong for a bit before you can understand the right way.</p>
+
+<hr />
+
+<h3>A Word About C++</h3>
+<p>
+Every once in a while someone will try to instigate a little war by
+posting the merits of C++ to comp.lang.c (and that also goes for vi in
+comp.lang.emacs).  I've never been too big a fan of C++.  I also
+haven't used it very much, and I would agree that it seems to have
+some useful advanced features (which I haven't used either).  However,
+if you know C and Java, I just can't think of  good reason to learn
+C++.
+</p><p>
+It's like a low level language trying to be a high level language.
+But the trouble is, instead of getting the low level machine
+level access and speed in combination with OOP, what you really get is
+a language that's easy to shoot yourself in the foot with and has been made ten
+times more complex.  In other words, my experience was that it feels
+more like the worst of both worlds instead of the best of both worlds.
+</p><p>
+The first time I did anything significant with C++, I made heavy use
+of operator overloading.  It seemed great, but then I ran into endless
+problems with ambiguous statements due to the overloading.  Some of the
+problems seemed arbitrary and inconsistent; I never could figure what
+the compiler was doing.  I also found that pointer problems were
+problematic because there were more places for them to hide.  It's
+easier to get yourself into trouble when the language becomes more
+complex.
+</p><p>
+Here's my analysis.  In most cases if you really need the speed, you
+can just use C.  You can write C code in an object oriented manner; it
+just takes some work.  No, you won't get all the advanced features of
+C++, but how often do you really need them?  Is it worth the extra
+complexity you have to deal with?  If you really need OO code, go to
+Java.  In the few cases, where you really, really need OO and speed,
+then I might choose C++.
+</p><p>
+WAIT!  There's one more thing.  Have you ever heard of the 90/10 rule?
+ It applies to many areas of life.  When coding, it says that 90% of
+the code runs 10% of the time and vice-versa.  But I would guess that
+it's more like 99.999/.001 for many applications.  What that means is
+if you really need speed, you only need to worry about a tiny little
+bit of code.  Most high level languages make it very easy to interface
+with C.  It's the best of both worlds.  Write most of the application
+in say, Python.  Then write the critical part in C!
+</p><p>
+Do you still feel you really need to know C++?  If it were me, I
+wouldn't want to deal with the hassle of pointers and memory
+management when writing a large application.  If I had to use them, I
+would probably go with C because it's just so much simpler.
+</p>
+
+
+<p><span class="bold">*</span>Assembly would be sleeping directly on the ground.  But your clothes
+are still on.
+</p>
+
+</td></tr>
+
+</table>
+<p><br /><a href="../index.html">home</a></p>
+
+</body>
+</html>

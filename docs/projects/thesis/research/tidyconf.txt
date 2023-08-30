@@ -1,0 +1,4 @@
+output-xhtml: yes
+doctype: transitional//strict
+drop-proprietary-attributes: yes
+clean: yes

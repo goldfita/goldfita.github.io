@@ -1,0 +1,26 @@
+#define extra 10            //because IDCANCEL is 2
+
+#define IDC_num_box	101
+#define IDC_number0	10
+#define IDC_number6	16
+#define IDC_number9	19
+#define IDC_multiply	116
+#define IDC_reset	120
+#define IDC_power	121
+#define IDC_absoluteV	122
+#define IDC_pow10	123
+#define IDC_pow2	124
+#define IDC_remainder	116
+#define IDC_divide	117
+#define IDC_memory	118
+#define IDC_clear	119
+#define IDC_subtract	111
+#define IDC_plus	106
+#define IDC_number7	17
+#define IDC_number8	18
+#define IDC_number5	15
+#define IDC_number4	14
+#define IDC_number3	13
+#define IDC_return	112
+#define IDC_number2	12
+#define IDC_number1	11

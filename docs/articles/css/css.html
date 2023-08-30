@@ -1,0 +1,39 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+<head>
+<title>Composite Source Signals</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<link rel="stylesheet" type="text/css" href="../../index.css" />
+<meta name="description" content=
+"Code for generating Composite Source Signals.                                  
+                                                                                " />
+<!-- ....10........20........30........40........50........60........70........80 -->
+</head>
+
+<body>
+<table>
+<tr><td class="article">
+<h1 class="topofpage">Composite Source Signals</h1>
+<p>
+As I was working on simulations for my thesis, I needed some useful
+signals to apply my algorithms to.  The ITU G.168 echo canceller
+standard describes Composite Source Signals (CSS).  These were made to
+have similar properties to real speech signals.  They are intended to
+be used for testing echo cancellation devices.  Although I never ended
+up using them much, they can be useful for comparing algorithms and
+simulating double talk.  They are broken into voiced and unvoiced
+portions.  There are two voiced versions at different frequencies.
+They can be used together for double talk.  I don't remember how the scripts work.  You may need to take a look at G.168.  Also note that there is already a resample function in matlab.
+</p>
+
+<p>
+<a href="css.m">css.m</a><br />
+<a href="writeCSS.m">writeCSS.m</a><br />
+<a href="resample.m">resample.m</a><br />
+</p>
+</td></tr>
+</table>
+<p><br /><a href="../../index.html">home</a></p>
+</body>
+</html>

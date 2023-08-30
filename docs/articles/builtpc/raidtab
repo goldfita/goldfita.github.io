@@ -1,0 +1,32 @@
+raiddev		/dev/md0
+raid-level	1
+nr-raid-disks	5
+chunk-size	32
+persistent-superblock	1
+device		/dev/sda1
+raid-disk	0
+device		/dev/sdb1
+raid-disk	1
+device		/dev/sdc1
+raid-disk	2
+device		/dev/sdd1
+raid-disk	3
+device		/dev/sde1
+raid-disk	4
+
+raiddev		/dev/md2
+raid-level	5
+nr-raid-disks	5
+chunk-size	32
+persistent-superblock	1
+device		/dev/sda3
+raid-disk	0
+device		/dev/sdb3
+raid-disk	1
+device		/dev/sdc3
+raid-disk	2
+device		/dev/sdd3
+raid-disk	3
+device		/dev/sde3
+raid-disk	4
+

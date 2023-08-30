@@ -1,0 +1,200 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+<head>
+<title>Combining Tele-communications and E-commerce (Asterisk, Java, and Python
+- Oh My!)</title>
+
+<link rel="stylesheet" type="text/css" href="../../index.css" />
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+
+<meta name="description" content=
+"An introduction to developing applications for the Asterisk PBX using Python.  
+                                                                             "></meta>
+<!-- ....10........20........30........40........50........60........70........80 -->
+</head>
+
+<body>
+<table>
+<tr><td class="article">
+
+<h1 class="topofpage">Combining Tele-communications and E-commerce (Asterisk, Java, and Python
+- Oh My!)</h1>
+
+<p>This very gentle introduction to development with <a href="http://www.asterisk.org">Asterisk</a> will demonstrate
+how to use the AGI. Along the way you'll learn about Python and Java as well. I'll
+assume you're able to set up and configure Asterisk.</p>
+
+<p>The Asterisk Gateway Interface (AGI) allows an application you write (in
+whatever language you choose) to communicate directly with Asterisk using
+simple descriptive text commands. Normally you place your application in
+/var/lib/asterisk/agi-bin and Asterisk will execute it when it is encountered
+in the dial plan. Most of the commands are explained <a
+href="http://home.cogeco.ca/~camstuff/agi.html">here</a>. They are fairly
+straight forward, so I'll only demonstrate a few. There are three other AGIs
+you should be aware of. There is the dead AGI which allows you to run an
+application after a call ends. There is the fast AGI which lets your
+application communicate with Asterisk over TCP. And there is the extended AGI
+which is supposed to let your application view the audio stream on file
+descriptor three. But I don't know the state of this last AGI.</p>
+
+<p>Now here is your task. M&amp;M wants to add a new color to their current
+selection. The choices are pink, emerald green, and mahogany. You will be
+responsible for developing the phone based voting system that will allow
+customers to vote for these new delicious sounding candies. In addition, you
+will need to make the results available to the public on a website in a
+graphical format.</p>
+
+<p>First take a look at the code below. You can find agi.py in the resources
+section (along with a link to the explanation). You'll also want the <a
+href="connect.py">connection</a> code. </p>
+</td><td></td></tr>
+
+<tr><td colspan="2">
+<pre class="code">
+#!/usr/bin/env python
+
+#resources
+#http://home.cogeco.ca/~camstuff/agi.html
+#http://sourceforge.net/projects/mysql-python
+
+import agi
+from connect 
+import get_mysql_connection
+
+OPTIONS = &quot;123&quot;
+interface = agi.AGI()
+select_map = {1: &quot;pink&quot;,
+	      2: &quot;green&quot;,
+	      3: &quot;mahogany&quot;}
+
+select_stmt = 'SELECT votes FROM colors WHERE color=&quot;%s&quot;'
+update_stmt = 'UPDATE colors SET votes=%d WHERE color=&quot;%s&quot;'
+
+try:
+	(res,int_res)=interface.Cmd('STREAM FILE voteprompt &quot;%s&quot;' % OPTIONS)
+	db = get_mysql_connection()
+	color = select_map[int(chr(int_res))]
+	db.query(select_stmt % color)
+	rs = db.store_result()
+	val = rs.fetch_row()[0][0]#returns a tuple of tuples
+	db.query(update_stmt % (val+1,color))
+	db.close()
+except:
+	pass
+</pre></td><td></td></tr>
+
+<tr><td class="article">
+<p>This is our interface to asterisk. Every time a caller dials in, this script
+will be run. The first line of the try block executes the STREAM FILE command.
+The first argument is the name of the file to play, and the second argument are
+the keys the caller can press. In this example, the caller can press one, two,
+or three for the three colors. The next line connects to the database. The
+number is mapped to a color and the corresponding row is selected from the
+database. The number of votes is incremented and put back. That's all.</p>
+
+<p>Now let's take a look at the code for generating a plot of the results. In
+order to do this, we'll use Jython for its graphics libraries. I won't go much
+into the graphics libraries, but you can have a look at the references below.</p>
+</td><td></td></tr>
+
+<tr><td colspan="2">
+<pre class="code">
+#!/usr/bin/env jython
+
+#resources
+#http://www.aion-needlecrafts.co.uk/info/dmcval2.htm
+#http://www.geocities.com/marcoschmidt.geo/java-save-jpeg-thumbnail.html
+#http://www-106.ibm.com/developerworks/library/j-begjava/
+#http://java.sun.com/docs/books/tutorial/2d/TOC.html#display
+
+import time
+import connect
+from com.sun.image.codec.jpeg 
+import JPEGImageEncoder,JPEGEncodeParam,JPEGCodec
+from java.awt import Graphics2D, Color
+from java.awt.image import BufferedImage
+from java.io import BufferedOutputStream,FileOutputStream
+from java.awt.geom import Rectangle2D
+
+MAX_X = 300
+MAX_Y = 200
+
+def write_image(votes,name):m = max(votes.values())
+	if m==0:
+		return
+	for k in votes:
+		votes[k] = MAX_Y-int(votes[k]*float(MAX_Y)/m)
+
+	#create the image
+	image = BufferedImage(MAX_X,200,BufferedImage.TYPE_INT_RGB)
+	g2d = image.createGraphics()g2d.setPaint(Color.white)
+	g2d.fill(Rectangle2D.Double(0,0,MAX_X,MAX_Y))
+	
+	g2d.setPaint(Color(243,71,139)) #Cyclamen Pink
+	g2d.fill(Rectangle2D.Double(0,votes[&quot;pink&quot;],100,MAX_Y))
+	g2d.setPaint(Color.black)
+	g2d.drawString(&quot;Pink&quot;, 35,190)
+	
+	g2d.setPaint(Color(49,128,97)) #Emerald Green - MED
+	g2d.fill(Rectangle2D.Double(100,votes[&quot;green&quot;],200,MAX_Y))
+	g2d.setPaint(Color.black)
+	g2d.drawString(&quot;Emerald Green&quot;, 105,190)
+	
+	g2d.setPaint(Color(209,102,84)) #Mahogany - MED
+	g2d.fill(Rectangle2D.Double(200,votes[&quot;mahogany&quot;],300,MAX_Y))
+	g2d.setPaint(Color.black)
+	g2d.drawString(&quot;Mahogany&quot;, 220,190)
+
+	#write to file as a JPEG
+	bos = BufferedOutputStream(FileOutputStream(name+&quot;.jpeg&quot;))
+	encoder = JPEGCodec.createJPEGEncoder(bos)
+	param = encoder.getDefaultJPEGEncodeParam(image)
+	param.setQuality(1.0, False)
+	encoder.setJPEGEncodeParam(param)
+	encoder.encode(image)
+	bos.close()
+
+while True:
+	time.sleep(60)
+	db = connect.get_jdbc_connection()
+	stmt = db.createStatement()
+	rs = stmt.executeQuery(&quot;SELECT * FROM colors&quot;)
+	results = {}
+	while rs.next():
+		md = rs.getMetaData()
+		results[rs.getObject(1)] = rs.getObject(2)
+	db.close()
+	write_image(results,&quot;votes&quot;)
+</pre></td><td></td></tr>
+
+<tr><td class="article">
+<p>First we go into a loop that executes every 60 seconds (making this
+effectively an image server). Then we select the total votes for each of the
+colors from the database. Last the image generation routine is called with the
+votes. The numbers are normalized. A new image is created, and the background
+is set to white. Each of the three colors is painted on the background as a
+vertical bar with the height corresponding to the number of votes. Some
+identifying text is placed beneath each bar. Then the <a href="votes.jpeg">image</a>
+is written out as a jpeg.</p>
+
+<p>The last bit of code is for handling database connections in Python and
+Jython and is not discussed here. If you have a decent understanding of Python,
+you should be able to follow the code.</p>
+
+<p>
+<span class="bold">Exercises (Warning - I haven't tried these.)</span><br />
+1) Add two more colors to the choices.<br />
+2a) Try rewriting the plot generation routine to make a pie chart.<br />
+2b) Change it to an animated gif and modify it to show changes over time.<br />
+2c) Put a web page around it and make it accessible from the internet.<br />
+3) Modify all the code to use Jython (for consistency and simplicity). Separate
+the image server from the rest of the code by using Java's RMI. </p>
+
+</td><td></td></tr>
+</table>
+
+<p><a href="../../index.html">home</a></p>
+
+</body>
+</html>

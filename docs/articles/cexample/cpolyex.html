@@ -1,0 +1,254 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+<head>
+<title>OOP with C</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<link rel="stylesheet" type="text/css" href="../../index.css" />
+<meta name="description" content="
+An example of using C to do some basic object oriented programming.
+                                                                   " />
+<!-- ....10........20........30........40........50........60........70........80 -->
+</head>
+
+<body>
+<table>
+<tr><td class="article">
+<h1 class="topofpage">OOP with C</h1>
+<p>
+Now that you've seen how to make C object like, why don't we take it a
+smidgen further?  Can it be made to do some kind of simple
+inheritance?  I thought so.  So, I wrote a little demo <a
+href="polymorph.c">program</a> to see if I could come up with
+something.
+</p><p>
+The first thing I did was make a private variables structure that will be
+put into the base class.
+</p>
+
+<pre class="code">
+<span class="flkf">typedef</span> <span class="flkf">struct</span> <span class="fltf">___pvt</span> {
+    <span class="fltf">int</span> <span class="flvnf">a</span>;
+    <span class="fltf">char</span> <span class="flvnf">b</span>[10];
+} <span class="flvnf">__pvt</span>;
+</pre>
+
+<p>
+The reason it's a struct is so I can get the size of it, and use that
+to pad the derived classes*.  That's done with a macro.  This must be
+the first thing after the struct declaration.
+</p>
+
+<pre class="code">
+<span class="flpf">#define</span> <span class="flvnf">BASE_OFFSET</span>           \
+<span class="fltf">char</span> __offset[<span class="flkf">sizeof</span>(__pvt)];
+</pre>
+
+<p>
+Next, I'll need some public variables.  This doesn't need a struct.
+It's going to be put in every class right after the private portion.
+(And when I say class, really I mean struct.)
+</p>
+
+<pre class="code">
+<span class="flpf">#define</span> <span class="flvnf">PUB_VAR</span>                  \
+<span class="fltf">char</span> c;                          \
+<span class="fltf">void</span> (*<span class="flvnf">foo</span>);
+</pre>
+
+<p>
+That's all you need.  Below is the base class with private variables
+a and b and public variables c and foo.  Beneath that are two derived
+classes.  They include the offset (which is where the private
+variables are), followed by the public variables, and last is their
+extension to the base class.  In this case I've defined an integer in
+one class and a short in the other.
+</p>
+
+<pre class="code">
+<span class="flkf">struct</span> <span class="fltf">base</span> {
+    <span class="fltf">__pvt</span> <span class="flvnf">__pvt_var</span>;
+    PUB_VAR;
+};
+
+<span class="flkf">struct</span> <span class="fltf">derived1</span> {
+    BASE_OFFSET;
+    PUB_VAR;
+    <span class="fltf">int</span> <span class="flvnf">a</span>;
+};
+
+<span class="flkf">struct</span> <span class="fltf">derived2</span> {
+    BASE_OFFSET;
+    PUB_VAR;
+    <span class="fltf">short</span> <span class="flvnf">a</span>;
+};
+</pre>
+
+<p>
+There are three pointers to functions defined.  So I'm going to define
+three functions to point to.
+</p>
+
+<pre class="code">
+<span class="fltf">void</span> <span class="flfnf">foo_d1</span>(<span class="fltf">void</span>* <span class="flvnf">d1</span>, <span class="fltf">char</span> *<span class="flvnf">s</span>, <span class="fltf">int</span> <span class="flvnf">i</span>)
+{
+    printf("<span class="flsf">Came from %s - %d\n</span>",s,i);
+    printf("<span class="flsf">Member a is %d\n</span>",((<span class="flkf">struct</span> <span class="fltf">derived1</span> *)d1)-&gt;a);
+}
+
+<span class="fltf">void</span> <span class="flfnf">foo_d2</span>(<span class="fltf">void</span>* <span class="flvnf">d2</span>, <span class="fltf">char</span> *<span class="flvnf">s</span>, <span class="fltf">void</span> *<span class="flvnf">s2</span>)
+{
+    printf("<span class="flsf">Came from %s - %s\n</span>",s,(<span class="fltf">char</span> *)s2);
+    printf("<span class="flsf">Member a is %d\n</span>",((<span class="flkf">struct</span> <span class="fltf">derived2</span> *)d2)-&gt;a);
+}
+
+<span class="fltf">void</span> <span class="flfnf">foo</span>(<span class="fltf">void</span>* <span class="flvnf">b</span>, <span class="fltf">char</span> *<span class="flvnf">s</span>)
+{
+    printf("<span class="flsf">Came from %s\n</span>",s);
+    printf("<span class="flsf">Member a is %d\n</span>",((<span class="flkf">struct</span> <span class="fltf">base</span> *)b)-&gt;__pvt_var.a);
+}
+</pre>
+
+<p>
+I can't assign these from within the classes.  It will have to be
+done at initialization.  That's the first thing that happens in main.
+I set foo of d1 (derived1) to point to foo_d1, and likewise for d2 and
+b (base).
+</p>
+
+<pre class="code">
+<span class="flkf">struct</span> <span class="fltf">base</span> <span class="flvnf">b</span>, *<span class="flvnf">b1</span>, *<span class="flvnf">b2</span>;
+<span class="flkf">struct</span> <span class="fltf">derived1</span> <span class="flvnf">d1</span>;
+<span class="flkf">struct</span> <span class="fltf">derived2</span> <span class="flvnf">d2</span>;
+
+d1.foo = &amp;foo_d1;
+d2.foo = &amp;foo_d2;
+b.foo = &amp;foo;
+</pre>
+
+<p>
+Ok, make some assignments and print the results just to make sure
+everything is accessible in the manner I think it is.
+</p>
+</td><td></td></tr>
+
+<tr><td colspan="2">
+<pre class="code">
+b.__pvt_var.a = 1;
+strcpy(b.__pvt_var.b,"<span class="flsf">this is b</span>");
+b.c = '<span class="flsf">b</span>';
+
+d1.c = '<span class="flsf">1</span>';
+d1.a = 2;
+
+d2.c = '<span class="flsf">2</span>';
+d2.a = 5;
+
+printf("<span class="flsf">b.__pvt.a==%d\nb.__pvt.b==%s\nb.c==%c\n</span>",b.__pvt_var.a,b.__pvt_var.b,b.c);
+printf("<span class="flsf">d1.c==%c\nd1.a==%d\n</span>",d1.c,d1.a);
+printf("<span class="flsf">d2.c==%c\nd2.a==%d\n</span>",d2.c,d2.a);
+</pre>
+
+<pre>
+And the results are
+
+b.__pvt.a==1
+b.__pvt.b==this is b
+b.c==b
+d1.c==1
+d1.a==2
+d2.c==2
+d2.a==5
+</pre>
+</td><td></td></tr>
+
+<tr><td class="article">
+<p>
+So it looks like b has access to its private parts.  The derived
+classes are somewhat unaware of their private members.  Although, it
+wouldn't be too much trouble to go ahead and access them anyway.  Next
+up is the fun part.  I declare and point a base class at the
+derived classes used above.  I can now (easily) assign the private
+members of the derived classes using the base class pointer.
+Normally, you woudn't be able to access a private variable outside its
+class.  You could solve this problem by moving the structs into their
+own files and leaving the definition of the structs out of the header
+file.
+</p>
+</td><td></td></tr>
+
+<tr><td colspan="2">
+<pre class="code">
+b1 = (<span class="flkf">struct</span> <span class="fltf">base</span> *)&amp;d1;
+b2 = (<span class="flkf">struct</span> <span class="fltf">base</span> *)&amp;d2;
+    
+b1-&gt;__pvt_var.a = 1;
+strcpy(b1-&gt;__pvt_var.b,"<span class="flsf">this is b</span>");
+printf("<span class="flsf">b1-&gt;__pvt.a==%d\nb1-&gt;__pvt.b==%s\nb1-&gt;c==%c\n</span>",b1-&gt;__pvt_var.a,b1-&gt;__pvt_var.b,b1-&gt;c);
+</pre>
+
+<pre>
+And the output is
+
+b1->__pvt.a==1
+b1->__pvt.b==this is b
+b1->c==1
+</pre>
+</td><td></td></tr>
+
+<tr><td class="article">
+<p>
+First invoke each of the derived classes functions.  And notice that I
+pass the function a pointer to the struct that invoked it.  This would
+be "self".  I should get the same results by using the base class
+pointers.  Look mom -- polymorphism!  You can now pass the base class
+pointers around without other code knowing or caring about the real type.
+But when you invoke foo, you'll get the derived classes' behaviour.
+And last I invoke base class's foo with the expected output.  There
+are many obvious problems with this.  For example, the sub classes
+can't call the super method of the base class (because it doesn't
+exist).  But I think what I've done right here gives you some power.
+And because it's all implemented in the code, it's quite transparent
+and easy to grok in fullness.  Ask yourself this -- how well do you
+understand what your C++ compiler is doing to your code?
+</p>
+</td><td></td></tr>
+
+<tr><td colspan="2">
+<pre class="code">
+d1.foo(&amp;d1,"<span class="flsf">d1</span>",10);
+d2.foo(&amp;d2,"<span class="flsf">d2</span>","<span class="flsf">auxiliary string</span>");
+b1-&gt;foo(b1,"<span class="flsf">b1</span>",10); <span class="flcf">//this is a base class pointer to derived1
+</span>b2-&gt;foo(b2,"<span class="flsf">b2</span>","<span class="flsf">auxiliary string</span>"); <span class="flcf">//this is a base class pointer to derived2
+</span>b.foo(&amp;b,"<span class="flsf">b</span>");    <span class="flcf">//this really is base</span>
+</pre>
+</td><td></td></tr>
+<tr><td class="article">
+<pre>
+And the output
+
+Came from d1 - 10
+Member a is 2
+Came from d2 - auxiliary string
+Member a is 5
+Came from b1 - 10
+Member a is 2
+Came from b2 - auxiliary string
+Member a is 5
+Came from b
+Member a is 1
+</pre>
+<br />
+<p>
+<span class="bold">*</span> I have been <a href="http://groups.google.com/group/comp.lang.c/browse_thread/thread/8b5d0b250d76e205/ee81a015365a78a0?lnk=raot#ee81a015365a78a0">told</a> this may
+not always work.  The compiler may pad after the inner struct.
+However, if you had the definition of struct __pvt, you could just
+include it in the base structures.
+</p>
+<p><a href="callocmem.html">prev</a></p>
+</td><td></td></tr>
+</table>
+<p><br /><a href="../../index.html">home</a></p>
+
+</body>
+</html>

@@ -1,0 +1,441 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+<head>
+<title>Real-Time DSP Development</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<link rel="stylesheet" type="text/css" href="../../index.css" />
+<meta name="description" content="
+This is an article I wrote for CUJ on Real-Time DSP, but it was never
+published.                                                           " />
+<!-- ....10........20........30........40........50........60........70........80 -->
+</head>
+
+<body>
+<table>
+<tr><td class="article">
+<h1 class="topofpage">Real-Time DSP Development</h1>
+<p>
+This was originally submitted to <a href="http://www.cuj.com">C Users
+Journal</a> for publication, but the magazine was cancelled.  I wrote
+about this <a href="../rtdev/rtlms.html">previously</a>.
+</p>
+
+<h3>Intro</h3>
+<p>
+Completing an Embedded Real-Time DSP project can be a rewarding
+experience.  Researching algorithms to solve a problem through
+implementing them on a DSP and verifying operation in a real
+environment is quite a challenge.  As I worked through this process to
+complete my degree, I learned some valuable development and testing
+strategies.  For the remainder of the article, I will share my
+experiences using the well-known Least Mean Squares (LMS) algorithm.
+</p>
+
+<hr />
+<h3>LMS Algorithm</h3>
+
+<p>
+A common problem with telephone calls is acoustic and electrical echo.
+In the acoustic case, speech from the loud speaker of a hands free
+phone reverberates through the room and feeds back into the
+receiver. A good echo canceller will remove the signal and all
+noticeable echoes, leaving only noise and speech from within the room
+to pass through the receiver.  Knowing both the original speech and
+the echoed version makes it possible to solve for a filter model of
+the room.  The equations can be simplified and made adaptive,
+resulting in the elegant LMS equations.
+</p>
+
+<img src="lms.bmp" alt="lms.bmp" />
+
+<p>
+The first step is a one-sample filter operation.  The second step
+finds the error, which is the signal with the removed echo.  The last
+step adapts the filter.  This set of equations is run for each new 
+input sample, generating one new output sample.
+</p>
+
+<hr />
+<h3>Development Process</h3>
+
+<p>
+As you're researching algorithms, keep in mind time and memory
+constraints of the processor.  Know the frequency, instructions per
+cycle, on-chip memory size, and be familiar with optimized DSP
+routines that have already been written.  Most DSP Algorithms can be
+written almost entirely from basic building blocks such as the Fast
+Fourier Transform (FFT), dot products, vector-scalar multiplies,
+vector-scalar additions, and FIR and IIR filtering.  If you're able to
+massage all of the important components of the algorithm into these
+optimized routines, you can come appreciably close to the theoretical
+computational limits that CPU makers love to advertise.  And the best
+part is, there's no need to touch assembly.
+</p>
+
+<p>
+Development of real-time embedded numerical algorithms requires a
+disciplined approach.  If you fail to break up the implementation into
+several carefully tested pieces, you may find yourself repeatedly in
+the frustrating position of knowing neither how nor where to begin the
+debug process.  Below I've laid out a suggested sequence to follow.
+</p>
+<p>
+(1)  Research algorithms, DSP architecture and routines.<br />
+(2a) Implement algorithm in MATLAB.<br />
+(2b) Save test cases.<br />
+(3a) Re-implement in a real-time format using a mex file.<br />
+(3b) Compare against 2b.  (Generate new tests if necessary.)<br />
+(4a) Port to the emulator.  Insert optimized routines.<br />
+(4b) Compare against 3b.<br />
+(5)  Test on DSP.<br />
+(6a) If necessary, re-implement in fixed-point.<br />
+(6b) Compare against 4b. Generate fixed-point tests.<br />
+(7a) If necessary, re-implement in assembly.<br />
+(7b) Compare against 6b.<br />
+(8)  Test on DSP.<br />
+</p>
+
+<p>
+If there's any chance your algorithm or code will change based on the
+results of real-time tests, you'll want to make these changes in steps
+one to five.
+</p>
+
+<hr />
+<h3>MATLAB</h3>
+
+<p>
+Listing 1 below shows the MATLAB driver for the LMS code.  It first
+allocates space for temporary and output arrays.  Then it reads the
+MATLAB native double arrays into the buffers to be processed,
+converting to single precision on the way.  It's important to use the
+same types in MATLAB and on the DSP wherever possible.  This makes it
+easy to compare the two, and it also lets you use the same code on
+both targets.  The reduceEcho function runs LMS over the entire buffer
+and leaves the results in errorFLT.  The next statement calculates the
+start address of the next buffer.  I'll explain this after you see the
+LMS code.
+</p>
+</td><td></td></tr>
+
+<tr><td colspan="2">
+<pre class="code">
+function [error,c]=testEchoCancel(reference,input)
+Laec=1024;
+BUFFER_COUNT=256;
+clear mex;
+
+s=size(reference);
+error=zeros(s);
+c=zeros(Laec,1);
+for k=BUFFER_COUNT:BUFFER_COUNT:length(reference)
+    [error(k-BUFFER_COUNT+1:k,:),c]=echocancel(reference(k-BUFFER_COUNT+1:k),
+					       input(k-BUFFER_COUNT+1:k,:),c);
+end
+</pre>
+</td><td></td></tr>
+
+<tr><td class="article">
+<p>
+The MATLAB wrapper in listing 2 below reads the signal one buffer at a time
+from a MATLAB array and runs LMS.  In the real-time version, the
+processor would be interrupted every time the buffer were filled with
+new samples.  I have allocated space for the filter at the MATLAB
+level because it's easier to initialize it here then deal with
+initialization in a mex file.  And even though it's not used for echo
+cancellation, another application may require it.  One thing to notice
+is the length of the buffer.  A short buffer will lead to greater loop
+overhead and more processor interrupts.  A long buffer requires more
+memory and increases latency.  I have chosen 256 samples with the
+assumption that the sample rate is 8000 samples per second.  This
+would not cause a noticeable delay in the output, and each second is
+broken into only about 31 frames to process.
+</p>
+</td><td></td></tr>
+
+<tr><td colspan="2">
+<pre class="code">
+<span class="fltf">void</span> <span class="flfnf">mexFunction</span>(<span class="fltf">int</span> <span class="flvnf">nlhs</span>, <span class="fltf">mxArray</span> *<span class="flvnf">plhs</span>[], <span class="fltf">int</span> <span class="flvnf">nrhs</span>, <span class="flkf">const</span> <span class="fltf">mxArray</span> *<span class="flvnf">prhs</span>[])
+{
+    <span class="flkf">static</span> <span class="fltf">in</span><span class="fltf">t</span> <span class="flvnf">refFrame</span>=0;
+    <span class="fltf">doubl</span><span class="fltf">e</span> *<span class="flvnf">referenceDBL</span>, *<span class="flvnf">inputDBL</span>, *<span class="flvnf">outDBL</span>, *<span class="flvnf">cDBL</span>, *<span class="flvnf">coutDBL</span>, *<span class="flvnf">errorDBL</span>;
+    <span class="flkf">const</span> <span class="fltf">mxArra</span><span class="fltf">y</span> *<span class="flvnf">reference</span>, *<span class="flvnf">input</span>, *<span class="flvnf">c</span>;
+    <span class="fltf">mxArra</span><span class="fltf">y</span> *<span class="flvnf">error</span>, *<span class="flvnf">cout</span>;
+    <span class="fltf">in</span><span class="fltf">t</span> <span class="flvnf">i</span>;
+
+    <span class="flcf">/* Temporary reference to matlab data structures. */</span>
+    reference=prhs[0]; <span class="flcf">/* original (without echo) */</span>
+    input=prhs[1];     <span class="flcf">/* with echo */</span>
+    c=prhs[2];         <span class="flcf">/* adaptive filter */</span>
+
+    <span class="flcf">/* Allocate arrays and retrieve array pointers. */</span>
+    referenceDBL=mxGetPr(reference);
+    inputDBL=mxGetPr(input);
+    cDBL=mxGetPr(c);
+    error=mxCreateDoubleMatrix(BUFFER_COUNT,1,mxREAL);
+    errorDBL=mxGetPr(error);
+    cout=mxCreateDoubleMatrix(FILTER_LEN,1,mxREAL);
+    coutDBL=mxGetPr(cout);
+
+    rhs[0]=mxCreateDoubleMatrix(FILTER_LEN,1,mxREAL);
+    rhs[1]=mxCreateDoubleMatrix(FILTER_LEN,1,mxREAL);
+    <span class="flcf">/* Convert from double to single. */</span>
+    <span class="flkf">for</span>(i=0; i&lt;BUFFER_COUNT; i++) {
+        referenceFLT[i+refFrame]=referenceDBL[i];
+	inputFLT[i]=inputDBL[i];
+	cFLT[i]=cDBL[i];
+    }
+    <span class="flcf">/* Run LMS, then move to the next frame. */</span>
+    reduceEcho(refFrame,referenceFLT,inputFLT,cFLT,errorFLT);
+    refFrame=(refFrame+BUFFER_COUNT)&amp;(FILTER_LEN-1);
+
+    mxDestroyArray(lhs[0]);
+    mxDestroyArray(rhs[0]);
+    mxDestroyArray(rhs[1]);
+
+    <span class="flcf">/* Convert back to double and return the results. */</span>
+    <span class="flkf">for</span>(i=0; i&lt;BUFFER_COUNT; i++)
+	errorDBL[i]=errorFLT[i];
+    <span class="flkf">for</span>(i=0; i&lt;FILTER_LEN; i++)
+    	coutDBL[i]=cFLT[i];
+    <span class="flkf">if</span>(nlhs&gt;0)
+        plhs[0]=error;
+    <span class="flkf">else</span>
+        mxDestroyArray(error);
+    <span class="flkf">if</span>(nlhs&gt;1)
+        plhs[1]=cout;
+    <span class="flkf">else</span>
+        mxDestroyArray(cout);
+}
+</pre>
+</td><td></td></tr>
+
+<tr><td class="article">
+<hr />
+<h3>LMS Implementation</h3>
+
+<p>
+The code in listing 3 is a straight forward implementation of the LMS
+equations except that the filter is reversed to save on index
+calculations.  The restrict qualifier tells the optimizing compiler
+that none of the memory spaces of these pointers overlap.  The
+outermost loop runs LMS 256 times, generating 256 samples with echo
+hopefully removed.  The expression in the index of reference is quite
+ugly, but if the compiler is doing its job right, it should remove
+invariants from the loop.
+</p>
+</td><td></td></tr>
+
+<tr><td colspan="2">
+<pre class="code">
+<span class="fltf">void</span> <span class="flfnf">reduceEcho</span>(<span class="fltf">int</span> <span class="flvnf">refFrame</span>, 
+		<span class="fltf">float</span> * <span class="flvnf">RESTRICT</span> reference, 
+		<span class="fltf">float</span> * <span class="flvnf">RESTRICT</span> input, 
+		<span class="fltf">float</span> * <span class="flvnf">RESTRICT</span> c, 
+		<span class="fltf">float</span> * <span class="flvnf">RESTRICT</span> error)
+{
+    <span class="fltf">in</span><span class="fltf">t</span> <span class="flvnf">i</span>,<span class="flvnf">j</span>;
+    <span class="fltf">floa</span><span class="fltf">t</span> <span class="flvnf">sum</span>,<span class="flvnf">step</span>;
+
+    <span class="flkf">for</span>(j=0; j&lt;BUFFER_COUNT; j++) {
+	<span class="flkf">for</span>(i=0,sum=0; i&lt;FILTER_LEN; i++)
+	    sum+=c[i]*reference[(i+refFrame+j)&amp;(FILTER_LEN-1)];
+	error[j]=input[j]-sum;
+	step=MU*error[j];
+	<span class="flkf">for</span>(i=0; i&lt;FILTER_LEN; i++)
+	    c[i]+=step*reference[(i+refFrame+j)&amp;(FILTER_LEN-1)];
+    }
+}
+</pre>
+</td><td></td></tr>
+
+<tr><td class="article">
+<p>
+Now things get tricky.  There is a problem with finding the correct
+index into the reference buffer.  The filter is four times the length
+of the input buffer.  This means it's necessary to store the last
+three frames of input.  The unexplained statement in listing 1
+calculates which of the four consecutive frames the newest samples are
+read into.  And as if that weren't ugly enough, the array addressing
+is circular.  This is a common theme in DSP.  It means the start and
+end of the array are actually located right next to each other instead
+of at the beginning and end of the array.  At each sample, I take the
+dot product of the filter and the reference signal.  On the next
+iteration, the starting point is incremented one sample in the
+reference array.  The oldest samples are actually located just before
+the start of the current buffer, not at the end of the array.  And
+before the algorithm runs again, the old samples will be overwritten
+with new ones.
+</p>
+
+<p>
+There still needs to be a way to calculate the circular addresses.
+One way is to simply use an if statement on the index, and wrap to the
+beginning after the last element.  That might produce ugly code.  If
+all your buffers are powers of two and your processor supports it, you
+can use a circular addressing register.  If that doesn't appeal to
+you, the same result is achievable by taking the bitwise AND with the
+buffer size minus one.  That is what I have done here.
+</p>
+
+<hr />
+<h3>First Revision</h3>
+
+<p>
+Once the code is working and verified, replace the c-coded common DSP
+routines with the optimized ones.  Sometimes this is easy and
+sometimes it's not.  Because I forgot to do my homework at step 1 of
+the suggested development sequence, I didn't find out until 4a that
+this example would be more work than I planned.  My code did not meet
+the assumptions of the dot product routine.  Fortunately I only had to
+make some modifications for it to work with my code.  The function
+requires both arrays to be aligned on eight bytes.  This is not an
+option because the dot product has to start at every sample, and
+samples are only separated by four bytes.  So I made a second routine
+which requires the first array to be eight byte aligned but shifted
+four bytes.  This routine has the extra requirement that the arrays
+have lengths of multiples of four.  I just padded the ends of the
+arrays with zeros so the result will always come out right.
+</p>
+
+<p>
+The code in listing 4 breaks the dot product up into two cases.  If
+the dot product starts at an even sample in reference, use the
+original function; otherwise, use mine.  Each of these two cases is
+broken into two further cases.  This is because the optimized
+functions don't use circular addressing.  So the loops have been
+split.  The remaining new code just finds the start index and dot
+product length.
+</p></td><td></td></tr>
+
+<tr><td colspan="2">
+<pre class="code">
+<span class="fltf">void</span> <span class="flfnf">reduceEcho</span>(<span class="fltf">int</span> <span class="flvnf">refFrame</span>, 
+    <span class="fltf">    f</span><span class="fltf">loat</span> * <span class="flvnf">RESTRICT</span> reference, 
+    <span class="fltf">    f</span><span class="fltf">loat</span> * <span class="flvnf">RESTRICT</span> input, 
+    <span class="fltf">    f</span><span class="fltf">loat</span> * <span class="flvnf">RESTRICT</span> c, 
+    <span class="fltf">    f</span><span class="fltf">loat</span> * <span class="flvnf">RESTRICT</span> error)
+{
+    <span class="fltf">in</span><span class="fltf">t</span> <span class="flvnf">i</span>,<span class="flvnf">j</span>,<span class="flvnf">dlen</span>,<span class="flvnf">tmp</span>;
+    <span class="fltf">floa</span><span class="fltf">t</span> <span class="flvnf">sum</span>=0,<span class="flvnf">step</span>=0;
+
+    <span class="flkf">for</span>(j=0; j&lt;BUFFER_COUNT; j++) {
+<span class="flpf">#</span><span class="flpf">if</span> TARGET==MATLAB
+    <span class="flkf">    </span><span class="flkf">i</span><span class="flkf">f</span>((mxGetPr(rhs[0])==0) || (mxGetPr(rhs[1])==0))
+        <span class="flkf">    r</span><span class="flkf">eturn</span>;
+    <span class="flkf">    f</span><span class="flkf">or</span>(i=0; i&lt;FILTER_LEN; i++) {
+            *(mxGetPr(rhs[0])+i)=reference[(i+refFrame+j)&amp;(FILTER_LEN-1)];
+            *(mxGetPr(rhs[1])+i)=c[i];
+        }
+        mexCallMATLAB(1,lhs,2,rhs,"<span class="flsf">dot</span>");
+        sum=mxGetScalar(lhs[0]);
+<span class="flpf">#</span><span class="flpf">else</span>
+    <span class="flcf">    </span><span class="flcf">/</span><span class="flcf">* Calculate where to start the dot product. */</span>
+        dlen=FILTER_LEN-((j+refFrame)&amp;(FILTER_LEN-1));
+    <span class="flcf">    /</span><span class="flcf">* If it's even, use the orignal version. */</span>
+    <span class="flkf">    i</span><span class="flkf">f</span>(j%2==0) {
+            sum=DSPF_sp_dotprod(&amp;reference[(j+refFrame)&amp;(FILTER_LEN-1)],c,dlen); 
+        <span class="flcf">    /</span><span class="flcf">* Complete the dot product from the start of reference. */</span>
+        <span class="flkf">    i</span><span class="flkf">f</span>(dlen&lt;FILTER_LEN)
+                sum+=DSPF_sp_dotprod(reference,&amp;c[dlen],FILTER_LEN-dlen);
+        } <span class="flkf">else</span> {
+        <span class="flcf">    /</span><span class="flcf">* It's odd.  Round the length up to the next multiple of four. */</span>
+        <span class="flkf">    i</span><span class="flkf">f</span>((dlen%4)!=0) 
+                tmp=dlen-(dlen%4)+4;
+        <span class="flkf">    e</span><span class="flkf">lse</span>
+                tmp=dlen;
+            sum=DSPF_sp_dotprod2(&amp;reference[(j+refFrame)&amp;(FILTER_LEN-1)],c,tmp); 
+        <span class="flcf">    /</span><span class="flcf">* Complete the dot product from the beginning of reference. */</span>
+        <span class="flkf">    i</span><span class="flkf">f</span>(dlen&lt;FILTER_LEN) {
+            <span class="flcf">    /</span><span class="flcf">* Make the length a multiple of four again. */</span>
+            <span class="flkf">    i</span><span class="flkf">f</span>(((FILTER_LEN-dlen)%4)!=0)
+                    tmp=FILTER_LEN-dlen-((FILTER_LEN-dlen)%4)+4;
+            <span class="flkf">    e</span><span class="flkf">lse</span>
+                    tmp=FILTER_LEN-dlen;
+                sum+=DSPF_sp_dotprod2(&amp;c[dlen],reference,tmp);
+            }
+        } 
+<span class="flpf">#</span><span class="flpf">endif</span>
+        error[j]=input[j]-sum;
+        step=MU*error[j];
+    <span class="flkf">    f</span><span class="flkf">or</span>(i=0; i&lt;FILTER_LEN; i++)
+            c[i]+=step*reference[(i+refFrame+j)&amp;(FILTER_LEN-1)];
+    }
+}
+</pre></td><td></td></tr>
+
+<tr><td class="article">
+<p>
+Table 1 compares compiler optimizations of the algorithm to using the
+optimized functions.  Even for such a simple function, there is a
+significant speed up.  This isn't the whole story, however.  The
+compiler generates detailed output of its optimizations.  It even
+tells you a little about how it did the optimization.  You can use
+that information in combination with special pragma directives to help
+the compiler optimize your loops.
+</p>
+
+<pre>
+Table 1
+Dot Product*
+
+Optimization|None|Level 2|Level 3|Human Assembled
+------------|----|-------|-------|---------------
+cycles/     |14  |1.25   |1.25   |.5
+iteration   
+
+*This does not consider loop overhead and code length.
+</pre>
+
+<p>
+Fortunately, I did do my homework at steps 3b and 4b.  After a number
+of attempts to get the modified dot product routine working and the
+index calculations correct, it was immediately obvious when I did it
+correctly.  The error between tests came up zero and I knew I was
+ready to move on.
+</p>
+
+<hr />
+<h3>Intrinsics</h3>
+
+<p>
+Suppose instead of using LMS, I had chosen to implement the Normalized
+LMS.  This algorithm requires a division each time the filter is
+updated.  If your processor doesn't have division, this could mean an
+expensive software routine.  And even worse, it will ruin software
+pipelining.  The c6000 series has such a problem, but it also has an
+inverse approximation instruction, RCPSP.  Using RCPSP with two short
+iterations of Newton-Rhapson you can get the true inverse.  You can
+gain access to this instruction using what's known as instrinsics.
+These are just special c level functions that tell the compiler to
+insert the assembly instruction you want.  For my work, I made
+separate INVERSE macros for the MATLAB and DSP targets.  That way I
+get normal division in the mex file and the intrinsic version on the
+DSP target.  Intrinsics are one more option you have for controlling
+what goes on at the assembly level without actually having to write
+assembly.
+</p>
+
+<hr />
+<h3>Conclusion</h3>
+
+<p>
+Know your processor and your algorithms.  Start with high level code
+first, and work your way down to the assembly level.  Use optimized
+DSP routines wherever possible.  If that fails, you can use special
+directives to help the compiler optimize your code.  Resort to
+assembly only when it becomes absolutely necessary.  Generate
+verification tests at each stage of development.  By following these
+steps, when something goes wrong, you'll have some assurance that it's
+an electonics or acoustics problem and hopefully not your code.
+</p>
+
+</td><td></td></tr>
+
+</table>
+<p><br /><a href="../../index.html">home</a></p>
+
+</body>
+</html>

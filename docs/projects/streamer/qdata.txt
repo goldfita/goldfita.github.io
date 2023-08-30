@@ -1,0 +1,12 @@
+MC
+LU
+MSFT
+INTL
+R
+INTC
+FSESX
+FDCPX
+FSPTX
+bal1c1hgvt1
+ TICKER       BID       ASK      LAST    CHANGE      HIGH       LOW    VOLUME    TIME
+%7s~%10s~%10s~%10s~%10s~%10s~%10s~%10s~%8s

@@ -1,0 +1,108 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+<head>
+<title>Embedded Lisp for DSP</title>
+<link rel="stylesheet" type="text/css" href="../index.css" />
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+
+<meta name="description" content="
+One of my crazy ideas for a tool to help with embedded Digital Signal Processing.
+                                                                               "></meta>
+<!-- ....10........20........30........40........50........60........70........80 -->
+</head>
+
+<body>
+
+<table>
+<tr><td class="article">
+
+<h1 class="topofpage">Embedded Lisp for DSP</h1>
+<p>
+After wasting enormous amounts of time hopelessly trying to debug my
+work on a fairly decent sized research-based embedded DSP project,
+I've come up with lots of ideas for debugging tools, visualization,
+etc.  I don't know how things are done in the real world.
+Unfortunately, this was my first project, and I didn't have the
+greatest tools in the world.  Anyway, I thought I would present the
+latest idea I had today.  The other ideas were pretty simple.  This
+one's a bit of the deep end, but that just makes it more interesting.
+I'm taking it seriously thought and so should you.</p>
+
+<p>
+What I want to do is put a little tiny lisp interpreter on the DSP.  I
+know you're thinking that's crazy, but it's not.  It would only be for
+research and debugging.  It doesn't have to get compiled into the end
+product.  One problem I often have is the need to dynamically change
+'constants' in my algorithms.  For example, The echo cancellation
+algorithm I used has a step size and a regularization parameter.  In
+addition to that I also need to scale the input and output.  There are
+a few ways of sending data back and forth between the host and target
+such as RTDX and HPI.  I've only used RTDX, which is incredibly slow.
+Now, consider what I would have to do if I decided I wanted to be able
+to change just one of those constants at runtime.  I would have to
+write some special RTDX reading code on the target.  I would have to
+write some RTDX writing code on the host.  Then I would have to go
+through the following cycle (probably for a few hours) until I get
+things right.</p>
+
+<pre>
+Recompile host/target-->Reload target-->Restart DSP-->|
+^                                                     |
+|                                                     |
+|---------debug/re-code<-----Check results------------|
+</pre>
+<p>
+If I manage to get that working, I still have to change it a little
+for each new constant/parameter/whatever I want to change.  Either
+that or I have to make the two work together.  This would lead to
+commenting and uncommenting code depending on which variables I needed
+to set (and more of the cycle above).</p>
+
+<p>
+The other problem I have is just sending data from the target to the
+host.  This involves lots of starting and stopping the DSP so I can
+put in some RTDX write statements.  Of course this means I have to
+remove the other ones.  (I think there is a way around this, but you
+don't want to send data you aren't using given the limited bandwidth
+available.)</p>
+
+<p>
+Of course Code Composer has some special graphical tools that let you
+do some of this.  However, I've never had much luck with it.  It
+occasionally results in crashing.  And even when it's stable, it's
+still just not the way to go.  You're very limited in what you can do.
+You have to work through the GUI and re-set everything up each time.
+A better way would be using a little lisp code.</p>
+
+<p>
+In the case of setting parameters, I'm thinking of the following.
+There is a lisp interpreter waiting on an interrupt for some lisp code
+to come down the line.  The lisp code might do something like</p>
+
+<pre>
+Disable hardware/software interrupts
+Reinitialize algorithm
+Repeat for 30 seconds:
+  Read and set parameter(s)
+Enable interrupts<br />
+</pre>
+<p>
+If something goes wrong, like a reference to a non-existent variable, the interpreter will spit back an error message over the line.  But notice; now I can solve my problem with the following development cycle.</p>
+
+<pre>
+(re)write lisp-->recompile host-->check results-->|
+^                                                 |
+|-------------------------------------------------|
+</pre>
+
+<p>
+There is no recompiling and restarting the target.  And I can upload any script I want at any time.  I can easily modify old scripts to do what I need.  You simply could not do this with a special tool.  To solve the second problem, the code would simply have to 'print' what I wanted back over the line.  These days we have embedded Java cores.  Is there any reason I can't have a small lisp debugger/analysis tool?</p>
+
+</td></tr>
+</table>
+
+<p><a href="../index.html">home</a></p>
+
+</body>
+</html>

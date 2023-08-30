@@ -1,0 +1,165 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+<head>
+<title>JPEG Blocking</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<link rel="stylesheet" type="text/css" href="../../index.css" />
+<meta name="description" content=
+"A little bit about image compression and DCT blocking effects.
+                                                                 " />
+<!-- ....10........20........30........40........50........60........70........80 -->
+</head>
+
+<body>
+<table>
+<tr><td class="article">
+<h1 class="topofpage">JPEG Blocking</h1>
+
+
+<p>
+I previously talked about <a
+href="../compressarticle/audiocodecs.html">audio compression</a>.  But I
+have also worked with image compression.  Surprise!  My brief
+experience with this was in a <a
+href="../../projects/dct_midterm.doc">class</a>.
+</p>
+
+<p>
+All compression is fundamentally the same.  Allocate the least bits to
+the most frequently represented symbols.  If all symbols are equally represented,
+then the signal is at maximum uncertainty or entropy, which is almost
+the <a
+href="http://www.ccrnp.ncifcrf.gov/~toms/pitfalls.html#confusing_H_with_S">same
+thing</a>.  In this case, your signal would be white noise, and it
+can't be compressed.
+</p>
+
+<p>
+One technique in image compression is to break the image up into 8x8
+blocks, apply the <a href="http://en.wikipedia.org/wiki/Discrete_cosine_transform">DCT</a>, quantize, and compress.  This is essentially how jpeg
+compression works.  One reason the DCT is chosen as the transform is
+that it has good energy compaction properties.  Most of the energy in
+the signal will be concentrated into the first few coefficients.  And
+the human eye is supposed to be somewhat insensitive to the higher
+frequencies.  Thus you can quantize them quite heavily.  However,
+there may be other <a href="http://www.dsprelated.com/showmessage/34432/1.php">reasons</a> for using the DCT as well.
+</p>
+
+<p>
+An unfortunate side effect of breaking the image up into 8x8 blocks is
+that the blocking is visible in the decompressed image.  In a highly
+compressed image, it is very noticeable.  There are various techniques
+for decreasing the blocking effect.  They range from very simple
+filtering and averaging to more complex ideas such as projection onto
+convex sets.  (If you have the time to learn optimization theory,
+then I say go for it.)
+</p>
+
+<p>
+I had the idea that averaging spatial domain, decompressed images, where
+the blocking was shifted, might lead to better results.  But this
+requires saving multiple copies of the compressed image, which
+isn't realistic.  After doing some research, I found a <a
+href="http://www.utdallas.edu/~aria/mcl/post/">similar idea</a> that
+doesn't require saving multiple compressed images.  Not
+realizing this is a post-processing only technique (most are), I
+implemented this as averaging in the DCT domain.
+</p>
+
+<p>
+That's OK.  I still got some interesting results.  The first image
+below is the decompressed image without any additional processing.  Only
+the DCT and quantization steps were performed.  The second one is the
+same except eight extra copies of the image were averaged in the DCT
+domain.  The extra copies were shifted at most one pixel horizontally,
+vertically, or both.  And they were weight less than the main copy.
+</p>
+
+<p>
+<a href="clown60.png">clown1</a><br />
+<a href="pre1_clown60.png">clown2</a><br />
+<a href="pre3_clown60.png">clown3</a>
+</p>
+
+<p>
+There is a hint of blur in the decompressed image due to the shifting
+and averaging.  Although the blocking doesn't appear any different
+on the clown between the first and second images, there seems to be
+less blocking around the numbers and letters (by my inspection).
+</p>
+
+<p>
+In the last image, 48 extra weighted images were averaged.  The blur
+at this point is very bad.  And it appears to have actually increased
+blocking of the hair.
+</p>
+
+<p>
+What is interesting about trying to deblock an image this way is that
+it's a preprocessing step.  No post-processing is required.  This is
+desirable if possible because an image usually only needs to be
+compressed once, but it may be decompressed frequently.  Due to the
+high complexity of some post-processing algorithms, frequent
+decompression may be undesirable.
+</p>
+
+<p>
+Some more work remains to be done.  I didn't experiment much with the
+weights.  I also quantized twice -- after the DCT and after
+averaging.  You might get better results by quantizing only at the
+end.  It would also be useful to compare the second image to a
+post-processed, low pass filtered image.  I couldn't do this without
+writing my own conv2 for octave.
+</p>
+
+<hr />
+<h4 class="nounderline">Getting Octave</h4>
+
+<p>
+You will need to install <a href="http://www.octave.org">octave</a>.
+Since the Unix culture believes strongly in code reuse, you will also
+need <a href="http://www.gnuplot.info">gnuplot</a> and <a
+href="http://www.imagemagick.org">imagemagick</a>.  Take care of the
+first two with <span class="bold">emerge octave</span> and the last
+with <span class="bold">emerge imagemagick</span>.  If you don't have
+Gentoo, well, have fun!
+</p>
+
+<p>
+You will also nee <a
+href="http://cvs.sourceforge.net/viewcvs.py/octave/octave-forge/main/signal/dct.m?rev=HEAD"></a>,
+<a
+href="http://cvs.sourceforge.net/viewcvs.py/octave/octave-forge/main/signal/idct.m?rev=HEAD"></a>,
+and <a
+href="http://www.cs.helsinki.fi/u/ahyvarin/kurssi/imread.m"></a>.
+Copy the first two into /usr/share/octave/2.1.69/m/signal and the last
+into /usr/shae/octave/2.1.69/m/image.  Your directories might be a bit
+different.
+</p>
+
+<p>
+You will also need matlab or octave mode for emacs.  I suggest using
+<a
+href="http://www.andrew.cmu.edu/course/16-720/extras/matlab_in_emacs/">matlab
+mode</a>; it's much more complete.  The only trouble is that octave
+lets you use '#' and '"' for comments and strings respectively. But
+these are invalid in matlab syntax, and it will confuse matlab mode.
+So you might want to avoid them, or change them to '%' and '''.
+</p>
+
+<hr />
+<h4 class="nounderline">Resources</h4>
+<p>
+<a href="encode.m">encode.m</a><br />
+<a href="decode.m">decode.m</a><br />
+<a href="deblock.m">deblock.m</a>
+</p>
+
+</td></tr>
+</table>
+<p><br /><a href="../../index.html">home</a></p>
+
+</body>
+
+</html>

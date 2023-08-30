@@ -1,0 +1,23 @@
+mount -t vfat /dev/sdf1 /mnt/thumb
+patch -p1 < patch-2.6.15.1
+rc-update add domainname default
+rc-update add net.wlan0 default
+/etc/init.d/net.wlan0 start
+MAKEDEV md
+mdadm --assemble /dev/md2 /dev/sda3 /dev/sdb3 /dev/sdc3 /dev/sdd3 
+wpa_supplicant -Dndiswrapper -iwlan0 -c/etc/wpa_supplicant.conf -dd
+/etc/init.d/bluetooth start
+kbluetoothd
+hciconfig hci0 up
+hcitool scan
+sdptool browse xx:xx:xx:xx:xx:xx
+obexftp -b xx:xx:xx:xx:xx:xx -l
+ndiswrapper -i bknUSB.inf
+euse --enable bitmap-fonts truetype-fonts type1-fonts
+emerge --newuse --noreplace freetype corefonts freefonts artwiz-fonts sharefonts terminus-font ttf-bitstream-vera unifont dejavu xorg-x11
+mkfontdir /usr/share/fonts/*
+usermod -G audio,wheel,ftp,games goldfita
+chown root:wheel /bin/su
+echo "sys-apps/lkcdutils" >> /etc/portage/package.keywords
+resetcvs -d:pserver:anonymous@cvs.sourceforge.net:/cvsroot/lkcd login
+cvs -z3 -d:pserver:anonymous@cvs.sourceforge.net:/cvsroot/lkcd co -P lkcd/7.X.X/lkcdutils

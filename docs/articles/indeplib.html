@@ -1,0 +1,135 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+<head>
+<title>Language Independent Shared Objects</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<link rel="stylesheet" type="text/css" href="../index.css" />
+<meta name="description" content=
+"Some ideas on how to not re-implement all the code under the sun.
+                                                                          " />
+<!-- ....10........20........30........40........50........60........70........80 -->
+</head>
+
+<body>
+<table>
+<tr><td class="article">
+<h1 class="topofpage">Language Independent Shared Objects</h1>
+
+<p>
+Something that tends to sicken me is the lack of code reuse.  I don't
+mean simple lack of reuse, like forgetting about the substring search
+in your library, and consequently re-implementing it.  What I mean is
+that I see the same common code libraries and RFCs implemented over and
+over again in every language out there.  When a new language is
+invented, just about all the useful code out there gets re-implemented
+in that language.  If a new RFC is written, a library is developed for
+every useful language.
+</p>
+
+<p>
+Now, there is an argument for purity, and I can somewhat respect that.
+But consider the advantages of having a single implementation in one
+language that can be linked to from all other languages.  I will
+assume that language is C since most languages have support for linking
+in C code.  Code would need to be implemented only one time, not a
+hundred times for every obscure language out there.  The code would
+always work the same in every language because it is, in fact, the
+same code.  Bugs only need to be fixed one time.  New features are
+only added once.  The code gets lots of exposure to users.  If it's
+implemented in C, it will be about as fast as you can make it.
+</p>
+
+<p>
+I can think of three possible negatives.  You lose the purity and the
+learning experience that comes with implementing a module in the
+target language.  A buggy module written in C could crash a high level
+language such as Ruby.  In some cases, the code may actually run
+slower if the data structure translation is slow.  However,  I think
+the positives greatly outweigh the negatives in most cases.
+</p>
+
+<p>
+There are a number of language independent technologies out there.  I
+have very little familiarity with them.  But what I'm imagining is
+something light and quick.  This does not require a new language or
+lots of XML parsing and marshalling.  The functionality would be
+limited but still very powerful.  Essentially, I am thinking of a
+language independent shared object file.
+</p>
+
+<p>
+Usually, you would link to a shared object file either at load time or
+at runtime from C.  Since many languages let you link to C, you can
+often make the C code that you link to, itself link to a shared object
+(as I have done).  It would be nice to remove even this step, and link
+directly to a shared object file.  I can think of two ways to do this.
+</p>
+
+<p>
+There needs to be some method of converting native data types of the
+calling language to a standard set of data types in C.  These would
+need to be defined ahead of time.  It may be sufficient to limit
+ourselves to a handful of the most common ones (hash table, lists,
+arrays, strings, primitives, ...).  There may even be a way to allow
+for specialized data types for code that really requires it, but I won't
+consider that further.  There will be an extra layer between the
+calling language and the code in the shared object.  The extra layer
+will convert the data types.  Where this layer occurs isn't important
+for the discussion.
+</p>
+
+
+<pre>
+Function Call Begin
+Lisp            Python            Java           C
+|               |                 |              |
+Lisp Convert    Python Convert    Java Convert   |
+|               |                 |              |
+-------------------Shared Object-----------------|
+|               |                 |              |
+Lisp Convert    Python Convert    Java Convert   |
+|               |                 |              |
+Lisp            Python            Java           C
+Function Call Return
+</pre>
+
+<p>
+Notice that there is also a convert layer after the code executes.
+This is because functions sometimes mutate parameters.  If the
+parameters are constant for the duration of the function, this step
+can be skipped.
+</p>
+
+<p>
+The second way this could be implemented is to perform actions
+directly on the native data structures of each language.  In the first
+case, conversion functions must be written for each language.  In this
+case, accessor/mutator functions must be written for each language.
+The only requirement is that they all have the same interface.  Each
+method has its own advantages.  The first method might be better
+(speed wise) if the data is small and accessed frequently.  The second
+method would be better if the data is large and accessed infrequently.
+</p>
+
+<p>
+There are issues I've completely ignored, for example how to handle
+things like thread safety, call backs, and more generally, invoking
+code from the calling language in the shared object file.  However, I believe there are probably
+decent solutions to all these problems.  And even if there aren't solutions, the
+vast majority of code out there does not have these issues.
+</p>
+
+<p>
+I would love to be able to write some code and then publish the API in
+every language I work in and have it immediately available with no
+further work.
+</p>
+
+</td></tr>
+</table>
+<p><br /><a href="../index.html">home</a></p>
+
+</body>
+
+</html>

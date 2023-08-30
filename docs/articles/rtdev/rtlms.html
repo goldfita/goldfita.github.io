@@ -1,0 +1,73 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+<head><meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<title>Some Things that Help</title>
+
+<link rel="stylesheet" type="text/css" href="../../index.css" />
+<meta name="description" content="
+Some simple procedures you can follow to make your code work a little
+better, a little faster, with a little less headache."></meta>
+<!-- ....10........20........30........40........50........60........70........80 -->
+</head>
+
+<body>
+
+<table>
+<tr><td class="article">
+
+<h1 class="topofpage">Real-Time DSP Demo</h1>
+<p>
+I submitted a short article to <a href="https://en.wikipedia.org/wiki/C/C%2B%2B_Users_Journal">C Users
+Journal</a> for the March 2006 issue on developing embedded real-time
+DSP algorithms.  More information is available on my <a
+href="../../projects/thesis/thesis_page.html">thesis</a> page.  This
+is the C <a href="echocancel.c">source</a> and matlab <a
+href="testEchoCancel.m">driver</a>.  You'll also need the optimized TI
+<a href="../../projects/thesis/timodasm/tiassembly.html">code</a>.
+</p>
+
+<p>
+The figures below are intended as additional aid for understanding
+circular buffers and filtering.  The first shows the input buffer and
+full length input signal buffer.  Notice the input buffer is only 256
+elements.  The DMA buffers 256 samples in this buffer and then
+interrupts the CPU.  However, because the filter is 1024 elements, we
+really need to store the past 1024 elements of the input.  If you're
+clever, you might be able to figure out how to get the DMA to write to
+different areas of a larger buffer.  But that won't do you much good
+if you need to convert to float.  Instead, I've broken the larger
+buffer into four segments, and then I just copy the 256 point buffer
+into the current region of the larger buffer.  When I say current
+region, I mean the most recent samples where the filter begins.  This
+shifts each frame - section 0 (0-255), section 1 (256-511), section 2
+(512-767), section 3 (768-1023), section 0 (0-255), and so on.
+</p>
+
+
+<img src="buf1.jpg" alt="buf1.jpg" />
+
+<p>
+What makes this such a pain is that the start of the filter always has
+to begin at the start of the current region, not the start of large
+buffer.  But the filter still has to extend all the way back over the
+past 1024 samples.  The last samples are located just before the start
+of the current region.  This is demonstrated below.  The current
+region is section 2 (sample 256 in this case).  That means filter
+coefficient 768 is multiplied by the sample at the beginning of the
+large buffer.  And coefficient 769 is multiplied by the next sample,
+etc.  This, of course, means you need to calculate the index so that
+it wraps correctly, or use some special circular buffering hardware.
+</p>
+</td><td></td></tr>
+<tr><td colspan="2"><img src="buf2.jpg" alt="buf2.jpg" /></td><td></td></tr>
+
+<tr><td class="article">
+</td></tr>
+
+</table>
+
+<p><a href="../../index.html">home</a></p>
+
+</body>
+</html>

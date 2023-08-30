@@ -1,0 +1,224 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+<head>
+<title>A Web Interface to the AMI</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<link rel="stylesheet" type="text/css" href="../../index.css" />
+<meta name="description" content=
+"This is a guide to building a web site from scratch that monitors a
+server.  It's full of my opinions on design.                    " />
+<!-- ....10........20........30........40........50........60........70........80 -->
+</head>
+
+<body>
+<table>
+<tr><td class="article">
+
+<h4 class="nounderline">Interface</h4>
+
+<p>
+To begin a session, you must first connect to the manager.  You can do
+that with the ast_connect statement below.  Almost every function returns an
+integer error code.  The codes can be found in the header file.
+AST_SUCCESS means the action succeeded.  Any other code is a failure.
+You can get a string specifying the error by passing the code to
+ast_error.  It would have been just as efficient to return a pointer
+to the error message.  However, this makes error comparison a little
+more straightforward in the source code.
+</p>
+</td><td></td></tr>
+
+<tr><td colspan="2">
+<pre class="code">
+<span class="flkf">struct</span> <span class="fltf">connect_params</span> {
+    <span class="fltf">int</span> <span class="flvnf">mem</span>;               <span class="flcf">//buffer size, must be pow of 2
+</span>    <span class="fltf">int</span> <span class="flvnf">sleep_milli</span>;       <span class="flcf">//sleep time between read attempts
+</span>    <span class="fltf">int</span> <span class="flvnf">tries</span>;             <span class="flcf">//number of read tries
+</span>    <span class="fltf">int</span> <span class="flvnf">wait_for_resp</span>;     <span class="flcf">//response method
+</span>    <span class="fltf">int</span> <span class="flvnf">port</span>;              <span class="flcf">//AMI port
+</span>    <span class="fltf">char</span> *<span class="flvnf">host</span>;            <span class="flcf">//AMI host
+</span>    <span class="flcf">/* This will be called after ever read.  That does not mean every
+    message.  There may be no new useful information in the buffer, or
+    there may be several new messages.  The logic is dumb.  Set it to
+    NULL if you don't need it (it's NULL by default).  */</span>
+    <span class="fltf">void</span> (*<span class="flfnf">read_callback</span>)(<span class="flkf">struct</span> <span class="fltf">ast_connection</span> *);
+};
+
+<span class="flkf">struct</span> <span class="fltf">ast_connection</span> {
+    <span class="flkf">volatile</span> <span class="fltf">int</span> <span class="flvnf">socket</span>;          <span class="flcf">//connection to AMI (set to -1 when disconnected)
+</span>    <span class="fltf">int</span> <span class="flvnf">cnt</span>;                      <span class="flcf">//id, incremented after each write
+</span>    <span class="fltf">int</span> <span class="flvnf">ret_msg_len</span>;              <span class="flcf">//max size of return messages (auto-resized)
+</span>    <span class="flkf">struct</span> <span class="fltf">connect_params</span> <span class="flvnf">params</span>; <span class="flcf">//stores setup parameters
+</span>    <span class="fltf">char</span> *<span class="flvnf">response</span>;               <span class="flcf">//message buffer
+</span>    <span class="flkf">volatile</span> <span class="fltf">int</span> <span class="flvnf">start</span>;           <span class="flcf">//start of last message read
+</span>    <span class="flkf">volatile</span> <span class="fltf">int</span> <span class="flvnf">end</span>;             <span class="flcf">//end of oldest message in buffer
+</span>    <span class="fltf">int</span> <span class="flvnf">pstart</span>;                   <span class="flcf">//start of partial message
+</span>    <span class="fltf">int</span> <span class="flvnf">pend</span>;                     <span class="flcf">//end of partial message
+</span>    <span class="flcf">/* bit: meaning
+       ---  -------
+         0  buffer overrun, 1
+         1  response fail, 1
+    */</span>   
+    <span class="flkf">volatile</span> <span class="fltf">int</span> <span class="flvnf">flags</span>;
+    <span class="fltf">pthread_mutex_t</span> <span class="flvnf">mutex</span>;        <span class="flcf">//to lock this struct
+</span>    <span class="fltf">pthread_t</span> <span class="flvnf">reader</span>;             <span class="flcf">//reader thread
+</span>    <span class="fltf">char</span> *<span class="flvnf">ret_msg</span>;                <span class="flcf">//stores last message read
+</span>};
+
+code = ast_connect(&conn,&params);
+</pre>
+</td><td></td></tr>
+
+<tr><td class="article">
+<p>
+The ast_connection structure is allocated inside the connection
+function.  This object is always passed first to each function.  You
+can think of this as the connection object, and the functions that accept it as
+an argument are its member functions.  The connection object is opaque
+to you (the user).  Although there is a definition of it in the header
+file, there is no reason you should need to access any of its
+members.  There are accessor/mutators for anything you might need to
+do.  The connection can be freed with ast_close.
+</p>
+
+<p>
+The second parameter is optional.  You can pass NULL, and the
+connection function will use the default values.  The mem member is
+the buffer size (power of 2).  Host and port refer to the AMI machine
+name and port.  The callback function, if non-NULL,  will be invoked
+after every read.  This doesn't mean after every message; so, you have
+to check yourself.  You might use the callback for an event driven
+application, such as a GUI manager.
+</p>
+
+<p>
+The callback mechanism isn't really much help for a web application.
+The driving force is the browser, not the Asterisk server.  For an
+application like this, we either need to wait for responses, or poll
+for them periodically.  Since I don't want to risk the browser hanging
+while waiting for the Asterisk server to send back a response, I made
+a compromise.  The read doesn't block, but it will still wait a
+certain amount of time before giving up waiting for a response.  You can set the number of
+attempts with the tries member.  In between each read attempt, it will
+sleep for sleep_milli milliseconds.  With this design, you can
+effectively wait for as long or as short as you like.  The
+last connect_params member is wait_for_resp.  By setting this to
+AST_NOSEARCH, requests will return immediately without waiting at
+all.  If it's AST_SEARCHFORWARD, requests will wait for responses according to tries
+and sleep_milli.  The buffer will be searched starting from the oldest
+messages.  If it's AST_SEARCHREVERSE, the buffer is searched starting
+from the newest messages (towards the oldest or the start of the
+buffer).
+</p>
+
+<p>
+After each function, you should check the error code.  The next thing
+you need to do is log in.  The following statement passes the
+connection object, which is fully initialized at this point (and a
+reader thread is running in the background).  The next two parameters
+are the username and password.
+</p>
+
+<pre class="code">
+code = ast_login(conn,"todd","todd");
+</pre>
+
+<p> This is actually a macro which can be found in ast_man.h.  All the
+commands are, in fact, macros which invoke a variadic parameter list
+function, ast_call.  This makes the library easy to extend.  All you
+would need to do is define a new macro.  The reason this is possible
+is because I have made the underlying implementation as simplistic as
+possible.  The code makes few assumptions about what you might want
+it to do.  The request, forwards the command to Asterisk and does
+little more.  Reading the request from the buffer does essentially no
+postprocessing on the message.  There are some support functions, such
+as ast_stripresponse, which will operate on the response message.
+However, you need to call this extra function if you wish to use it.
+This is a design tradeoff.  By making the basic functionality as simple as
+possible, the code is faster and doesn't do anything you don't need it
+to do.  But if you need the extra support code, you have to do all the
+work yourself (which means more code and time).  
+</p>
+
+
+<p>
+As you peruse the list of functions that comprise the interface,
+you'll see peek and get.  Peek means that the message will be copied
+into another buffer which you can then read by calling
+ast_get_response.  Get will do the same thing, but it will also remove
+the message from the read buffer.  The only other difference is that you can
+peek at any message but only get the first or last message.  You will
+also see _r and _f.  If you see _r, that means the search starts from
+the end of the buffer (reverse).  The _f means it starts from the
+front.  Generally, it's faster to read from the front of the buffer
+because there are no partial messages to skip over (and no memory to
+copy).  When I first designed the interface, I only allowed for
+reading from the end of the buffer where the messages are written to.
+But I later discovered that some requests can have multiple
+responses.  Since the responses can be returned at any time, there is
+no way to preserve response order when reading from the end.  But you
+can preserve order if you always read from the front.  So, I added the
+_f functions.  I decided to keep the _r functions.  Conceivably
+they're still useful.  However, you can choose to build the library
+without them.
+</p>
+
+<p>
+Any function that has by_id as part of its name will search for a
+message by the id you specify.  Every request/response pair automatically has an id
+associated with it.  You can get the id of the last response by
+calling ast_get_last_id.</p>
+
+<p>
+If you see wait in the name, it means the function will block
+according to the members of connect_params.  Otherwise, it will check
+the buffer once immediately and then return.  The functions
+ast_overrun, ast_success, and ast_connected tell you whether the
+buffer has been overrun, if the last command succeeded, and if you are
+connected to an Asterisk server, respectively.
+</p>
+
+<p>
+The remaining function is ast_strip_response.  This will move the
+'ActionID: #' and Response: Success' lines in the results buffer to
+just after the NULL character.  The function will return a pointer to
+these lines, in case you still need them.  Ast_strip_response2 does
+the same thing, but it lets you specify which lines you wish to
+remove from the response.  The headers parameter is an array of
+pointers to strings, terminated by a NULL pointer.  Any action name
+you place in here will be cut from the response message and moved to
+the end of the string.  See the  diagram below.  As mentioned before,
+these are support functions.  You may not need them, but they're there
+to help.
+</p>
+
+<pre>
+Response: Success\r\nAction: Ping\r\nActionID: 3\r\n\r\n\0
+
+becomes
+
+Action: Ping\r\n\r\n\0Response: Success\r\nActionID: 3\r\n\0
+                      ^---return pointer
+</pre>
+
+<p>
+One thing to notice about the interface is that most of the functions
+take only one or two parameters (the first is always ast_connection).
+Wherever possible, I have tried to remove parameter options to keep the
+parameter lists short.  That keeps the code short and makes the
+interface easy to understand.  In some cases, where specifying options was necessary,
+I added the options to connect_params.  This way they can be set once
+at the beginning.  If absolutely necessary, they can be changed by
+operating on the ast_connection structure.
+</p>
+
+<p><a href="astman3.html">prev</a> <a href="astman5.html">next</a></p>
+
+</td><td></td></tr>
+</table>
+<p><br /><a href="../../index.html">home</a></p>
+
+</body>
+</html>
+

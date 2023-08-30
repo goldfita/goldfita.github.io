@@ -1,0 +1,2273 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--  This file is a ROR Sitemap for describing this website to the search engines. For details about the ROR format, go to www.rorweb.com.   -->
+<rdf:RDF xmlns="http://rorweb.com/0.1/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+<!-- ******************** General Info ***************** --> 
+<Resource rdf:about="main">
+    <type>Main</type>
+    <type>Website</type>
+    <title>http://www.signalsguru.net/</title>
+    <url>http://www.signalsguru.net/</url>
+    <desc>Your website description</desc>
+    <keywords>Your website keywords</keywords>
+    <image>Your website or company logo</image>
+    <updated></updated>
+    <updatePeriod>day</updatePeriod>
+</Resource>
+
+<!-- ******************** Sitemap Info ***************** -->
+<Resource rdf:about="sitemap">
+   <type>SiteMap</type>
+   <title>SiteMap</title>
+   <resourceOf  rdf:resource="main"/>
+</Resource>
+
+<Resource rdf:about="0">
+   <url>http://www.signalsguru.net/</url>
+   <updatePeriod>week</updatePeriod>
+   <sortOrder>0</sortOrder>
+   <resourceOf rdf:resource="sitemap"/>
+</Resource>
+
+<Resource rdf:about="1">
+   <url>http://www.signalsguru.net/resume/resume_page.html</url>
+   <updatePeriod>week</updatePeriod>
+   <sortOrder>0</sortOrder>
+   <resourceOf rdf:resource="sitemap"/>
+</Resource>
+
+<Resource rdf:about="2">
+   <url>http://www.signalsguru.net/projects/projects.html</url>
+   <updatePeriod>week</updatePeriod>
+   <sortOrder>0</sortOrder>
+   <resourceOf rdf:resource="sitemap"/>
+</Resource>
+
+<Resource rdf:about="3">
+   <url>http://www.signalsguru.net/articles/software.html</url>
+   <updatePeriod>week</updatePeriod>
+   <sortOrder>0</sortOrder>
+   <resourceOf rdf:resource="sitemap"/>
+</Resource>
+
+<Resource rdf:about="4">
+   <url>http://www.signalsguru.net/links/resources.html</url>
+   <updatePeriod>week</updatePeriod>
+   <sortOrder>0</sortOrder>
+   <resourceOf rdf:resource="1"/>
+</Resource>
+
+<Resource rdf:about="5">
+   <url>http://www.signalsguru.net/resume/resume.html</url>
+   <updatePeriod>week</updatePeriod>
+   <sortOrder>0</sortOrder>
+   <resourceOf rdf:resource="1"/>
+</Resource>
+
+<Resource rdf:about="6">
+   <url>http://www.signalsguru.net/resume/resume.doc</url>
+   <updatePeriod>week</updatePeriod>
+   <sortOrder>1</sortOrder>
+   <resourceOf rdf:resource="1"/>
+</Resource>
+
+<Resource rdf:about="7">
+   <url>http://www.signalsguru.net/resume/resume.pdf</url>
+   <updatePeriod>week</updatePeriod>
+   <sortOrder>1</sortOrder>
+   <resourceOf rdf:resource="1"/>
+</Resource>
+
+<Resource rdf:about="8">
+   <url>http://www.signalsguru.net/resume/resume.ps</url>
+   <updatePeriod>week</updatePeriod>
+   <sortOrder>1</sortOrder>
+   <resourceOf rdf:resource="1"/>
+</Resource>
+
+<Resource rdf:about="9">
+   <url>http://www.signalsguru.net/resume/resume.txt</url>
+   <updatePeriod>week</updatePeriod>
+   <sortOrder>1</sortOrder>
+   <resourceOf rdf:resource="1"/>
+</Resource>
+
+<Resource rdf:about="10">
+   <url>http://www.signalsguru.net/resume/resume.tex</url>
+   <updatePeriod>week</updatePeriod>
+   <sortOrder>1</sortOrder>
+   <resourceOf rdf:resource="1"/>
+</Resource>
+
+<Resource rdf:about="11">
+   <url>http://www.signalsguru.net/resume/grades.html</url>
+   <updatePeriod>week</updatePeriod>
+   <sortOrder>1</sortOrder>
+   <resourceOf rdf:resource="1"/>
+</Resource>
+
+<Resource rdf:about="12">
+   <url>http://www.signalsguru.net/resume/selectedquotes.html</url>
+   <updatePeriod>week</updatePeriod>
+   <sortOrder>1</sortOrder>
+   <resourceOf rdf:resource="1"/>
+</Resource>
+
+<Resource rdf:about="13">
+   <url>http://www.signalsguru.net/index.html</url>
+   <updatePeriod>week</updatePeriod>
+   <sortOrder>1</sortOrder>
+   <resourceOf rdf:resource="2"/>
+</Resource>
+
+<Resource rdf:about="14">
+   <url>http://www.signalsguru.net/projects/thesis/thesis_page.html</url>
+   <updatePeriod>week</updatePeriod>
+   <sortOrder>1</sortOrder>
+   <resourceOf rdf:resource="2"/>
+</Resource>
+
+<Resource rdf:about="15">
+   <url>http://www.signalsguru.net/projects/formants/formant.html</url>
+   <updatePeriod>week</updatePeriod>
+   <sortOrder>1</sortOrder>
+   <resourceOf rdf:resource="2"/>
+</Resource>
+
+<Resource rdf:about="16">
+   <url>http://www.signalsguru.net/projects/imageprocessing/lab4.htm</url>
+   <updatePeriod>week</updatePeriod>
+   <sortOrder>1</sortOrder>
+   <resourceOf rdf:resource="2"/>
+</Resource>
+
+<Resource rdf:about="17">
+   <url>http://www.signalsguru.net/projects/img_proc_prj</url>
+   <updatePeriod>week</updatePeriod>
+   <sortOrder>1</sortOrder>
+   <resourceOf rdf:resource="2"/>
+</Resource>
+
+<Resource rdf:about="18">
+   <url>http://www.signalsguru.net/projects/advimage/Lab1.html</url>
+   <updatePeriod>week</updatePeriod>
+   <sortOrder>1</sortOrder>
+   <resourceOf rdf:resource="2"/>
+</Resource>
+
+<Resource rdf:about="19">
+   <url>http://www.signalsguru.net/projects/advimage/Lab2_1.html</url>
+   <updatePeriod>week</updatePeriod>
+   <sortOrder>1</sortOrder>
+   <resourceOf rdf:resource="2"/>
+</Resource>
+
+<Resource rdf:about="20">
+   <url>http://www.signalsguru.net/projects/advimage/Lab3_1.html</url>
+   <updatePeriod>week</updatePeriod>
+   <sortOrder>1</sortOrder>
+   <resourceOf rdf:resource="2"/>
+</Resource>
+
+<Resource rdf:about="21">
+   <url>http://www.signalsguru.net/projects/music/lab6_1.html</url>
+   <updatePeriod>week</updatePeriod>
+   <sortOrder>1</sortOrder>
+   <resourceOf rdf:resource="2"/>
+</Resource>
+
+<Resource rdf:about="22">
+   <url>http://www.signalsguru.net/projects/phchaos/pendulums.zip</url>
+   <updatePeriod>week</updatePeriod>
+   <sortOrder>1</sortOrder>
+   <resourceOf rdf:resource="2"/>
+</Resource>
+
+<Resource rdf:about="23">
+   <url>http://www.signalsguru.net/projects/chaos/</url>
+   <updatePeriod>week</updatePeriod>
+   <sortOrder>1</sortOrder>
+   <resourceOf rdf:resource="2"/>
+</Resource>
+
+<Resource rdf:about="24">
+   <url>http://www.signalsguru.net/projects/relativity/drawGridCallback.m</url>
+   <updatePeriod>week</updatePeriod>
+   <sortOrder>1</sortOrder>
+   <resourceOf rdf:resource="2"/>
+</Resource>
+
+<Resource rdf:about="25">
+   <url>http://www.signalsguru.net/projects/relativity/makegrid.m</url>
+   <updatePeriod>week</updatePeriod>
+   <sortOrder>1</sortOrder>
+   <resourceOf rdf:resource="2"/>
+</Resource>
+
+<Resource rdf:about="26">
+   <url>http://www.signalsguru.net/projects/DSPSystemDesign/Design.doc</url>
+   <updatePeriod>week</updatePeriod>
+   <sortOrder>1</sortOrder>
+   <resourceOf rdf:resource="2"/>
+</Resource>
+
+<Resource rdf:about="27">
+   <url>http://www.signalsguru.net/projects/Pentominoes.zip</url>
+   <updatePeriod>week</updatePeriod>
+   <sortOrder>1</sortOrder>
+   <resourceOf rdf:resource="2"/>
+</Resource>
+
+<Resource rdf:about="28">
+   <url>http://www.signalsguru.net/projects/Concordance.zip</url>
+   <updatePeriod>week</updatePeriod>
+   <sortOrder>1</sortOrder>
+   <resourceOf rdf:resource="2"/>
+</Resource>
+
+<Resource rdf:about="29">
+   <url>http://www.signalsguru.net/projects/MiniMips.doc</url>
+   <updatePeriod>week</updatePeriod>
+   <sortOrder>1</sortOrder>
+   <resourceOf rdf:resource="2"/>
+</Resource>
+
+<Resource rdf:about="30">
+   <url>http://www.signalsguru.net/projects/Transmeta%20Crusoe.doc</url>
+   <updatePeriod>week</updatePeriod>
+   <sortOrder>1</sortOrder>
+   <resourceOf rdf:resource="2"/>
+</Resource>
+
+<Resource rdf:about="31">
+   <url>http://www.signalsguru.net/projects/Crusoe.ppt</url>
+   <updatePeriod>week</updatePeriod>
+   <sortOrder>1</sortOrder>
+   <resourceOf rdf:resource="2"/>
+</Resource>
+
+<Resource rdf:about="32">
+   <url>http://www.signalsguru.net/projects/bar.zip</url>
+   <updatePeriod>week</updatePeriod>
+   <sortOrder>1</sortOrder>
+   <resourceOf rdf:resource="2"/>
+</Resource>
+
+<Resource rdf:about="33">
+   <url>http://www.signalsguru.net/projects/keytutor/src/tmp/</url>
+   <updatePeriod>week</updatePeriod>
+   <sortOrder>1</sortOrder>
+   <resourceOf rdf:resource="2"/>
+</Resource>
+
+<Resource rdf:about="34">
+   <url>http://www.signalsguru.net/projects/keytutor/keyboardshot.bmp</url>
+   <updatePeriod>week</updatePeriod>
+   <sortOrder>1</sortOrder>
+   <resourceOf rdf:resource="2"/>
+</Resource>
+
+<Resource rdf:about="35">
+   <url>http://www.signalsguru.net/projects/streamer</url>
+   <updatePeriod>week</updatePeriod>
+   <sortOrder>1</sortOrder>
+   <resourceOf rdf:resource="2"/>
+</Resource>
+
+<Resource rdf:about="36">
+   <url>http://www.signalsguru.net/projects/older_prj</url>
+   <updatePeriod>week</updatePeriod>
+   <sortOrder>1</sortOrder>
+   <resourceOf rdf:resource="2"/>
+</Resource>
+
+<Resource rdf:about="37">
+   <url>http://www.signalsguru.net/projects/JHUAPL_img</url>
+   <updatePeriod>week</updatePeriod>
+   <sortOrder>1</sortOrder>
+   <resourceOf rdf:resource="3"/>
+</Resource>
+
+<Resource rdf:about="38">
+   <url>http://www.signalsguru.net/articles/astexample1/astexample1.html</url>
+   <updatePeriod>week</updatePeriod>
+   <sortOrder>1</sortOrder>
+   <resourceOf rdf:resource="3"/>
+</Resource>
+
+<Resource rdf:about="39">
+   <url>http://www.signalsguru.net/articles/astexample2/astexample2.html</url>
+   <updatePeriod>week</updatePeriod>
+   <sortOrder>1</sortOrder>
+   <resourceOf rdf:resource="3"/>
+</Resource>
+
+<Resource rdf:about="40">
+   <url>http://www.signalsguru.net/articles/codesim.html</url>
+   <updatePeriod>week</updatePeriod>
+   <sortOrder>1</sortOrder>
+   <resourceOf rdf:resource="3"/>
+</Resource>
+
+<Resource rdf:about="41">
+   <url>http://www.signalsguru.net/articles/softdevmodel.html</url>
+   <updatePeriod>week</updatePeriod>
+   <sortOrder>1</sortOrder>
+   <resourceOf rdf:resource="3"/>
+</Resource>
+
+<Resource rdf:about="42">
+   <url>http://www.signalsguru.net/articles/itprofessionals.html</url>
+   <updatePeriod>week</updatePeriod>
+   <sortOrder>1</sortOrder>
+   <resourceOf rdf:resource="3"/>
+</Resource>
+
+<Resource rdf:about="43">
+   <url>http://www.signalsguru.net/articles/dev_bottom.html</url>
+   <updatePeriod>week</updatePeriod>
+   <sortOrder>1</sortOrder>
+   <resourceOf rdf:resource="3"/>
+</Resource>
+
+<Resource rdf:about="44">
+   <url>http://www.signalsguru.net/articles/minarch.html</url>
+   <updatePeriod>week</updatePeriod>
+   <sortOrder>1</sortOrder>
+   <resourceOf rdf:resource="3"/>
+</Resource>
+
+<Resource rdf:about="45">
+   <url>http://www.signalsguru.net/articles/softoutin.html</url>
+   <updatePeriod>week</updatePeriod>
+   <sortOrder>1</sortOrder>
+   <resourceOf rdf:resource="3"/>
+</Resource>
+
+<Resource rdf:about="46">
+   <url>http://www.signalsguru.net/articles/hardeasy.html</url>
+   <updatePeriod>week</updatePeriod>
+   <sortOrder>1</sortOrder>
+   <resourceOf rdf:resource="3"/>
+</Resource>
+
+<Resource rdf:about="47">
+   <url>http://www.signalsguru.net/articles/creativeclass.html</url>
+   <updatePeriod>week</updatePeriod>
+   <sortOrder>1</sortOrder>
+   <resourceOf rdf:resource="3"/>
+</Resource>
+
+<Resource rdf:about="48">
+   <url>http://www.signalsguru.net/articles/thingsthathelp/somethingsthathelp.html</url>
+   <updatePeriod>week</updatePeriod>
+   <sortOrder>1</sortOrder>
+   <resourceOf rdf:resource="3"/>
+</Resource>
+
+<Resource rdf:about="49">
+   <url>http://www.signalsguru.net/articles/regressiontests.html</url>
+   <updatePeriod>week</updatePeriod>
+   <sortOrder>1</sortOrder>
+   <resourceOf rdf:resource="3"/>
+</Resource>
+
+<Resource rdf:about="50">
+   <url>http://www.signalsguru.net/articles/embedlisp.html</url>
+   <updatePeriod>week</updatePeriod>
+   <sortOrder>1</sortOrder>
+   <resourceOf rdf:resource="3"/>
+</Resource>
+
+<Resource rdf:about="51">
+   <url>http://www.signalsguru.net/articles/gcctest/gcctest.html</url>
+   <updatePeriod>week</updatePeriod>
+   <sortOrder>1</sortOrder>
+   <resourceOf rdf:resource="3"/>
+</Resource>
+
+<Resource rdf:about="52">
+   <url>http://www.signalsguru.net/articles/compressarticle/audiocodecs.html</url>
+   <updatePeriod>week</updatePeriod>
+   <sortOrder>1</sortOrder>
+   <resourceOf rdf:resource="3"/>
+</Resource>
+
+<Resource rdf:about="53">
+   <url>http://www.signalsguru.net/articles/dpcmexper/dpcmexper.html</url>
+   <updatePeriod>week</updatePeriod>
+   <sortOrder>1</sortOrder>
+   <resourceOf rdf:resource="3"/>
+</Resource>
+
+<Resource rdf:about="54">
+   <url>http://www.signalsguru.net/articles/fixedfir/fixedfir.html</url>
+   <updatePeriod>week</updatePeriod>
+   <sortOrder>1</sortOrder>
+   <resourceOf rdf:resource="3"/>
+</Resource>
+
+<Resource rdf:about="55">
+   <url>http://www.signalsguru.net/articles/condecon.html</url>
+   <updatePeriod>week</updatePeriod>
+   <sortOrder>1</sortOrder>
+   <resourceOf rdf:resource="3"/>
+</Resource>
+
+<Resource rdf:about="56">
+   <url>http://www.signalsguru.net/articles/rtdev/rtlms.html</url>
+   <updatePeriod>week</updatePeriod>
+   <sortOrder>1</sortOrder>
+   <resourceOf rdf:resource="3"/>
+</Resource>
+
+<Resource rdf:about="57">
+   <url>http://www.signalsguru.net/articles/toolideas.html</url>
+   <updatePeriod>week</updatePeriod>
+   <sortOrder>1</sortOrder>
+   <resourceOf rdf:resource="3"/>
+</Resource>
+
+<Resource rdf:about="58">
+   <url>http://www.signalsguru.net/articles/pyloops/pyloops.html</url>
+   <updatePeriod>week</updatePeriod>
+   <sortOrder>1</sortOrder>
+   <resourceOf rdf:resource="3"/>
+</Resource>
+
+<Resource rdf:about="59">
+   <url>http://www.signalsguru.net/articles/thingsilike.html</url>
+   <updatePeriod>week</updatePeriod>
+   <sortOrder>1</sortOrder>
+   <resourceOf rdf:resource="3"/>
+</Resource>
+
+<Resource rdf:about="60">
+   <url>http://www.signalsguru.net/articles/promoting.html</url>
+   <updatePeriod>week</updatePeriod>
+   <sortOrder>1</sortOrder>
+   <resourceOf rdf:resource="5"/>
+</Resource>
+
+<Resource rdf:about="61">
+   <url>http://www.signalsguru.net/resume/resume.css</url>
+   <updatePeriod>week</updatePeriod>
+   <sortOrder>1</sortOrder>
+   <resourceOf rdf:resource="14"/>
+</Resource>
+
+<Resource rdf:about="62">
+   <url>http://www.signalsguru.net/projects/thesis/research/index.html</url>
+   <updatePeriod>week</updatePeriod>
+   <sortOrder>2</sortOrder>
+   <resourceOf rdf:resource="14"/>
+</Resource>
+
+<Resource rdf:about="63">
+   <url>http://www.signalsguru.net/projects/formants/How%20to%20get%20real%20time%20data%20into%20Matlab.pdf</url>
+   <updatePeriod>week</updatePeriod>
+   <sortOrder>2</sortOrder>
+   <resourceOf rdf:resource="14"/>
+</Resource>
+
+<Resource rdf:about="64">
+   <url>http://www.signalsguru.net/projects/thesis/recommend_thesis.html</url>
+   <updatePeriod>week</updatePeriod>
+   <sortOrder>2</sortOrder>
+   <resourceOf rdf:resource="14"/>
+</Resource>
+
+<Resource rdf:about="65">
+   <url>http://www.signalsguru.net/projects/thesis/recommend_grad.html</url>
+   <updatePeriod>week</updatePeriod>
+   <sortOrder>2</sortOrder>
+   <resourceOf rdf:resource="14"/>
+</Resource>
+
+<Resource rdf:about="66">
+   <url>http://www.signalsguru.net/projects/thesis/array</url>
+   <updatePeriod>week</updatePeriod>
+   <sortOrder>2</sortOrder>
+   <resourceOf rdf:resource="14"/>
+</Resource>
+
+<Resource rdf:about="67">
+   <url>http://www.signalsguru.net/projects/thesis/timodasm/tiassembly.html</url>
+   <updatePeriod>week</updatePeriod>
+   <sortOrder>2</sortOrder>
+   <resourceOf rdf:resource="15"/>
+</Resource>
+
+<Resource rdf:about="68">
+   <url>http://www.signalsguru.net/projects/formants/eh.wav</url>
+   <updatePeriod>week</updatePeriod>
+   <sortOrder>2</sortOrder>
+   <resourceOf rdf:resource="15"/>
+</Resource>
+
+<Resource rdf:about="69">
+   <url>http://www.signalsguru.net/projects/formants/eh_formants.avi</url>
+   <updatePeriod>week</updatePeriod>
+   <sortOrder>2</sortOrder>
+   <resourceOf rdf:resource="15"/>
+</Resource>
+
+<Resource rdf:about="70">
+   <url>http://www.signalsguru.net/projects/formants/showFormant.m</url>
+   <updatePeriod>week</updatePeriod>
+   <sortOrder>2</sortOrder>
+   <resourceOf rdf:resource="15"/>
+</Resource>
+
+<Resource rdf:about="71">
+   <url>http://www.signalsguru.net/projects/formants/test.cpp</url>
+   <updatePeriod>week</updatePeriod>
+   <sortOrder>2</sortOrder>
+   <resourceOf rdf:resource="15"/>
+</Resource>
+
+<Resource rdf:about="72">
+   <url>http://www.signalsguru.net/projects/formants/test.def</url>
+   <updatePeriod>week</updatePeriod>
+   <sortOrder>2</sortOrder>
+   <resourceOf rdf:resource="16"/>
+</Resource>
+
+<Resource rdf:about="73">
+   <url>http://www.signalsguru.net/projects/imageprocessing/lab4_files/filelist.xml</url>
+   <updatePeriod>week</updatePeriod>
+   <sortOrder>2</sortOrder>
+   <resourceOf rdf:resource="16"/>
+</Resource>
+
+<Resource rdf:about="74">
+   <url>http://www.signalsguru.net/projects/imageprocessing/lab4_files/editdata.mso</url>
+   <updatePeriod>week</updatePeriod>
+   <sortOrder>2</sortOrder>
+   <resourceOf rdf:resource="16"/>
+</Resource>
+
+<Resource rdf:about="75">
+   <url>http://www.signalsguru.net/projects/imageprocessing/lab4_contrast.htm</url>
+   <updatePeriod>week</updatePeriod>
+   <sortOrder>2</sortOrder>
+   <resourceOf rdf:resource="16"/>
+</Resource>
+
+<Resource rdf:about="76">
+   <url>http://www.signalsguru.net/projects/imageprocessing/lab4_hist.htm</url>
+   <updatePeriod>week</updatePeriod>
+   <sortOrder>2</sortOrder>
+   <resourceOf rdf:resource="16"/>
+</Resource>
+
+<Resource rdf:about="77">
+   <url>http://www.signalsguru.net/projects/imageprocessing/lab4_trend.htm</url>
+   <updatePeriod>week</updatePeriod>
+   <sortOrder>2</sortOrder>
+   <resourceOf rdf:resource="17"/>
+</Resource>
+
+<Resource rdf:about="78">
+   <url>http://www.signalsguru.net/projects/</url>
+   <updatePeriod>week</updatePeriod>
+   <sortOrder>2</sortOrder>
+   <resourceOf rdf:resource="17"/>
+</Resource>
+
+<Resource rdf:about="79">
+   <url>http://www.signalsguru.net/projects/term_five</url>
+   <updatePeriod>week</updatePeriod>
+   <sortOrder>2</sortOrder>
+   <resourceOf rdf:resource="17"/>
+</Resource>
+
+<Resource rdf:about="80">
+   <url>http://www.signalsguru.net/projects/term_hand</url>
+   <updatePeriod>week</updatePeriod>
+   <sortOrder>2</sortOrder>
+   <resourceOf rdf:resource="17"/>
+</Resource>
+
+<Resource rdf:about="81">
+   <url>http://www.signalsguru.net/projects/term_shape</url>
+   <updatePeriod>week</updatePeriod>
+   <sortOrder>2</sortOrder>
+   <resourceOf rdf:resource="18"/>
+</Resource>
+
+<Resource rdf:about="82">
+   <url>http://www.signalsguru.net/projects/advimage/Lab1_files/filelist.xml</url>
+   <updatePeriod>week</updatePeriod>
+   <sortOrder>2</sortOrder>
+   <resourceOf rdf:resource="18"/>
+</Resource>
+
+<Resource rdf:about="83">
+   <url>http://www.signalsguru.net/projects/advimage/Lab1_files/editdata.mso</url>
+   <updatePeriod>week</updatePeriod>
+   <sortOrder>2</sortOrder>
+   <resourceOf rdf:resource="18"/>
+</Resource>
+
+<Resource rdf:about="84">
+   <url>http://www.signalsguru.net/projects/advimage/toWebSafe.m</url>
+   <updatePeriod>week</updatePeriod>
+   <sortOrder>2</sortOrder>
+   <resourceOf rdf:resource="18"/>
+</Resource>
+
+<Resource rdf:about="85">
+   <url>http://www.signalsguru.net/projects/advimage/Lab1_2.html</url>
+   <updatePeriod>week</updatePeriod>
+   <sortOrder>2</sortOrder>
+   <resourceOf rdf:resource="19"/>
+</Resource>
+
+<Resource rdf:about="86">
+   <url>http://www.signalsguru.net/projects/advimage/Lab2_1_files/filelist.xml</url>
+   <updatePeriod>week</updatePeriod>
+   <sortOrder>2</sortOrder>
+   <resourceOf rdf:resource="19"/>
+</Resource>
+
+<Resource rdf:about="87">
+   <url>http://www.signalsguru.net/projects/advimage/Lab2_1_files/editdata.mso</url>
+   <updatePeriod>week</updatePeriod>
+   <sortOrder>2</sortOrder>
+   <resourceOf rdf:resource="19"/>
+</Resource>
+
+<Resource rdf:about="88">
+   <url>http://www.signalsguru.net/projects/advimage/segment.m</url>
+   <updatePeriod>week</updatePeriod>
+   <sortOrder>2</sortOrder>
+   <resourceOf rdf:resource="19"/>
+</Resource>
+
+<Resource rdf:about="89">
+   <url>http://www.signalsguru.net/projects/advimage/Lab2_2.html</url>
+   <updatePeriod>week</updatePeriod>
+   <sortOrder>2</sortOrder>
+   <resourceOf rdf:resource="20"/>
+</Resource>
+
+<Resource rdf:about="90">
+   <url>http://www.signalsguru.net/projects/advimage/lab3_1_files/filelist.xml</url>
+   <updatePeriod>week</updatePeriod>
+   <sortOrder>2</sortOrder>
+   <resourceOf rdf:resource="20"/>
+</Resource>
+
+<Resource rdf:about="91">
+   <url>http://www.signalsguru.net/projects/advimage/lab3_1_files/editdata.mso</url>
+   <updatePeriod>week</updatePeriod>
+   <sortOrder>2</sortOrder>
+   <resourceOf rdf:resource="20"/>
+</Resource>
+
+<Resource rdf:about="92">
+   <url>http://www.signalsguru.net/projects/advimage/myerode.m</url>
+   <updatePeriod>week</updatePeriod>
+   <sortOrder>2</sortOrder>
+   <resourceOf rdf:resource="20"/>
+</Resource>
+
+<Resource rdf:about="93">
+   <url>http://www.signalsguru.net/projects/advimage/mydilate.m</url>
+   <updatePeriod>week</updatePeriod>
+   <sortOrder>2</sortOrder>
+   <resourceOf rdf:resource="20"/>
+</Resource>
+
+<Resource rdf:about="94">
+   <url>http://www.signalsguru.net/projects/advimage/setcomplement.m</url>
+   <updatePeriod>week</updatePeriod>
+   <sortOrder>2</sortOrder>
+   <resourceOf rdf:resource="20"/>
+</Resource>
+
+<Resource rdf:about="95">
+   <url>http://www.signalsguru.net/projects/advimage/setdifference.m</url>
+   <updatePeriod>week</updatePeriod>
+   <sortOrder>2</sortOrder>
+   <resourceOf rdf:resource="20"/>
+</Resource>
+
+<Resource rdf:about="96">
+   <url>http://www.signalsguru.net/projects/advimage/setintersection.m</url>
+   <updatePeriod>week</updatePeriod>
+   <sortOrder>2</sortOrder>
+   <resourceOf rdf:resource="20"/>
+</Resource>
+
+<Resource rdf:about="97">
+   <url>http://www.signalsguru.net/projects/advimage/lab3_2.html</url>
+   <updatePeriod>week</updatePeriod>
+   <sortOrder>2</sortOrder>
+   <resourceOf rdf:resource="21"/>
+</Resource>
+
+<Resource rdf:about="98">
+   <url>http://www.signalsguru.net/projects/music/lab6_1_files/filelist.xml</url>
+   <updatePeriod>week</updatePeriod>
+   <sortOrder>2</sortOrder>
+   <resourceOf rdf:resource="21"/>
+</Resource>
+
+<Resource rdf:about="99">
+   <url>http://www.signalsguru.net/projects/music/lab6_2.html</url>
+   <updatePeriod>week</updatePeriod>
+   <sortOrder>2</sortOrder>
+   <resourceOf rdf:resource="21"/>
+</Resource>
+
+<Resource rdf:about="100">
+   <url>http://www.signalsguru.net/projects/music/lab6_3.html</url>
+   <updatePeriod>week</updatePeriod>
+   <sortOrder>2</sortOrder>
+   <resourceOf rdf:resource="21"/>
+</Resource>
+
+<Resource rdf:about="101">
+   <url>http://www.signalsguru.net/projects/music/lab6_4.html</url>
+   <updatePeriod>week</updatePeriod>
+   <sortOrder>2</sortOrder>
+   <resourceOf rdf:resource="23"/>
+</Resource>
+
+<Resource rdf:about="102">
+   <url>http://www.signalsguru.net/projects/chaos/DOL</url>
+   <updatePeriod>week</updatePeriod>
+   <sortOrder>2</sortOrder>
+   <resourceOf rdf:resource="23"/>
+</Resource>
+
+<Resource rdf:about="103">
+   <url>http://www.signalsguru.net/projects/chaos/Henon</url>
+   <updatePeriod>week</updatePeriod>
+   <sortOrder>2</sortOrder>
+   <resourceOf rdf:resource="23"/>
+</Resource>
+
+<Resource rdf:about="104">
+   <url>http://www.signalsguru.net/projects/chaos/IFS</url>
+   <updatePeriod>week</updatePeriod>
+   <sortOrder>2</sortOrder>
+   <resourceOf rdf:resource="23"/>
+</Resource>
+
+<Resource rdf:about="105">
+   <url>http://www.signalsguru.net/projects/chaos/Mandel_Julia</url>
+   <updatePeriod>week</updatePeriod>
+   <sortOrder>2</sortOrder>
+   <resourceOf rdf:resource="23"/>
+</Resource>
+
+<Resource rdf:about="106">
+   <url>http://www.signalsguru.net/projects/chaos/RandomIFS</url>
+   <updatePeriod>week</updatePeriod>
+   <sortOrder>2</sortOrder>
+   <resourceOf rdf:resource="23"/>
+</Resource>
+
+<Resource rdf:about="107">
+   <url>http://www.signalsguru.net/projects/chaos/gasket1</url>
+   <updatePeriod>week</updatePeriod>
+   <sortOrder>2</sortOrder>
+   <resourceOf rdf:resource="23"/>
+</Resource>
+
+<Resource rdf:about="108">
+   <url>http://www.signalsguru.net/projects/chaos/midpoint</url>
+   <updatePeriod>week</updatePeriod>
+   <sortOrder>2</sortOrder>
+   <resourceOf rdf:resource="33"/>
+</Resource>
+
+<Resource rdf:about="109">
+   <url>http://www.signalsguru.net/projects/keytutor/src/</url>
+   <updatePeriod>week</updatePeriod>
+   <sortOrder>2</sortOrder>
+   <resourceOf rdf:resource="33"/>
+</Resource>
+
+<Resource rdf:about="110">
+   <url>http://www.signalsguru.net/projects/keytutor/src/tmp/Application1.java</url>
+   <updatePeriod>week</updatePeriod>
+   <sortOrder>2</sortOrder>
+   <resourceOf rdf:resource="33"/>
+</Resource>
+
+<Resource rdf:about="111">
+   <url>http://www.signalsguru.net/projects/keytutor/src/tmp/Application1.jbx</url>
+   <updatePeriod>week</updatePeriod>
+   <sortOrder>2</sortOrder>
+   <resourceOf rdf:resource="33"/>
+</Resource>
+
+<Resource rdf:about="112">
+   <url>http://www.signalsguru.net/projects/keytutor/src/tmp/Frame1.java</url>
+   <updatePeriod>week</updatePeriod>
+   <sortOrder>2</sortOrder>
+   <resourceOf rdf:resource="33"/>
+</Resource>
+
+<Resource rdf:about="113">
+   <url>http://www.signalsguru.net/projects/keytutor/src/tmp/Frame1.jbx</url>
+   <updatePeriod>week</updatePeriod>
+   <sortOrder>2</sortOrder>
+   <resourceOf rdf:resource="33"/>
+</Resource>
+
+<Resource rdf:about="114">
+   <url>http://www.signalsguru.net/projects/keytutor/src/tmp/Frame1_AboutBox.java</url>
+   <updatePeriod>week</updatePeriod>
+   <sortOrder>2</sortOrder>
+   <resourceOf rdf:resource="33"/>
+</Resource>
+
+<Resource rdf:about="115">
+   <url>http://www.signalsguru.net/projects/keytutor/src/tmp/Keyboard.java</url>
+   <updatePeriod>week</updatePeriod>
+   <sortOrder>2</sortOrder>
+   <resourceOf rdf:resource="35"/>
+</Resource>
+
+<Resource rdf:about="116">
+   <url>http://www.signalsguru.net/projects/get.tcl</url>
+   <updatePeriod>week</updatePeriod>
+   <sortOrder>2</sortOrder>
+   <resourceOf rdf:resource="35"/>
+</Resource>
+
+<Resource rdf:about="117">
+   <url>http://www.signalsguru.net/projects/qdata.txt</url>
+   <updatePeriod>week</updatePeriod>
+   <sortOrder>2</sortOrder>
+   <resourceOf rdf:resource="35"/>
+</Resource>
+
+<Resource rdf:about="118">
+   <url>http://www.signalsguru.net/projects/quotes.lnk</url>
+   <updatePeriod>week</updatePeriod>
+   <sortOrder>2</sortOrder>
+   <resourceOf rdf:resource="35"/>
+</Resource>
+
+<Resource rdf:about="119">
+   <url>http://www.signalsguru.net/projects/quoteshot.bmp</url>
+   <updatePeriod>week</updatePeriod>
+   <sortOrder>2</sortOrder>
+   <resourceOf rdf:resource="36"/>
+</Resource>
+
+<Resource rdf:about="120">
+   <url>http://www.signalsguru.net/projects/BASES</url>
+   <updatePeriod>week</updatePeriod>
+   <sortOrder>2</sortOrder>
+   <resourceOf rdf:resource="36"/>
+</Resource>
+
+<Resource rdf:about="121">
+   <url>http://www.signalsguru.net/projects/EQUATION</url>
+   <updatePeriod>week</updatePeriod>
+   <sortOrder>2</sortOrder>
+   <resourceOf rdf:resource="36"/>
+</Resource>
+
+<Resource rdf:about="122">
+   <url>http://www.signalsguru.net/projects/FORMULA</url>
+   <updatePeriod>week</updatePeriod>
+   <sortOrder>2</sortOrder>
+   <resourceOf rdf:resource="36"/>
+</Resource>
+
+<Resource rdf:about="123">
+   <url>http://www.signalsguru.net/projects/checkers.bas</url>
+   <updatePeriod>week</updatePeriod>
+   <sortOrder>2</sortOrder>
+   <resourceOf rdf:resource="36"/>
+</Resource>
+
+<Resource rdf:about="124">
+   <url>http://www.signalsguru.net/projects/str_type</url>
+   <updatePeriod>week</updatePeriod>
+   <sortOrder>2</sortOrder>
+   <resourceOf rdf:resource="36"/>
+</Resource>
+
+<Resource rdf:about="125">
+   <url>http://www.signalsguru.net/projects/sumI</url>
+   <updatePeriod>week</updatePeriod>
+   <sortOrder>2</sortOrder>
+   <resourceOf rdf:resource="37"/>
+</Resource>
+
+<Resource rdf:about="126">
+   <url>http://www.signalsguru.net/projects/cool.gif</url>
+   <updatePeriod>week</updatePeriod>
+   <sortOrder>2</sortOrder>
+   <resourceOf rdf:resource="37"/>
+</Resource>
+
+<Resource rdf:about="127">
+   <url>http://www.signalsguru.net/projects/cooler.gif</url>
+   <updatePeriod>week</updatePeriod>
+   <sortOrder>2</sortOrder>
+   <resourceOf rdf:resource="37"/>
+</Resource>
+
+<Resource rdf:about="128">
+   <url>http://www.signalsguru.net/projects/coolest.gif</url>
+   <updatePeriod>week</updatePeriod>
+   <sortOrder>2</sortOrder>
+   <resourceOf rdf:resource="37"/>
+</Resource>
+
+<Resource rdf:about="129">
+   <url>http://www.signalsguru.net/projects/neato.gif</url>
+   <updatePeriod>week</updatePeriod>
+   <sortOrder>2</sortOrder>
+   <resourceOf rdf:resource="37"/>
+</Resource>
+
+<Resource rdf:about="130">
+   <url>http://www.signalsguru.net/projects/realcool.gif</url>
+   <updatePeriod>week</updatePeriod>
+   <sortOrder>2</sortOrder>
+   <resourceOf rdf:resource="37"/>
+</Resource>
+
+<Resource rdf:about="131">
+   <url>http://www.signalsguru.net/projects/wow.gif</url>
+   <updatePeriod>week</updatePeriod>
+   <sortOrder>2</sortOrder>
+   <resourceOf rdf:resource="38"/>
+</Resource>
+
+<Resource rdf:about="132">
+   <url>http://www.signalsguru.net/articles/astexample1/connect.py</url>
+   <updatePeriod>week</updatePeriod>
+   <sortOrder>2</sortOrder>
+   <resourceOf rdf:resource="38"/>
+</Resource>
+
+<Resource rdf:about="133">
+   <url>http://www.signalsguru.net/articles/astexample1/votes.jpeg</url>
+   <updatePeriod>week</updatePeriod>
+   <sortOrder>2</sortOrder>
+   <resourceOf rdf:resource="38"/>
+</Resource>
+
+<Resource rdf:about="134">
+   <url>http://www.signalsguru.net/articles/astexample1/resume.html</url>
+   <updatePeriod>week</updatePeriod>
+   <sortOrder>2</sortOrder>
+   <resourceOf rdf:resource="38"/>
+</Resource>
+
+<Resource rdf:about="135">
+   <url>http://www.signalsguru.net/articles/astexample1/index.html</url>
+   <updatePeriod>week</updatePeriod>
+   <sortOrder>2</sortOrder>
+   <resourceOf rdf:resource="39"/>
+</Resource>
+
+<Resource rdf:about="136">
+   <url>http://www.signalsguru.net/articles/astexample2/test_echo.c</url>
+   <updatePeriod>week</updatePeriod>
+   <sortOrder>2</sortOrder>
+   <resourceOf rdf:resource="39"/>
+</Resource>
+
+<Resource rdf:about="137">
+   <url>http://www.signalsguru.net/articles/astexample2/agc.c</url>
+   <updatePeriod>week</updatePeriod>
+   <sortOrder>2</sortOrder>
+   <resourceOf rdf:resource="39"/>
+</Resource>
+
+<Resource rdf:about="138">
+   <url>http://www.signalsguru.net/articles/astexample2/resume.html</url>
+   <updatePeriod>week</updatePeriod>
+   <sortOrder>2</sortOrder>
+   <resourceOf rdf:resource="39"/>
+</Resource>
+
+<Resource rdf:about="139">
+   <url>http://www.signalsguru.net/articles/astexample2/index.html</url>
+   <updatePeriod>week</updatePeriod>
+   <sortOrder>2</sortOrder>
+   <resourceOf rdf:resource="42"/>
+</Resource>
+
+<Resource rdf:about="140">
+   <url>http://www.signalsguru.net/articles/itprofessionals_files/filelist.xml</url>
+   <updatePeriod>week</updatePeriod>
+   <sortOrder>2</sortOrder>
+   <resourceOf rdf:resource="43"/>
+</Resource>
+
+<Resource rdf:about="141">
+   <url>http://www.signalsguru.net/articles/dev_bottom_files/filelist.xml</url>
+   <updatePeriod>week</updatePeriod>
+   <sortOrder>2</sortOrder>
+   <resourceOf rdf:resource="44"/>
+</Resource>
+
+<Resource rdf:about="142">
+   <url>http://www.signalsguru.net/articles/index.html</url>
+   <updatePeriod>week</updatePeriod>
+   <sortOrder>2</sortOrder>
+   <resourceOf rdf:resource="48"/>
+</Resource>
+
+<Resource rdf:about="143">
+   <url>http://www.signalsguru.net/articles/thingsthathelp/exper1.py</url>
+   <updatePeriod>week</updatePeriod>
+   <sortOrder>2</sortOrder>
+   <resourceOf rdf:resource="48"/>
+</Resource>
+
+<Resource rdf:about="144">
+   <url>http://www.signalsguru.net/articles/thingsthathelp/exper2.py</url>
+   <updatePeriod>week</updatePeriod>
+   <sortOrder>2</sortOrder>
+   <resourceOf rdf:resource="51"/>
+</Resource>
+
+<Resource rdf:about="145">
+   <url>http://www.signalsguru.net/articles/gcctest/gcctest.c</url>
+   <updatePeriod>week</updatePeriod>
+   <sortOrder>2</sortOrder>
+   <resourceOf rdf:resource="51"/>
+</Resource>
+
+<Resource rdf:about="146">
+   <url>http://www.signalsguru.net/articles/gcctest/gcctest.s</url>
+   <updatePeriod>week</updatePeriod>
+   <sortOrder>2</sortOrder>
+   <resourceOf rdf:resource="52"/>
+</Resource>
+
+<Resource rdf:about="147">
+   <url>http://www.signalsguru.net/articles/compressarticle/noteqpow.wav</url>
+   <updatePeriod>week</updatePeriod>
+   <sortOrder>2</sortOrder>
+   <resourceOf rdf:resource="52"/>
+</Resource>
+
+<Resource rdf:about="148">
+   <url>http://www.signalsguru.net/articles/compressarticle/eqpow.wav</url>
+   <updatePeriod>week</updatePeriod>
+   <sortOrder>2</sortOrder>
+   <resourceOf rdf:resource="52"/>
+</Resource>
+
+<Resource rdf:about="149">
+   <url>http://www.signalsguru.net/articles/compressarticle/decomp.m</url>
+   <updatePeriod>week</updatePeriod>
+   <sortOrder>2</sortOrder>
+   <resourceOf rdf:resource="52"/>
+</Resource>
+
+<Resource rdf:about="150">
+   <url>http://www.signalsguru.net/articles/compressarticle/demo_codecs.m</url>
+   <updatePeriod>week</updatePeriod>
+   <sortOrder>2</sortOrder>
+   <resourceOf rdf:resource="53"/>
+</Resource>
+
+<Resource rdf:about="151">
+   <url>http://www.signalsguru.net/articles/dpcmexper/dpcm8_1.wav</url>
+   <updatePeriod>week</updatePeriod>
+   <sortOrder>2</sortOrder>
+   <resourceOf rdf:resource="53"/>
+</Resource>
+
+<Resource rdf:about="152">
+   <url>http://www.signalsguru.net/articles/dpcmexper/dpcm3_1.wav</url>
+   <updatePeriod>week</updatePeriod>
+   <sortOrder>2</sortOrder>
+   <resourceOf rdf:resource="53"/>
+</Resource>
+
+<Resource rdf:about="153">
+   <url>http://www.signalsguru.net/articles/dpcmexper/dpcm2_1.wav</url>
+   <updatePeriod>week</updatePeriod>
+   <sortOrder>2</sortOrder>
+   <resourceOf rdf:resource="53"/>
+</Resource>
+
+<Resource rdf:about="154">
+   <url>http://www.signalsguru.net/articles/dpcmexper/dpcm2_5.wav</url>
+   <updatePeriod>week</updatePeriod>
+   <sortOrder>2</sortOrder>
+   <resourceOf rdf:resource="53"/>
+</Resource>
+
+<Resource rdf:about="155">
+   <url>http://www.signalsguru.net/articles/dpcmexper/dpcm2_10.wav</url>
+   <updatePeriod>week</updatePeriod>
+   <sortOrder>2</sortOrder>
+   <resourceOf rdf:resource="53"/>
+</Resource>
+
+<Resource rdf:about="156">
+   <url>http://www.signalsguru.net/articles/dpcmexper/dpcm2_25.wav</url>
+   <updatePeriod>week</updatePeriod>
+   <sortOrder>2</sortOrder>
+   <resourceOf rdf:resource="53"/>
+</Resource>
+
+<Resource rdf:about="157">
+   <url>http://www.signalsguru.net/articles/dpcmexper/dpcmmod8_1.wav</url>
+   <updatePeriod>week</updatePeriod>
+   <sortOrder>2</sortOrder>
+   <resourceOf rdf:resource="53"/>
+</Resource>
+
+<Resource rdf:about="158">
+   <url>http://www.signalsguru.net/articles/dpcmexper/dpcmmod3_1.wav</url>
+   <updatePeriod>week</updatePeriod>
+   <sortOrder>2</sortOrder>
+   <resourceOf rdf:resource="53"/>
+</Resource>
+
+<Resource rdf:about="159">
+   <url>http://www.signalsguru.net/articles/dpcmexper/dpcmmod2_1.wav</url>
+   <updatePeriod>week</updatePeriod>
+   <sortOrder>2</sortOrder>
+   <resourceOf rdf:resource="53"/>
+</Resource>
+
+<Resource rdf:about="160">
+   <url>http://www.signalsguru.net/articles/dpcmexper/dpcmmod2_5.wav</url>
+   <updatePeriod>week</updatePeriod>
+   <sortOrder>2</sortOrder>
+   <resourceOf rdf:resource="53"/>
+</Resource>
+
+<Resource rdf:about="161">
+   <url>http://www.signalsguru.net/articles/dpcmexper/dpcmmod2_10.wav</url>
+   <updatePeriod>week</updatePeriod>
+   <sortOrder>2</sortOrder>
+   <resourceOf rdf:resource="53"/>
+</Resource>
+
+<Resource rdf:about="162">
+   <url>http://www.signalsguru.net/articles/dpcmexper/dpcmmod2_25.wav</url>
+   <updatePeriod>week</updatePeriod>
+   <sortOrder>2</sortOrder>
+   <resourceOf rdf:resource="53"/>
+</Resource>
+
+<Resource rdf:about="163">
+   <url>http://www.signalsguru.net/articles/dpcmexper/dpcmmod.m</url>
+   <updatePeriod>week</updatePeriod>
+   <sortOrder>2</sortOrder>
+   <resourceOf rdf:resource="53"/>
+</Resource>
+
+<Resource rdf:about="164">
+   <url>http://www.signalsguru.net/articles/dpcmexper/dpcm.m</url>
+   <updatePeriod>week</updatePeriod>
+   <sortOrder>2</sortOrder>
+   <resourceOf rdf:resource="54"/>
+</Resource>
+
+<Resource rdf:about="165">
+   <url>http://www.signalsguru.net/articles/fixedfir/fpfir.c</url>
+   <updatePeriod>week</updatePeriod>
+   <sortOrder>2</sortOrder>
+   <resourceOf rdf:resource="54"/>
+</Resource>
+
+<Resource rdf:about="166">
+   <url>http://www.signalsguru.net/articles/fixedfir/fixed.m</url>
+   <updatePeriod>week</updatePeriod>
+   <sortOrder>2</sortOrder>
+   <resourceOf rdf:resource="62"/>
+</Resource>
+
+<Resource rdf:about="167">
+   <url>http://www.signalsguru.net/projects/thesis/research/research.css</url>
+   <updatePeriod>week</updatePeriod>
+   <sortOrder>2</sortOrder>
+   <resourceOf rdf:resource="62"/>
+</Resource>
+
+<Resource rdf:about="168">
+   <url>http://www.signalsguru.net/projects/thesis/research/node1.html</url>
+   <updatePeriod>week</updatePeriod>
+   <sortOrder>3</sortOrder>
+   <resourceOf rdf:resource="62"/>
+</Resource>
+
+<Resource rdf:about="169">
+   <url>http://www.signalsguru.net/projects/thesis/research/node2.html</url>
+   <updatePeriod>week</updatePeriod>
+   <sortOrder>3</sortOrder>
+   <resourceOf rdf:resource="62"/>
+</Resource>
+
+<Resource rdf:about="170">
+   <url>http://www.signalsguru.net/projects/thesis/research/node3.html</url>
+   <updatePeriod>week</updatePeriod>
+   <sortOrder>3</sortOrder>
+   <resourceOf rdf:resource="62"/>
+</Resource>
+
+<Resource rdf:about="171">
+   <url>http://www.signalsguru.net/projects/thesis/research/node4.html</url>
+   <updatePeriod>week</updatePeriod>
+   <sortOrder>3</sortOrder>
+   <resourceOf rdf:resource="62"/>
+</Resource>
+
+<Resource rdf:about="172">
+   <url>http://www.signalsguru.net/projects/thesis/research/node5.html</url>
+   <updatePeriod>week</updatePeriod>
+   <sortOrder>3</sortOrder>
+   <resourceOf rdf:resource="62"/>
+</Resource>
+
+<Resource rdf:about="173">
+   <url>http://www.signalsguru.net/projects/thesis/research/node6.html</url>
+   <updatePeriod>week</updatePeriod>
+   <sortOrder>3</sortOrder>
+   <resourceOf rdf:resource="62"/>
+</Resource>
+
+<Resource rdf:about="174">
+   <url>http://www.signalsguru.net/projects/thesis/research/node7.html</url>
+   <updatePeriod>week</updatePeriod>
+   <sortOrder>3</sortOrder>
+   <resourceOf rdf:resource="62"/>
+</Resource>
+
+<Resource rdf:about="175">
+   <url>http://www.signalsguru.net/projects/thesis/research/node8.html</url>
+   <updatePeriod>week</updatePeriod>
+   <sortOrder>3</sortOrder>
+   <resourceOf rdf:resource="62"/>
+</Resource>
+
+<Resource rdf:about="176">
+   <url>http://www.signalsguru.net/projects/thesis/research/node9.html</url>
+   <updatePeriod>week</updatePeriod>
+   <sortOrder>3</sortOrder>
+   <resourceOf rdf:resource="62"/>
+</Resource>
+
+<Resource rdf:about="177">
+   <url>http://www.signalsguru.net/projects/thesis/research/node10.html</url>
+   <updatePeriod>week</updatePeriod>
+   <sortOrder>3</sortOrder>
+   <resourceOf rdf:resource="62"/>
+</Resource>
+
+<Resource rdf:about="178">
+   <url>http://www.signalsguru.net/projects/thesis/research/node11.html</url>
+   <updatePeriod>week</updatePeriod>
+   <sortOrder>3</sortOrder>
+   <resourceOf rdf:resource="62"/>
+</Resource>
+
+<Resource rdf:about="179">
+   <url>http://www.signalsguru.net/projects/thesis/research/node12.html</url>
+   <updatePeriod>week</updatePeriod>
+   <sortOrder>3</sortOrder>
+   <resourceOf rdf:resource="62"/>
+</Resource>
+
+<Resource rdf:about="180">
+   <url>http://www.signalsguru.net/projects/thesis/research/node13.html</url>
+   <updatePeriod>week</updatePeriod>
+   <sortOrder>3</sortOrder>
+   <resourceOf rdf:resource="62"/>
+</Resource>
+
+<Resource rdf:about="181">
+   <url>http://www.signalsguru.net/projects/thesis/research/node14.html</url>
+   <updatePeriod>week</updatePeriod>
+   <sortOrder>3</sortOrder>
+   <resourceOf rdf:resource="62"/>
+</Resource>
+
+<Resource rdf:about="182">
+   <url>http://www.signalsguru.net/projects/thesis/research/node15.html</url>
+   <updatePeriod>week</updatePeriod>
+   <sortOrder>3</sortOrder>
+   <resourceOf rdf:resource="64"/>
+</Resource>
+
+<Resource rdf:about="183">
+   <url>http://www.signalsguru.net/projects/thesis/index.html</url>
+   <updatePeriod>week</updatePeriod>
+   <sortOrder>3</sortOrder>
+   <resourceOf rdf:resource="66"/>
+</Resource>
+
+<Resource rdf:about="184">
+   <url>http://www.signalsguru.net/projects/thesis/</url>
+   <updatePeriod>week</updatePeriod>
+   <sortOrder>3</sortOrder>
+   <resourceOf rdf:resource="66"/>
+</Resource>
+
+<Resource rdf:about="185">
+   <url>http://www.signalsguru.net/projects/thesis/08-20-05_1345.jpg</url>
+   <updatePeriod>week</updatePeriod>
+   <sortOrder>3</sortOrder>
+   <resourceOf rdf:resource="66"/>
+</Resource>
+
+<Resource rdf:about="186">
+   <url>http://www.signalsguru.net/projects/thesis/08-20-05_1346.jpg</url>
+   <updatePeriod>week</updatePeriod>
+   <sortOrder>3</sortOrder>
+   <resourceOf rdf:resource="66"/>
+</Resource>
+
+<Resource rdf:about="187">
+   <url>http://www.signalsguru.net/projects/thesis/08-21-05_1756.jpg</url>
+   <updatePeriod>week</updatePeriod>
+   <sortOrder>3</sortOrder>
+   <resourceOf rdf:resource="66"/>
+</Resource>
+
+<Resource rdf:about="188">
+   <url>http://www.signalsguru.net/projects/thesis/11-04-05_1026.jpg</url>
+   <updatePeriod>week</updatePeriod>
+   <sortOrder>3</sortOrder>
+   <resourceOf rdf:resource="67"/>
+</Resource>
+
+<Resource rdf:about="189">
+   <url>http://www.signalsguru.net/projects/thesis/timodasm/DSPF_sp_dotprod2.obj</url>
+   <updatePeriod>week</updatePeriod>
+   <sortOrder>3</sortOrder>
+   <resourceOf rdf:resource="67"/>
+</Resource>
+
+<Resource rdf:about="190">
+   <url>http://www.signalsguru.net/projects/thesis/timodasm/DSPF_sp_ifftSPxSPscale.obj</url>
+   <updatePeriod>week</updatePeriod>
+   <sortOrder>3</sortOrder>
+   <resourceOf rdf:resource="67"/>
+</Resource>
+
+<Resource rdf:about="191">
+   <url>http://www.signalsguru.net/projects/thesis/timodasm/DSPF_sp_dotprod.asm</url>
+   <updatePeriod>week</updatePeriod>
+   <sortOrder>3</sortOrder>
+   <resourceOf rdf:resource="67"/>
+</Resource>
+
+<Resource rdf:about="192">
+   <url>http://www.signalsguru.net/projects/thesis/timodasm/DSPF_sp_ifftSPxSP.asm</url>
+   <updatePeriod>week</updatePeriod>
+   <sortOrder>3</sortOrder>
+   <resourceOf rdf:resource="67"/>
+</Resource>
+
+<Resource rdf:about="193">
+   <url>http://www.signalsguru.net/projects/index.html</url>
+   <updatePeriod>week</updatePeriod>
+   <sortOrder>3</sortOrder>
+   <resourceOf rdf:resource="73"/>
+</Resource>
+
+<Resource rdf:about="194">
+   <url>http://www.signalsguru.net/projects/imageprocessing/lab4_files/image001.png</url>
+   <updatePeriod>week</updatePeriod>
+   <sortOrder>3</sortOrder>
+   <resourceOf rdf:resource="73"/>
+</Resource>
+
+<Resource rdf:about="195">
+   <url>http://www.signalsguru.net/projects/imageprocessing/lab4_files/image002.jpg</url>
+   <updatePeriod>week</updatePeriod>
+   <sortOrder>3</sortOrder>
+   <resourceOf rdf:resource="75"/>
+</Resource>
+
+<Resource rdf:about="196">
+   <url>http://www.signalsguru.net/projects/imageprocessing/lab4_contrast_files/filelist.xml</url>
+   <updatePeriod>week</updatePeriod>
+   <sortOrder>3</sortOrder>
+   <resourceOf rdf:resource="75"/>
+</Resource>
+
+<Resource rdf:about="197">
+   <url>http://www.signalsguru.net/projects/imageprocessing/lab4_contrast_files/editdata.mso</url>
+   <updatePeriod>week</updatePeriod>
+   <sortOrder>3</sortOrder>
+   <resourceOf rdf:resource="75"/>
+</Resource>
+
+<Resource rdf:about="198">
+   <url>http://www.signalsguru.net/projects/imageprocessing/stretch.m</url>
+   <updatePeriod>week</updatePeriod>
+   <sortOrder>3</sortOrder>
+   <resourceOf rdf:resource="75"/>
+</Resource>
+
+<Resource rdf:about="199">
+   <url>http://www.signalsguru.net/projects/imageprocessing/stretch2.m</url>
+   <updatePeriod>week</updatePeriod>
+   <sortOrder>3</sortOrder>
+   <resourceOf rdf:resource="76"/>
+</Resource>
+
+<Resource rdf:about="200">
+   <url>http://www.signalsguru.net/projects/imageprocessing/lab4_hist_files/filelist.xml</url>
+   <updatePeriod>week</updatePeriod>
+   <sortOrder>3</sortOrder>
+   <resourceOf rdf:resource="76"/>
+</Resource>
+
+<Resource rdf:about="201">
+   <url>http://www.signalsguru.net/projects/imageprocessing/lab4_hist_files/editdata.mso</url>
+   <updatePeriod>week</updatePeriod>
+   <sortOrder>3</sortOrder>
+   <resourceOf rdf:resource="76"/>
+</Resource>
+
+<Resource rdf:about="202">
+   <url>http://www.signalsguru.net/projects/imageprocessing/histequal.m</url>
+   <updatePeriod>week</updatePeriod>
+   <sortOrder>3</sortOrder>
+   <resourceOf rdf:resource="77"/>
+</Resource>
+
+<Resource rdf:about="203">
+   <url>http://www.signalsguru.net/projects/imageprocessing/lab4_trend_files/filelist.xml</url>
+   <updatePeriod>week</updatePeriod>
+   <sortOrder>3</sortOrder>
+   <resourceOf rdf:resource="77"/>
+</Resource>
+
+<Resource rdf:about="204">
+   <url>http://www.signalsguru.net/projects/imageprocessing/lab4_trend_files/editdata.mso</url>
+   <updatePeriod>week</updatePeriod>
+   <sortOrder>3</sortOrder>
+   <resourceOf rdf:resource="77"/>
+</Resource>
+
+<Resource rdf:about="205">
+   <url>http://www.signalsguru.net/projects/imageprocessing/removetrend.m</url>
+   <updatePeriod>week</updatePeriod>
+   <sortOrder>3</sortOrder>
+   <resourceOf rdf:resource="82"/>
+</Resource>
+
+<Resource rdf:about="206">
+   <url>http://www.signalsguru.net/projects/advimage/Lab1_files/image001.png</url>
+   <updatePeriod>week</updatePeriod>
+   <sortOrder>3</sortOrder>
+   <resourceOf rdf:resource="82"/>
+</Resource>
+
+<Resource rdf:about="207">
+   <url>http://www.signalsguru.net/projects/advimage/Lab1_files/image002.jpg</url>
+   <updatePeriod>week</updatePeriod>
+   <sortOrder>3</sortOrder>
+   <resourceOf rdf:resource="82"/>
+</Resource>
+
+<Resource rdf:about="208">
+   <url>http://www.signalsguru.net/projects/advimage/Lab1_files/image003.png</url>
+   <updatePeriod>week</updatePeriod>
+   <sortOrder>3</sortOrder>
+   <resourceOf rdf:resource="82"/>
+</Resource>
+
+<Resource rdf:about="209">
+   <url>http://www.signalsguru.net/projects/advimage/Lab1_files/image004.jpg</url>
+   <updatePeriod>week</updatePeriod>
+   <sortOrder>3</sortOrder>
+   <resourceOf rdf:resource="85"/>
+</Resource>
+
+<Resource rdf:about="210">
+   <url>http://www.signalsguru.net/projects/advimage/Lab1_2_files/filelist.xml</url>
+   <updatePeriod>week</updatePeriod>
+   <sortOrder>3</sortOrder>
+   <resourceOf rdf:resource="85"/>
+</Resource>
+
+<Resource rdf:about="211">
+   <url>http://www.signalsguru.net/projects/advimage/Lab1_2_files/editdata.mso</url>
+   <updatePeriod>week</updatePeriod>
+   <sortOrder>3</sortOrder>
+   <resourceOf rdf:resource="85"/>
+</Resource>
+
+<Resource rdf:about="212">
+   <url>http://www.signalsguru.net/projects/advimage/colorSlice.m</url>
+   <updatePeriod>week</updatePeriod>
+   <sortOrder>3</sortOrder>
+   <resourceOf rdf:resource="86"/>
+</Resource>
+
+<Resource rdf:about="213">
+   <url>http://www.signalsguru.net/projects/advimage/Lab2_1_files/image001.png</url>
+   <updatePeriod>week</updatePeriod>
+   <sortOrder>3</sortOrder>
+   <resourceOf rdf:resource="86"/>
+</Resource>
+
+<Resource rdf:about="214">
+   <url>http://www.signalsguru.net/projects/advimage/Lab2_1_files/image002.jpg</url>
+   <updatePeriod>week</updatePeriod>
+   <sortOrder>3</sortOrder>
+   <resourceOf rdf:resource="86"/>
+</Resource>
+
+<Resource rdf:about="215">
+   <url>http://www.signalsguru.net/projects/advimage/Lab2_1_files/image003.png</url>
+   <updatePeriod>week</updatePeriod>
+   <sortOrder>3</sortOrder>
+   <resourceOf rdf:resource="86"/>
+</Resource>
+
+<Resource rdf:about="216">
+   <url>http://www.signalsguru.net/projects/advimage/Lab2_1_files/image004.jpg</url>
+   <updatePeriod>week</updatePeriod>
+   <sortOrder>3</sortOrder>
+   <resourceOf rdf:resource="86"/>
+</Resource>
+
+<Resource rdf:about="217">
+   <url>http://www.signalsguru.net/projects/advimage/Lab2_1_files/image005.png</url>
+   <updatePeriod>week</updatePeriod>
+   <sortOrder>3</sortOrder>
+   <resourceOf rdf:resource="86"/>
+</Resource>
+
+<Resource rdf:about="218">
+   <url>http://www.signalsguru.net/projects/advimage/Lab2_1_files/image006.jpg</url>
+   <updatePeriod>week</updatePeriod>
+   <sortOrder>3</sortOrder>
+   <resourceOf rdf:resource="89"/>
+</Resource>
+
+<Resource rdf:about="219">
+   <url>http://www.signalsguru.net/projects/advimage/Lab2_2_files/filelist.xml</url>
+   <updatePeriod>week</updatePeriod>
+   <sortOrder>3</sortOrder>
+   <resourceOf rdf:resource="89"/>
+</Resource>
+
+<Resource rdf:about="220">
+   <url>http://www.signalsguru.net/projects/advimage/Lab2_2_files/editdata.mso</url>
+   <updatePeriod>week</updatePeriod>
+   <sortOrder>3</sortOrder>
+   <resourceOf rdf:resource="89"/>
+</Resource>
+
+<Resource rdf:about="221">
+   <url>http://www.signalsguru.net/projects/advimage/globalthreshold.m</url>
+   <updatePeriod>week</updatePeriod>
+   <sortOrder>3</sortOrder>
+   <resourceOf rdf:resource="90"/>
+</Resource>
+
+<Resource rdf:about="222">
+   <url>http://www.signalsguru.net/projects/advimage/lab3_1.html</url>
+   <updatePeriod>week</updatePeriod>
+   <sortOrder>3</sortOrder>
+   <resourceOf rdf:resource="90"/>
+</Resource>
+
+<Resource rdf:about="223">
+   <url>http://www.signalsguru.net/projects/advimage/lab3_1_files/image001.png</url>
+   <updatePeriod>week</updatePeriod>
+   <sortOrder>3</sortOrder>
+   <resourceOf rdf:resource="90"/>
+</Resource>
+
+<Resource rdf:about="224">
+   <url>http://www.signalsguru.net/projects/advimage/lab3_1_files/image002.jpg</url>
+   <updatePeriod>week</updatePeriod>
+   <sortOrder>3</sortOrder>
+   <resourceOf rdf:resource="90"/>
+</Resource>
+
+<Resource rdf:about="225">
+   <url>http://www.signalsguru.net/projects/advimage/lab3_1_files/image003.png</url>
+   <updatePeriod>week</updatePeriod>
+   <sortOrder>3</sortOrder>
+   <resourceOf rdf:resource="90"/>
+</Resource>
+
+<Resource rdf:about="226">
+   <url>http://www.signalsguru.net/projects/advimage/lab3_1_files/image004.jpg</url>
+   <updatePeriod>week</updatePeriod>
+   <sortOrder>3</sortOrder>
+   <resourceOf rdf:resource="90"/>
+</Resource>
+
+<Resource rdf:about="227">
+   <url>http://www.signalsguru.net/projects/advimage/lab3_1_files/image005.png</url>
+   <updatePeriod>week</updatePeriod>
+   <sortOrder>3</sortOrder>
+   <resourceOf rdf:resource="90"/>
+</Resource>
+
+<Resource rdf:about="228">
+   <url>http://www.signalsguru.net/projects/advimage/lab3_1_files/image006.jpg</url>
+   <updatePeriod>week</updatePeriod>
+   <sortOrder>3</sortOrder>
+   <resourceOf rdf:resource="97"/>
+</Resource>
+
+<Resource rdf:about="229">
+   <url>http://www.signalsguru.net/projects/advimage/lab3_2_files/filelist.xml</url>
+   <updatePeriod>week</updatePeriod>
+   <sortOrder>3</sortOrder>
+   <resourceOf rdf:resource="97"/>
+</Resource>
+
+<Resource rdf:about="230">
+   <url>http://www.signalsguru.net/projects/advimage/lab3_2_files/editdata.mso</url>
+   <updatePeriod>week</updatePeriod>
+   <sortOrder>3</sortOrder>
+   <resourceOf rdf:resource="97"/>
+</Resource>
+
+<Resource rdf:about="231">
+   <url>http://www.signalsguru.net/projects/advimage/getBoundary.m</url>
+   <updatePeriod>week</updatePeriod>
+   <sortOrder>3</sortOrder>
+   <resourceOf rdf:resource="99"/>
+</Resource>
+
+<Resource rdf:about="232">
+   <url>http://www.signalsguru.net/projects/music/lab6_2_files/filelist.xml</url>
+   <updatePeriod>week</updatePeriod>
+   <sortOrder>3</sortOrder>
+   <resourceOf rdf:resource="99"/>
+</Resource>
+
+<Resource rdf:about="233">
+   <url>http://www.signalsguru.net/projects/music/lab6_2_files/editdata.mso</url>
+   <updatePeriod>week</updatePeriod>
+   <sortOrder>3</sortOrder>
+   <resourceOf rdf:resource="99"/>
+</Resource>
+
+<Resource rdf:about="234">
+   <url>http://www.signalsguru.net/projects/music/generalSine.m</url>
+   <updatePeriod>week</updatePeriod>
+   <sortOrder>3</sortOrder>
+   <resourceOf rdf:resource="99"/>
+</Resource>
+
+<Resource rdf:about="235">
+   <url>http://www.signalsguru.net/projects/music/index.html</url>
+   <updatePeriod>week</updatePeriod>
+   <sortOrder>3</sortOrder>
+   <resourceOf rdf:resource="100"/>
+</Resource>
+
+<Resource rdf:about="236">
+   <url>http://www.signalsguru.net/projects/music/lab6_3_files/filelist.xml</url>
+   <updatePeriod>week</updatePeriod>
+   <sortOrder>3</sortOrder>
+   <resourceOf rdf:resource="100"/>
+</Resource>
+
+<Resource rdf:about="237">
+   <url>http://www.signalsguru.net/projects/music/lab6_3_files/editdata.mso</url>
+   <updatePeriod>week</updatePeriod>
+   <sortOrder>3</sortOrder>
+   <resourceOf rdf:resource="100"/>
+</Resource>
+
+<Resource rdf:about="238">
+   <url>http://www.signalsguru.net/projects/music/coolSpec.m</url>
+   <updatePeriod>week</updatePeriod>
+   <sortOrder>3</sortOrder>
+   <resourceOf rdf:resource="100"/>
+</Resource>
+
+<Resource rdf:about="239">
+   <url>http://www.signalsguru.net/projects/music/coolSound.wav</url>
+   <updatePeriod>week</updatePeriod>
+   <sortOrder>3</sortOrder>
+   <resourceOf rdf:resource="101"/>
+</Resource>
+
+<Resource rdf:about="240">
+   <url>http://www.signalsguru.net/projects/music/lab6_4_files/filelist.xml</url>
+   <updatePeriod>week</updatePeriod>
+   <sortOrder>3</sortOrder>
+   <resourceOf rdf:resource="101"/>
+</Resource>
+
+<Resource rdf:about="241">
+   <url>http://www.signalsguru.net/projects/music/lab6_4_files/editdata.mso</url>
+   <updatePeriod>week</updatePeriod>
+   <sortOrder>3</sortOrder>
+   <resourceOf rdf:resource="101"/>
+</Resource>
+
+<Resource rdf:about="242">
+   <url>http://www.signalsguru.net/projects/music/makeBell.m</url>
+   <updatePeriod>week</updatePeriod>
+   <sortOrder>3</sortOrder>
+   <resourceOf rdf:resource="101"/>
+</Resource>
+
+<Resource rdf:about="243">
+   <url>http://www.signalsguru.net/projects/music/bell.wav</url>
+   <updatePeriod>week</updatePeriod>
+   <sortOrder>3</sortOrder>
+   <resourceOf rdf:resource="102"/>
+</Resource>
+
+<Resource rdf:about="244">
+   <url>http://www.signalsguru.net/projects/chaos/Debug</url>
+   <updatePeriod>week</updatePeriod>
+   <sortOrder>3</sortOrder>
+   <resourceOf rdf:resource="102"/>
+</Resource>
+
+<Resource rdf:about="245">
+   <url>http://www.signalsguru.net/projects/chaos/colors.h</url>
+   <updatePeriod>week</updatePeriod>
+   <sortOrder>3</sortOrder>
+   <resourceOf rdf:resource="102"/>
+</Resource>
+
+<Resource rdf:about="246">
+   <url>http://www.signalsguru.net/projects/chaos/main.001</url>
+   <updatePeriod>week</updatePeriod>
+   <sortOrder>3</sortOrder>
+   <resourceOf rdf:resource="102"/>
+</Resource>
+
+<Resource rdf:about="247">
+   <url>http://www.signalsguru.net/projects/chaos/main.aps</url>
+   <updatePeriod>week</updatePeriod>
+   <sortOrder>3</sortOrder>
+   <resourceOf rdf:resource="102"/>
+</Resource>
+
+<Resource rdf:about="248">
+   <url>http://www.signalsguru.net/projects/chaos/main.cpp</url>
+   <updatePeriod>week</updatePeriod>
+   <sortOrder>3</sortOrder>
+   <resourceOf rdf:resource="102"/>
+</Resource>
+
+<Resource rdf:about="249">
+   <url>http://www.signalsguru.net/projects/chaos/main.dsp</url>
+   <updatePeriod>week</updatePeriod>
+   <sortOrder>3</sortOrder>
+   <resourceOf rdf:resource="102"/>
+</Resource>
+
+<Resource rdf:about="250">
+   <url>http://www.signalsguru.net/projects/chaos/main.dsw</url>
+   <updatePeriod>week</updatePeriod>
+   <sortOrder>3</sortOrder>
+   <resourceOf rdf:resource="102"/>
+</Resource>
+
+<Resource rdf:about="251">
+   <url>http://www.signalsguru.net/projects/chaos/main.ncb</url>
+   <updatePeriod>week</updatePeriod>
+   <sortOrder>3</sortOrder>
+   <resourceOf rdf:resource="102"/>
+</Resource>
+
+<Resource rdf:about="252">
+   <url>http://www.signalsguru.net/projects/chaos/main.opt</url>
+   <updatePeriod>week</updatePeriod>
+   <sortOrder>3</sortOrder>
+   <resourceOf rdf:resource="102"/>
+</Resource>
+
+<Resource rdf:about="253">
+   <url>http://www.signalsguru.net/projects/chaos/main.plg</url>
+   <updatePeriod>week</updatePeriod>
+   <sortOrder>3</sortOrder>
+   <resourceOf rdf:resource="102"/>
+</Resource>
+
+<Resource rdf:about="254">
+   <url>http://www.signalsguru.net/projects/chaos/main.rc</url>
+   <updatePeriod>week</updatePeriod>
+   <sortOrder>3</sortOrder>
+   <resourceOf rdf:resource="102"/>
+</Resource>
+
+<Resource rdf:about="255">
+   <url>http://www.signalsguru.net/projects/chaos/resource.h</url>
+   <updatePeriod>week</updatePeriod>
+   <sortOrder>3</sortOrder>
+   <resourceOf rdf:resource="102"/>
+</Resource>
+
+<Resource rdf:about="256">
+   <url>http://www.signalsguru.net/projects/chaos/sga.cpp</url>
+   <updatePeriod>week</updatePeriod>
+   <sortOrder>3</sortOrder>
+   <resourceOf rdf:resource="102"/>
+</Resource>
+
+<Resource rdf:about="257">
+   <url>http://www.signalsguru.net/projects/chaos/sga.h</url>
+   <updatePeriod>week</updatePeriod>
+   <sortOrder>3</sortOrder>
+   <resourceOf rdf:resource="109"/>
+</Resource>
+
+<Resource rdf:about="258">
+   <url>http://www.signalsguru.net/projects/keytutor/</url>
+   <updatePeriod>week</updatePeriod>
+   <sortOrder>3</sortOrder>
+   <resourceOf rdf:resource="109"/>
+</Resource>
+
+<Resource rdf:about="259">
+   <url>http://www.signalsguru.net/projects/keytutor/src/tmp</url>
+   <updatePeriod>week</updatePeriod>
+   <sortOrder>3</sortOrder>
+   <resourceOf rdf:resource="168"/>
+</Resource>
+
+<Resource rdf:about="260">
+   <url>http://www.signalsguru.net/projects/thesis/research/research.html</url>
+   <updatePeriod>week</updatePeriod>
+   <sortOrder>3</sortOrder>
+   <resourceOf rdf:resource="170"/>
+</Resource>
+
+<Resource rdf:about="261">
+   <url>http://www.signalsguru.net/projects/thesis/research/sounds/far.wav</url>
+   <updatePeriod>week</updatePeriod>
+   <sortOrder>4</sortOrder>
+   <resourceOf rdf:resource="170"/>
+</Resource>
+
+<Resource rdf:about="262">
+   <url>http://www.signalsguru.net/projects/thesis/research/sounds/near.wav</url>
+   <updatePeriod>week</updatePeriod>
+   <sortOrder>4</sortOrder>
+   <resourceOf rdf:resource="170"/>
+</Resource>
+
+<Resource rdf:about="263">
+   <url>http://www.signalsguru.net/projects/thesis/research/sounds/echo.wav</url>
+   <updatePeriod>week</updatePeriod>
+   <sortOrder>4</sortOrder>
+   <resourceOf rdf:resource="170"/>
+</Resource>
+
+<Resource rdf:about="264">
+   <url>http://www.signalsguru.net/projects/thesis/research/sounds/aecout.wav</url>
+   <updatePeriod>week</updatePeriod>
+   <sortOrder>4</sortOrder>
+   <resourceOf rdf:resource="179"/>
+</Resource>
+
+<Resource rdf:about="265">
+   <url>http://www.signalsguru.net/projects/thesis/research/sounds/sumout.wav</url>
+   <updatePeriod>week</updatePeriod>
+   <sortOrder>4</sortOrder>
+   <resourceOf rdf:resource="179"/>
+</Resource>
+
+<Resource rdf:about="266">
+   <url>http://www.signalsguru.net/projects/thesis/research/sounds/sumoutgaitingfilter.wav</url>
+   <updatePeriod>week</updatePeriod>
+   <sortOrder>4</sortOrder>
+   <resourceOf rdf:resource="196"/>
+</Resource>
+
+<Resource rdf:about="267">
+   <url>http://www.signalsguru.net/projects/imageprocessing/lab4_contrast_files/image001.png</url>
+   <updatePeriod>week</updatePeriod>
+   <sortOrder>4</sortOrder>
+   <resourceOf rdf:resource="196"/>
+</Resource>
+
+<Resource rdf:about="268">
+   <url>http://www.signalsguru.net/projects/imageprocessing/lab4_contrast_files/image002.jpg</url>
+   <updatePeriod>week</updatePeriod>
+   <sortOrder>4</sortOrder>
+   <resourceOf rdf:resource="196"/>
+</Resource>
+
+<Resource rdf:about="269">
+   <url>http://www.signalsguru.net/projects/imageprocessing/lab4_contrast_files/image003.png</url>
+   <updatePeriod>week</updatePeriod>
+   <sortOrder>4</sortOrder>
+   <resourceOf rdf:resource="196"/>
+</Resource>
+
+<Resource rdf:about="270">
+   <url>http://www.signalsguru.net/projects/imageprocessing/lab4_contrast_files/image004.jpg</url>
+   <updatePeriod>week</updatePeriod>
+   <sortOrder>4</sortOrder>
+   <resourceOf rdf:resource="196"/>
+</Resource>
+
+<Resource rdf:about="271">
+   <url>http://www.signalsguru.net/projects/imageprocessing/lab4_contrast_files/image005.png</url>
+   <updatePeriod>week</updatePeriod>
+   <sortOrder>4</sortOrder>
+   <resourceOf rdf:resource="196"/>
+</Resource>
+
+<Resource rdf:about="272">
+   <url>http://www.signalsguru.net/projects/imageprocessing/lab4_contrast_files/image006.jpg</url>
+   <updatePeriod>week</updatePeriod>
+   <sortOrder>4</sortOrder>
+   <resourceOf rdf:resource="196"/>
+</Resource>
+
+<Resource rdf:about="273">
+   <url>http://www.signalsguru.net/projects/imageprocessing/lab4_contrast_files/image007.png</url>
+   <updatePeriod>week</updatePeriod>
+   <sortOrder>4</sortOrder>
+   <resourceOf rdf:resource="196"/>
+</Resource>
+
+<Resource rdf:about="274">
+   <url>http://www.signalsguru.net/projects/imageprocessing/lab4_contrast_files/image008.jpg</url>
+   <updatePeriod>week</updatePeriod>
+   <sortOrder>4</sortOrder>
+   <resourceOf rdf:resource="196"/>
+</Resource>
+
+<Resource rdf:about="275">
+   <url>http://www.signalsguru.net/projects/imageprocessing/lab4_contrast_files/image009.png</url>
+   <updatePeriod>week</updatePeriod>
+   <sortOrder>4</sortOrder>
+   <resourceOf rdf:resource="196"/>
+</Resource>
+
+<Resource rdf:about="276">
+   <url>http://www.signalsguru.net/projects/imageprocessing/lab4_contrast_files/image010.jpg</url>
+   <updatePeriod>week</updatePeriod>
+   <sortOrder>4</sortOrder>
+   <resourceOf rdf:resource="196"/>
+</Resource>
+
+<Resource rdf:about="277">
+   <url>http://www.signalsguru.net/projects/imageprocessing/lab4_contrast_files/image011.png</url>
+   <updatePeriod>week</updatePeriod>
+   <sortOrder>4</sortOrder>
+   <resourceOf rdf:resource="196"/>
+</Resource>
+
+<Resource rdf:about="278">
+   <url>http://www.signalsguru.net/projects/imageprocessing/lab4_contrast_files/image012.jpg</url>
+   <updatePeriod>week</updatePeriod>
+   <sortOrder>4</sortOrder>
+   <resourceOf rdf:resource="200"/>
+</Resource>
+
+<Resource rdf:about="279">
+   <url>http://www.signalsguru.net/projects/imageprocessing/lab4_hist_files/image001.png</url>
+   <updatePeriod>week</updatePeriod>
+   <sortOrder>4</sortOrder>
+   <resourceOf rdf:resource="200"/>
+</Resource>
+
+<Resource rdf:about="280">
+   <url>http://www.signalsguru.net/projects/imageprocessing/lab4_hist_files/image002.jpg</url>
+   <updatePeriod>week</updatePeriod>
+   <sortOrder>4</sortOrder>
+   <resourceOf rdf:resource="200"/>
+</Resource>
+
+<Resource rdf:about="281">
+   <url>http://www.signalsguru.net/projects/imageprocessing/lab4_hist_files/image003.png</url>
+   <updatePeriod>week</updatePeriod>
+   <sortOrder>4</sortOrder>
+   <resourceOf rdf:resource="200"/>
+</Resource>
+
+<Resource rdf:about="282">
+   <url>http://www.signalsguru.net/projects/imageprocessing/lab4_hist_files/image004.jpg</url>
+   <updatePeriod>week</updatePeriod>
+   <sortOrder>4</sortOrder>
+   <resourceOf rdf:resource="200"/>
+</Resource>
+
+<Resource rdf:about="283">
+   <url>http://www.signalsguru.net/projects/imageprocessing/lab4_hist_files/image005.png</url>
+   <updatePeriod>week</updatePeriod>
+   <sortOrder>4</sortOrder>
+   <resourceOf rdf:resource="200"/>
+</Resource>
+
+<Resource rdf:about="284">
+   <url>http://www.signalsguru.net/projects/imageprocessing/lab4_hist_files/image006.jpg</url>
+   <updatePeriod>week</updatePeriod>
+   <sortOrder>4</sortOrder>
+   <resourceOf rdf:resource="200"/>
+</Resource>
+
+<Resource rdf:about="285">
+   <url>http://www.signalsguru.net/projects/imageprocessing/lab4_hist_files/image007.png</url>
+   <updatePeriod>week</updatePeriod>
+   <sortOrder>4</sortOrder>
+   <resourceOf rdf:resource="200"/>
+</Resource>
+
+<Resource rdf:about="286">
+   <url>http://www.signalsguru.net/projects/imageprocessing/lab4_hist_files/image008.jpg</url>
+   <updatePeriod>week</updatePeriod>
+   <sortOrder>4</sortOrder>
+   <resourceOf rdf:resource="203"/>
+</Resource>
+
+<Resource rdf:about="287">
+   <url>http://www.signalsguru.net/projects/imageprocessing/lab4_trend_files/image001.png</url>
+   <updatePeriod>week</updatePeriod>
+   <sortOrder>4</sortOrder>
+   <resourceOf rdf:resource="203"/>
+</Resource>
+
+<Resource rdf:about="288">
+   <url>http://www.signalsguru.net/projects/imageprocessing/lab4_trend_files/image002.jpg</url>
+   <updatePeriod>week</updatePeriod>
+   <sortOrder>4</sortOrder>
+   <resourceOf rdf:resource="203"/>
+</Resource>
+
+<Resource rdf:about="289">
+   <url>http://www.signalsguru.net/projects/imageprocessing/lab4_trend_files/image003.png</url>
+   <updatePeriod>week</updatePeriod>
+   <sortOrder>4</sortOrder>
+   <resourceOf rdf:resource="203"/>
+</Resource>
+
+<Resource rdf:about="290">
+   <url>http://www.signalsguru.net/projects/imageprocessing/lab4_trend_files/image004.jpg</url>
+   <updatePeriod>week</updatePeriod>
+   <sortOrder>4</sortOrder>
+   <resourceOf rdf:resource="210"/>
+</Resource>
+
+<Resource rdf:about="291">
+   <url>http://www.signalsguru.net/projects/advimage/Lab1_2_files/image001.png</url>
+   <updatePeriod>week</updatePeriod>
+   <sortOrder>4</sortOrder>
+   <resourceOf rdf:resource="210"/>
+</Resource>
+
+<Resource rdf:about="292">
+   <url>http://www.signalsguru.net/projects/advimage/Lab1_2_files/image002.jpg</url>
+   <updatePeriod>week</updatePeriod>
+   <sortOrder>4</sortOrder>
+   <resourceOf rdf:resource="210"/>
+</Resource>
+
+<Resource rdf:about="293">
+   <url>http://www.signalsguru.net/projects/advimage/Lab1_2_files/image003.png</url>
+   <updatePeriod>week</updatePeriod>
+   <sortOrder>4</sortOrder>
+   <resourceOf rdf:resource="210"/>
+</Resource>
+
+<Resource rdf:about="294">
+   <url>http://www.signalsguru.net/projects/advimage/Lab1_2_files/image004.jpg</url>
+   <updatePeriod>week</updatePeriod>
+   <sortOrder>4</sortOrder>
+   <resourceOf rdf:resource="219"/>
+</Resource>
+
+<Resource rdf:about="295">
+   <url>http://www.signalsguru.net/projects/advimage/Lab2_2_files/image001.png</url>
+   <updatePeriod>week</updatePeriod>
+   <sortOrder>4</sortOrder>
+   <resourceOf rdf:resource="219"/>
+</Resource>
+
+<Resource rdf:about="296">
+   <url>http://www.signalsguru.net/projects/advimage/Lab2_2_files/image002.jpg</url>
+   <updatePeriod>week</updatePeriod>
+   <sortOrder>4</sortOrder>
+   <resourceOf rdf:resource="219"/>
+</Resource>
+
+<Resource rdf:about="297">
+   <url>http://www.signalsguru.net/projects/advimage/Lab2_2_files/image003.png</url>
+   <updatePeriod>week</updatePeriod>
+   <sortOrder>4</sortOrder>
+   <resourceOf rdf:resource="219"/>
+</Resource>
+
+<Resource rdf:about="298">
+   <url>http://www.signalsguru.net/projects/advimage/Lab2_2_files/image004.jpg</url>
+   <updatePeriod>week</updatePeriod>
+   <sortOrder>4</sortOrder>
+   <resourceOf rdf:resource="229"/>
+</Resource>
+
+<Resource rdf:about="299">
+   <url>http://www.signalsguru.net/projects/advimage/lab3_2_files/image001.png</url>
+   <updatePeriod>week</updatePeriod>
+   <sortOrder>4</sortOrder>
+   <resourceOf rdf:resource="229"/>
+</Resource>
+
+<Resource rdf:about="300">
+   <url>http://www.signalsguru.net/projects/advimage/lab3_2_files/image002.jpg</url>
+   <updatePeriod>week</updatePeriod>
+   <sortOrder>4</sortOrder>
+   <resourceOf rdf:resource="229"/>
+</Resource>
+
+<Resource rdf:about="301">
+   <url>http://www.signalsguru.net/projects/advimage/lab3_2_files/image003.png</url>
+   <updatePeriod>week</updatePeriod>
+   <sortOrder>4</sortOrder>
+   <resourceOf rdf:resource="229"/>
+</Resource>
+
+<Resource rdf:about="302">
+   <url>http://www.signalsguru.net/projects/advimage/lab3_2_files/image004.jpg</url>
+   <updatePeriod>week</updatePeriod>
+   <sortOrder>4</sortOrder>
+   <resourceOf rdf:resource="232"/>
+</Resource>
+
+<Resource rdf:about="303">
+   <url>http://www.signalsguru.net/projects/music/lab6_2_files/image001.png</url>
+   <updatePeriod>week</updatePeriod>
+   <sortOrder>4</sortOrder>
+   <resourceOf rdf:resource="232"/>
+</Resource>
+
+<Resource rdf:about="304">
+   <url>http://www.signalsguru.net/projects/music/lab6_2_files/image002.jpg</url>
+   <updatePeriod>week</updatePeriod>
+   <sortOrder>4</sortOrder>
+   <resourceOf rdf:resource="236"/>
+</Resource>
+
+<Resource rdf:about="305">
+   <url>http://www.signalsguru.net/projects/music/lab6_3_files/image001.png</url>
+   <updatePeriod>week</updatePeriod>
+   <sortOrder>4</sortOrder>
+   <resourceOf rdf:resource="236"/>
+</Resource>
+
+<Resource rdf:about="306">
+   <url>http://www.signalsguru.net/projects/music/lab6_3_files/image002.jpg</url>
+   <updatePeriod>week</updatePeriod>
+   <sortOrder>4</sortOrder>
+   <resourceOf rdf:resource="240"/>
+</Resource>
+
+<Resource rdf:about="307">
+   <url>http://www.signalsguru.net/projects/music/lab6_4_files/image001.png</url>
+   <updatePeriod>week</updatePeriod>
+   <sortOrder>4</sortOrder>
+   <resourceOf rdf:resource="240"/>
+</Resource>
+
+<Resource rdf:about="308">
+   <url>http://www.signalsguru.net/projects/music/lab6_4_files/image002.jpg</url>
+   <updatePeriod>week</updatePeriod>
+   <sortOrder>4</sortOrder>
+   <resourceOf rdf:resource="258"/>
+</Resource>
+
+<Resource rdf:about="309">
+   <url>http://www.signalsguru.net/projects/keytutor/classes</url>
+   <updatePeriod>week</updatePeriod>
+   <sortOrder>4</sortOrder>
+   <resourceOf rdf:resource="258"/>
+</Resource>
+
+<Resource rdf:about="310">
+   <url>http://www.signalsguru.net/projects/keytutor/src</url>
+   <updatePeriod>week</updatePeriod>
+   <sortOrder>4</sortOrder>
+   <resourceOf rdf:resource="258"/>
+</Resource>
+
+<Resource rdf:about="311">
+   <url>http://www.signalsguru.net/projects/keytutor/tmp.html</url>
+   <updatePeriod>week</updatePeriod>
+   <sortOrder>4</sortOrder>
+   <resourceOf rdf:resource="258"/>
+</Resource>
+
+<Resource rdf:about="312">
+   <url>http://www.signalsguru.net/projects/keytutor/tmp.jpr</url>
+   <updatePeriod>week</updatePeriod>
+   <sortOrder>4</sortOrder>
+   <resourceOf rdf:resource="259"/>
+</Resource>
+
+<Resource rdf:about="313">
+   <url>http://www.signalsguru.net/projects/keytutor/src/Application1.java</url>
+   <updatePeriod>week</updatePeriod>
+   <sortOrder>4</sortOrder>
+   <resourceOf rdf:resource="259"/>
+</Resource>
+
+<Resource rdf:about="314">
+   <url>http://www.signalsguru.net/projects/keytutor/src/Application1.jbx</url>
+   <updatePeriod>week</updatePeriod>
+   <sortOrder>4</sortOrder>
+   <resourceOf rdf:resource="259"/>
+</Resource>
+
+<Resource rdf:about="315">
+   <url>http://www.signalsguru.net/projects/keytutor/src/Frame1.java</url>
+   <updatePeriod>week</updatePeriod>
+   <sortOrder>4</sortOrder>
+   <resourceOf rdf:resource="259"/>
+</Resource>
+
+<Resource rdf:about="316">
+   <url>http://www.signalsguru.net/projects/keytutor/src/Frame1.jbx</url>
+   <updatePeriod>week</updatePeriod>
+   <sortOrder>4</sortOrder>
+   <resourceOf rdf:resource="259"/>
+</Resource>
+
+<Resource rdf:about="317">
+   <url>http://www.signalsguru.net/projects/keytutor/src/Frame1_AboutBox.java</url>
+   <updatePeriod>week</updatePeriod>
+   <sortOrder>4</sortOrder>
+   <resourceOf rdf:resource="259"/>
+</Resource>
+
+<Resource rdf:about="318">
+   <url>http://www.signalsguru.net/projects/keytutor/src/Keyboard.java</url>
+   <updatePeriod>week</updatePeriod>
+   <sortOrder>4</sortOrder>
+   <resourceOf rdf:resource="309"/>
+</Resource>
+
+<Resource rdf:about="319">
+   <url>http://www.signalsguru.net/projects/keytutor/dependency%20cache</url>
+   <updatePeriod>week</updatePeriod>
+   <sortOrder>4</sortOrder>
+   <resourceOf rdf:resource="309"/>
+</Resource>
+
+<Resource rdf:about="320">
+   <url>http://www.signalsguru.net/projects/keytutor/tmp</url>
+   <updatePeriod>week</updatePeriod>
+   <sortOrder>5</sortOrder>
+   <resourceOf rdf:resource=""/>
+</Resource>
+
+</rdf:RDF>
+
+

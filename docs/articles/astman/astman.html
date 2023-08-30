@@ -1,0 +1,99 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+<head>
+<title>A Web Interface to the AMI</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<link rel="stylesheet" type="text/css" href="../../index.css" />
+<meta name="description" content=
+"This is a guide to building a web site from scratch that monitors a
+server.  It's full of my opinions on design.                    " />
+<!-- ....10........20........30........40........50........60........70........80 -->
+</head>
+
+<body>
+<table>
+<tr><td class="article">
+<h1 class="topofpage">A Web Interface to the Asterisk Manager</h1>
+
+<h4 class="nounderline">The Asterisk Manager Interface</h4>
+
+<p>
+If you were going to develop an extremely popular telephony server,
+what features might you include?  It would need to be easily
+extensible.  Otherwise, how would someone unfamiliar with the code base
+truly be able to customize it?*  This is accomplished at two different
+levels.  There are the asterisk modules for C hackers with some
+knowledge of internals.  And there is the Asterisk Gateway Interface
+(AGI) for those with little or no understanding of the code.
+</p>
+
+<p>
+But you would also want a way to control the server and analyze the
+traffic.  That's the Asterisk Manager's job.  So next you might wonder,
+how can it made as flexible as possible?  As a first attempt, you
+might build a module that can interact directly with standard input
+and monitor the internal state of the server.  One problem is this
+forces your precious users to interface with the server directly at
+the console from where Asterisk was started.
+</p>
+
+<p>
+You might decouple the manager from the start console by using either
+IPC or sockets.  Let's use sockets because this will let us connect to
+asterisk from a remote machine.  In fact, it will let us connect from
+any machine on just about any modern operating system and even from
+embedded devices.
+</p>
+
+<p>
+The interface now has two parts.  It will have a client that interacts
+directly with the user (the User Interface) and a protocol that sits
+on top of TCP.  Since the latter portion is hidden from the user it
+seems like a good idea to send numeric codes that represent the
+actions.  However, consider that there is really not much benefit to this.
+In this scenario, it's unlikely that a little extra bandwidth and
+processing power are going to harm anything.  Sending the commands
+as the same text the user sees will be easier to program.  There
+is no need to convert from text to numbers, you don't have to remember
+special codes when programming, and there is just less room for
+mistakes.
+</p>
+
+<p>
+Also consider what happens when something goes wrong.  Those codes
+will be the debug output.  Someone might find them by intercepting
+Internet traffic.  They might get dumped into a log file or spit out
+on the console.  They could even end up in a core file.  It would be
+very difficult to try and diagnose the problem.  On the other
+hand, if you sent plain text, the problem might be immediately
+obvious.  Which of the following would you prefer to see?
+</p>
+
+<pre>
+       Correct                 Error
+Text   Action: Login           Action: Logij
+Code   ^#                      ^(
+</pre>
+
+<p>
+So we've decided that our protocol will be a relatively simple plain
+text scheme over TCP.
+</p>
+
+<p><span class="bold">*</span>You might try adding in a million features and customizations, but
+this design strategy can only take you so far.  There will always be
+crazy applications the end user wishes to try which you didn't
+consider.  A built-in language is always more flexible than a
+customization file to control a rich set of features.  Compare EMACS
+and MS Word.  However, you should remember who your customers are. 
+</p>
+
+<p><a href="astman2.html">next</a></p>
+
+</td></tr>
+</table>
+<p><br /><a href="../../index.html">home</a></p>
+
+</body>
+</html>

@@ -1,0 +1,189 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+<head>
+<title>Understanding the FFT</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<link rel="stylesheet" type="text/css" href="../index.css" />
+<meta name="description" content=
+"A short discussion on understanding the FFT and the FFFT and learning
+math in general.                                                    " />
+<!-- ....10........20........30........40........50........60........70........80 -->
+</head>
+
+<body>
+<table>
+<tr><td class="article">
+<h1 class="topofpage">Understanding the FFT</h1>
+
+<p>
+Starting out learning something new, there's always that initial
+cloudiness we have until things finally click.  They may click in three
+minutes, or it might take ten years.  It just depends on the level of
+difficulty.  This is especially troublesome with math.  Remember the
+first time you saw the definition of a Fourier Transform or the
+discrete version?  You probably thought, like me, what in God's name
+is that?  And the sixth or seventh time you saw it, you were probably
+still thinking, what in God's name is that?
+</p>
+
+<p>
+Maybe your professor made a joke about how Fourier (or Laplace) was clearly on
+drugs when he came up with his transform.  Unfortunately, that doesn't
+help me.  I don't use drugs.  And even if I did, I doubt I would see
+the same thing as Fourier.  The really awesome professors will really
+try to make you understand.  First you'll get the definition.  Then they'll show you how to
+get there.  I've seen the derivation a few times, and at one point I
+think I actually understood all the steps.
+</p>
+
+<p>
+But being able to follow the steps doesn't give you any intuition about
+what it all means.  The good professors will keep going.  They'll
+explain the time-frequency concepts and give relevant examples that
+help elucidate what all the crazy math actually means.  They'll cover
+every little step in detail.  If there's any hand-waving, it will be
+done so that you don't even notice.
+</p>
+
+<p>
+It wasn't until my senior year of college that the definition of the
+DFT (and the continuous form) started to make sense to me.  Something a
+professor said in my image compression class finally clicked.  It was
+this, along with my understanding of correlation and orthogonal
+functions that finally lifted the fog (a little).
+</p>
+
+<p>
+Take a look at the
+definition.  Forget about the complex part and treat the exp as a sin
+or cos.  (I'm hand-waving over 90% of the details because I don't
+understand that well, but you should see the basic idea.)  For each
+summation, you compute one frequency bin.  This calculation is
+essentially a correlation of the input signal and the frequency you're
+calculating.  Notice, one index in the exp traverses the input
+signal.  That's the correlation.  The other index determines the
+frequency you're comparing the signal against.  There's also a
+normalizing factor for the discrete version; ignore that too.
+</p>
+
+<p>
+Basically, for each frequency bin, you're comparing the signal against
+that frequency.  That's all the summation is doing.  It's just the
+correlation at zero lag.  If there is a strong signal component at
+that frquency, you'll get a large number in that frequency bin.  If
+there's no signal power, the function is uncorrelated with a sinusoid at that
+frequency.  You don't have to worry about the sinusoid correlating
+with other frequencies in the signal.  One of the reasons sinusoids
+are chosen as the basis set is because they're orthogonal at integer
+multiples of the lowest frequency.  So the frequency of interest can
+only correlate with the signal if there is signal power at that
+frequency.  That's it.  One way to think about it is that you're correlating the
+signal at each frequency of interest (at orthogonal frequencies).
+</p>
+
+<p>
+It makes so much more sense when you can look at the definition from
+more than one angle.  Another way to boost understanding is by
+increasing the level of abstraction or complexity.  It's similar to
+how professors give difficult homework problems but easy test
+problems.  The assumption is that if you were able to solve the hard
+problems, the test problems should be easy.  If you've learned the
+quadratic formula, completing the square, and Newton's Method of root
+finding, solving x^2+2x+1 the way they taught you in 7th grade should
+be obvious by now.
+</p>
+
+<p>
+If you want to understand more about the DFT, learn some of the
+variants.  There are about a hundred of them, and they're pretty much
+all related.  But there are also generalizations.  Take the
+Fractional DFT, for example.  It turns out you can actually take a
+non-integer transform.  What the heck is that?  I'll explain in a
+second.
+</p>
+
+<p>
+Try this: take the DFT of a real-valued sequence.  Then take it
+again.*  You should get the original sequence time reversed.  Hm,
+that's kind of neat.  Ok, now take it two more times (that's four
+DFTs).  Wow, you're right back to where you started.  I guess that
+should be obvious.  Now start from the beginning and take the DFT
+once.  Take the conjugate and then take the DFT again.  Look at that.
+You're right back where you started but with only two DFTs this time.
+This is a trick you can use to get the Inverse DFT using just a
+conjugate and the DFT.  They'll tell you it's because of conjugate
+symmetry.  But there's another reason.
+</p>
+
+<p>
+You can actually think of taking the DFT as moving through
+time-frequency space.  If you take it once, you go from the time
+domain to the frequency domain.  If you then take the inverse you move
+back to the time domain.  If instead, you take the DFT again, you end
+up back on the time domain, but you're on the other side; so, the axis
+is reversed.  The little figure below demonstrates.  T_ and F_ are
+time and frequency reversed respectively.
+</p>
+
+<pre>
+        F
+        |  &lt;-^
+        |    | (T -> F)
+T_------|------T
+        |
+        |
+        F_
+</pre>
+
+<p>
+So now you see why four DFTs gets you back to where you started.  What
+about the conjugate method?  Because of conjugate symmetry, taking the
+conjugate effectively flips the axis.  Thus it's like taking the DFT
+twice.  Try this out in matlab.  Move back and forth between the
+different domains with FFT and IFFT.
+</p>
+
+<p>
+Think of taking the DFT twice as DFT^2.  The ^2 means applying the
+operator twice and has nothing to do with squaring the signal.  Then
+x[n] = DFT^4 x[n].  What about the space in between?  You can actually
+take DFT^.3.  The result is something that is between time and
+frequency.  There are some interesting applications of moving to this
+more generalized transform.  But it's not just a math quirk.  When you
+optically transform an image, the signal passes through all the
+fractional transforms on its way from the time domain to the frequency
+domain.
+</p>
+
+<p>
+But I've gotten off track.  The point is that once you spend some time
+understanding the generalized DFT, the one that everyone else is using
+makes more sense.  If you were really to study it in depth, you would
+probably have a much deeper understanding.  Unfortunately, the level
+of abstraction and complexity is a good one to two orders of magnitude
+higher.  I read the first few chapters of <a
+href="http://www.amazon.com/exec/obidos/redirect?link_code=ur2&amp;tag=signalsguru-20&amp;camp=1789&amp;creative=9325&amp;path=http%3A%2F%2Fwww.amazon.com%2Fgp%2Fproduct%2F0471963461">The
+Fractional Fourier Transform</a><img
+src="http://www.assoc-amazon.com/e/ir?t=signalsguru-20&amp;l=ur2&amp;o=1"
+width="1" height="1" alt="" />.  It's not easy stuff.  But look at the
+insight you've gained from this brief discussion!
+</p>
+
+<p>
+<span class="bold">*</span>The DFT isn't quite a unitary transform; so, you have to divide the
+IDFT by the length of the input to get back to the original.  So treat
+every other DFT as the IDFT and divide by another N for each
+additional two.  Also, remember that the negative frequency bins come
+after the positive ones.  And for reasons I don't fully understand,
+the DC component is not a part of the axis flipping.  If you try this,
+ignore the first element and look at the rest for the reversal.
+</p>
+
+</td></tr>
+</table>
+<p><br /><a href="../index.html">home</a></p>
+
+</body>
+
+</html>

@@ -1,0 +1,200 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+<head>
+<title>Matlab for Real Time Applications</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<link rel="stylesheet" type="text/css" href="../index.css" />
+<meta name="description" content="
+A brief tutorial on developing real-time DSP algorithms using Matlab.           
+                                                                                " />
+<!-- ....10........20........30........40........50........60........70........80 -->
+</head>
+
+<body>
+<table>
+<tr><td class="article">
+<h1 class="topofpage">Matlab for Real Time Applications</h1>
+
+<p>
+Congratulations!  You researched all the best algorithms, picked the
+most appropriate one, and even got it working in matlab.  Now, how are
+you going to get it running in real time?  Code it up in C and try to
+get it running on your DSP?  No!  You can pray all you want.  If
+you've done anything worth doing, it's not going to work the first
+time, the second time, or even the 327th time.</p>
+
+<p>
+The first thing you want do is build a mex file that can be run from
+matlab.  Now, you could just recode the matlab simulation in C, but
+this won't be very productive since you'll just have to rewrite the
+code for real time.  Instead, write the code so it can be run from
+both matlab and on your real time processor.  To give you an idea of
+how it should be done, take a look at the matlab driver below.</p>
+
+<pre class="code">
+function out=testAGC(in)
+BUFFER_COUNT=160;
+s=size(in);
+clear mex;
+
+out=zeros(s(1),1);
+for k=BUFFER_COUNT:BUFFER_COUNT:s(1)
+   out(k-BUFFER_COUNT+1:k)=agc(in(k-BUFFER_COUNT+1:k,:));
+end
+clear mex;
+</pre>
+
+<p>
+This script takes an input vector and runs the mex function agc on it
+one frame at a time.  The clear mex statements are just to make sure
+the file is reinitialized each time the experitment is performed.  AGC
+stands for Automatic Gain Control, which is the example I'll use from
+here on.  The code must operate on only a single (of just a fractions
+of a second) buffer at a time.  Any differences between the matlab
+code and the real time version can be dealt with using conditional
+compilation.  Alternatively you may be able to just link in separate
+files; although, I have not tried this.
+</p>
+
+<p>
+Let's take a look at the algorithm.  (See the <a
+					     href="http://www.rose-hulman.edu/~hoover/Lab4/EC581_L4.doc">explanation</a>.)</p>
+
+<pre class="code">
+void AGC(int *in, int *out)
+{
+    int i;
+    float mag=0;
+
+    for(i=0; i&lt;BUFSIZE; i++)
+        mag += abs(in[i]);
+    if(mag&gt;250*BUFSIZE) {
+        for(i=0; i&#60;BUFSIZE; i++)
+            out[i] = (int)(in[i]/(mag/500000));
+    } else {
+        for(i=0; i&#60;BUFSIZE; i++)
+            out[i] = 0;
+    }
+}
+</pre>
+
+<p>
+This simple example sums up the magnitudes in the buffer and divides
+by the constant scaled sum.  If the sum of magnitudes is too small
+there is not much signal; so, just set the output to zero.  The rest
+of the file is below.  By using some defines, it is easy to switch
+between platforms.  Instead of a DSP, I'm using Asterisk as my real
+time system.  The Asterisk code is not shown here.  (See <a
+href="http://www.signalsguru.net/articles/astexample2/agc.c">agc.c</a>) 
+The routine, mexFunction, which is surrounded by a
+precompilation define, takes the input frame and converts it to an
+integer array.  This is used as input to the agc function above.  The
+output of agc then has to be converted back to double precision and
+stored in a matlab vector.  The Asterisk code is surrounded by a
+similar define and can call the very same agc function.  Thus, once
+you verify the code in matlab (which should be relatively easy), there
+will be little or no need to rewrite code.  It should work in most
+environments as long as you use standard libraries.  Once you get your
+algorithm working in both environments, any changes you make will
+usually only have to be made once.</p>
+</td><td></td></tr>
+
+<tr><td colspan="2">
+<pre class="code">
+#define matlab 0
+#define asterisk 1
+#define platform matlab
+#define BUFSIZE 160
+
+void init();
+void AGC(int *in, int *out);
+
+#if platform==matlab
+#include "mex.h"
+void mexFunction(int nlhs, mxArray *plhs[], int nrhs, const mxArray *prhs[]) 
+{
+    static int start=0;
+    double *inDBL, *outDBL;
+    int i,in[BUFSIZE],out[BUFSIZE];
+    mxArray *o;
+
+    if(start==0) { start++; init(); }//happens only first frame
+
+    inDBL=mxGetPr(prhs[0]);
+    o=mxCreateDoubleMatrix(BUFSIZE,1,mxREAL);
+    outDBL=mxGetPr(o);
+
+    for(i=0; i&lt;mxGetM(prhs[0]); i++)
+        in[i]=(int)inDBL[i];
+
+    AGC(in,out);
+
+    for(i=0; i&lt;BUFSIZE; i++)
+        outDBL[i]=out[i];
+    if(nlhs&gt;0)
+        plhs[0]=o;
+    else
+        mxDestroyArray(o);
+}
+#endif
+
+void init()
+{
+    /* initialization here */
+}
+</pre>
+</td><td></td></tr>
+
+
+<tr><td class="article">
+<p>
+In this very simple example, it's hard to see why conditional
+compilation might be necessary.  But consider what happens when you
+need to use optimized code that is specific to your platform.
+Consider this snippet from my work:</p>
+</td><td></td></tr>
+
+<tr><td colspan="2">
+<pre class="code">
+#if SYSTEM==MATLAB
+    double *tmp;
+    mxArray *lhs[1], *rhs[1];
+
+    rhs[0]=mxCreateDoubleMatrix(BUFFER_COUNT*2,1,mxCOMPLEX);
+    for(j=0; j&lt;4*BUFFER_COUNT; j+=2) {
+        *(mxGetPr(rhs[0])+(j&gt;&gt;1))=in[j];
+        *(mxGetPi(rhs[0])+(j&gt;&gt;1))=in[j+1];
+    }
+    mexCallMATLAB(1,lhs,1,rhs,"fft");
+    for(j=0; j&lt;2*BUFFER_COUNT; j++) {
+        scratch2[j&lt;&lt;1]=(float)*(mxGetPr(lhs[0])+j);
+        tmp=mxGetPi(lhs[0]);
+        scratch2[(j&lt;&lt;1)+1]=0;
+        if(tmp!=NULL)
+            scratch2[(j&lt;&lt;1)+1]=(float)*(tmp+j);
+    }
+    mxDestroyArray(lhs[0]);
+    mxDestroyArray(rhs[0]);
+#elif SYSTEM==C6713
+    DSPF_sp_fftSPxSP(FFTLEN,&amp;in[0],&amp;w[0],scratch2,brev,FFTPOW,0,FFTLEN);
+#endif
+</pre>
+</td><td></td></tr>
+
+<tr><td class="article">
+<p>
+I need to call an fft routine.  The matlab and C6713 versions are
+clearly incompatible.  But I can keep the rest of my code the same by
+using a precompiler condition.  Easy.  (A word of caution here - When
+using mxGetPi, make sure you check for NULL.  You will save yourself a
+lot of pain trying to figure out why matlab is crashing since it
+doesn't allocate the imaginary vector when it's not needed.)</p>
+
+</td><td></td></tr>
+
+</table>
+<p><br /><a href="../index.html">home</a></p>
+
+</body>
+</html>
