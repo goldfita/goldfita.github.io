@@ -1,160 +1,835 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.google.com/schemas/sitemap/0.84">
-   <url>
-      <loc>http://www.signalsguru.net/</loc>
-   </url>
-   <url>
-      <loc>http://www.signalsguru.net/resume/resume_page.html</loc>
-   </url>
-   <url>
-      <loc>http://www.signalsguru.net/resume/resume.html</loc>
-   </url>
-   <url>
-      <loc>http://www.signalsguru.net/resume/grades.html</loc>
-   </url>
-   <url>
-      <loc>http://www.signalsguru.net/resume/selectedquotes.html</loc>
-   </url>
-   <url>
-      <loc>http://www.signalsguru.net/projects/projects.html</loc>
-   </url>
-   <url>
-      <loc>http://www.signalsguru.net/projects/thesis/thesis_page.html</loc>
-   </url>
-   <url>
-      <loc>http://www.signalsguru.net/projects/thesis/research/index.html</loc>
-   </url>
-   <url>
-      <loc>http://www.signalsguru.net/projects/thesis/research/node1.html</loc>
-   </url>
-   <url>
-      <loc>http://www.signalsguru.net/projects/thesis/research/node2.html</loc>
-   </url>
-   <url>
-      <loc>http://www.signalsguru.net/projects/thesis/research/node3.html</loc>
-   </url>
-   <url>
-      <loc>http://www.signalsguru.net/projects/thesis/research/node4.html</loc>
-   </url>
-   <url>
-      <loc>http://www.signalsguru.net/projects/thesis/research/node5.html</loc>
-   </url>
-   <url>
-      <loc>http://www.signalsguru.net/projects/thesis/research/node6.html</loc>
-   </url>
-   <url>
-      <loc>http://www.signalsguru.net/projects/thesis/research/node7.html</loc>
-   </url>
-   <url>
-      <loc>http://www.signalsguru.net/projects/thesis/research/node8.html</loc>
-   </url>
-   <url>
-      <loc>http://www.signalsguru.net/projects/thesis/research/node9.html</loc>
-   </url>
-   <url>
-      <loc>http://www.signalsguru.net/projects/thesis/research/node10.html</loc>
-   </url>
-   <url>
-      <loc>http://www.signalsguru.net/projects/thesis/research/node11.html</loc>
-   </url>
-   <url>
-      <loc>http://www.signalsguru.net/projects/thesis/research/node12.html</loc>
-   </url>
-   <url>
-      <loc>http://www.signalsguru.net/projects/thesis/research/node13.html</loc>
-   </url>
-   <url>
-      <loc>http://www.signalsguru.net/projects/thesis/research/node14.html</loc>
-   </url>
-   <url>
-      <loc>http://www.signalsguru.net/projects/thesis/research/node15.html</loc>
-   </url>
-   <url>
-      <loc>http://www.signalsguru.net/projects/thesis/research/node15.html</loc>
-   </url>
-   <url>
-      <loc>http://www.signalsguru.net/projects/thesis/recommend_thesis.html</loc>
-   </url>
-   <url>
-      <loc>http://www.signalsguru.net/projects/thesis/recommend_grad.html</loc>
-   </url>
-   <url>
-      <loc>http://www.signalsguru.net/projects/thesis/array/</loc>
-   </url>
-   <url>
-      <loc>http://www.signalsguru.net/projects/formants/formant.html</loc>
-   </url>
-   <url>
-      <loc>http://www.signalsguru.net/projects/advimage/Lab1.html</loc>
-   </url>
-   <url>
-      <loc>http://www.signalsguru.net/projects/advimage/Lab2_1.html</loc>
-   </url>
-   <url>
-      <loc>http://www.signalsguru.net/projects/advimage/Lab3_1.html</loc>
-   </url>
-   <url>
-      <loc>http://www.signalsguru.net/projects/music/lab6_1.html</loc>
-   </url>
-   <url>
-      <loc>http://www.signalsguru.net/projects/keytutor/src/tmp/</loc>
-   </url>
-   <url>
-      <loc>http://www.signalsguru.net/projects/streamer/</loc>
-   </url>
-   <url>
-      <loc>http://www.signalsguru.net/projects/older_prj/</loc>
-   </url>
-   <url>
-      <loc>http://www.signalsguru.net/projects/JHUAPL_img/</loc>
-   </url>
-   <url>
-      <loc>http://www.signalsguru.net/articles/software.html</loc>
-   </url>
-   <url>
-      <loc>http://www.signalsguru.net/articles/astexample1/astexample1.html</loc>
-   </url>
-   <url>
-      <loc>http://www.signalsguru.net/articles/astexample2/astexample2.html</loc>
-   </url>
-   <url>
-      <loc>http://www.signalsguru.net/articles/codesim.html</loc>
-   </url>
-   <url>
-      <loc>http://www.signalsguru.net/articles/softdevmodel.html</loc>
-   </url>
-   <url>
-      <loc>http://www.signalsguru.net/articles/itprofessionals.html</loc>
-   </url>
-   <url>
-      <loc>http://www.signalsguru.net/articles/dev_bottom.html</loc>
-   </url>
-   <url>
-      <loc>http://www.signalsguru.net/articles/minarch.html</loc>
-   </url>
-   <url>
-      <loc>http://www.signalsguru.net/articles/softoutin.html</loc>
-   </url>
-   <url>
-      <loc>http://www.signalsguru.net/articles/hardeasy.html</loc>
-   </url>
-   <url>
-      <loc>http://www.signalsguru.net/articles/compressarticle/audiocodecs.html</loc>
-   </url>
-   <url>
-      <loc>http://www.signalsguru.net/articles/dpcmexper/dpcmexper.html</loc>
-   </url>
-   <url>
-      <loc>http://www.signalsguru.net/articles/toolideas.html</loc>
-   </url>
-   <url>
-      <loc>http://www.signalsguru.net/articles/pyloops.html</loc>
-   </url>
-   <url>
-      <loc>http://www.signalsguru.net/articles/thingsilike.html</loc>
-   </url>
-   <url>
-      <loc>http://www.signalsguru.net/links/resources.html</loc>
-   </url>
-</urlset>
+<urlset
+      xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
+            http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
 
+<url>
+  <loc>https://www.signalsguru.net/</loc>
+  <lastmod>2023-11-07T21:48:45+00:00</lastmod>
+  <priority>1.00</priority>
+</url>
+<url>
+  <loc>https://www.signalsguru.net/resume/resume_page.html</loc>
+  <lastmod>2023-11-07T21:48:45+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://www.signalsguru.net/projects/projects.html</loc>
+  <lastmod>2023-11-07T21:48:45+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://www.signalsguru.net/links/resources.html</loc>
+  <lastmod>2023-11-07T21:48:45+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://www.signalsguru.net/freesoft/opensource.html</loc>
+  <lastmod>2023-11-07T21:48:45+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://www.signalsguru.net/post2016.html</loc>
+  <lastmod>2023-11-07T21:48:45+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://www.signalsguru.net/articles/software.html</loc>
+  <lastmod>2023-11-07T21:48:45+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://www.signalsguru.net/articles/software2005.html</loc>
+  <lastmod>2023-11-07T21:48:45+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://www.signalsguru.net/projects/thesis/thesis_page.html</loc>
+  <lastmod>2023-11-07T21:48:45+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://www.signalsguru.net/resume/resume.html</loc>
+  <lastmod>2023-11-07T21:48:45+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://www.signalsguru.net/resume/resume.pdf</loc>
+  <lastmod>2023-11-07T21:48:45+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://www.signalsguru.net/resume/resume.ps</loc>
+  <lastmod>2023-11-07T21:48:45+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://www.signalsguru.net/resume/bio.html</loc>
+  <lastmod>2023-11-07T21:48:45+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://www.signalsguru.net/resume/selectedquotes.html</loc>
+  <lastmod>2023-11-07T21:48:45+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://www.signalsguru.net/resume/coworkerquotes.html</loc>
+  <lastmod>2023-11-07T21:48:45+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://www.signalsguru.net/resume/grades.html</loc>
+  <lastmod>2023-11-07T21:48:45+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://www.signalsguru.net/index.html</loc>
+  <lastmod>2023-11-07T21:48:45+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://www.signalsguru.net/projects/formants/formant.html</loc>
+  <lastmod>2023-11-07T21:48:45+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://www.signalsguru.net/projects/imageprocessing/lab4.htm</loc>
+  <lastmod>2023-11-07T21:48:45+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://www.signalsguru.net/projects/advimage/Lab1.html</loc>
+  <lastmod>2023-11-07T21:48:45+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://www.signalsguru.net/projects/advimage/Lab2_1.html</loc>
+  <lastmod>2023-11-07T21:48:45+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://www.signalsguru.net/projects/advimage/Lab3_1.html</loc>
+  <lastmod>2023-11-07T21:48:45+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://www.signalsguru.net/projects/music/lab6_1.html</loc>
+  <lastmod>2023-11-07T21:48:45+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://www.signalsguru.net/projects/asynch.pdf</loc>
+  <lastmod>2023-11-07T21:48:45+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://www.signalsguru.net/projects/DSPSystemDesign/Design.doc</loc>
+  <lastmod>2023-11-07T21:48:45+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://www.signalsguru.net/projects/MiniMips.doc</loc>
+  <lastmod>2023-11-07T21:48:45+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://www.signalsguru.net/projects/Transmeta%20Crusoe.doc</loc>
+  <lastmod>2023-11-07T21:48:45+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://www.signalsguru.net/projects/Crusoe.ppt</loc>
+  <lastmod>2023-11-07T21:48:45+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://www.signalsguru.net/projects/dct_midterm.doc</loc>
+  <lastmod>2023-11-07T21:48:45+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://www.signalsguru.net/acidreign.html</loc>
+  <lastmod>2023-11-07T21:48:45+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://www.signalsguru.net/adaptiveresample.html</loc>
+  <lastmod>2023-11-07T21:48:45+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://www.signalsguru.net/frequencydomainoptimization.html</loc>
+  <lastmod>2023-11-07T21:48:45+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://www.signalsguru.net/blindmap.html</loc>
+  <lastmod>2023-11-07T21:48:45+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://www.signalsguru.net/wsl.html</loc>
+  <lastmod>2023-11-07T21:48:45+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://www.signalsguru.net/articles/dspjobs.html</loc>
+  <lastmod>2023-11-07T21:48:45+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://www.signalsguru.net/articles/solib.html</loc>
+  <lastmod>2023-11-07T21:48:45+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://www.signalsguru.net/articles/cexample/callocmem.html</loc>
+  <lastmod>2023-11-07T21:48:45+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://www.signalsguru.net/articles/susuggest.html</loc>
+  <lastmod>2023-11-07T21:48:45+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://www.signalsguru.net/articles/latextips.html</loc>
+  <lastmod>2023-11-07T21:48:45+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://www.signalsguru.net/articles/emacs_control.html</loc>
+  <lastmod>2023-11-07T21:48:45+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://www.signalsguru.net/articles/kernelcrash.html</loc>
+  <lastmod>2023-11-07T21:48:45+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://www.signalsguru.net/articles/softwaresolutions.html</loc>
+  <lastmod>2023-11-07T21:48:45+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://www.signalsguru.net/articles/firewire/firewire.html</loc>
+  <lastmod>2023-11-07T21:48:45+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://www.signalsguru.net/articles/becomeexpert.html</loc>
+  <lastmod>2023-11-07T21:48:45+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://www.signalsguru.net/articles/webinterface.html</loc>
+  <lastmod>2023-11-07T21:48:45+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://www.signalsguru.net/articles/tragedyoftheinternet.html</loc>
+  <lastmod>2023-11-07T21:48:45+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://www.signalsguru.net/articles/shouldlearnc.html</loc>
+  <lastmod>2023-11-07T21:48:45+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://www.signalsguru.net/articles/rtdsp/rtdsp.html</loc>
+  <lastmod>2023-11-07T21:48:45+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://www.signalsguru.net/articles/sndexperience/sndexperience.html</loc>
+  <lastmod>2023-11-07T21:48:45+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://www.signalsguru.net/articles/pyrbwrappers.html</loc>
+  <lastmod>2023-11-07T21:48:45+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://www.signalsguru.net/articles/fastcgi.html</loc>
+  <lastmod>2023-11-07T21:48:45+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://www.signalsguru.net/articles/rubyonrails.html</loc>
+  <lastmod>2023-11-07T21:48:45+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://www.signalsguru.net/articles/lostopportunity.html</loc>
+  <lastmod>2023-11-07T21:48:45+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://www.signalsguru.net/articles/softlayers.html</loc>
+  <lastmod>2023-11-07T21:48:45+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://www.signalsguru.net/articles/introspect.html</loc>
+  <lastmod>2023-11-07T21:48:45+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://www.signalsguru.net/articles/sasp.html</loc>
+  <lastmod>2023-11-07T21:48:45+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://www.signalsguru.net/articles/worklife.html</loc>
+  <lastmod>2023-11-07T21:48:45+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://www.signalsguru.net/articles/latexfig/latexfig.html</loc>
+  <lastmod>2023-11-07T21:48:45+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://www.signalsguru.net/articles/writingfortheweb.html</loc>
+  <lastmod>2023-11-07T21:48:45+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://www.signalsguru.net/articles/jpegblocking/imagecompress.html</loc>
+  <lastmod>2023-11-07T21:48:45+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://www.signalsguru.net/articles/managementwoes.html</loc>
+  <lastmod>2023-11-07T21:48:45+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://www.signalsguru.net/articles/zerodefects.html</loc>
+  <lastmod>2023-11-07T21:48:45+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://www.signalsguru.net/articles/asterisk_kphone.html</loc>
+  <lastmod>2023-11-07T21:48:45+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://www.signalsguru.net/articles/censorship.html</loc>
+  <lastmod>2023-11-07T21:48:45+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://www.signalsguru.net/articles/designprocess.html</loc>
+  <lastmod>2023-11-07T21:48:45+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://www.signalsguru.net/articles/debugging.html</loc>
+  <lastmod>2023-11-07T21:48:45+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://www.signalsguru.net/articles/riskassessment.html</loc>
+  <lastmod>2023-11-07T21:48:45+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://www.signalsguru.net/articles/learnmath.html</loc>
+  <lastmod>2023-11-07T21:48:45+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://www.signalsguru.net/articles/listreverse/reverse.html</loc>
+  <lastmod>2023-11-07T21:48:45+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://www.signalsguru.net/articles/objectmessages.html</loc>
+  <lastmod>2023-11-07T21:48:45+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://www.signalsguru.net/articles/metamind.html</loc>
+  <lastmod>2023-11-07T21:48:45+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://www.signalsguru.net/articles/ffft.html</loc>
+  <lastmod>2023-11-07T21:48:45+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://www.signalsguru.net/articles/mathtricks.html</loc>
+  <lastmod>2023-11-07T21:48:45+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://www.signalsguru.net/articles/learnbeforeyoulearn.html</loc>
+  <lastmod>2023-11-07T21:48:45+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://www.signalsguru.net/articles/abstraction.html</loc>
+  <lastmod>2023-11-07T21:48:45+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://www.signalsguru.net/articles/getitdone.html</loc>
+  <lastmod>2023-11-07T21:48:45+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://www.signalsguru.net/articles/lispscript.html</loc>
+  <lastmod>2023-11-07T21:48:45+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://www.signalsguru.net/articles/onlanguage/onlanguages.html</loc>
+  <lastmod>2023-11-07T21:48:45+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://www.signalsguru.net/articles/standards.html</loc>
+  <lastmod>2023-11-07T21:48:45+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://www.signalsguru.net/articles/shallowbugs.html</loc>
+  <lastmod>2023-11-07T21:48:45+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://www.signalsguru.net/articles/usewhatyouknow.html</loc>
+  <lastmod>2023-11-07T21:48:45+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://www.signalsguru.net/articles/xemacsbuf.html</loc>
+  <lastmod>2023-11-07T21:48:45+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://www.signalsguru.net/articles/indeplib.html</loc>
+  <lastmod>2023-11-07T21:48:45+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://www.signalsguru.net/articles/ocamlyou.html</loc>
+  <lastmod>2023-11-07T21:48:45+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://www.signalsguru.net/articles/polyprimitives.html</loc>
+  <lastmod>2023-11-07T21:48:45+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://www.signalsguru.net/articles/astman/astman.html</loc>
+  <lastmod>2023-11-07T21:48:45+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://www.signalsguru.net/articles/getajob.html</loc>
+  <lastmod>2023-11-07T21:48:45+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://www.signalsguru.net/articles/astexample1/astexample1.html</loc>
+  <lastmod>2023-11-07T21:48:45+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://www.signalsguru.net/articles/astexample2/astexample2.html</loc>
+  <lastmod>2023-11-07T21:48:45+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://www.signalsguru.net/articles/codesim.html</loc>
+  <lastmod>2023-11-07T21:48:45+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://www.signalsguru.net/articles/progeffim/softdevmodel.html</loc>
+  <lastmod>2023-11-07T21:48:45+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://www.signalsguru.net/articles/itprofessionals.html</loc>
+  <lastmod>2023-11-07T21:48:45+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://www.signalsguru.net/articles/dev_bottom.html</loc>
+  <lastmod>2023-11-07T21:48:45+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://www.signalsguru.net/articles/minarch.html</loc>
+  <lastmod>2023-11-07T21:48:45+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://www.signalsguru.net/articles/softoutin.html</loc>
+  <lastmod>2023-11-07T21:48:45+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://www.signalsguru.net/articles/hardeasy.html</loc>
+  <lastmod>2023-11-07T21:48:45+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://www.signalsguru.net/articles/thingsthathelp/somethingsthathelp.html</loc>
+  <lastmod>2023-11-07T21:48:45+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://www.signalsguru.net/articles/regressiontests.html</loc>
+  <lastmod>2023-11-07T21:48:45+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://www.signalsguru.net/articles/embedlisp.html</loc>
+  <lastmod>2023-11-07T21:48:45+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://www.signalsguru.net/articles/gcctest/gcctest.html</loc>
+  <lastmod>2023-11-07T21:48:45+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://www.signalsguru.net/articles/testing/testcases.html</loc>
+  <lastmod>2023-11-07T21:48:45+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://www.signalsguru.net/articles/compressarticle/audiocodecs.html</loc>
+  <lastmod>2023-11-07T21:48:45+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://www.signalsguru.net/articles/dpcmexper/dpcmexper.html</loc>
+  <lastmod>2023-11-07T21:48:45+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://www.signalsguru.net/articles/fixedfir/fixedfir.html</loc>
+  <lastmod>2023-11-07T21:48:45+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://www.signalsguru.net/articles/condecon.html</loc>
+  <lastmod>2023-11-07T21:48:45+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://www.signalsguru.net/articles/rtdev/rtlms.html</loc>
+  <lastmod>2023-11-07T21:48:45+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://www.signalsguru.net/articles/fftstrick.html</loc>
+  <lastmod>2023-11-07T21:48:45+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://www.signalsguru.net/articles/css/css.html</loc>
+  <lastmod>2023-11-07T21:48:45+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://www.signalsguru.net/articles/toolideas.html</loc>
+  <lastmod>2023-11-07T21:48:45+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://www.signalsguru.net/articles/pyloops/pyloops.html</loc>
+  <lastmod>2023-11-07T21:48:45+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://www.signalsguru.net/articles/thingsilike.html</loc>
+  <lastmod>2023-11-07T21:48:45+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://www.signalsguru.net/articles/creativeclass.html</loc>
+  <lastmod>2023-11-07T21:48:45+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://www.signalsguru.net/articles/promoting.html</loc>
+  <lastmod>2023-11-07T21:48:45+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://www.signalsguru.net/articles/noise/noise.html</loc>
+  <lastmod>2023-11-07T21:48:45+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://www.signalsguru.net/articles/ads.html</loc>
+  <lastmod>2023-11-07T21:48:45+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://www.signalsguru.net/articles/builtpc/builtpc.html</loc>
+  <lastmod>2023-11-07T21:48:45+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://www.signalsguru.net/projects/thesis/research/index.html</loc>
+  <lastmod>2023-11-07T21:48:45+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://www.signalsguru.net/projects/formants/How%20to%20get%20real%20time%20data%20into%20Matlab.pdf</loc>
+  <lastmod>2023-11-07T21:48:45+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://www.signalsguru.net/projects/thesis/recommend_thesis.html</loc>
+  <lastmod>2023-11-07T21:48:45+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://www.signalsguru.net/projects/thesis/recommend_grad.html</loc>
+  <lastmod>2023-11-07T21:48:45+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://www.signalsguru.net/projects/thesis/timodasm/tiassembly.html</loc>
+  <lastmod>2023-11-07T21:48:45+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://www.signalsguru.net/projects/thesis/results/results.html</loc>
+  <lastmod>2023-11-07T21:48:45+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://www.signalsguru.net/projects/thesis/thesis.pdf</loc>
+  <lastmod>2023-11-07T21:48:45+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://www.signalsguru.net/projects/imageprocessing/lab4_contrast.htm</loc>
+  <lastmod>2023-11-07T21:48:45+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://www.signalsguru.net/projects/imageprocessing/lab4_hist.htm</loc>
+  <lastmod>2023-11-07T21:48:45+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://www.signalsguru.net/projects/imageprocessing/lab4_trend.htm</loc>
+  <lastmod>2023-11-07T21:48:45+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://www.signalsguru.net/projects/advimage/Lab1_2.html</loc>
+  <lastmod>2023-11-07T21:48:45+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://www.signalsguru.net/projects/advimage/Lab2_2.html</loc>
+  <lastmod>2023-11-07T21:48:45+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://www.signalsguru.net/projects/advimage/lab3_2.html</loc>
+  <lastmod>2023-11-07T21:48:45+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://www.signalsguru.net/projects/music/lab6_2.html</loc>
+  <lastmod>2023-11-07T21:48:45+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://www.signalsguru.net/projects/music/lab6_3.html</loc>
+  <lastmod>2023-11-07T21:48:45+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://www.signalsguru.net/projects/music/lab6_4.html</loc>
+  <lastmod>2023-11-07T21:48:45+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://www.signalsguru.net/articles/cexample/cpolyex.html</loc>
+  <lastmod>2023-11-07T21:48:45+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://www.signalsguru.net/articles/lkcd/trace1.txt</loc>
+  <lastmod>2023-11-07T21:48:45+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://www.signalsguru.net/articles/lkcd/report1.txt</loc>
+  <lastmod>2023-11-07T21:48:45+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://www.signalsguru.net/articles/lkcd/trace2.txt</loc>
+  <lastmod>2023-11-07T21:48:45+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://www.signalsguru.net/articles/lkcd/report2.txt</loc>
+  <lastmod>2023-11-07T21:48:45+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://www.signalsguru.net/articles/latexfig/fig1.pdf</loc>
+  <lastmod>2023-11-07T21:48:45+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://www.signalsguru.net/articles/latexfig/fig2.pdf</loc>
+  <lastmod>2023-11-07T21:48:45+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://www.signalsguru.net/articles/latexfig/fig3.pdf</loc>
+  <lastmod>2023-11-07T21:48:45+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://www.signalsguru.net/articles/listreverse/trees.html</loc>
+  <lastmod>2023-11-07T21:48:45+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://www.signalsguru.net/articles/astman/astman2.html</loc>
+  <lastmod>2023-11-07T21:48:45+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://www.signalsguru.net/articles/rtpcompanies.txt</loc>
+  <lastmod>2023-11-07T21:48:45+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://www.signalsguru.net/articles/progeffim/softdevimg1.html</loc>
+  <lastmod>2023-11-07T21:48:45+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://www.signalsguru.net/articles/progeffim/softdevimg2.html</loc>
+  <lastmod>2023-11-07T21:48:45+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://www.signalsguru.net/projects/thesis/research/node1.html</loc>
+  <lastmod>2023-11-07T21:48:45+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://www.signalsguru.net/projects/thesis/research/node2.html</loc>
+  <lastmod>2023-11-07T21:48:45+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://www.signalsguru.net/projects/thesis/research/node3.html</loc>
+  <lastmod>2023-11-07T21:48:45+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://www.signalsguru.net/projects/thesis/research/node4.html</loc>
+  <lastmod>2023-11-07T21:48:45+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://www.signalsguru.net/projects/thesis/research/node5.html</loc>
+  <lastmod>2023-11-07T21:48:45+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://www.signalsguru.net/projects/thesis/research/node6.html</loc>
+  <lastmod>2023-11-07T21:48:45+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://www.signalsguru.net/projects/thesis/research/node7.html</loc>
+  <lastmod>2023-11-07T21:48:45+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://www.signalsguru.net/projects/thesis/research/node8.html</loc>
+  <lastmod>2023-11-07T21:48:45+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://www.signalsguru.net/projects/thesis/research/node9.html</loc>
+  <lastmod>2023-11-07T21:48:45+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://www.signalsguru.net/projects/thesis/research/node10.html</loc>
+  <lastmod>2023-11-07T21:48:45+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://www.signalsguru.net/projects/thesis/research/node11.html</loc>
+  <lastmod>2023-11-07T21:48:45+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://www.signalsguru.net/projects/thesis/research/node12.html</loc>
+  <lastmod>2023-11-07T21:48:45+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://www.signalsguru.net/projects/thesis/research/node13.html</loc>
+  <lastmod>2023-11-07T21:48:45+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://www.signalsguru.net/projects/thesis/research/node14.html</loc>
+  <lastmod>2023-11-07T21:48:45+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://www.signalsguru.net/projects/thesis/research/node15.html</loc>
+  <lastmod>2023-11-07T21:48:45+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://www.signalsguru.net/articles/astman/astman3.html</loc>
+  <lastmod>2023-11-07T21:48:45+00:00</lastmod>
+  <priority>0.41</priority>
+</url>
+<url>
+  <loc>https://www.signalsguru.net/projects/thesis/research/research.html</loc>
+  <lastmod>2023-11-07T21:48:45+00:00</lastmod>
+  <priority>0.41</priority>
+</url>
+<url>
+  <loc>https://www.signalsguru.net/articles/astman/appendixa.html</loc>
+  <lastmod>2023-11-07T21:48:45+00:00</lastmod>
+  <priority>0.33</priority>
+</url>
+<url>
+  <loc>https://www.signalsguru.net/articles/astman/astman4.html</loc>
+  <lastmod>2023-11-07T21:48:45+00:00</lastmod>
+  <priority>0.33</priority>
+</url>
+<url>
+  <loc>https://www.signalsguru.net/articles/astman/astman5.html</loc>
+  <lastmod>2023-11-07T21:48:45+00:00</lastmod>
+  <priority>0.26</priority>
+</url>
+
+
+</urlset>
